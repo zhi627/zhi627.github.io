@@ -12,7 +12,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/05/04/Hexo and GitHub Pages/index.html">
 <meta property="og:site_name" content="运维与开发的那些事">
 <meta property="og:description" content="本文将详细介绍如何在 Centos 系统使用 Hexo 以及GitHub Pages 搭建个人博客 注册GitHub账号安装Git1$ yum -y install git 安装Node.js以及npm在国内用户可以更新yum源以及npm源为国内的，这样下载安装更快，可参考 yum源更换 以及 npm源更换 1$ yum -y install nodejs nodejs-devel npm 安装H">
-<meta property="og:updated_time" content="2017-05-04T16:25:27.000Z">
+<meta property="og:updated_time" content="2017-05-04T16:28:41.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo与GiHub Pages 搭建个人博客">
 <meta name="twitter:description" content="本文将详细介绍如何在 Centos 系统使用 Hexo 以及GitHub Pages 搭建个人博客 注册GitHub账号安装Git1$ yum -y install git 安装Node.js以及npm在国内用户可以更新yum源以及npm源为国内的，这样下载安装更快，可参考 yum源更换 以及 npm源更换 1$ yum -y install nodejs nodejs-devel npm 安装H">
@@ -100,8 +100,8 @@
 <li>启动服务器，提示博客会在<code>http://localhost:4000/</code>下启动。 在服务器启动期间，Hexo会监视文件变动并自动更新，无须重启服务器。不断刷新网页即可看到更新。</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<h2 id="创建ssh私钥与公钥"><a href="#创建ssh私钥与公钥" class="headerlink" title="创建ssh私钥与公钥"></a>创建ssh私钥与公钥</h2><p>调用ssh-keygen生成对应用户的私钥与公钥文件<code>id_rsa</code>与<code>id_rsa.pub</code></p>
-<ul>
+<h2 id="创建ssh私钥与公钥"><a href="#创建ssh私钥与公钥" class="headerlink" title="创建ssh私钥与公钥"></a>创建ssh私钥与公钥</h2><ul>
+<li>调用ssh-keygen生成对应用户的私钥与公钥文件<code>id_rsa</code>与<code>id_rsa.pub</code>,一路回车即可</li>
 <li>在自己创建的<code>GitHub Pages</code>项目<code>Settings</code>找到<code>Deploy keys</code>,并复制<code>id_rsa.pub</code>公钥内容到<code>Key</code>文本框中</li>
 <li>勾选<code>Allow write access</code>复选框,设置可以通过密钥方式修改博客内容</li>
 </ul>
@@ -128,7 +128,7 @@ branch: master
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/05/04/Hexo and GitHub Pages/" data-id="cj2agwtry0002oepvemoknyzb" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/05/04/Hexo and GitHub Pages/" data-id="cj2amm65u0000f6pvls45s6cp" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/其他/">其他</a></li></ul>
@@ -139,11 +139,15 @@ branch: master
     
 <nav id="article-nav">
   
-  
-    <a href="/2017/05/04/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Hello World</div>
+    <a href="/2017/05/05/hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Hello World
+        
+      </div>
     </a>
+  
   
 </nav>
 
@@ -193,11 +197,11 @@ branch: master
       <ul>
         
           <li>
-            <a href="/2017/05/04/Hexo and GitHub Pages/">Hexo与GiHub Pages 搭建个人博客</a>
+            <a href="/2017/05/05/hello-world/">Hello World</a>
           </li>
         
           <li>
-            <a href="/2017/05/04/hello-world/">Hello World</a>
+            <a href="/2017/05/04/Hexo and GitHub Pages/">Hexo与GiHub Pages 搭建个人博客</a>
           </li>
         
       </ul>
