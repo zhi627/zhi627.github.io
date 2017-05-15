@@ -5,20 +5,20 @@
   
   <title>zabbix-install | 运维与开发的那些事</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="本文将简要介绍Centos6使用yum安装zabbix的教程硬件、软件以及php扩展要求，部分转自ZABBIX 3.2 基础安装 提供硬件配置参考： 软件参考实例: 前端软件参考实例: 安装相关软件1234yum install libxml2 libxml2-devel libvpx libvpx-devel httpd-devel libXpm-devel \libxmp-devel http">
+  <meta name="description" content="本文将简要介绍Centos6使用yum安装zabbix的教程硬件、软件以及php扩展要求，部分转自ZABBIX 3.2 基础安装 提供硬件配置参考： 软件参考实例: 前端软件参考实例: 安装相关软件1234$ yum install libxml2 libxml2-devel libvpx libvpx-devel httpd-devel libXpm-devel \libxmp-devel ht">
 <meta name="keywords" content="zabbix">
 <meta property="og:type" content="article">
 <meta property="og:title" content="zabbix-install">
 <meta property="og:url" content="http://yoursite.com/2017/05/15/zabbix-install/index.html">
 <meta property="og:site_name" content="运维与开发的那些事">
-<meta property="og:description" content="本文将简要介绍Centos6使用yum安装zabbix的教程硬件、软件以及php扩展要求，部分转自ZABBIX 3.2 基础安装 提供硬件配置参考： 软件参考实例: 前端软件参考实例: 安装相关软件1234yum install libxml2 libxml2-devel libvpx libvpx-devel httpd-devel libXpm-devel \libxmp-devel http">
+<meta property="og:description" content="本文将简要介绍Centos6使用yum安装zabbix的教程硬件、软件以及php扩展要求，部分转自ZABBIX 3.2 基础安装 提供硬件配置参考： 软件参考实例: 前端软件参考实例: 安装相关软件1234$ yum install libxml2 libxml2-devel libvpx libvpx-devel httpd-devel libXpm-devel \libxmp-devel ht">
 <meta property="og:image" content="http://static.zybuluo.com/abcdocker/3beanert2f2hfpyd5a91uca9/image_1b9nessv5ll8qguap91nmf1a9v64.png">
 <meta property="og:image" content="http://static.zybuluo.com/abcdocker/kp2oetoseghvxfasx886v574/image_1b9nf2duq1lrk16l81pf3ik4mvm6h.png">
 <meta property="og:image" content="http://static.zybuluo.com/abcdocker/1gsu04doz0jezwrtwn29be4t/image_1b9nf4bv7a8818e2qec78tmc6u.png">
-<meta property="og:updated_time" content="2017-05-15T17:08:45.000Z">
+<meta property="og:updated_time" content="2017-05-15T17:16:55.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="zabbix-install">
-<meta name="twitter:description" content="本文将简要介绍Centos6使用yum安装zabbix的教程硬件、软件以及php扩展要求，部分转自ZABBIX 3.2 基础安装 提供硬件配置参考： 软件参考实例: 前端软件参考实例: 安装相关软件1234yum install libxml2 libxml2-devel libvpx libvpx-devel httpd-devel libXpm-devel \libxmp-devel http">
+<meta name="twitter:description" content="本文将简要介绍Centos6使用yum安装zabbix的教程硬件、软件以及php扩展要求，部分转自ZABBIX 3.2 基础安装 提供硬件配置参考： 软件参考实例: 前端软件参考实例: 安装相关软件1234$ yum install libxml2 libxml2-devel libvpx libvpx-devel httpd-devel libXpm-devel \libxmp-devel ht">
 <meta name="twitter:image" content="http://static.zybuluo.com/abcdocker/3beanert2f2hfpyd5a91uca9/image_1b9nessv5ll8qguap91nmf1a9v64.png">
   
     <link rel="alternate" href="/atom.xml" title="运维与开发的那些事" type="application/atom+xml">
@@ -94,32 +94,32 @@
 <h2 id="提供硬件配置参考："><a href="#提供硬件配置参考：" class="headerlink" title="提供硬件配置参考："></a>提供硬件配置参考：</h2><p><img src="http://static.zybuluo.com/abcdocker/3beanert2f2hfpyd5a91uca9/image_1b9nessv5ll8qguap91nmf1a9v64.png" alt="硬件配置" title="硬件配置参考实例"></p>
 <h2 id="软件参考实例"><a href="#软件参考实例" class="headerlink" title="软件参考实例:"></a>软件参考实例:</h2><p><img src="http://static.zybuluo.com/abcdocker/kp2oetoseghvxfasx886v574/image_1b9nf2duq1lrk16l81pf3ik4mvm6h.png" alt="软件配置" title="软件配置参考实例"></p>
 <h2 id="前端软件参考实例"><a href="#前端软件参考实例" class="headerlink" title="前端软件参考实例:"></a>前端软件参考实例:</h2><p><img src="http://static.zybuluo.com/abcdocker/1gsu04doz0jezwrtwn29be4t/image_1b9nf4bv7a8818e2qec78tmc6u.png" alt="前端配置" title="前端配置参考实例"></p>
-<h2 id="安装相关软件"><a href="#安装相关软件" class="headerlink" title="安装相关软件"></a>安装相关软件</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">yum install libxml2 libxml2-devel libvpx libvpx-devel httpd-devel libXpm-devel \</div><div class="line">libxmp-devel httpd libjpeg-devel curl curl-devel gettext gettext-devel zlib \</div><div class="line">zlib-devel openssl openssl-devel libzip bzip2-devel gd gd-devel libssh2 libssh2-devel \</div><div class="line">gd gd-devel</div></pre></td></tr></table></figure>
+<h2 id="安装相关软件"><a href="#安装相关软件" class="headerlink" title="安装相关软件"></a>安装相关软件</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ yum install libxml2 libxml2-devel libvpx libvpx-devel httpd-devel libXpm-devel \</div><div class="line">libxmp-devel httpd libjpeg-devel curl curl-devel gettext gettext-devel zlib \</div><div class="line">zlib-devel openssl openssl-devel libzip bzip2-devel gd gd-devel libssh2 libssh2-devel \</div><div class="line">gd gd-devel</div></pre></td></tr></table></figure>
 <h2 id="安装mysql"><a href="#安装mysql" class="headerlink" title="安装mysql"></a>安装mysql</h2><ul>
 <li><p>根据Centos安装mysql官方yum源</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rpm -ivh http://dev.mysql.com/get/mysql-community-release-el6-5.noarch.rpm</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ rpm -ivh http://dev.mysql.com/get/mysql-community-release-el6-5.noarch.rpm</div></pre></td></tr></table></figure>
 </li>
 <li><p>安装mysql</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install mysql-community-server mysql-community-common mysql-community-client mysql-community-devel</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ yum install mysql-community-server mysql-community-common mysql-community-client mysql-community-devel</div></pre></td></tr></table></figure>
 </li>
-<li><p>安装php以及相关扩展</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">./configure --prefix=/usr --sysconfdir=/etc --libdir=/usr/lib64  --with-libdir=lib64 \ </div><div class="line">--with-config-file-path=/etc --with-config-file-scan-dir=/etc/php.d \ </div><div class="line">--with-apxs2=/usr/sbin/apxs  --with-pic --with-curl --enable-gd-native-ttf \ </div><div class="line">--with-gettext  --with-openssl --with-pcre-regex --with-zlib  --with-layout=GNU \ </div><div class="line">--enable-exif  --enable-calendar --with-sqlite3 --with-libxml-dir --with-gd --enable-pdo \ </div><div class="line">--enable-xmlreader --enable-xmlwriter --enable-mbstring --enable-json --enable-bcmath \ </div><div class="line">--enable-mbstring --enable-sockets --with-bz2 --with-curl --enable-ftp --enable-sockets \ </div><div class="line">--with-jpeg-dir= --with-png-dir= --with-freetype-dir= --enable-gd-native-ttf \ </div><div class="line">--with-iconv-dir= --with-pdo-mysql=mysqlnd --with-mysqli=mysqlnd \</div><div class="line">--with-mysql=mysqlnd --enable-ssh2</div></pre></td></tr></table></figure>
+<li><p>编译安装php以及相关扩展</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">$ ./configure --prefix=/usr --sysconfdir=/etc --libdir=/usr/lib64  --with-libdir=lib64 \ </div><div class="line">--with-config-file-path=/etc --with-config-file-scan-dir=/etc/php.d \ </div><div class="line">--with-apxs2=/usr/sbin/apxs  --with-pic --with-curl --enable-gd-native-ttf \ </div><div class="line">--with-gettext  --with-openssl --with-pcre-regex --with-zlib  --with-layout=GNU \ </div><div class="line">--enable-exif  --enable-calendar --with-sqlite3 --with-libxml-dir --with-gd --enable-pdo \ </div><div class="line">--enable-xmlreader --enable-xmlwriter --enable-mbstring --enable-json --enable-bcmath \ </div><div class="line">--enable-mbstring --enable-sockets --with-bz2 --with-curl --enable-ftp --enable-sockets \ </div><div class="line">--with-jpeg-dir= --with-png-dir= --with-freetype-dir= --enable-gd-native-ttf \ </div><div class="line">--with-iconv-dir= --with-pdo-mysql=mysqlnd --with-mysqli=mysqlnd \</div><div class="line">--with-mysql=mysqlnd --enable-ssh2</div></pre></td></tr></table></figure>
 </li>
 <li><p>安装zabbix的yum源</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rpm -ivh http://repo.zabbix.com/zabbix/3.0/rhel/6/x86_64/zabbix-release-3.0-1.el6.noarch.rpm</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ rpm -ivh http://repo.zabbix.com/zabbix/3.0/rhel/6/x86_64/zabbix-release-3.0-1.el6.noarch.rpm</div></pre></td></tr></table></figure>
 </li>
 <li><p>安装zabbix的数据库文件以及前端</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install zabbix-server-mysql zabbix-web-mysql</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ yum install zabbix-server-mysql zabbix-web-mysql</div></pre></td></tr></table></figure>
 </li>
 <li><p>安装 zabbix server以及zabbix相关模块</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install zabbix-server zabbix-get zabbix-agent</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ yum install zabbix-server zabbix-get zabbix-agent</div></pre></td></tr></table></figure>
 </li>
 </ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/05/15/zabbix-install/" data-id="cj2qe4ra10005frpvkflk3lko" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/05/15/zabbix-install/" data-id="cj2qe6jgj0005gbpv17y4w26o" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/zabbix/">zabbix</a></li></ul>
