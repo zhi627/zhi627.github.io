@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>zabbix 简介 | 运维与开发的那些事</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="zabbix,简单来说是一款企业级、开源、分布式的基于web界面的监控系统。能监视各种网络参数、程序性能信息、系统信息。可通过邮件、自定义脚本（微信公众号推送、短信推送、第三方推送）实现将zabbix的报警信息推送到用户上。 zabbix主要由两部分组成，zabbix server与可选组件zabbix agent。zabbix server可以通过SNMP,zabbix agent,ipmi,j">
+<meta name="keywords" content="zabbix">
+<meta property="og:type" content="article">
+<meta property="og:title" content="zabbix 简介">
+<meta property="og:url" content="http://yoursite.com/2017/05/15/zabbix-introduction/index.html">
+<meta property="og:site_name" content="运维与开发的那些事">
+<meta property="og:description" content="zabbix,简单来说是一款企业级、开源、分布式的基于web界面的监控系统。能监视各种网络参数、程序性能信息、系统信息。可通过邮件、自定义脚本（微信公众号推送、短信推送、第三方推送）实现将zabbix的报警信息推送到用户上。 zabbix主要由两部分组成，zabbix server与可选组件zabbix agent。zabbix server可以通过SNMP,zabbix agent,ipmi,j">
+<meta property="og:updated_time" content="2017-05-15T14:18:48.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="zabbix 简介">
+<meta name="twitter:description" content="zabbix,简单来说是一款企业级、开源、分布式的基于web界面的监控系统。能监视各种网络参数、程序性能信息、系统信息。可通过邮件、自定义脚本（微信公众号推送、短信推送、第三方推送）实现将zabbix的报警信息推送到用户上。 zabbix主要由两部分组成，zabbix server与可选组件zabbix agent。zabbix server可以通过SNMP,zabbix agent,ipmi,j">
+  
+    <link rel="alternate" href="/atom.xml" title="运维与开发的那些事" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">运维与开发的那些事</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-zabbix-introduction" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/05/15/zabbix-introduction/" class="article-date">
+  <time datetime="2017-05-15T13:11:50.000Z" itemprop="datePublished">2017-05-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      zabbix 简介
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="http://www.zabbix.com/" target="_blank" rel="external">zabbix</a>,简单来说是一款企业级、开源、分布式的基于web界面的监控系统。能监视各种网络参数、程序性能信息、系统信息。可通过邮件、自定义脚本（微信公众号推送、短信推送、第三方推送）实现将zabbix的报警信息推送到用户上。</p>
+<p>zabbix主要由两部分组成，zabbix server与可选组件zabbix agent。<br>zabbix server可以通过SNMP,zabbix agent,ipmi,jmx等方法对系统、网络、程序进行数据收集。</p>
+<h1 id="特点："><a href="#特点：" class="headerlink" title="特点："></a>特点：</h1><ul>
+<li>分布式监控。具有节点(node)模式和代理(proxy)模式。</li>
+<li>自动化功能。自动发现，自动注册功能。在部署监控中，可以让服务器需要监控的信息自动注册到server,对相应监控项进行监控。使用ansible或者saltstack可轻松实现自动化监控</li>
+<li>模块化监控。设置监控模板，监控部署更为方便。</li>
+<li>自定义监控以及通知。 除了监控系统信息，还可以自定义监控网络，程序等，自定义通知脚本，通知文本格式</li>
+<li>支持多种方式监控。agentd、snmp、ipmi、jmx等模式</li>
+<li>多种安全认证方式。</li>
+<li>提供api功能。方便二次开发</li>
+<li>易操作。基于web界面添加相关监控</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/05/15/zabbix-introduction/" data-id="cj2qdzrzh0008elpvmuwcq494" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/zabbix/">zabbix</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/05/16/django1/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          django入门教学
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/05/15/zabbix-install/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">zabbix-install</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/zabbix/">zabbix</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/其他/">其他</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/zabbix/" style="font-size: 20px;">zabbix</a> <a href="/tags/其他/" style="font-size: 10px;">其他</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/05/16/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/16/django1/">django入门教学</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/15/zabbix-introduction/">zabbix 简介</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/15/zabbix-install/">zabbix-install</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/04/Hexo and GitHub Pages/">Hexo与GiHub Pages 搭建个人博客</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 littlezhi<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
