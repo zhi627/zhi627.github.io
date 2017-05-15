@@ -12,7 +12,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/05/04/Hexo and GitHub Pages/index.html">
 <meta property="og:site_name" content="运维与开发的那些事">
 <meta property="og:description" content="本文将详细介绍如何在 Centos 系统使用 Hexo 以及GitHub Pages 搭建个人博客 注册GitHub账号安装Git1$ yum -y install git 安装Node.js以及npm在国内用户可以更新yum源以及npm源为国内的，这样下载安装更快，可参考 yum源更换 以及 npm源更换 1$ yum -y install nodejs nodejs-devel npm 安装H">
-<meta property="og:updated_time" content="2017-05-04T16:28:41.000Z">
+<meta property="og:updated_time" content="2017-05-15T17:13:50.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo与GiHub Pages 搭建个人博客">
 <meta name="twitter:description" content="本文将详细介绍如何在 Centos 系统使用 Hexo 以及GitHub Pages 搭建个人博客 注册GitHub账号安装Git1$ yum -y install git 安装Node.js以及npm在国内用户可以更新yum源以及npm源为国内的，这样下载安装更快，可参考 yum源更换 以及 npm源更换 1$ yum -y install nodejs nodejs-devel npm 安装H">
@@ -121,14 +121,15 @@ branch: master
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install hexo-deployer-git --save</div></pre></td></tr></table></figure>
 <ul>
-<li>部署网站并且提交到GitHub</li>
+<li>部署网站并且提交到GitHub<br>要先生成静态文件,再提交MarkDown到git上<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo g</div></pre></td></tr></table></figure>
+</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/05/04/Hexo and GitHub Pages/" data-id="cj2qdzryo0000elpv5c0zkvng" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/05/04/Hexo and GitHub Pages/" data-id="cj2qe2j3q0000f7pv00ylo1w3" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/其他/">其他</a></li></ul>
