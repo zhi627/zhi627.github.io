@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>auto-register | 运维与开发的那些事</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="本文将介绍zabbix中自动注册流程,个人觉得auto-registion对自动化运维有较大的帮助。zabbix-agentd自动向zabbix-server注册主机，同时可以设置其自动注册时条件以及对应的操作， 自动注册主动模式使用的,在”配置”(Configuration)中找到”Actions”(动作),选择”事件源”(Event source)中的”自动注册”(Auto Registion">
+<meta name="keywords" content="zabbix">
+<meta property="og:type" content="article">
+<meta property="og:title" content="auto-register">
+<meta property="og:url" content="http://yoursite.com/2017/05/19/auto-register/index.html">
+<meta property="og:site_name" content="运维与开发的那些事">
+<meta property="og:description" content="本文将介绍zabbix中自动注册流程,个人觉得auto-registion对自动化运维有较大的帮助。zabbix-agentd自动向zabbix-server注册主机，同时可以设置其自动注册时条件以及对应的操作， 自动注册主动模式使用的,在”配置”(Configuration)中找到”Actions”(动作),选择”事件源”(Event source)中的”自动注册”(Auto Registion">
+<meta property="og:updated_time" content="2017-05-19T16:56:42.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="auto-register">
+<meta name="twitter:description" content="本文将介绍zabbix中自动注册流程,个人觉得auto-registion对自动化运维有较大的帮助。zabbix-agentd自动向zabbix-server注册主机，同时可以设置其自动注册时条件以及对应的操作， 自动注册主动模式使用的,在”配置”(Configuration)中找到”Actions”(动作),选择”事件源”(Event source)中的”自动注册”(Auto Registion">
+  
+    <link rel="alternate" href="/atom.xml" title="运维与开发的那些事" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">运维与开发的那些事</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-auto-register" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/05/19/auto-register/" class="article-date">
+  <time datetime="2017-05-19T15:33:21.000Z" itemprop="datePublished">2017-05-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      auto-register
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>本文将介绍zabbix中自动注册流程,个人觉得auto-registion对自动化运维有较大的帮助。zabbix-agentd自动向zabbix-server注册主机，<br>同时可以设置其自动注册时条件以及对应的操作，</p>
+<h1 id="自动注册"><a href="#自动注册" class="headerlink" title="自动注册"></a>自动注册</h1><p>主动模式使用的,在”配置”(Configuration)中找到”Actions”(动作),选择”事件源”(Event source)中的”自动注册”(Auto Registion),并且填写正常的信息</p>
+<ul>
+<li>在表单导航行选择”动作”并且填写相应信息,比如”名称”、”默认接收人”、”默认信息”、</li>
+<li>导航栏中选择”条件”，新的触发条件，触发条件有三种:</li>
+<li><ul>
+<li>agent代理程序(Proxy)</li>
+</ul>
+</li>
+<li><ul>
+<li>主机元数据(Host metadata)</li>
+</ul>
+</li>
+<li><ul>
+<li>主机名称(Host name)</li>
+</ul>
+</li>
+<li>在操作中，我们可以有几种操作类型</li>
+<li><ul>
+<li>发送消息</li>
+</ul>
+</li>
+<li><ul>
+<li>远程命令</li>
+</ul>
+</li>
+<li><ul>
+<li>添加到主机</li>
+</ul>
+</li>
+<li><ul>
+<li>添加到主机群组</li>
+</ul>
+</li>
+<li><ul>
+<li>与模板关联</li>
+</ul>
+</li>
+<li><ul>
+<li>停用主机</li>
+</ul>
+</li>
+<li><ul>
+<li>设置主机清单模式</li>
+</ul>
+</li>
+</ul>
+<h1 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h1><ul>
+<li>方法1：设置HostMetadata<br>我们在zabbix-server端创建一个主机自动添加到linux主机群组的自动注册。<br>设置”主机元数据” 似 linux，并且在操作中设置添加主机,添加到主机群组”Linux Servers”,同时设置关联Linux通过类型为zabbix_agentd(active)方式的监控项的模板。<br>同时,zabbix-agent端要设置主动模式,并且conf文件设置HostMetadata = linux,值是自己定义的<br>这样，当第一次zabbix agentd启动时，主动将数据提交到zabbix server。zabbix server 根据自动注册规则将主机添加到”Linux Servers”主机群组，并且自动管理了Linux 模板。</li>
+<li>方法2:设置HostMetadataItem<br>zabbix-server端的配置与方法1一致。但是在zabbix-agent设置主动模式,并且conf文件设置 HostMetadataItem=system.uname,值来之key</li>
+</ul>
+<h1 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景:"></a>应用场景:</h1><p>设置多个自动注册动作，在agent的conf文件设置HostMetadata多个关键字，根据关键字自动添加到相应主机群组以及管理相应模板</p>
+<h2 id="例子："><a href="#例子：" class="headerlink" title="例子："></a>例子：</h2><p>conf文件设置Linux MySQL等关键字，HostMetadata=Linux MySQL。同时zabbix server端分别设置自动注册Linux群组并且关联Linux模板，自动注册MySQL群组并且关联MySQL监控模板。当主机自动注册时，关联到Linux和MySQL的模板。当主机2是需要监控Linux和Redis时，我们只需要再增加一个关于Redis的自动注册动作，主机2的conference文件HostMetadata=Linux Redis即可。这样使监控更为灵活以及更加自动化</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/05/19/auto-register/" data-id="cj2w385re0003hrpvk9vbxpct" class="article-share-link">Partager</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/zabbix/">zabbix</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/05/20/hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Récent</strong>
+      <div class="article-nav-title">
+        
+          Hello World
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/05/15/zabbix-introduction/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Ancien</strong>
+      <div class="article-nav-title">zabbix 简介</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Mot-clés</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/zabbix/">zabbix</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/其他/">其他</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Nuage de mot-clés</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/zabbix/" style="font-size: 20px;">zabbix</a> <a href="/tags/其他/" style="font-size: 10px;">其他</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Articles récents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/05/20/django1/">django入门教学</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/20/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/19/auto-register/">auto-register</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/15/zabbix-introduction/">zabbix 简介</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/15/zabbix-install/">zabbix-install</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 littlezhi<br>
+      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
