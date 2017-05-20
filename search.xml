@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+    
+    <entry>
+      <title><![CDATA[Hello World]]></title>
+      <url>/2017/05/20/hello-world/</url>
+      <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+]]></content>
+      
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[django入门教学]]></title>
+      <url>/2017/05/20/django1/</url>
+      <content type="html"><![CDATA[<h1 id="django安装"><a href="#django安装" class="headerlink" title="django安装"></a>django安装</h1><p>使用pip 或者easy_install 即可</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pip install django 或者 easy_install django</div></pre></td></tr></table></figure>
+<h1 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h1><p>项目名称不用和python或django的内部组件名称同名。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ django-admin startproject mysite</div></pre></td></tr></table></figure></p>
+<p>在当前目录生成一个mysite目录。如果它不能正常工作，并且生成如下树状结构，</p>
+<pre><code>mysite/
+    manage.py
+    mysite/
+        __init__.py
+        settings.py
+        urls.py
+        wsgi.py
+</code></pre>]]></content>
+      
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[zabbix]]></title>
+      <url>/2017/05/20/zabbix/</url>
+      <content type="html"></content>
+      
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[auto-register]]></title>
+      <url>/2017/05/19/auto-register/</url>
+      <content type="html"><![CDATA[<p>本文将介绍zabbix中自动注册流程,个人觉得auto-registion对自动化运维有较大的帮助。zabbix-agentd自动向zabbix-server注册主机，<br>同时可以设置其自动注册时条件以及对应的操作，</p>
+<h1 id="自动注册"><a href="#自动注册" class="headerlink" title="自动注册"></a>自动注册</h1><p>主动模式使用的,在”配置”(Configuration)中找到”Actions”(动作),选择”事件源”(Event source)中的”自动注册”(Auto Registion),并且填写正常的信息</p>
+<ul>
+<li>在表单导航行选择”动作”并且填写相应信息,比如”名称”、”默认接收人”、”默认信息”、</li>
+<li>导航栏中选择”条件”，新的触发条件，触发条件有三种:</li>
+<li><ul>
+<li>agent代理程序(Proxy)</li>
+</ul>
+</li>
+<li><ul>
+<li>主机元数据(Host metadata)</li>
+</ul>
+</li>
+<li><ul>
+<li>主机名称(Host name)</li>
+</ul>
+</li>
+<li>在操作中，我们可以有几种操作类型</li>
+<li><ul>
+<li>发送消息</li>
+</ul>
+</li>
+<li><ul>
+<li>远程命令</li>
+</ul>
+</li>
+<li><ul>
+<li>添加到主机</li>
+</ul>
+</li>
+<li><ul>
+<li>添加到主机群组</li>
+</ul>
+</li>
+<li><ul>
+<li>与模板关联</li>
+</ul>
+</li>
+<li><ul>
+<li>停用主机</li>
+</ul>
+</li>
+<li><ul>
+<li>设置主机清单模式</li>
+</ul>
+</li>
+</ul>
+<h1 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h1><ul>
+<li>方法1：设置HostMetadata<br>我们在zabbix-server端创建一个主机自动添加到linux主机群组的自动注册。<br>设置”主机元数据” 似 linux，并且在操作中设置添加主机,添加到主机群组”Linux Servers”,同时设置关联Linux通过类型为zabbix_agentd(active)方式的监控项的模板。<br>同时,zabbix-agent端要设置主动模式,并且conf文件设置HostMetadata = linux,值是自己定义的<br>这样，当第一次zabbix agentd启动时，主动将数据提交到zabbix server。zabbix server 根据自动注册规则将主机添加到”Linux Servers”主机群组，并且自动管理了Linux 模板。</li>
+<li>方法2:设置HostMetadataItem<br>zabbix-server端的配置与方法1一致。但是在zabbix-agent设置主动模式,并且conf文件设置 HostMetadataItem=system.uname,值来之key</li>
+</ul>
+<h1 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景:"></a>应用场景:</h1><p>设置多个自动注册动作，在agent的conf文件设置HostMetadata多个关键字，根据关键字自动添加到相应主机群组以及管理相应模板</p>
+<h2 id="例子："><a href="#例子：" class="headerlink" title="例子："></a>例子：</h2><p>conf文件设置Linux MySQL等关键字，HostMetadata=Linux MySQL。同时zabbix server端分别设置自动注册Linux群组并且关联Linux模板，自动注册MySQL群组并且关联MySQL监控模板。当主机自动注册时，关联到Linux和MySQL的模板。当主机2是需要监控Linux和Redis时，我们只需要再增加一个关于Redis的自动注册动作，主机2的conference文件HostMetadata=Linux Redis即可。这样使监控更为灵活以及更加自动化</p>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> zabbix </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[zabbix 简介]]></title>
+      <url>/2017/05/15/zabbix-introduction/</url>
+      <content type="html"><![CDATA[<p><a href="http://www.zabbix.com/" target="_blank" rel="external">zabbix</a>,简单来说是一款企业级、开源、分布式的基于web界面的监控系统。能监视各种网络参数、程序性能信息、系统信息。可通过邮件、自定义脚本（微信公众号推送、短信推送、第三方推送）实现将zabbix的报警信息推送到用户上。</p>
+<p>zabbix主要由两部分组成，zabbix server与可选组件zabbix agent。<br>zabbix server可以通过SNMP,zabbix agent,ipmi,jmx等方法对系统、网络、程序进行数据收集。</p>
+<h1 id="特点："><a href="#特点：" class="headerlink" title="特点："></a>特点：</h1><ul>
+<li>分布式监控。具有节点(node)模式和代理(proxy)模式。</li>
+<li>自动化功能。自动发现，自动注册功能。在部署监控中，可以让服务器需要监控的信息自动注册到server,对相应监控项进行监控。使用ansible或者saltstack可轻松实现自动化监控</li>
+<li>模块化监控。设置监控模板，监控部署更为方便。</li>
+<li>自定义监控以及通知。 除了监控系统信息，还可以自定义监控网络，程序等，自定义通知脚本，通知文本格式</li>
+<li>支持多种方式监控。agentd、snmp、ipmi、jmx等模式</li>
+<li>多种安全认证方式。</li>
+<li>提供api功能。方便二次开发</li>
+<li>易操作。基于web界面添加相关监控</li>
+</ul>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> zabbix </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[zabbix-install]]></title>
+      <url>/2017/05/15/zabbix-install/</url>
+      <content type="html"><![CDATA[<p>本文将简要介绍<code>Centos6</code>使用<code>yum</code>安装<code>zabbix</code>的教程<br>硬件、软件以及php扩展要求，部分转自<a href="https://www.abcdocker.com/abcdocker/2181" target="_blank" rel="external"><code>ZABBIX 3.2 基础安装</code></a></p>
+<h2 id="硬件配置参考："><a href="#硬件配置参考：" class="headerlink" title="硬件配置参考："></a>硬件配置参考：</h2><p><img src="http://static.zybuluo.com/abcdocker/3beanert2f2hfpyd5a91uca9/image_1b9nessv5ll8qguap91nmf1a9v64.png" alt="硬件配置" title="硬件配置参考实例"></p>
+<h2 id="软件配置参考"><a href="#软件配置参考" class="headerlink" title="软件配置参考:"></a>软件配置参考:</h2><p><img src="http://static.zybuluo.com/abcdocker/kp2oetoseghvxfasx886v574/image_1b9nf2duq1lrk16l81pf3ik4mvm6h.png" alt="软件配置" title="软件配置参考实例"></p>
+<h2 id="前端配置参考"><a href="#前端配置参考" class="headerlink" title="前端配置参考:"></a>前端配置参考:</h2><p><img src="http://static.zybuluo.com/abcdocker/1gsu04doz0jezwrtwn29be4t/image_1b9nf4bv7a8818e2qec78tmc6u.png" alt="前端配置" title="前端配置参考实例"></p>
+<h2 id="安装相关软件"><a href="#安装相关软件" class="headerlink" title="安装相关软件"></a>安装相关软件</h2><ul>
+<li>httpd以及扩展需要的库<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ yum install libxml2 libxml2-devel libvpx libvpx-devel httpd-devel libXpm-devel \</div><div class="line">libxmp-devel httpd libjpeg-devel curl curl-devel gettext gettext-devel zlib \</div><div class="line">zlib-devel openssl openssl-devel libzip bzip2-devel gd gd-devel libssh2 libssh2-devel \</div><div class="line">gd gd-devel</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="安装mysql"><a href="#安装mysql" class="headerlink" title="安装mysql"></a>安装mysql</h2><ul>
+<li><p>根据Centos安装mysql官方yum源</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ rpm -ivh http://dev.mysql.com/get/mysql-community-release-el6-5.noarch.rpm</div></pre></td></tr></table></figure>
+</li>
+<li><p>安装mysql</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ yum install mysql-community-server mysql-community-common mysql-community-client mysql-community-devel</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="安装php"><a href="#安装php" class="headerlink" title="安装php"></a>安装php</h2><ul>
+<li>编译安装php以及相关扩展<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">$ ./configure --prefix=/usr --sysconfdir=/etc --libdir=/usr/lib64  --with-libdir=lib64 \ </div><div class="line">--with-config-file-path=/etc --with-config-file-scan-dir=/etc/php.d \ </div><div class="line">--with-apxs2=/usr/sbin/apxs  --with-pic --with-curl --enable-gd-native-ttf \ </div><div class="line">--with-gettext  --with-openssl --with-pcre-regex --with-zlib  --with-layout=GNU \ </div><div class="line">--enable-exif  --enable-calendar --with-sqlite3 --with-libxml-dir --with-gd --enable-pdo \ </div><div class="line">--enable-xmlreader --enable-xmlwriter --enable-mbstring --enable-json --enable-bcmath \ </div><div class="line">--enable-mbstring --enable-sockets --with-bz2 --with-curl --enable-ftp --enable-sockets \ </div><div class="line">--with-jpeg-dir= --with-png-dir= --with-freetype-dir= --enable-gd-native-ttf \ </div><div class="line">--with-iconv-dir= --with-pdo-mysql=mysqlnd --with-mysqli=mysqlnd \</div><div class="line">--with-mysql=mysqlnd --enable-ssh2</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="安装zabbix"><a href="#安装zabbix" class="headerlink" title="安装zabbix"></a>安装zabbix</h2><ul>
+<li><p>安装zabbix官方yum源</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ rpm -ivh http://repo.zabbix.com/zabbix/3.0/rhel/6/x86_64/zabbix-release-3.0-1.el6.noarch.rpm</div></pre></td></tr></table></figure>
+</li>
+<li><p>安装数据库文件以及前端文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ yum install zabbix-server-mysql zabbix-web-mysql</div></pre></td></tr></table></figure>
+</li>
+<li><p>安装zabbix相关程序</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ yum install zabbix-server zabbix-get zabbix-agent</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="创建并导入数据库文件"><a href="#创建并导入数据库文件" class="headerlink" title="创建并导入数据库文件"></a>创建并导入数据库文件</h2><ul>
+<li><p>创建zabbix数据库,mysql5.7默认需要设置更为复杂的秘密</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ mysql -uroot -p&lt;your root password&gt;</div><div class="line">mysql&gt; create database zabbix character <span class="built_in">set</span> utf8 collate utf8_bin;<span class="comment">##最好设置utf-8,防止中文乱码</span></div><div class="line">mysql&gt; grant all privileges on zabbix.* to zabbix@localhost identified by <span class="string">'zabbix'</span>;</div><div class="line">mysql&gt; quit;</div></pre></td></tr></table></figure>
+</li>
+<li><p>导入数据库文件,记住<code>zabbix-server-mysql-3.0.X</code>,是对应自己安装<code>zabbix</code>的版本</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ zcat /usr/share/doc/zabbix-server-mysql-3.0.X/create.sql.gz | mysql -uzabbix -p zabbix</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="设置虚拟主机"><a href="#设置虚拟主机" class="headerlink" title="设置虚拟主机"></a>设置虚拟主机</h2><ul>
+<li>根据httpd版本，可能会有不同语法，根据情况修改配置文件，常见是<a href="https://httpd.apache.org/docs/2.4/zh-cn/upgrading.html" target="_blank" rel="external"><code>httpd2.2</code>与<code>httpd2.4</code>的区别</a><pre><code>Alias /zabbix /usr/share/zabbix
+&lt;Directory &quot;/usr/share/zabbix&quot;&gt;
+    Options FollowSymLinks
+    AllowOverride None
+    Allow from all
+    &lt;IfModule mod_php5.c&gt;
+        php_value max_execution_time 300
+        php_value memory_limit 128M
+        php_value post_max_size 16M
+        php_value upload_max_filesize 2M
+        php_value max_input_time 300
+        php_value always_populate_raw_post_data -1
+        php_value date.timezone PRC
+     &lt;/IfModule&gt;
+&lt;/Directory&gt;
+</code></pre></li>
+</ul>
+<h2 id="配置数据库以及登录"><a href="#配置数据库以及登录" class="headerlink" title="配置数据库以及登录"></a>配置数据库以及登录</h2><ul>
+<li>打开浏览器,访问<a href="http://hostname/zabbix/setup.php" target="_blank" rel="external">http://hostname/zabbix/setup.php</a>, 填写mysql相关信息,host填写为127.0.0.1以及检测软件是否满足要求</li>
+<li>编辑/etc/zabbix/zabbix_server.conf文件设置mysql数据库信息</li>
+<li>service zabbix-server start</li>
+<li>登录，默认账号:Admin,密码:zabbix</li>
+</ul>
+<h2 id="优化以及配置"><a href="#优化以及配置" class="headerlink" title="优化以及配置"></a>优化以及配置</h2><ul>
+<li>根据监控情况进行相关配置，如果监控主机数较多，需要配置<code>mysql</code>的<code>max-connections</code>选项</li>
+<li>监控方式zabbix_agentd主动模式多的话,需要配置Trapper数量</li>
+<li>监控方式zabbix_agentd被动方式多的话,需要配置Poller数量</li>
+<li>当监控主机数量较多,建议使用主动模式或者proxy模式</li>
+</ul>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> zabbix </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Hexo与GiHub Pages 搭建个人博客]]></title>
+      <url>/2017/05/04/Hexo%20and%20GitHub%20Pages/</url>
+      <content type="html"><![CDATA[<p>本文将详细介绍如何在 Centos 系统使用 <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a> 以及<a href="https://github.com" target="_blank" rel="external">GitHub Pages</a> 搭建个人博客</p>
+<h2 id="注册GitHub账号"><a href="#注册GitHub账号" class="headerlink" title="注册GitHub账号"></a>注册GitHub账号</h2><h2 id="安装Git"><a href="#安装Git" class="headerlink" title="安装Git"></a>安装Git</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ yum -y install git</div></pre></td></tr></table></figure>
+<h2 id="安装Node-js以及npm"><a href="#安装Node-js以及npm" class="headerlink" title="安装Node.js以及npm"></a>安装Node.js以及npm</h2><p>在国内用户可以更新yum源以及npm源为国内的，这样下载安装更快，可参考 <a href="http://mirrors.aliyun.com/help/centos" target="_blank" rel="external">yum源更换</a> 以及 <a href="https://npm.taobao.org/" target="_blank" rel="external">npm源更换</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ yum -y install nodejs nodejs-devel npm</div></pre></td></tr></table></figure>
+<h2 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install hexo-cli -g</div></pre></td></tr></table></figure>
+<h2 id="用Hexo创建blog"><a href="#用Hexo创建blog" class="headerlink" title="用Hexo创建blog"></a>用Hexo创建blog</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ hexo init &lt;folder&gt;</div><div class="line">$ <span class="built_in">cd</span> &lt;folder&gt;</div><div class="line">$ npm install</div></pre></td></tr></table></figure>
+<h2 id="测试Hexo是否可以运行"><a href="#测试Hexo是否可以运行" class="headerlink" title="测试Hexo是否可以运行"></a>测试Hexo是否可以运行</h2><ul>
+<li>安装<code>hexo-server</code>插件，可将服务器独立成个别模块</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install hexo-server --save</div></pre></td></tr></table></figure>
+<ul>
+<li>启动服务器，提示博客会在<code>http://localhost:4000/</code>下启动。 在服务器启动期间，Hexo会监视文件变动并自动更新，无须重启服务器。不断刷新网页即可看到更新。</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
+<h2 id="创建ssh私钥与公钥"><a href="#创建ssh私钥与公钥" class="headerlink" title="创建ssh私钥与公钥"></a>创建ssh私钥与公钥</h2><ul>
+<li>调用ssh-keygen生成对应用户的私钥与公钥文件<code>id_rsa</code>与<code>id_rsa.pub</code>,一路回车即可</li>
+<li>在自己创建的<code>GitHub Pages</code>项目<code>Settings</code>找到<code>Deploy keys</code>,并复制<code>id_rsa.pub</code>公钥内容到<code>Key</code>文本框中</li>
+<li>勾选<code>Allow write access</code>复选框,设置可以通过密钥方式修改博客内容</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">cd</span> ~/.ssh &amp;&amp; ssh-keygen</div></pre></td></tr></table></figure>
+<h2 id="设置git账号"><a href="#设置git账号" class="headerlink" title="设置git账号"></a>设置git账号</h2><ul>
+<li>设置为自己GitHub账号以及邮箱</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git config --global user.name <span class="string">"your GitHub account"</span></div><div class="line">$ git config --global user.email <span class="string">"your GitHub email"</span></div></pre></td></tr></table></figure>
+<h2 id="设置hexo提交更新到GitHub"><a href="#设置hexo提交更新到GitHub" class="headerlink" title="设置hexo提交更新到GitHub"></a>设置hexo提交更新到GitHub</h2><ul>
+<li><p>设置hexo创建的博客<folder>文件夹的<code>_config.yml</code>中<code>deploy</code>设置为git部署<br>  deploy:</folder></p>
+<pre><code>type: git
+repo: git@github.com:account/blogname.github.io.git
+branch: master
+</code></pre></li>
+<li><p>安装<code>hexo-deployer-git</code>插件可以使用git进行部署</p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install hexo-deployer-git --save</div></pre></td></tr></table></figure>
+<ul>
+<li>生成静态文件并且提交到GitHub</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo g (或者 hexo generate)</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo d (或者 hexo deploy)</div></pre></td></tr></table></figure>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> 其他 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+  
+  
+</search>
