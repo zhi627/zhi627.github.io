@@ -2,6 +2,41 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2017/05/22/zabbix-concepts/</loc>
+    
+    <lastmod>2017-05-21T17:29:43.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2017/05/22/zabbix-templates/</loc>
+    
+    <lastmod>2017-05-21T17:11:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2017/05/15/zabbix-install/</loc>
+    
+    <lastmod>2017-05-21T16:59:32.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/tags/index.html</loc>
+    
+    <lastmod>2017-05-21T16:57:53.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/categories/index.html</loc>
+    
+    <lastmod>2017-05-21T16:56:54.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2017/05/20/zabbix/</loc>
     
     <lastmod>2017-05-20T14:00:57.000Z</lastmod>
@@ -12,13 +47,6 @@
     <loc>http://yoursite.com/2017/05/19/auto-register/</loc>
     
     <lastmod>2017-05-19T16:56:42.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2017/05/15/zabbix-install/</loc>
-    
-    <lastmod>2017-05-16T14:36:25.000Z</lastmod>
     
   </url>
   

@@ -4,6 +4,68 @@
 
     
   <url>
+    <loc>http://yoursite.com/2017/05/22/zabbix-concepts/</loc>
+    <lastmod>2017-05-21T17:29:43.000Z</lastmod>
+    <data>
+        <display>
+        <title>zabbix创建监控流程</title>
+        <pubTime>2017-05-21T17:10:10.000Z</pubTime>
+        
+        <tag>zabbix</tag>
+         
+         
+           
+             
+              <breadCrumb title="zabbix" url="http://yoursite.com/categories/zabbix/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/05/22/zabbix-templates/</loc>
+    <lastmod>2017-05-21T17:11:02.000Z</lastmod>
+    <data>
+        <display>
+        <title>zabbix模板</title>
+        <pubTime>2017-05-21T17:00:12.000Z</pubTime>
+        
+        <tag>zabbix</tag>
+         
+         
+           
+             
+              <breadCrumb title="zabbix" url="http://yoursite.com/categories/zabbix/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/05/15/zabbix-install/</loc>
+    <lastmod>2017-05-21T16:59:32.000Z</lastmod>
+    <data>
+        <display>
+        <title>zabbix-install</title>
+        <pubTime>2017-05-15T13:11:03.000Z</pubTime>
+        
+        <tag>zabbix</tag>
+         
+         
+           
+             
+              <breadCrumb title="zabbix" url="http://yoursite.com/categories/zabbix/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+    
+    
+  <url>
     <loc>http://yoursite.com/2017/05/20/zabbix/</loc>
     <lastmod>2017-05-20T14:00:57.000Z</lastmod>
     <data>
@@ -25,23 +87,6 @@
         <display>
         <title>auto-register</title>
         <pubTime>2017-05-19T15:33:21.000Z</pubTime>
-        
-        <tag>zabbix</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2017/05/15/zabbix-install/</loc>
-    <lastmod>2017-05-16T14:36:25.000Z</lastmod>
-    <data>
-        <display>
-        <title>zabbix-install</title>
-        <pubTime>2017-05-15T13:11:03.000Z</pubTime>
         
         <tag>zabbix</tag>
          
@@ -92,7 +137,7 @@
     <data>
         <display>
         <title>django入门教学</title>
-        <pubTime>2017-05-21T16:13:32.151Z</pubTime>
+        <pubTime>2017-05-21T17:31:42.805Z</pubTime>
         
          
            
@@ -107,7 +152,7 @@
     <data>
         <display>
         <title>Hello World</title>
-        <pubTime>2017-05-21T16:13:32.154Z</pubTime>
+        <pubTime>2017-05-21T17:31:42.808Z</pubTime>
         
          
            

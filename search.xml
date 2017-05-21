@@ -39,6 +39,116 @@
     </entry>
     
     <entry>
+      <title><![CDATA[zabbix创建监控流程]]></title>
+      <url>/2017/05/22/zabbix-concepts/</url>
+      <content type="html"><![CDATA[<p>通过zabbix监控主机,一般方式以及流程步骤：</p>
+<h2 id="方式"><a href="#方式" class="headerlink" title="方式"></a>方式</h2><ol>
+<li>先创建模板,然后模板应用到主机上</li>
+<li>选择主机,在主机创建监控项、触发器等</li>
+</ol>
+<h2 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h2><p>1.创建监控模板(可有可无)-&gt; 2.创建应用集(可有可无) -&gt; 3.创建监控项 -&gt; 4.创建触发器 -&gt; 5.创建动作(特指事件通知)</p>
+<h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><table>
+<thead>
+<tr>
+<th style="text-align:center">名称</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">模板</td>
+<td style="text-align:center">创建监控模板，定义相关应用集、监控项、触发器、图形、聚合图像、web监控</td>
+</tr>
+<tr>
+<td style="text-align:center">应用集</td>
+<td style="text-align:center">一组相关有联系的监控项</td>
+</tr>
+<tr>
+<td style="text-align:center">监控项</td>
+<td style="text-align:center">定义监控的数据以及监控(类型)方式</td>
+</tr>
+<tr>
+<td style="text-align:center">触发器</td>
+<td style="text-align:center">根据监控项返回值的情况判断其严重性以及标记问题信息</td>
+</tr>
+<tr>
+<td style="text-align:center">事件</td>
+<td style="text-align:center">事件基本无处不在,由触发器产生的其实都可以叫事件,事件包括正常以及异常的情况，并不是只有异常的情况</td>
+</tr>
+<tr>
+<td style="text-align:center">动作</td>
+<td style="text-align:center">可创建触发器的动作,或者自动发现、内部发现、自动注册的动作,定义在其发生时会如何处理,可以远程、本地调用或者发送消息</td>
+</tr>
+</tbody>
+</table>
+<h2 id="执行流程"><a href="#执行流程" class="headerlink" title="执行流程"></a>执行流程</h2><p>zabbix-server端获取到监控项,如果有触发器将根据触发器的表达式产生事件,同时根据动作的配置,去执行动作的操作</p>
+<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><p>简单讲解 Linux 模板的创建(zabbix默认自带)</p>
+]]></content>
+      
+        <categories>
+            
+            <category> zabbix </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> zabbix </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[zabbix模板]]></title>
+      <url>/2017/05/22/zabbix-templates/</url>
+      <content type="html"><![CDATA[<h1 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h1><p>其实在企业中很多服务器的功能，硬件配置、软件配置都是类似的，比如大部分都是Linux,如果为每一台都创建应用集、监控项、触发器那是很浪费时间的，这时zabbix的模板功能就能满足你的要求,创建一个linux模板，然后关联到相应的主机。这样zabbix-server就会按照linux模板的监控要求，监控该主机。</p>
+<h1 id="创建监控模板"><a href="#创建监控模板" class="headerlink" title="创建监控模板"></a>创建监控模板</h1><p>点击导航栏”配置”(Configuration)-“模板”(Templates)-“选择群组”(Group)-“创建模板”(create template),根据步骤即可创建一个监控模板,下面以表格的信息描述下</p>
+<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><table>
+<thead>
+<tr>
+<th style="text-align:center">参数</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">模板名称</td>
+<td style="text-align:center">模板名称,在嵌套模板中,都使用template name</td>
+</tr>
+<tr>
+<td style="text-align:center">可见的名称</td>
+<td style="text-align:center">类似别名,方便查看识别</td>
+</tr>
+<tr>
+<td style="text-align:center">群组</td>
+<td style="text-align:center">当前模板归到的群组,一般配合权限设置</td>
+</tr>
+<tr>
+<td style="text-align:center">主机/模板</td>
+<td style="text-align:center">把模板链接到主机,选择好主机可以将模板关联到相应主机上,对一组主机增加功能时,增加模板监控相当方便</td>
+</tr>
+</tbody>
+</table>
+]]></content>
+      
+        <categories>
+            
+            <category> zabbix </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> zabbix </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[zabbix]]></title>
       <url>/2017/05/20/zabbix/</url>
       <content type="html"></content>
@@ -213,6 +323,12 @@
 </ul>
 ]]></content>
       
+        <categories>
+            
+            <category> zabbix </category>
+            
+        </categories>
+        
         
         <tags>
             
