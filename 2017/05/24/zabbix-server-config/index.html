@@ -74,7 +74,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="zabbix," />
 
 
 
@@ -90,15 +90,17 @@
 
 
 
-<meta name="description" content="运维狗">
-<meta property="og:type" content="website">
-<meta property="og:title" content="运维与开发的那些事">
-<meta property="og:url" content="http://yoursite.com/tags/zabbix/index.html">
+<meta name="description" content="简介主要描述下server与agent的不同配置项主要有几点需要注意:  当agent主动模式监控主机较多时,应提高StartTrappers,当被动模式监控主机较多时,应提高StartPollers 当监控主机较多时,并且使用MySQL时,应提高MySQL配置文件的max_connections的值 yum安装zabbix-server的运行用户是zabbix,AlertScriptsPath应">
+<meta name="keywords" content="zabbix">
+<meta property="og:type" content="article">
+<meta property="og:title" content="zabbix-server 配置文件详解">
+<meta property="og:url" content="http://yoursite.com/2017/05/24/zabbix-server-config/index.html">
 <meta property="og:site_name" content="运维与开发的那些事">
-<meta property="og:description" content="运维狗">
+<meta property="og:description" content="简介主要描述下server与agent的不同配置项主要有几点需要注意:  当agent主动模式监控主机较多时,应提高StartTrappers,当被动模式监控主机较多时,应提高StartPollers 当监控主机较多时,并且使用MySQL时,应提高MySQL配置文件的max_connections的值 yum安装zabbix-server的运行用户是zabbix,AlertScriptsPath应">
+<meta property="og:updated_time" content="2017-05-23T16:34:03.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="运维与开发的那些事">
-<meta name="twitter:description" content="运维狗">
+<meta name="twitter:title" content="zabbix-server 配置文件详解">
+<meta name="twitter:description" content="简介主要描述下server与agent的不同配置项主要有几点需要注意:  当agent主动模式监控主机较多时,应提高StartTrappers,当被动模式监控主机较多时,应提高StartPollers 当监控主机较多时,并且使用MySQL时,应提高MySQL配置文件的max_connections的值 yum安装zabbix-server的运行用户是zabbix,AlertScriptsPath应">
 
 
 
@@ -126,13 +128,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/tags/zabbix/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/05/24/zabbix-server-config/"/>
 
 
 
 
 
-  <title>标签: zabbix | 运维与开发的那些事</title>
+  <title>zabbix-server 配置文件详解 | 运维与开发的那些事</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -158,7 +160,7 @@
     
   
 
-  <div class="container sidebar-position-left  ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -306,212 +308,603 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h1>zabbix<small>标签</small>
-      </h1>
-    </div>
-
+  <div id="posts" class="posts-expand">
     
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/05/24/zabbix-server-config/" itemprop="url">
-              
-                <span itemprop="name">zabbix-server 配置文件详解</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-05-24T00:25:42+08:00"
-              content="2017-05-24" >
-          05-24
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/05/22/zabbix-agent-confg/" itemprop="url">
-              
-                <span itemprop="name">zabbix-agent配置文件详解</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-05-22T21:32:45+08:00"
-              content="2017-05-22" >
-          05-22
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/05/22/zabbix-concepts/" itemprop="url">
-              
-                <span itemprop="name">zabbix创建监控流程</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-05-22T01:10:10+08:00"
-              content="2017-05-22" >
-          05-22
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/05/22/zabbix-templates/" itemprop="url">
-              
-                <span itemprop="name">zabbix模板</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-05-22T01:00:12+08:00"
-              content="2017-05-22" >
-          05-22
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/05/19/auto-register/" itemprop="url">
-              
-                <span itemprop="name">auto-register</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-05-19T23:33:21+08:00"
-              content="2017-05-19" >
-          05-19
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/05/15/zabbix-introduction/" itemprop="url">
-              
-                <span itemprop="name">zabbix 简介</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-05-15T21:11:50+08:00"
-              content="2017-05-15" >
-          05-15
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/05/15/zabbix-install/" itemprop="url">
-              
-                <span itemprop="name">zabbix-install</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-05-15T21:11:03+08:00"
-              content="2017-05-15" >
-          05-15
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-  </div>
 
   
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/24/zabbix-server-config/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="littlezhi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="运维与开发的那些事">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">zabbix-server 配置文件详解</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-24T00:25:42+08:00">
+                2017-05-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/zabbix/" itemprop="url" rel="index">
+                    <span itemprop="name">zabbix</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/05/24/zabbix-server-config/" class="leancloud_visitors" data-flag-title="zabbix-server 配置文件详解">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>主要描述下server与agent的不同配置项<br>主要有几点需要注意:</p>
+<ol>
+<li>当<code>agent</code>主动模式监控主机较多时,应提高<code>StartTrappers</code>,当被动模式监控主机较多时,应提高<code>StartPollers</code></li>
+<li>当监控主机较多时,并且使用<code>MySQL</code>时,应提高MySQL配置文件的<code>max_connections</code>的值</li>
+<li>yum安装zabbix-server的运行用户是zabbix,<code>AlertScriptsPath</code>应让<code>zabbix</code>有权限执行</li>
+<li>安装完,需要配置<code>zabbix_server.conf</code>的数据库连接配置</li>
+</ol>
+<a id="more"></a>
+<h1 id="Server配置项"><a href="#Server配置项" class="headerlink" title="Server配置项"></a>Server配置项</h1><h2 id="基础配置项"><a href="#基础配置项" class="headerlink" title="基础配置项"></a>基础配置项</h2><table>
+<thead>
+<tr>
+<th>配置项</th>
+<th>是否可选</th>
+<th>默认值</th>
+<th>可选值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ListenPort</td>
+<td>是</td>
+<td>10051</td>
+<td>1024-32767</td>
+<td>该参数用于指定服务端的监听端口，用于监听Proxy或Agent的连接请求</td>
+</tr>
+<tr>
+<td>DBHost</td>
+<td>是</td>
+<td>localhost</td>
+<td></td>
+<td>数据库主机名，如果设置为localhost，mysql必须用socket来连接，否则用ip来连接。若该参数为空，默认连接PostgreSQL</td>
+</tr>
+<tr>
+<td>DBName</td>
+<td>否</td>
+<td></td>
+<td></td>
+<td>数据库名。对SQLite3来说，必须提供数据文件的路径，DBUser和DBPassword参数可忽略</td>
+</tr>
+<tr>
+<td>DBSchema</td>
+<td>是</td>
+<td></td>
+<td></td>
+<td>模式名。用于DB2或PostgreSQL数据库</td>
+</tr>
+<tr>
+<td>DBUser</td>
+<td>是</td>
+<td></td>
+<td></td>
+<td>连接数据库的用户名，SQLite忽略该参数</td>
+</tr>
+<tr>
+<td>DBPassword</td>
+<td>是</td>
+<td></td>
+<td></td>
+<td>连接数据库的密码，SQLite忽略该参数</td>
+</tr>
+<tr>
+<td>DBSocket</td>
+<td>是</td>
+<td>/tmp/mysql.sock</td>
+<td></td>
+<td>MySQL的socket文件的路径</td>
+</tr>
+<tr>
+<td>DBPort</td>
+<td>是</td>
+<td>3306(MySQL默认)</td>
+<td>1024-65535</td>
+<td>数据库监听端口，SQLite忽略该参数</td>
+</tr>
+</tbody>
+</table>
+<h2 id="高级配置项"><a href="#高级配置项" class="headerlink" title="高级配置项"></a>高级配置项</h2><table>
+<thead>
+<tr>
+<th>配置项</th>
+<th>是否可选</th>
+<th>默认值</th>
+<th>可选值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>StartPollers</td>
+<td>是</td>
+<td>5</td>
+<td>0-1000</td>
+<td>系统初始化时，预分配子进程数量。数量越多，则服务端吞吐能力越强，对系统资源消耗越大</td>
+</tr>
+<tr>
+<td>StartIPMIPollers</td>
+<td>是</td>
+<td>5</td>
+<td>0-1000</td>
+<td>系统初始化时，预分配的使用ipmi协议获取主机硬件状态的进程数量</td>
+</tr>
+<tr>
+<td>StartPollersUnreachable</td>
+<td>是</td>
+<td>1</td>
+<td>0-10000</td>
+<td>系统初始化时，预分配用于探测某些不可达主机的（含IPMI、JAVA）的进程数量；若使用场景中含有代理端，建议保持默认值</td>
+</tr>
+<tr>
+<td>StartTrappers</td>
+<td>是</td>
+<td>5</td>
+<td>0-1000</td>
+<td>系统初始化时，预分配的用于接收zabbix sender、主动模式agents以及主动模式proxies提交来数据的进程</td>
+</tr>
+<tr>
+<td>StartPingers</td>
+<td>是</td>
+<td>1</td>
+<td>0-1000</td>
+<td>系统初始化时，预分配的icmp ping进程的数量。若单台代理所管理机器超过500台，建议加大此数值</td>
+</tr>
+<tr>
+<td>StartDiscoverers</td>
+<td>是</td>
+<td>1</td>
+<td>0-250</td>
+<td>预先fork的discovers实例数目</td>
+</tr>
+<tr>
+<td>StartHTTPPollers</td>
+<td>是</td>
+<td>1</td>
+<td>0-1000</td>
+<td>HTTP pollers 预先fork的实例数目</td>
+</tr>
+<tr>
+<td>StartTimers</td>
+<td>是</td>
+<td>1</td>
+<td>1-1000</td>
+<td>预先fork的定时器数目</td>
+</tr>
+<tr>
+<td>StartEscalators</td>
+<td>是</td>
+<td>1</td>
+<td>0-100</td>
+<td>预先fork的自动扶梯实例数目</td>
+</tr>
+<tr>
+<td>JavaGateway</td>
+<td>是</td>
+<td></td>
+<td></td>
+<td>只有当Java pollers 开启才有效,Zabbix Java gateway 的IP地址或者主机名</td>
+</tr>
+<tr>
+<td>JavaGatewayPort</td>
+<td>是</td>
+<td>10052</td>
+<td>1024-32767</td>
+<td>Zabbix Java gateway 监听的端口</td>
+</tr>
+<tr>
+<td>StartJavaPollers</td>
+<td>是</td>
+<td>0</td>
+<td>0-1000</td>
+<td>Java pollers 预先fork的实例数目</td>
+</tr>
+<tr>
+<td>StartVMwareCollectors</td>
+<td>是</td>
+<td>0</td>
+<td>0-250</td>
+<td>vrmware 采集器预先fork的实例数目</td>
+</tr>
+<tr>
+<td>VMwareFrequency</td>
+<td>是</td>
+<td>60</td>
+<td>10-86400</td>
+<td>Zabbix 多久会连接VMware service 一次,去获取新的数据</td>
+</tr>
+<tr>
+<td>VMwarePerfFrequency</td>
+<td>是</td>
+<td>60</td>
+<td>10-86400</td>
+<td>Zabbix 多久会连接 VMware service 一次去获取 性能数据</td>
+</tr>
+<tr>
+<td>VMwareCacheSize</td>
+<td>是</td>
+<td>8M</td>
+<td>256K-2G</td>
+<td>用于缓存VMware数据的共享内存</td>
+</tr>
+<tr>
+<td>VMwareTimeout</td>
+<td>是</td>
+<td>10</td>
+<td>1-300</td>
+<td>VMware收集等待来自VMware的服务响应的超时时间</td>
+</tr>
+<tr>
+<td>SNMPTrapperFile</td>
+<td>是</td>
+<td>/tmp/zabbix_traps.tmp</td>
+<td></td>
+<td>Temporary file 用于来自SNMP trap 守护进程传递到server</td>
+</tr>
+<tr>
+<td>StartSNMPTrapper</td>
+<td>是</td>
+<td>0</td>
+<td>0-1</td>
+<td>如果是1,SNMP trapper 进程需要启动</td>
+</tr>
+<tr>
+<td>ListenIP</td>
+<td>是</td>
+<td>0.0.0.0</td>
+<td></td>
+<td>trap需要监听的那些IP地址</td>
+</tr>
+<tr>
+<td>HousekeepingFrequency</td>
+<td>是</td>
+<td>1</td>
+<td>0-24</td>
+<td>多少小时清理一次数据库的 history, alert, and alarms数据</td>
+</tr>
+<tr>
+<td>MaxHousekeeperDelete</td>
+<td>是</td>
+<td>5000</td>
+<td>0-1000000</td>
+<td>housekeeping一次删除的数据不能大于MaxHousekeeperDelete</td>
+</tr>
+<tr>
+<td>SenderFrequency</td>
+<td>是</td>
+<td>30</td>
+<td>5-3600</td>
+<td>指定间隔多少秒后，再尝试发送为发送的报警</td>
+</tr>
+<tr>
+<td>CacheSize</td>
+<td>是</td>
+<td>8M</td>
+<td>128K-8G</td>
+<td>分配多少共享内存用于存储配置信息，HOST,ITEM,TRIGGER数据，视监控主机数量和监控项调整，建议调整到32M或者更大,2.2.3版本之前最大支持2G,一般用不了多少</td>
+</tr>
+<tr>
+<td>CacheUpdateFrequency</td>
+<td>是</td>
+<td>60</td>
+<td>1-3600</td>
+<td>zabbix多久会更新 配置 cache ,秒为单位</td>
+</tr>
+<tr>
+<td>StartDBSyncers</td>
+<td>是</td>
+<td>4</td>
+<td>1-100</td>
+<td>将采集数据从CACHE同步到数据库线程数量，视数据库服务器I/O繁忙情况，和数据库写能力调整。数值越大，写能力越强。对数据库服务器I/O压力越大</td>
+</tr>
+<tr>
+<td>HistoryCacheSize</td>
+<td>是</td>
+<td>16M</td>
+<td>128K-2G</td>
+<td>设置划分多少共享内存用于存储采集的历史数据，此数值越大，数据库读压力越小</td>
+</tr>
+<tr>
+<td>HistoryIndexCacheSize</td>
+<td>是</td>
+<td>4M</td>
+<td>128K-2G</td>
+<td>历史数据索引缓存</td>
+</tr>
+<tr>
+<td>TrendCacheSize</td>
+<td>是</td>
+<td>4M</td>
+<td>128K-2G</td>
+<td>用于设置划分多少共享内存用于存储计算出来的趋势数据，此参数值从一定程度上可影响数据库读压力</td>
+</tr>
+<tr>
+<td>ValueCacheSize</td>
+<td>是</td>
+<td>8M</td>
+<td>0,128K-64G</td>
+<td>0表示禁用，history value缓存大小，当缓存超标了，将会每隔5分钟往server日志里面记录</td>
+</tr>
+<tr>
+<td>Timeout</td>
+<td>是</td>
+<td>3</td>
+<td>1-30</td>
+<td>与AGNET、SNMP设备和其它外部设备通信超时设置，单位为秒；若采集数据不完整或网络繁忙，或从管理页面发现客户端状态变化频繁，可以考虑加大此数值。注意若此数值加大，应该考虑参数StartPollers 是否有相应加大的必要</td>
+</tr>
+<tr>
+<td>TrapperTimeout</td>
+<td>是</td>
+<td>300</td>
+<td>1-300</td>
+<td>启用trapper功能，用于进程等待超时设置</td>
+</tr>
+<tr>
+<td>UnreachablePeriod</td>
+<td>是</td>
+<td>45</td>
+<td>1-3600</td>
+<td>当Agent端处于不可用状态下，间隔多少秒后，尝试重新连接。建议根据具体情况设置。注意，若此数值过小，若Agent端业务系统繁忙时，有可能造成报警误报</td>
+</tr>
+<tr>
+<td>UnavailableDelay</td>
+<td>是</td>
+<td>60</td>
+<td>1-3600</td>
+<td>当Agent端处于不可达状态下，延迟多少秒后，进行重新尝试，建议保持默认，在AGENT接入调试阶段，可考虑减少此数值</td>
+</tr>
+<tr>
+<td>UnreachableDelay</td>
+<td>是</td>
+<td>15</td>
+<td>1-3600</td>
+<td>当Agent端处于不可达状态下，延迟多少秒后，进行重新尝试，建议保持默认，在AGENT接入调试阶段，可考虑减少此数值</td>
+</tr>
+<tr>
+<td>AlertScriptsPath</td>
+<td>是</td>
+<td>AlertScriptsPath=${datadir}/zabbix/alertscripts/</td>
+<td></td>
+<td>自定义告警脚本存放全路径</td>
+</tr>
+<tr>
+<td>ExternalScripts</td>
+<td>是</td>
+<td>ExternalScripts=${datadir}/zabbix/externalscripts</td>
+<td></td>
+<td>用于服务端数据库慢查询功能，单位是毫秒。若有服务端数据库监控慢查询的需求，可以视具体情况调整此数</td>
+</tr>
+<tr>
+<td>FpingLocation</td>
+<td>是</td>
+<td>/usr/sbin/fping</td>
+<td></td>
+<td>确保fping有root权限和SUID标志设置</td>
+</tr>
+<tr>
+<td>FpingLocation</td>
+<td>是</td>
+<td>/usr/sbin/fping</td>
+<td></td>
+<td>确保fping6有root权限和SUID标志设置</td>
+</tr>
+<tr>
+<td>LogSlowQueries</td>
+<td>是</td>
+<td>0</td>
+<td>1-3600000</td>
+<td>用于服务端数据库慢查询功能，单位是毫秒。若有服务端数据库监控慢查询的需求，可以视具体情况调整此数</td>
+</tr>
+<tr>
+<td>TmpDir</td>
+<td>是</td>
+<td>/tmp</td>
+<td></td>
+<td>临时文件夹</td>
+</tr>
+<tr>
+<td>StartProxyPollers</td>
+<td>是</td>
+<td>1</td>
+<td>0-250</td>
+<td>启用多少子进程与代理端通信，若代理端较多可考虑加大此数值</td>
+</tr>
+<tr>
+<td>ProxyConfigFrequency</td>
+<td>是</td>
+<td>3600</td>
+<td>1-3600<em>24</em>7</td>
+<td>Zabbix服务端将配置文件数据同步到代理端的频率，仅适用于代理端为被动模式情况</td>
+</tr>
+<tr>
+<td>ProxyDataFrequency</td>
+<td>是</td>
+<td>1</td>
+<td>1-3600</td>
+<td>Zabbix服务端请求代理端采集的数据的频率，仅适用代理端为被动模式情况</td>
+</tr>
+<tr>
+<td>AllowRoot</td>
+<td>是</td>
+<td>0</td>
+<td>0-1</td>
+<td>是否允许以root身份运行服务端;0:不允许;1:允许</td>
+</tr>
+<tr>
+<td>User</td>
+<td>是</td>
+<td>zabbix</td>
+<td></td>
+<td>启动zabbix server的用户，在配置禁止root启动，并且当前shell用户是root得情况下有效。如果当前用户是abc，那么zabbix server的运行用户是设置为该用户</td>
+</tr>
+<tr>
+<td>Include</td>
+<td>是</td>
+<td></td>
+<td></td>
+<td>某些情况下，软件的参数配置文件很长，为了方便管理，将配置文件切割成N个配置文件，但为了主配置参数文件的简洁，便会启用INCLUDE参数，以方便程序读取指定目录下的所有配置文件</td>
+</tr>
+</tbody>
+</table>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/zabbix/" rel="tag"># zabbix</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/22/zabbix-agent-confg/" rel="next" title="zabbix-agent配置文件详解">
+                <i class="fa fa-chevron-left"></i> zabbix-agent配置文件详解
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/05/24/django1/" rel="prev" title="django入门教学">
+                django入门教学 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -519,6 +912,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -538,8 +935,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.jpg"
@@ -601,6 +1007,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Server配置项"><span class="nav-number">2.</span> <span class="nav-text">Server配置项</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基础配置项"><span class="nav-number">2.1.</span> <span class="nav-text">基础配置项</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#高级配置项"><span class="nav-number">2.2.</span> <span class="nav-text">高级配置项</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -721,6 +1143,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
 
   
 

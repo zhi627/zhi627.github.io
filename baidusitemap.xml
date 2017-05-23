@@ -4,7 +4,27 @@
 
     
   <url>
-    <loc>http://yoursite.com/2017/05/22/zabbix-agent-conf/</loc>
+    <loc>http://yoursite.com/2017/05/24/zabbix-server-config/</loc>
+    <lastmod>2017-05-23T16:34:03.000Z</lastmod>
+    <data>
+        <display>
+        <title>zabbix-server 配置文件详解</title>
+        <pubTime>2017-05-23T16:25:42.000Z</pubTime>
+        
+        <tag>zabbix</tag>
+         
+         
+           
+             
+              <breadCrumb title="zabbix" url="http://yoursite.com/categories/zabbix/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/05/22/zabbix-agent-confg/</loc>
     <lastmod>2017-05-23T14:45:35.000Z</lastmod>
     <data>
         <display>
@@ -157,7 +177,7 @@
     <data>
         <display>
         <title>django入门教学</title>
-        <pubTime>2017-05-23T16:15:07.306Z</pubTime>
+        <pubTime>2017-05-23T16:34:34.203Z</pubTime>
         
          
            
@@ -172,7 +192,7 @@
     <data>
         <display>
         <title>Hello World</title>
-        <pubTime>2017-05-23T16:15:07.312Z</pubTime>
+        <pubTime>2017-05-23T16:34:34.207Z</pubTime>
         
          
            
