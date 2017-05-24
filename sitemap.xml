@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2017/05/25/zabbix-lld/</loc>
+    
+    <lastmod>2017-05-24T17:19:01.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2017/05/24/zabbix-server-config/</loc>
     
     <lastmod>2017-05-23T16:34:03.000Z</lastmod>
@@ -79,14 +86,14 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2017/05/24/django1/</loc>
+    <loc>http://yoursite.com/2017/05/25/django1/</loc>
     
     <lastmod>2017-05-11T13:54:42.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoursite.com/2017/05/24/hello-world/</loc>
+    <loc>http://yoursite.com/2017/05/25/hello-world/</loc>
     
     <lastmod>2017-05-04T12:38:40.000Z</lastmod>
     
