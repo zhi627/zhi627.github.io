@@ -5,7 +5,7 @@
     
   <url>
     <loc>http://yoursite.com/2017/05/25/zabbix-lld/</loc>
-    <lastmod>2017-05-24T17:19:01.000Z</lastmod>
+    <lastmod>2017-05-25T13:53:14.000Z</lastmod>
     <data>
         <display>
         <title>zabbix低级别发现</title>
@@ -18,6 +18,21 @@
              
               <breadCrumb title="zabbix" url="http://yoursite.com/categories/zabbix/"/>
           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/05/25/zabbix-item-type/</loc>
+    <lastmod>2017-05-25T13:44:17.000Z</lastmod>
+    <data>
+        <display>
+        <title>zabbix-item-type</title>
+        <pubTime>2017-05-25T13:44:17.000Z</pubTime>
+        
+         
+           
         </display>
     </data>
     </url>
@@ -197,7 +212,7 @@
     <data>
         <display>
         <title>django入门教学</title>
-        <pubTime>2017-05-24T17:19:56.491Z</pubTime>
+        <pubTime>2017-05-25T13:54:46.041Z</pubTime>
         
          
            
@@ -212,7 +227,7 @@
     <data>
         <display>
         <title>Hello World</title>
-        <pubTime>2017-05-24T17:19:56.494Z</pubTime>
+        <pubTime>2017-05-25T13:54:46.044Z</pubTime>
         
          
            
