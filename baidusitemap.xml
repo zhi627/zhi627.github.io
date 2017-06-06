@@ -4,12 +4,91 @@
 
     
   <url>
-    <loc>http://yoursite.com/2017/05/25/zabbix-lld/</loc>
-    <lastmod>2017-05-25T13:56:52.000Z</lastmod>
+    <loc>http://yoursite.com/2017/06/06/arp-error/</loc>
+    <lastmod>2017-06-06T16:20:48.000Z</lastmod>
     <data>
         <display>
-        <title>zabbix低级别发现</title>
-        <pubTime>2017-05-24T16:58:45.000Z</pubTime>
+        <title>arp导致的网络问题</title>
+        <pubTime>2017-06-06T13:31:02.000Z</pubTime>
+        
+        <tag>network</tag>
+         
+        <tag>work</tag>
+         
+         
+           
+             
+              <breadCrumb title="work" url="http://yoursite.com/categories/work/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/06/01/py-assign-copy/</loc>
+    <lastmod>2017-06-05T16:26:38.000Z</lastmod>
+    <data>
+        <display>
+        <title>python 中赋值、引用、浅拷贝、深拷贝</title>
+        <pubTime>2017-05-31T20:09:46.000Z</pubTime>
+        
+        <tag>python</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/06/01/py-object/</loc>
+    <lastmod>2017-06-01T13:25:40.000Z</lastmod>
+    <data>
+        <display>
+        <title>python 变量与对象</title>
+        <pubTime>2017-06-01T13:17:43.000Z</pubTime>
+        
+        <tag>python</tag>
+         
+         
+           
+             
+              <breadCrumb title="python" url="http://yoursite.com/categories/python/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/05/25/zabbix-agent-key/</loc>
+    <lastmod>2017-05-26T16:38:57.000Z</lastmod>
+    <data>
+        <display>
+        <title>zabbix检测类型之 zabbix agent</title>
+        <pubTime>2017-05-25T14:03:44.000Z</pubTime>
+        
+        <tag>zabbix</tag>
+         
+         
+           
+             
+              <breadCrumb title="zabbix" url="http://yoursite.com/categories/zabbix/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/05/25/zabbix-simple-check/</loc>
+    <lastmod>2017-05-25T14:06:33.000Z</lastmod>
+    <data>
+        <display>
+        <title>zabbix检测类型之 simple check</title>
+        <pubTime>2017-05-25T14:04:28.000Z</pubTime>
         
         <tag>zabbix</tag>
          
@@ -25,14 +104,39 @@
     
   <url>
     <loc>http://yoursite.com/2017/05/25/zabbix-item-type/</loc>
-    <lastmod>2017-05-25T13:44:17.000Z</lastmod>
+    <lastmod>2017-05-25T14:02:25.000Z</lastmod>
     <data>
         <display>
-        <title>zabbix-item-type</title>
+        <title>zabbix检测类型</title>
         <pubTime>2017-05-25T13:44:17.000Z</pubTime>
         
+        <tag>zabbix</tag>
+         
          
            
+             
+              <breadCrumb title="zabbix" url="http://yoursite.com/categories/zabbix/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/05/25/zabbix-lld/</loc>
+    <lastmod>2017-05-25T13:56:52.000Z</lastmod>
+    <data>
+        <display>
+        <title>zabbix低级别发现</title>
+        <pubTime>2017-05-24T16:58:45.000Z</pubTime>
+        
+        <tag>zabbix</tag>
+         
+         
+           
+             
+              <breadCrumb title="zabbix" url="http://yoursite.com/categories/zabbix/"/>
+          
         </display>
     </data>
     </url>
@@ -141,21 +245,6 @@
     
     
   <url>
-    <loc>http://yoursite.com/2017/05/20/zabbix/</loc>
-    <lastmod>2017-05-20T14:00:57.000Z</lastmod>
-    <data>
-        <display>
-        <title>zabbix</title>
-        <pubTime>2017-05-20T14:00:57.000Z</pubTime>
-        
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://yoursite.com/2017/05/19/auto-register/</loc>
     <lastmod>2017-05-19T16:56:42.000Z</lastmod>
     <data>
@@ -207,27 +296,12 @@
 
     
   <url>
-    <loc>http://yoursite.com/2017/05/25/django1/</loc>
+    <loc>http://yoursite.com/2017/06/06/django1/</loc>
     <lastmod>2017-05-11T13:54:42.000Z</lastmod>
     <data>
         <display>
         <title>django入门教学</title>
-        <pubTime>2017-05-25T13:57:02.655Z</pubTime>
-        
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2017/05/25/hello-world/</loc>
-    <lastmod>2017-05-04T12:38:40.000Z</lastmod>
-    <data>
-        <display>
-        <title>Hello World</title>
-        <pubTime>2017-05-25T13:57:02.658Z</pubTime>
+        <pubTime>2017-06-06T14:01:48.452Z</pubTime>
         
          
            

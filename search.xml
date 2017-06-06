@@ -3,25 +3,8 @@
   
     
     <entry>
-      <title><![CDATA[Hello World]]></title>
-      <url>/2017/05/25/hello-world/</url>
-      <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-]]></content>
-      
-        
-    </entry>
-    
-    <entry>
       <title><![CDATA[django入门教学]]></title>
-      <url>/2017/05/25/django1/</url>
+      <url>/2017/06/06/django1/</url>
       <content type="html"><![CDATA[<h1 id="django安装"><a href="#django安装" class="headerlink" title="django安装"></a>django安装</h1><p>使用pip 或者easy_install 即可</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pip install django 或者 easy_install django</div></pre></td></tr></table></figure>
 <h1 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h1><p>项目名称不用和python或django的内部组件名称同名。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ django-admin startproject mysite</div></pre></td></tr></table></figure></p>
@@ -39,10 +22,466 @@
     </entry>
     
     <entry>
-      <title><![CDATA[zabbix-item-type]]></title>
-      <url>/2017/05/25/zabbix-item-type/</url>
-      <content type="html"></content>
+      <title><![CDATA[arp导致的网络问题]]></title>
+      <url>/2017/06/06/arp-error/</url>
+      <content type="html"><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>今天,在zabbix监控平台看到一个国内服务器居然agent连续5分钟都没有发送数据到server,于是感觉服务器是不是挂了。直接ping了下服务器的IP地址，ping是ping通了，但是发现延时很高估<br>计有半秒到1秒左右的。同时，检查了下web端口居然出现常见那种类似中毒的页面，什么赌博XX的页。感觉服务器是不是出故障了，或者被黑了。于是赶紧通知下领导，大家用ssh登陆，这时ssh登陆非常卡，感觉时不时就会断开下那样。领导重启了下服务器，好不容易，登陆上去，大家立马查看下是否有占资源、占内存、占流量的进程。在服务器逛了一圈，发现并没有特别奇怪的情况。<br>这时感觉是不是外部的问题，是不是机房的问题。</p>
+<a id="more"></a>
+<h1 id="查网关办法"><a href="#查网关办法" class="headerlink" title="查网关办法"></a>查网关办法</h1><h2 id="ifconfig-查看ifcfg-netinterface"><a href="#ifconfig-查看ifcfg-netinterface" class="headerlink" title="ifconfig+查看ifcfg-netinterface"></a>ifconfig+查看ifcfg-netinterface</h2><p>最常见的就是用ifconfig看下网络设备,然后根据网络设备名查找GATEWAY参数，这参数定义的就是网关了</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ifconfig</div></pre></td></tr></table></figure>
+<blockquote>
+<p>[root@localhost blog]# ifconfig<br>eth0      Link encap:Ethernet  HWaddr 00:0C:29:F4:C8:09<br>          inet addr:192.168.1.2  Bcast:192.168.1.255  Mask:255.255.255.0<br>          inet6 addr: fe80::20c:29ff:fef4:c809/64 Scope:Link<br>          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1<br>          RX packets:2642 errors:0 dropped:0 overruns:0 frame:0<br>          TX packets:3130 errors:0 dropped:0 overruns:0 carrier:0<br>          collisions:0 txqueuelen:1000<br>          RX bytes:251275 (245.3 KiB)  TX bytes:328637 (320.9 KiB)</p>
+<p>lo        Link encap:Local Loopback<br>          inet addr:127.0.0.1  Mask:255.0.0.0<br>          inet6 addr: ::1/128 Scope:Host<br>          UP LOOPBACK RUNNING  MTU:16436  Metric:1<br>          RX packets:57626 errors:0 dropped:0 overruns:0 frame:0<br>          TX packets:57626 errors:0 dropped:0 overruns:0 carrier:0<br>          collisions:0 txqueuelen:0 gate<br>          RX bytes:10211220 (9.7 MiB)  TX bytes:10211220 (9.7 MiB)</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">cat /etc/network/net-scripts/ifcfg-eth0</div><div class="line">``</div><div class="line"></div><div class="line"><span class="comment">## route -n</span></div><div class="line"></div><div class="line">从这里看网关是192.168.1.1</div><div class="line"></div><div class="line">``` bash</div><div class="line">$ route -n</div><div class="line">Kernel IP routing table</div><div class="line">Destination     Gateway         Genmask         Flags Metric Ref    Use Iface</div><div class="line">192.168.1.0     0.0.0.0         255.255.255.0   U     0      0        0 eth0</div><div class="line">169.254.0.0     0.0.0.0         255.255.0.0     U     1002   0        0 eth0</div><div class="line">0.0.0.0         192.168.1.1     0.0.0.0         UG    0      0        0 eth0</div></pre></td></tr></table></figure>
+<h2 id="traceroute-baidu-com"><a href="#traceroute-baidu-com" class="headerlink" title="traceroute baidu.com"></a>traceroute baidu.com</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">$ traceroute www.baidu.com </div><div class="line">traceroute to www.baidu.com (14.215.177.37), 30 hops max, 60 byte packets</div><div class="line">1  192.168.1.1 (192.168.1.1)  2.801 ms  2.587 ms  2.482 ms</div><div class="line">2  10.51.56.1 (10.51.56.1)  59.276 ms  59.142 ms  59.045 ms</div><div class="line">3  * * *</div><div class="line">4  172.20.20.1 (172.20.20.1)  13.728 ms  13.593 ms  13.496 ms</div><div class="line">5  192.168.34.1 (192.168.34.1)  6.163 ms  6.074 ms  5.872 ms</div><div class="line">6  119.129.128.1 (119.129.128.1)  46.184 ms  29.510 ms  29.344 ms</div><div class="line">7  218.19.193.177 (218.19.193.177)  18.105 ms</div></pre></td></tr></table></figure>
+<h2 id="netstat-r"><a href="#netstat-r" class="headerlink" title="netstat -r"></a>netstat -r</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ netstat -r</div><div class="line">Kernel IP routing table</div><div class="line">Destination     Gateway         Genmask         Flags   MSS Window  irtt Iface</div><div class="line">192.168.1.0     *               255.255.255.0   U         0 0          0 eth0</div><div class="line">link-local      *               255.255.0.0     U         0 0          0 eth0</div><div class="line">default         192.168.1.1     0.0.0.0         UG        0 0          0 eth0</div></pre></td></tr></table></figure>
+<h2 id="ip-route-show"><a href="#ip-route-show" class="headerlink" title="ip route show"></a>ip route show</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ ip  route show</div><div class="line">192.168.1.0/24 dev eth0  proto kernel  scope link  src 192.168.1.2 </div><div class="line">169.254.0.0/16 dev eth0  scope link  metric 1002 </div><div class="line">default via 192.168.1.1 dev eth0</div></pre></td></tr></table></figure>
+<p>查看网关ping下结果发现</p>
+<blockquote>
+<p>   From 192.168.1.2: icmp_seq=1 Redirect Network(New nexthop: 192.168.1.1)<br>From 192.168.1.2: icmp_seq=2 Redirect Network(New nexthop: 192.168.1.1)<br>From 192.168.1.10: icmp_seq=3 Redirect Network(New nexthop: 192.168.1.1)</p>
+</blockquote>
+<p>感觉是机房区域网络出现问题了</p>
+<h1 id="参考Linux系统有效防御ARP攻击"><a href="#参考Linux系统有效防御ARP攻击" class="headerlink" title="参考Linux系统有效防御ARP攻击"></a>参考<a href="http://www.jb51.net/os/RedHat/1363.html" target="_blank" rel="external">Linux系统有效防御ARP攻击</a></h1><p>将网关的ip以及mac写到/etc/ethers文件</p>
+]]></content>
       
+        <categories>
+            
+            <category> work </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> network </tag>
+            
+            <tag> work </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[python 变量与对象]]></title>
+      <url>/2017/06/01/py-object/</url>
+      <content type="html"><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><ol>
+<li>Python中一切都是对象，变量总是存放的是对象的引用。这是一个普遍的法则。</li>
+<li>变量无类型，对象有类型。</li>
+<li>只要用一个变量，就要给这个变量赋值。</li>
+<li>当一个对象没有变量指向它的时候，它便进入了垃圾收集过程。</li>
+<li>Python的“动态类型”机制，负责检查变量的对象引用适用操作。如果该对象不适用该操作，则会直接报错。</li>
+</ol>
+<a id="more"></a>
+<h1 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">x=<span class="string">'blue'</span></div><div class="line">y=<span class="string">'green'</span></div><div class="line">z=x</div></pre></td></tr></table></figure>
+<p>第一句时会在heap中首先创建一个str对象，其文本内容为blue，同时还创建一个名为x的对象引用，x引用的就是这个str对象。第二句也是类似；第三条创建了一个名为z的新对象引用，并将其设置为对象引用x所指向的相同对象。如下图的变化。</p>
+<p><img src="http://www.linuxidc.com/upload/2012_09/120902065482641.png" alt="赋值流程1"></p>
+<p>有两点比较重要</p>
+<ol>
+<li><p>Python中赋值操作符号“=”的作用是，将对象引用和内存中的某个对象进行绑定。如果对象已经存在，就进行简单的重新绑定，以便引用“=”右边的对象；如果对象引用尚未存在，就首先创建对象，然后将对象引用和对象进行绑定。这很类似与c中的指针的概念。</p>
+</li>
+<li><p>Python使用“动态类型”机制，也就是说，在Python程序中，任何时候可以根据需要，某个对象引用都可以重新绑定到另一个不同的对象上（不要求是相同的类型），这和其他强化型语言如（C++,Java)不太一样，只允许重新绑定相同类型的对象上。在Python中，因为有“动态类型”机制，所以一个对象引用可以执行不同类型的对象适用的方法。当一个对象不存在任何对象引用的时候，就进入了垃圾收集的过程。</p>
+</li>
+</ol>
+<h1 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h1><p>在代码中观察对象引用，调用id函数，通过下面例子或许可以更清楚理解对象与变量的关系，观察变量以及对象的更新以及赋值</p>
+<ol>
+<li><p>a与b对象的例子，可以看出：a与b一开始指向都是同一对象，b对对象进行更新，a引用的对象（即b引用的对象也就相应更新），后面b重新赋值一个字典对象，引用的对象与a的对象已经无关了。a引用的对象还是原来列表的对象</p>
+</li>
+<li><p>c与d变量的例子，可以看出：算是增值赋值语句其实也是不断的创建对象以及被引用到变量中，对象的id也是随之更新，但是增强赋值会比普通赋值少一次拷贝</p>
+</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; a=[<span class="string">'Hello'</span>]</div><div class="line">&gt;&gt;&gt; b=a</div><div class="line">&gt;&gt;&gt; id(a)</div><div class="line">140311389774152</div><div class="line">&gt;&gt;&gt; id(b)</div><div class="line">140311389774152</div><div class="line">&gt;&gt;&gt; b.append(2)</div><div class="line">&gt;&gt;&gt; a</div><div class="line">[<span class="string">'Hello'</span>,2]</div><div class="line">&gt;&gt;&gt; id(a)</div><div class="line">140311389774152</div><div class="line">&gt;&gt;&gt; id(b)</div><div class="line">140311389774152</div><div class="line">&gt;&gt;&gt; d=10</div><div class="line">&gt;&gt;&gt; c=d</div><div class="line">&gt;&gt;&gt; id(c)</div><div class="line">140311389176096</div><div class="line">&gt;&gt;&gt; id(d)</div><div class="line">140311389176096</div><div class="line">&gt;&gt;&gt; c=c+1</div><div class="line">&gt;&gt;&gt; id(d)</div><div class="line">140311389176096</div><div class="line">&gt;&gt;&gt; id(c)</div><div class="line">140311389176128</div><div class="line">&gt;&gt;&gt; c+=1</div><div class="line">&gt;&gt;&gt; id(c)</div><div class="line">140311389176160</div><div class="line">&gt;&gt;&gt; id(d)</div><div class="line">&gt;&gt;&gt; b=&#123;<span class="string">'a'</span>:1&#125;</div><div class="line">&gt;&gt;&gt; id(b)</div><div class="line">140311389777096</div><div class="line">&gt;&gt;&gt; id(a)</div><div class="line">140311389774152</div></pre></td></tr></table></figure>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="http://www.linuxidc.com/Linux/2012-09/69523.htm" target="_blank" rel="external">Python基础：Python的变量和对象</a><br><a href="http://www.jb51.net/article/55585.htm" target="_blank" rel="external">跟老齐学Python之赋值，简单也不简单</a><br><a href="http://www.jb51.net/article/55576.htm" target="_blank" rel="external">跟老齐学Python之深入变量和引用对象</a><br><a href="http://effbot.org/zone/python-objects.htm" target="_blank" rel="external">Python对象</a></p>
+]]></content>
+      
+        <categories>
+            
+            <category> python </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> python </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[python 中赋值、引用、浅拷贝、深拷贝]]></title>
+      <url>/2017/06/01/py-assign-copy/</url>
+      <content type="html"><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p><strong><a href="http://www.jb51.net/article/61902.htm" target="_blank" rel="external">转自Python中的赋值、浅拷贝、深拷贝介绍</a></strong><br>和很多语言一样，python也分为简单赋值、浅拷贝、深拷贝几种方式。不过这几种方式也不一定和其他语言表现相同</p>
+<h1 id="赋值和引用"><a href="#赋值和引用" class="headerlink" title="赋值和引用"></a>赋值和引用</h1><ol>
+<li>对于不可变对象<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; a=<span class="string">'hello'</span></div><div class="line">&gt;&gt;&gt; b=<span class="string">'hello'</span></div><div class="line">&gt;&gt;&gt; c=a</div><div class="line">&gt;&gt;&gt; [id(x) <span class="keyword">for</span> x <span class="keyword">in</span> (a,b,c)]</div><div class="line">[4404120000, 4404120000, 4404120000]</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>由以上指令中，我们可以发现a, b, c三者的地址是一样的。所以以上赋值的操作就相当于c = a = b = ‘hello’。<br>赋值是系统先给一个变量或者对象(这里是<code>&#39;hello&#39;</code>)分配了内存，然后再将地址赋给a, b, c。所以它们的地址是相同的。<br>这点和其他语言可能不是很一样，尽管分开赋值，但是变量引用的对象还是一样的。</p>
+<ol>
+<li>对可变对象</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; a=[<span class="string">'hello'</span>]</div><div class="line">&gt;&gt;&gt; b=[<span class="string">'hello'</span>]</div><div class="line">&gt;&gt;&gt; c=a</div><div class="line">&gt;&gt;&gt; [id(x) <span class="keyword">for</span> x <span class="keyword">in</span> (a,b,c)]</div><div class="line">[4403975952, 4404095096, 4403975952]</div><div class="line">&gt;&gt;&gt; a=b=c=[<span class="string">'hello'</span>]</div><div class="line">&gt;&gt;&gt; [id(x) <span class="keyword">for</span> x <span class="keyword">in</span> (a,b,c)]</div><div class="line">[140311389782280, 140311389782280, 140311389782280]</div></pre></td></tr></table></figure>
+<p>如果分开赋值，看得出id即引用的对象是不一样的，但是统一赋值，id则一样。即统一赋值时，系统只分配了一个对象<code>[&#39;hello&#39;]</code>的内存</p>
+<ol>
+<li>对于重新赋值<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; a=b=c=[<span class="string">'hello'</span>]</div><div class="line">&gt;&gt;&gt; [id(x) <span class="keyword">for</span> x <span class="keyword">in</span> (a,b,c)]</div><div class="line">[140311389782280, 140311389782280, 140311389782280]</div><div class="line">&gt;&gt;&gt; a=<span class="string">'world'</span></div><div class="line">&gt;&gt;&gt; [id(x) <span class="keyword">for</span> x <span class="keyword">in</span> (a,b,c)]</div><div class="line">[140311389782712, 140311389782280, 140311389782280]</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>这时a的地址和值变了，但是b,c地址和值都未变。因为str的不可变性，a要重新赋值则需重新开辟内存空间，所以a的值改变。</p>
+<ol>
+<li>例子4<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; a = [<span class="string">'hello'</span>]</div><div class="line">&gt;&gt;&gt; b = [<span class="string">'hello'</span>]</div><div class="line">&gt;&gt;&gt; c = a</div><div class="line">&gt;&gt;&gt; [id(x[0]) <span class="keyword">for</span> x <span class="keyword">in</span> (a,b,c)]</div><div class="line">&gt;&gt;&gt; </div><div class="line">&gt;&gt;&gt; [id(x) <span class="keyword">for</span> x <span class="keyword">in</span> (a,b,c)]</div><div class="line">[140311389783816, 140311389783368, 140311389783816]</div><div class="line">&gt;&gt;&gt; a[0]=<span class="string">'world'</span></div><div class="line">&gt;&gt;&gt; [id(x) <span class="keyword">for</span> x <span class="keyword">in</span> (a,b,c)]</div><div class="line">[140311389783816, 140311389783368, 140311389783816]</div><div class="line">&gt;&gt;&gt; <span class="built_in">print</span>(a,b,c)</div><div class="line">[<span class="string">'world'</span>] [<span class="string">'hello'</span>] [<span class="string">'world'</span>]</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>结果发现a、b、c引用的list的地址没有发生变化，但是里面的值却发生了变化。但是a[0]的地址发生改变，其值也发生了变化。</p>
+<ol>
+<li>例子5<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; values = [0,1,2]</div><div class="line">&gt;&gt;&gt; values[1]=values</div><div class="line">&gt;&gt;&gt; values</div><div class="line">[0,[...],2]</div><div class="line"></div><div class="line">结果发现赋值无限次，可以说python没有赋值，只有引用。这例子相当于创建了一个引用自身的结构。</div><div class="line">Python没有[变量]，我们平时所说的变量其实只是标签，是引用。</div><div class="line"></div><div class="line">6. 例子6</div><div class="line">``` bash</div><div class="line">values=[0,1,2]</div><div class="line">values=[3,4,5]</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>Python 做的事情是首先创建一个列表对象 [0, 1, 2]，然后给它贴上名为 values 的标签。<br>Python 做的事情是创建另一个列表对象 [3, 4, 5]，然后把刚才那张名为 values 的标签从前面的 [0, 1, 2] 对象上撕下来，重新贴到 [3, 4, 5] 这个对象上</p>
+<p>Python 里面复制对象的操作因对象类型而异，复制列表 values 的操作是list[:]<br>往更深处说，values[:] 复制操作是所谓的「浅复制」(shallow copy)<br>使用id函数查看对象地址</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; values=[1,[1,2],2]</div><div class="line">&gt;&gt;&gt; id(values)</div><div class="line">140292342275016</div><div class="line">&gt;&gt;&gt; x=values[:]</div><div class="line">&gt;&gt;&gt; id(x)</div><div class="line">140292466659592</div><div class="line">&gt;&gt;&gt; id(x[1])</div><div class="line">140292339723784</div><div class="line">&gt;&gt;&gt; id(values[1])</div><div class="line">140292339723784</div><div class="line">&gt;&gt;&gt; id(values[1])</div></pre></td></tr></table></figure>
+<p>其实python的list有点类型其他语言定义列表作为派生类型一样，由基础数据类型构建。由于是浅复制，列表里面的list对象也是指向同一对象。<br>values和x的地址空间是不一样，但是values[1]和x[1]一样，它们都指向相同的对象，相同的地址空间。</p>
+<p>当列表对象有嵌套的时候也会产生出乎意料的错误，比如</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">a = [0, [1, 2], 3]</div><div class="line">b = a[:]</div><div class="line">a[0] = 8</div><div class="line">a[1][1] = 9</div></pre></td></tr></table></figure>
+<p>正确的复制嵌套元素的方法是进行「深复制」(deep copy)，方法是</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; import copy</div><div class="line">&gt;&gt;&gt; a = [0, [1, 2], 3]</div><div class="line">&gt;&gt;&gt; id(a)</div><div class="line">140292342243848</div><div class="line">&gt;&gt;&gt; b=copy.deepcopy(a)</div><div class="line">&gt;&gt;&gt; id(b)</div><div class="line">140292342246664</div><div class="line">&gt;&gt;&gt; id(a[0])</div><div class="line">140292466053088</div><div class="line">&gt;&gt;&gt; id(b[0])</div><div class="line">140292466053088</div><div class="line">&gt;&gt;&gt; id(b[1])</div><div class="line">140292339723848</div><div class="line">&gt;&gt;&gt; id(a[1])</div><div class="line">140292342246984</div><div class="line">&gt;&gt;&gt; id(a[1])</div><div class="line">140292342246984</div><div class="line">&gt;&gt;&gt; id(a[2])</div><div class="line">140292466053184</div><div class="line">&gt;&gt;&gt; id(b[2])</div><div class="line">140292466053184</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<p>有人看到，可能会问怎么a[0]和b[0]指向的都还是同一对象，因为数值类型是不可变类型，看前面例子，可知，只要不可变类型的对象创建了，不论何时，使用到相同的对象值，都会是引用到相同的地址空间。<br>有人会问假如不同的作用域或者命名空间呢，经测试是无关的，虽然是有点怪异，但是还是可以理解吧，因为不可变类型的对象反正就是不可变的。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; x=10</div><div class="line">&gt;&gt;&gt; b=10</div><div class="line">&gt;&gt;&gt; id(x)</div><div class="line">140292466053408</div><div class="line">&gt;&gt;&gt; id(b)</div><div class="line">140292466053408</div><div class="line">def func1():</div><div class="line">... x=10</div><div class="line">...	<span class="built_in">print</span>(id(x))</div><div class="line">...</div><div class="line">&gt;&gt;&gt;func1()</div><div class="line">140292466053408</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">L = [1, 2, 3]</div><div class="line">D = &#123;<span class="string">'a'</span>:1, <span class="string">'b'</span>:2&#125;</div><div class="line">A = L[:]</div><div class="line">B = D.copy()</div><div class="line"><span class="built_in">print</span> <span class="string">"L, D"</span></div><div class="line"><span class="built_in">print</span>  L, D</div><div class="line"><span class="built_in">print</span> <span class="string">"A, B"</span></div><div class="line"><span class="built_in">print</span> A, B</div><div class="line"><span class="built_in">print</span> <span class="string">"--------------------"</span></div><div class="line">A[1] = <span class="string">'NI'</span></div><div class="line">B[<span class="string">'c'</span>] = <span class="string">'spam'</span></div><div class="line"><span class="built_in">print</span> <span class="string">"L, D"</span></div><div class="line"><span class="built_in">print</span>  L, D</div><div class="line"><span class="built_in">print</span> <span class="string">"A, B"</span></div><div class="line"><span class="built_in">print</span> A, B</div><div class="line"></div><div class="line"></div><div class="line">L, D</div><div class="line">[1, 2, 3] &#123;<span class="string">'a'</span>: 1, <span class="string">'b'</span>: 2&#125;</div><div class="line">A, B</div><div class="line">[1, 2, 3] &#123;<span class="string">'a'</span>: 1, <span class="string">'b'</span>: 2&#125;</div><div class="line">--------------------</div><div class="line">L, D</div><div class="line">[1, 2, 3] &#123;<span class="string">'a'</span>: 1, <span class="string">'b'</span>: 2&#125;</div><div class="line">A, B</div><div class="line">[1, <span class="string">'NI'</span>, 3] &#123;<span class="string">'a'</span>: 1, <span class="string">'c'</span>: <span class="string">'spam'</span>, <span class="string">'b'</span>: 2&#125;</div></pre></td></tr></table></figure>
+<h1 id="引用-VS-拷贝："><a href="#引用-VS-拷贝：" class="headerlink" title="引用 VS 拷贝："></a>引用 VS 拷贝：</h1><ol>
+<li>没有限制条件的分片表达式（L[:]）能够复制序列，但此法只能浅层复制。</li>
+<li>字典 copy 方法，D.copy() 能够复制字典，但此法只能浅层复制</li>
+<li>有些内置函数，例如 list，能够生成拷贝 list(L)</li>
+<li>copy 标准库模块能够生成完整拷贝：deepcopy 本质上是递归 copy</li>
+<li>对于不可变对象和可变对象来说，浅复制都是复制的引用，只是因为复制不变对象和复制不变对象的引用是等效的（因为对象不可变，当改变时会新建对象重新赋值）。所以看起来浅复制只复制不可变对象（整数，实数，字符串等），对于可变对象，浅复制其实是创建了一个对于该对象的引用，也就是说只是给同一个对象贴上了另一个标签而已。</li>
+</ol>
+<h1 id="增强赋值以及共享引用："><a href="#增强赋值以及共享引用：" class="headerlink" title="增强赋值以及共享引用："></a>增强赋值以及共享引用：</h1><p>x = x + y，x 出现两次，必须执行两次，性能不好，合并必须新建对象 x，然后复制两个列表合并<br>属于复制/拷贝<br>x += y，x 只出现一次，也只会计算一次，性能好，不生成新对象，只在内存块末尾增加元素。<br>当 x、y 为list时， += 会自动调用 extend 方法进行合并运算，in-place change。<br>属于共享引用</p>
+<h1 id="python-从-2-X-到-3-X，语句变函数引发的变量作用域问题"><a href="#python-从-2-X-到-3-X，语句变函数引发的变量作用域问题" class="headerlink" title="python 从 2.X 到 3.X，语句变函数引发的变量作用域问题"></a>python 从 2.X 到 3.X，语句变函数引发的变量作用域问题</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">def <span class="built_in">test</span>():</div><div class="line">    a = False</div><div class="line">    <span class="built_in">exec</span> (<span class="string">"a = True"</span>)</div><div class="line">    <span class="built_in">print</span> (<span class="string">"a = "</span>, a)</div><div class="line"><span class="built_in">test</span>()</div><div class="line"></div><div class="line">b = False</div><div class="line"><span class="built_in">exec</span> (<span class="string">"b = True"</span>)</div><div class="line"><span class="built_in">print</span> (<span class="string">"b = "</span>, b)</div></pre></td></tr></table></figure>
+<p>因为 3.X 中 exec 由语句变成函数了，而在函数中变量默认都是局部的，也就是说你所见到的两个 a，是两个不同的变量，分别处于不同的命名空间中，而不会冲突。<br>具体参考 《learning python》P331-P332<br>知道原因了，我们可以这么改改：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">def <span class="built_in">test</span>():</div><div class="line">    a = False</div><div class="line">    ldict = locals()</div><div class="line">    <span class="built_in">exec</span>(<span class="string">"a=True"</span>,globals(),ldict)</div><div class="line">    a = ldict[<span class="string">'a'</span>]</div><div class="line">    <span class="built_in">print</span>(a)</div><div class="line"></div><div class="line"><span class="built_in">test</span>()</div><div class="line"></div><div class="line">b = False</div><div class="line"><span class="built_in">exec</span>(<span class="string">"b = True"</span>, globals())</div><div class="line"><span class="built_in">print</span>(<span class="string">"b = "</span>, b)</div></pre></td></tr></table></figure>
+<p>这个问题在stackoverflow上已经有人问了，而且python官方也有人报了bug。。。<br>具体链接在下面：<br><a href="http://stackoverflow.com/questions/7668724/variables-declared-in-execed-code-dont-become-local-in-python-3-documentatio" target="_blank" rel="external"></a><br><a href="http://bugs.python.org/issue4831" target="_blank" rel="external"></a><br><a href="http://stackoverflow.com/questions/1463306/how-does-exec-work-with-locals" target="_blank" rel="external"></a></p>
+<p>这是一个典型的 python 2.X 移植到 3.X 不兼容的案例，类似的还有很多，也算是移植的坑吧~<br>具体的 2.X 与 3.X 有哪些差异可以看这里：<br>使用 2to3 将代码移植到 Python 3</p>
+<p><a href="http://woodpecker.org.cn/diveintopython3/porting-code-to-python-3-with-2to3.html" target="_blank" rel="external">python2. to python 3.</a></p>
+<h1 id="深入理解-python-变量作用域及其陷阱"><a href="#深入理解-python-变量作用域及其陷阱" class="headerlink" title="深入理解 python 变量作用域及其陷阱"></a>深入理解 python 变量作用域及其陷阱</h1><h2 id="可变对象-amp-不可变对象"><a href="#可变对象-amp-不可变对象" class="headerlink" title="可变对象 &amp; 不可变对象"></a>可变对象 &amp; 不可变对象</h2><p>在Python中，对象分为两种：可变对象和不可变对象，不可变对象包括int，float，long，str，tuple等，可变对象包括list，set，dict等。需要注意的是：这里说的不可变指的是值的不可变。对于不可变类型的变量，如果要更改变量，则会创建一个新值，把变量绑定到新值上，而旧值如果没有被引用就等待垃圾回收。另外，不可变的类型可以计算hash值，作为字典的key。可变类型数据对对象操作的时候，不需要再在其他地方申请内存，只需要在此对象后面连续申请(+/-)即可，也就是它的内存地址会保持不变，但区域会变长或者变短。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; a = <span class="string">'xianglong.me'</span></div><div class="line">&gt;&gt;&gt; id(a)</div><div class="line">140443303134352</div><div class="line">&gt;&gt;&gt; a = <span class="string">'1saying.com'</span></div><div class="line">&gt;&gt;&gt; id(a)</div><div class="line">140443303131776</div><div class="line"><span class="comment"># 重新赋值之后，变量a的内存地址已经变了</span></div><div class="line"><span class="comment"># 'xianglong.me'是str类型，不可变，所以赋值操作知识重新创建了str '1saying.com'对象，然后将变量a指向了它</span></div><div class="line"> </div><div class="line">&gt;&gt;&gt; a_list = [1, 2, 3]</div><div class="line">&gt;&gt;&gt; id(a_list)</div><div class="line">140443302951680</div><div class="line">&gt;&gt;&gt; a_list.append(4)</div><div class="line">&gt;&gt;&gt; id(a_list)</div><div class="line">140443302951680</div><div class="line"><span class="comment"># list重新赋值之后，变量a_list的内存地址并未改变</span></div><div class="line"><span class="comment"># [1, 2, 3]是可变的，append操作只是改变了其value，变量a_list指向没有变</span></div></pre></td></tr></table></figure>
+<h2 id="函数值传递"><a href="#函数值传递" class="headerlink" title="函数值传递"></a>函数值传递</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">def func_int(a):</div><div class="line">    a += 4</div><div class="line"> </div><div class="line">def func_list(a_list):</div><div class="line">    a_list[0] = 4</div><div class="line"> </div><div class="line">t = 0</div><div class="line">func_int(t)</div><div class="line"><span class="built_in">print</span> t</div><div class="line"><span class="comment"># output: 0</span></div><div class="line"> </div><div class="line">t_list = [1, 2, 3]</div><div class="line">func_list(t_list)</div><div class="line"><span class="built_in">print</span> t_list</div><div class="line"><span class="comment"># output: [4, 2, 3]</span></div></pre></td></tr></table></figure>
+<p>对于上面的输出，不少Python初学者都比较疑惑：第一个例子看起来像是传值，而第二个例子确实传引用。其实，解释这个问题也非常容易，主要是因为可变对象和不可变对象的原因：对于可变对象，对象的操作不会重建对象，而对于不可变对象，每一次操作就重建新的对象。</p>
+<p>在函数参数传递的时候，Python其实就是把参数里传入的变量对应的对象的引用依次赋值给对应的函数内部变量。参照上面的例子来说明更容易理解，func_int中的局部变量”a”其实是全部变量”t”所指向对象的另一个引用，由于整数对象是不可变的，所以当func_int对变量”a”进行修改的时候，实际上是将局部变量”a”指向到了整数对象”1”。所以很明显，func_list修改的是一个可变的对象，局部变量”a”和全局变量”t_list”指向的还是同一个对象。</p>
+<h2 id="为什么修改全局的dict变量不用global关键字"><a href="#为什么修改全局的dict变量不用global关键字" class="headerlink" title="为什么修改全局的dict变量不用global关键字"></a>为什么修改全局的dict变量不用global关键字</h2><p>为什么修改字典d的值不用global关键字先声明呢？</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">s = <span class="string">'foo'</span></div><div class="line">d = &#123;<span class="string">'a'</span>:1&#125;</div><div class="line">def f():</div><div class="line">    s = <span class="string">'bar'</span></div><div class="line">    d[<span class="string">'b'</span>] = 2</div><div class="line">f()</div><div class="line"><span class="built_in">print</span> s  <span class="comment"># foo</span></div><div class="line"><span class="built_in">print</span> d  <span class="comment"># &#123;'a': 1, 'b': 2&#125;</span></div></pre></td></tr></table></figure>
+<p>这是因为，在s = ‘bar’这句中，它是“有歧义的“，因为它既可以是表示引用全局变量s，也可以是创建一个新的局部变量，所以在python中，默认它的行为是创建局部变量，除非显式声明global，global定义的本地变量会变成其对应全局变量的一个别名，即是同一个变量。<br>在d[‘b’]=2这句中，它是“明确的”，因为如果把d当作是局部变量的话，它会报KeyError，所以它只能是引用全局的d,故不需要多此一举显式声明global。<br>上面这两句赋值语句其实是不同的行为，一个是rebinding（不可变对象）, 一个是mutation（可变对象）</p>
+<p>但是如果是下面这样：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">d = &#123;<span class="string">'a'</span>:1&#125;</div><div class="line">def f():</div><div class="line">    d = &#123;&#125;</div><div class="line">    d[<span class="string">'b'</span>] = 2</div><div class="line">f()</div><div class="line"><span class="built_in">print</span> d  <span class="comment"># &#123;'a': 1&#125;</span></div></pre></td></tr></table></figure>
+<p>在d = {}这句，它是”有歧义的“了，所以它是创建了局部变量d，而不是引用全局变量d，所以d[‘b’]=2也是操作的局部变量。<br>推而远之，这一切现象的本质就是”它是否是明确的“。<br>仔细想想，就会发现不止dict不需要global，所有”明确的“东西都不需要global。因为int类型str类型之类的不可变对象，每一次操作就重建新的对象，他们只有一种修改方法，即x = y， 恰好这种修改方法同时也是创建变量的方法，所以产生了歧义，不知道是要修改还是创建。而dict/list/对象等可变对象，操作不会重建对象，可以通过dict[‘x’]=y或list.append()之类的来修改，跟创建变量不冲突，不产生歧义，所以都不用显式global。</p>
+<h2 id="可变对象-list-的-和-append-extend-差别在哪？"><a href="#可变对象-list-的-和-append-extend-差别在哪？" class="headerlink" title="可变对象 list 的 = 和 append/extend 差别在哪？"></a>可变对象 list 的 = 和 append/extend 差别在哪？</h2><p>接上面 5.3 的理论，下面咱们再看一例常见的错误：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># coding=utf-8</span></div><div class="line"><span class="comment"># 测试utf-8编码</span></div><div class="line">import sys</div><div class="line">reload(sys)</div><div class="line">sys.setdefaultencoding(<span class="string">'utf-8'</span>)</div><div class="line"></div><div class="line">list_a = []</div><div class="line">def a():</div><div class="line">    list_a = [1]      <span class="comment">## 语句1</span></div><div class="line">a()</div><div class="line"><span class="built_in">print</span> list_a    <span class="comment"># []</span></div><div class="line"></div><div class="line"><span class="built_in">print</span> <span class="string">"======================"</span></div><div class="line"></div><div class="line">list_b = []</div><div class="line">def b():</div><div class="line">    list_b.append(1)    <span class="comment">## 语句2</span></div><div class="line">b()</div><div class="line"><span class="built_in">print</span> list_b    <span class="comment"># [1]</span></div></pre></td></tr></table></figure>
+<p>大家可以看到为什么 语句1 不能改变 list_a 的值，而 语句2 却可以？他们的差别在哪呢？<br>因为 = 创建了局部变量，而 .append() 或者 .extend() 重用了全局变量。</p>
+<h2 id="陷阱：使用可变的默认参数"><a href="#陷阱：使用可变的默认参数" class="headerlink" title="陷阱：使用可变的默认参数"></a>陷阱：使用可变的默认参数</h2><p>我多次见到过如下的代码：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">def foo(a, b, c=[]):</div><div class="line"><span class="comment"># append to c</span></div><div class="line"><span class="comment"># do some more stuff</span></div></pre></td></tr></table></figure></p>
+<p>永远不要使用可变的默认参数，可以使用如下的代码代替：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">def foo(a, b, c=None):</div><div class="line">    <span class="keyword">if</span> c is None:</div><div class="line">        c = []</div><div class="line">    <span class="comment"># append to c</span></div><div class="line">    <span class="comment"># do some more stuff</span></div></pre></td></tr></table></figure>
+<p>‍‍与其解释这个问题是什么，不如展示下使用可变默认参数的影响：‍</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">In[2]: def foo(a, b, c=[]):</div><div class="line">...        c.append(a)</div><div class="line">...        c.append(b)</div><div class="line">...        <span class="built_in">print</span>(c)</div><div class="line">...</div><div class="line">In[3]: foo(1, 1)</div><div class="line">[1, 1]</div><div class="line">In[4]: foo(1, 1)</div><div class="line">[1, 1, 1, 1]</div><div class="line">In[5]: foo(1, 1)</div><div class="line">[1, 1, 1, 1, 1, 1]</div></pre></td></tr></table></figure>
+<p>同一个变量c在函数调用的每一次都被反复引用。这可能有一些意想不到的后果。</p>
+<p>参考文献：</p>
+<ol>
+<li><a href="https://my.oschina.net/leejun2005/blog/145911" target="_blank" rel="external">深入理解 python 中的赋值、引用、拷贝、作用域</a></li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzA4NjA4MTkzMw==&amp;mid=2651987776&amp;idx=3&amp;sn=cb7c00da586a69d42ec0e4c66f500ec2&amp;scene=0#wechat_redirect" target="_blank" rel="external">常遇到的python陷进</a></li>
+</ol>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> python </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[zabbix检测类型之 simple check]]></title>
+      <url>/2017/05/25/zabbix-simple-check/</url>
+      <content type="html"><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p><strong>转自<a href="http://www.ttlsa.com/zabbix/zabbix-simple-checks/" target="_blank" rel="external">zabbix Simple checks基本检测</a></strong><br>Simple checks通常用来检查远程未安装代理或者客户端的服务,使用simple checks,被监控客户端无需安装zabbix agent客户端、zabbix server直接使用simple checks来收据数据,一基本上都是用来检测远程服务器某端口是否在监听。</p>
+<a id="more"></a>
+<p>如下为simple checks:<br>net.tcp.service[ftp,,155]<br>net.tcp.service[http]<br>net.tcp.service.perf[http,,8080]<br>使用基本检测去监控vmware服务器，需要填写User和Password字段，其他服务器可以忽略</p>
+<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><table>
+<thead>
+<tr>
+<th>key</th>
+<th>描述</th>
+<th>返回值</th>
+<th>参数</th>
+<th>Comments</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>icmpping[<target>, <packets>, <interval>, <size>, <timeout>]</timeout></size></interval></packets></target></td>
+<td>检测是否支持icmpping</td>
+<td>0 - ICMP ping失败1 - ICMP ping 成功</td>
+<td>target - 主机IP或者域名packets - 包数量interval - 连续的数据包之间的时间间隔，以毫秒为单位 size - 包大小，以字节为单位 timeout - 超时时间,以毫秒为单位</td>
+<td>例如: icmpping[,4] - 4个包只要一个有返回，那么将会返回1 See also details of processing ICMP pings.</td>
+</tr>
+<tr>
+<td>icmppingloss[<target>,<packets>,<interval>,<size>,<timeout>]</timeout></size></interval></packets></target></td>
+<td>返回百分比</td>
+<td>丢包率</td>
+<td>target - 目标IP或者域名 packets - 包个数 interval -  连续包之间的时间间隔,以毫秒为单位 size - 包大小，字节为单位timeout - 超市时间，毫秒为单位</td>
+<td>请参考 details of processing ICMP pings.</td>
+</tr>
+<tr>
+<td>icmppingsec[ <target>, <packets>, <interval>, <size>, <timeout>, <mode>]</mode></timeout></size></interval></packets></target></td>
+<td>返回ICMP响应时间</td>
+<td>秒</td>
+<td>target - 主机IP或者域名 packets - 包个数 interval - 包得响应时间,毫秒为单位 size - 包大小,字节为单位 timeout - 超时时间,毫秒为单位 mode -  min, max, avg (默认值)</td>
+<td>如果主机不可用，比如挂掉了，那么会返回0</td>
+</tr>
+<tr>
+<td>net.tcp.service[ service, <ip>, <port>]</port></ip></td>
+<td>检测服务是否运行并且接受tcp连接</td>
+<td>0 - 服务未开启1 - 服务运行中</td>
+<td>service - ssh, ntp, ldap, smtp, ftp, http, pop, nntp, imap, tcp, https, telnet中的一个 ip - zabbix中定义好的ip port - 端口(标准服务端口).</td>
+<td>范例: net.tcp.service[ftp,,45] 检测运行在端口号45的FTP服务是否可用.加密协议imap993端口和pop995端口目前不支持zabbix 2.0开始支持https和telnet</td>
+</tr>
+<tr>
+<td>net.tcp.service.perf[ service, <ip>, <port>]</port></ip></td>
+<td>检测服务器性能</td>
+</tr>
+</tbody>
+</table>
+<p><strong>超时处理</strong><br>如果基本检测时间超过了zabbix配置文件设置的超市时间,zabbix将不会做处理</p>
+<h1 id="ICMP-pings"><a href="#ICMP-pings" class="headerlink" title="ICMP pings"></a>ICMP pings</h1><p>zabbix使用外部命令fling处理ICMP ping. fping不包含在zabbix的发行版本中，你需要额外去下载安装,如果你配置了epel源，如下命令安装<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ yum install fping</div></pre></td></tr></table></figure></p>
+<p>然后修改zabbix_server.conf,指定fping路径，配置参数为FpingLocation，一般为<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ FpingLocation = /usr/bin/fping</div></pre></td></tr></table></figure></p>
+<p>如果没有安装fping或者fping路径指定出错，cmpping, icmppingloss,icmppingsec都不会处理，执行fping命令的zabbix用户要设置setuid，毕竟fping命令是需要root权限的，如下设置<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ chown root:zabbix /usr/sbin/fping</div><div class="line">$ chmod 4710 /usr/sbin/fping</div></pre></td></tr></table></figure></p>
+<p><strong>ICMP检测默认参数</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>值</th>
+<th>描述</th>
+<th>fping flag</th>
+<th>Min</th>
+<th>Max</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>packets</td>
+<td>3</td>
+<td>包数量</td>
+<td>-C</td>
+<td>1</td>
+<td>10000</td>
+</tr>
+<tr>
+<td>interval</td>
+<td>1000</td>
+<td>毫秒, “fping”默认</td>
+<td>-p</td>
+<td>20</td>
+<td></td>
+</tr>
+<tr>
+<td>size</td>
+<td>56 or 68</td>
+<td>字节, “fping” 默认; x86使用56字节, x86_64使用68字节</td>
+<td>-b</td>
+<td>24</td>
+<td>65507</td>
+</tr>
+<tr>
+<td>timeout</td>
+<td>500</td>
+<td>毫秒,”fping”默认</td>
+<td>-t</td>
+<td>50</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+]]></content>
+      
+        <categories>
+            
+            <category> zabbix </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> zabbix </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[zabbix检测类型之 zabbix agent]]></title>
+      <url>/2017/05/25/zabbix-agent-key/</url>
+      <content type="html"><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p><a href="http://www.ttlsa.com/zabbix/zabbix-agent-types-and-all-keys/" target="_blank" rel="external">转自zabbix agent 类型所有key</a></p>
+<p>zabbix服务器端通过与zabbix agent通信来获取客户端服务器的数据，agent分为两个版本，其中一个是主动一个是被动，在配置主机我们可以看到一个是agent，另一个是agent（active）。前者为被动检测，后者为主动检测。那么主动和被动区别在哪里呢？<br>被动：zabbix server向zabbix agent讨要数据。<br>主动：zabbix agent提交数据给zabbix server。</p>
+<a id="more"></a>
+<h1 id="监控项keys说明"><a href="#监控项keys说明" class="headerlink" title="监控项keys说明"></a>监控项keys说明</h1><table>
+<thead>
+<tr>
+<th>key</th>
+<th>功能</th>
+<th>返回值</th>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>agent.hostname</td>
+<td>主机名</td>
+<td>字符串</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>agent.ping</td>
+<td>agent是否可达</td>
+<td>整型</td>
+<td></td>
+<td>0:不可达;1:可达</td>
+</tr>
+<tr>
+<td>agent.version</td>
+<td>zabbix agent版本</td>
+<td>字符串</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>kernel.maxfiles</td>
+<td>系统支持最大的openfiles</td>
+<td>整数</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>kernel.maxproc</td>
+<td>系统支持最大的进程数量</td>
+<td>整数</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>log[file,<regexp>, <encoding>, <maxlines>, <mode>, <output> ]</output></mode></maxlines></encoding></regexp></td>
+<td>监控日志文件;file –文件详细路径;regexp – 正则;encoding – 编码;maxlines –zabbix agent向server或者proxy发送最大的行数,这个参数覆盖配置文件zabbxi_agentd.conf中的’MaxLinesPerSecond’;mode – 可选值: all (默认), skip (跳过处理老数据).mode参数从2.0版本开始支持;output – 可选项，输出格式模板. The \0 escape sequence is replaced with the matched text while an \N(where N=1…9) escape sequence is replaced with Nth matched group (or an empty string if the N exceeds the number of captured groups).</td>
+</tr>
+</tbody>
+</table>
+<p>If <output> is left empty<br>– the whole line containing the matched text is returned. Note that all global regular expression types except ‘Result is TRUE’ always return the whole matched line and the <output> parameter is ignored.<br>output是2.2中新加入的功能|只有agent主动模式才有该key|<br>|logrt[file_regexp,<regexp>, <encoding>, <maxlines>, <mode>, <output> ]|日志文件监控与轮转服务|日志|file_pattern – 文件绝对路径;regexp – 正则表达式; encoding – 编码;<br>maxlines – 客户端每秒发送给server的最大行数. 这个参数会覆盖客户端配置文件zabbix_agentd.conf 中MaxLinesPerSecond 的值<br>mode – 可选值: all (默认), skip (跳过老数据的处理).Mode参数从2.0开始支持;output – an optional output formatting template. The \0 escape sequence is replaced with the matched text while an \N(where N=1…9) escape sequence is replaced with Nth matched group (or an empty string if the N exceeds the number of captured groups). If <output> is left empty – the whole line containing the matched text is returned. Note that all global regular expression types except ‘Result is TRUE’ always return the whole matched line and the <output> parameter is ignored. The output parameter is supported from version 2.2.|只有agent主动模式才有该key|<br>|net.dns[<ip>,zone,<type>,<timeout>,<count>]|ip – DNS服务器的ip地址(留空表示使用本地DNS, ignored on Windows)zone – 需要测试的域名type – 记录类型 (默认为 SOA)<br>timeout (ignored on Windows) – 超时时间(默认1秒)<br>count (ignored on Windows) – 重试次数 (默认值2)|检测DNS服务是否开启||0 – DNS挂了 1 – DNS运行中||<br>|net.dns.record[<ip>,zone,<type>,<timeout>,<count>]|执行一个DNS查询|获取DNS查询数据|||<br>||||||</count></timeout></type></ip></count></timeout></type></ip></output></output></output></mode></maxlines></encoding></regexp></output></output></p>
+]]></content>
+      
+        <categories>
+            
+            <category> zabbix </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> zabbix </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[zabbix检测类型]]></title>
+      <url>/2017/05/25/zabbix-item-type/</url>
+      <content type="html"><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p><strong>转自<a href="http://www.ttlsa.com/zabbix/how-to-chose-zabbix-item-type/" target="_blank" rel="external">zabbix如何选择适合的监控类型</a></strong></p>
+<p>zabbix有多种检测方式(类型),每一种其实已经定义了足够的标准检测器,不能满足需要自定义键值,设置每个键值定义的shell command即可。运维人员其实省去了不少事情,常用的一般是agent、SNMP这两种,更多的时候需要在场景选择合适的检测方式</p>
+<a id="more"></a>
+<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>zabbix客户端</td>
+<td>zabbix自带的客户端程序（被动模式），zabbix server主动向它收集监控数据。agent提供丰富的key，包括不限于cpu、内存、网络、磁盘、web等等。如果你不介意或者系统支持安装此程序，那么他是首选的。需要注意的是，server检索数据有超时限制，最大超时时间30秒，如果检索数据经常超过30秒，那么，不建议你使用主动模式的agent，可以使用如下类型agent active</td>
+</tr>
+<tr>
+<td>zabbix客户端(主动模式)</td>
+<td>也需要安装agent (主动模式)，和上一个相同。但是数据由zabbix agent主动提交至zabbix server,<a href="http://www.ttlsa.com/zabbix/zabbix-active-and-passive-checks/" target="_blank" rel="external">和被动模式的对比</a></td>
+</tr>
+<tr>
+<td>简单检测</td>
+<td>基本的检测，可以检测网络、端口、fping这些，功能很少并且无需安装客户端。<a href="http://www.ttlsa.com/zabbix/zabbix-simple-checks/" target="_blank" rel="external">参考Simple checks</a></td>
+</tr>
+<tr>
+<td>SNMP V类型</td>
+<td>推荐如下场景:客户基于安全考虑，不同意安装agent;路由器、打印机等等设备无法安装，但是支持snmp协议;不喜欢频繁对agent升级</td>
+</tr>
+<tr>
+<td>SNMP trap</td>
+<td>SNMP 主动提交数据到 server</td>
+</tr>
+<tr>
+<td>zabbix内部检测</td>
+<td>zabbix系统内部用，比如趋势数据记录数了、历史记录数量等等，日常业务监控用不上他</td>
+</tr>
+<tr>
+<td>zabbix trap</td>
+<td>也需要安装agent（主动模式），你需要借助bin/zabbix_sender将数据提交至zabbix server。如下情况适合使用:检索数据时间较长;同一时间有大量的数据要提交,<a href="http://www.ttlsa.com/redis/" target="_blank" rel="external">redis 的 info 信息</a>,通过zabbix_sender来一次性提交，显然比agent来取几十次要方便。</td>
+</tr>
+<tr>
+<td>zabbix整合</td>
+<td>aggregate checks是一个聚合的检测，例如我想知道某个组的host负载平均值，硬盘剩余总量，或者某几台机器的这些数据，简单的说，这个方法就是用来了解一个整体水平，而不需要我们一台台看过去。这个方法的数据全部来之数据库，所以它不需要agent</td>
+</tr>
+<tr>
+<td>外部检测</td>
+<td>zabbix server运行脚本或者二进制文件来执行外部检测，外部检测不需要在被监控端运行任何agentd,请不要过度使用外部检测，这会严重降低zabbix系统性能</td>
+</tr>
+<tr>
+<td>数据库监控</td>
+<td>zabbix通过调用ODBC来获取数据库的数据以及数据库状态等等信息<a href="http://www.ttlsa.com/zabbix/zabbix-odbc-monitor/" target="_blank" rel="external">参考 zabbix ODBC数据库监控</a></td>
+</tr>
+<tr>
+<td>IPMI</td>
+<td>用于监控硬件设备，例如Dell或者hp服务器的主板温度、cpu电压、盖子是不是被打开等等</td>
+</tr>
+<tr>
+<td>SSH 客户端</td>
+<td>zabbix使用提供的ssh信息（服务器用户密码或者证书）登录服务器，执行指定的脚本来检索数据。如下人适合用:不会安装agent、不想相撞agent;</td>
+</tr>
+<tr>
+<td>TELENT 客户端</td>
+<td>同上,<a href="http://www.ttlsa.com/windows/" target="_blank" rel="external">Windows</a>不支持ssh，可以使用Telnet agent</td>
+</tr>
+<tr>
+<td>JMX agent代理程序</td>
+<td>通过jmx监控java jvm ,比如(tomcat)[<a href="http://www.ttlsa.com/tomcat/];目前有一个很大的不足，如果tomcat多实例，jmx" target="_blank" rel="external">http://www.ttlsa.com/tomcat/];目前有一个很大的不足，如果tomcat多实例，jmx</a> agent 只能监控一个。如果是多实例，建议使用 agent + cmdline-jmxclient-0.10.3.jar</td>
+</tr>
+<tr>
+<td>计算类型</td>
+<td>在几个key值之间做计算，例如redis自带的info命令可以监控keyspace_hits 和keyspace_misses 这两个值，但是 redis 的命中率不能直接获取，可以通过 zabbix 的 calculated 实现监控redis的命中率</td>
+</tr>
+</tbody>
+</table>
+]]></content>
+      
+        <categories>
+            
+            <category> zabbix </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> zabbix </tag>
+            
+        </tags>
         
     </entry>
     
@@ -1022,14 +1461,6 @@
             <tag> zabbix </tag>
             
         </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[zabbix]]></title>
-      <url>/2017/05/20/zabbix/</url>
-      <content type="html"></content>
-      
         
     </entry>
     

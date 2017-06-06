@@ -1,0 +1,1266 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="python," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="简介转自Python中的赋值、浅拷贝、深拷贝介绍和很多语言一样，python也分为简单赋值、浅拷贝、深拷贝几种方式。不过这几种方式也不一定和其他语言表现相同 赋值和引用 对于不可变对象12345&amp;gt;&amp;gt;&amp;gt; a=&apos;hello&apos;&amp;gt;&amp;gt;&amp;gt; b=&apos;hello&apos;&amp;gt;&amp;gt;&amp;gt; c=a&amp;gt;&amp;gt;&amp;gt; [id(x) for x in (a,b,c)][44041">
+<meta name="keywords" content="python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python 中赋值、引用、浅拷贝、深拷贝">
+<meta property="og:url" content="http://yoursite.com/2017/06/01/py-assign-copy/index.html">
+<meta property="og:site_name" content="运维与开发的那些事">
+<meta property="og:description" content="简介转自Python中的赋值、浅拷贝、深拷贝介绍和很多语言一样，python也分为简单赋值、浅拷贝、深拷贝几种方式。不过这几种方式也不一定和其他语言表现相同 赋值和引用 对于不可变对象12345&amp;gt;&amp;gt;&amp;gt; a=&apos;hello&apos;&amp;gt;&amp;gt;&amp;gt; b=&apos;hello&apos;&amp;gt;&amp;gt;&amp;gt; c=a&amp;gt;&amp;gt;&amp;gt; [id(x) for x in (a,b,c)][44041">
+<meta property="og:updated_time" content="2017-06-05T16:26:38.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python 中赋值、引用、浅拷贝、深拷贝">
+<meta name="twitter:description" content="简介转自Python中的赋值、浅拷贝、深拷贝介绍和很多语言一样，python也分为简单赋值、浅拷贝、深拷贝几种方式。不过这几种方式也不一定和其他语言表现相同 赋值和引用 对于不可变对象12345&amp;gt;&amp;gt;&amp;gt; a=&apos;hello&apos;&amp;gt;&amp;gt;&amp;gt; b=&apos;hello&apos;&amp;gt;&amp;gt;&amp;gt; c=a&amp;gt;&amp;gt;&amp;gt; [id(x) for x in (a,b,c)][44041">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/06/01/py-assign-copy/"/>
+
+
+
+
+
+  <title>python 中赋值、引用、浅拷贝、深拷贝 | 运维与开发的那些事</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">运维与开发的那些事</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">运维狗的日常工作与生活</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            站点地图
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/01/py-assign-copy/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="littlezhi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="运维与开发的那些事">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">python 中赋值、引用、浅拷贝、深拷贝</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-01T04:09:46+08:00">
+                2017-06-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/06/01/py-assign-copy/" class="leancloud_visitors" data-flag-title="python 中赋值、引用、浅拷贝、深拷贝">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p><strong><a href="http://www.jb51.net/article/61902.htm" target="_blank" rel="external">转自Python中的赋值、浅拷贝、深拷贝介绍</a></strong><br>和很多语言一样，python也分为简单赋值、浅拷贝、深拷贝几种方式。不过这几种方式也不一定和其他语言表现相同</p>
+<h1 id="赋值和引用"><a href="#赋值和引用" class="headerlink" title="赋值和引用"></a>赋值和引用</h1><ol>
+<li>对于不可变对象<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; a=<span class="string">'hello'</span></div><div class="line">&gt;&gt;&gt; b=<span class="string">'hello'</span></div><div class="line">&gt;&gt;&gt; c=a</div><div class="line">&gt;&gt;&gt; [id(x) <span class="keyword">for</span> x <span class="keyword">in</span> (a,b,c)]</div><div class="line">[4404120000, 4404120000, 4404120000]</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>由以上指令中，我们可以发现a, b, c三者的地址是一样的。所以以上赋值的操作就相当于c = a = b = ‘hello’。<br>赋值是系统先给一个变量或者对象(这里是<code>&#39;hello&#39;</code>)分配了内存，然后再将地址赋给a, b, c。所以它们的地址是相同的。<br>这点和其他语言可能不是很一样，尽管分开赋值，但是变量引用的对象还是一样的。</p>
+<ol>
+<li>对可变对象</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; a=[<span class="string">'hello'</span>]</div><div class="line">&gt;&gt;&gt; b=[<span class="string">'hello'</span>]</div><div class="line">&gt;&gt;&gt; c=a</div><div class="line">&gt;&gt;&gt; [id(x) <span class="keyword">for</span> x <span class="keyword">in</span> (a,b,c)]</div><div class="line">[4403975952, 4404095096, 4403975952]</div><div class="line">&gt;&gt;&gt; a=b=c=[<span class="string">'hello'</span>]</div><div class="line">&gt;&gt;&gt; [id(x) <span class="keyword">for</span> x <span class="keyword">in</span> (a,b,c)]</div><div class="line">[140311389782280, 140311389782280, 140311389782280]</div></pre></td></tr></table></figure>
+<p>如果分开赋值，看得出id即引用的对象是不一样的，但是统一赋值，id则一样。即统一赋值时，系统只分配了一个对象<code>[&#39;hello&#39;]</code>的内存</p>
+<ol>
+<li>对于重新赋值<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; a=b=c=[<span class="string">'hello'</span>]</div><div class="line">&gt;&gt;&gt; [id(x) <span class="keyword">for</span> x <span class="keyword">in</span> (a,b,c)]</div><div class="line">[140311389782280, 140311389782280, 140311389782280]</div><div class="line">&gt;&gt;&gt; a=<span class="string">'world'</span></div><div class="line">&gt;&gt;&gt; [id(x) <span class="keyword">for</span> x <span class="keyword">in</span> (a,b,c)]</div><div class="line">[140311389782712, 140311389782280, 140311389782280]</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>这时a的地址和值变了，但是b,c地址和值都未变。因为str的不可变性，a要重新赋值则需重新开辟内存空间，所以a的值改变。</p>
+<ol>
+<li>例子4<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; a = [<span class="string">'hello'</span>]</div><div class="line">&gt;&gt;&gt; b = [<span class="string">'hello'</span>]</div><div class="line">&gt;&gt;&gt; c = a</div><div class="line">&gt;&gt;&gt; [id(x[0]) <span class="keyword">for</span> x <span class="keyword">in</span> (a,b,c)]</div><div class="line">&gt;&gt;&gt; </div><div class="line">&gt;&gt;&gt; [id(x) <span class="keyword">for</span> x <span class="keyword">in</span> (a,b,c)]</div><div class="line">[140311389783816, 140311389783368, 140311389783816]</div><div class="line">&gt;&gt;&gt; a[0]=<span class="string">'world'</span></div><div class="line">&gt;&gt;&gt; [id(x) <span class="keyword">for</span> x <span class="keyword">in</span> (a,b,c)]</div><div class="line">[140311389783816, 140311389783368, 140311389783816]</div><div class="line">&gt;&gt;&gt; <span class="built_in">print</span>(a,b,c)</div><div class="line">[<span class="string">'world'</span>] [<span class="string">'hello'</span>] [<span class="string">'world'</span>]</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>结果发现a、b、c引用的list的地址没有发生变化，但是里面的值却发生了变化。但是a[0]的地址发生改变，其值也发生了变化。</p>
+<ol>
+<li>例子5<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; values = [0,1,2]</div><div class="line">&gt;&gt;&gt; values[1]=values</div><div class="line">&gt;&gt;&gt; values</div><div class="line">[0,[...],2]</div><div class="line"></div><div class="line">结果发现赋值无限次，可以说python没有赋值，只有引用。这例子相当于创建了一个引用自身的结构。</div><div class="line">Python没有[变量]，我们平时所说的变量其实只是标签，是引用。</div><div class="line"></div><div class="line">6. 例子6</div><div class="line">``` bash</div><div class="line">values=[0,1,2]</div><div class="line">values=[3,4,5]</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>Python 做的事情是首先创建一个列表对象 [0, 1, 2]，然后给它贴上名为 values 的标签。<br>Python 做的事情是创建另一个列表对象 [3, 4, 5]，然后把刚才那张名为 values 的标签从前面的 [0, 1, 2] 对象上撕下来，重新贴到 [3, 4, 5] 这个对象上</p>
+<p>Python 里面复制对象的操作因对象类型而异，复制列表 values 的操作是list[:]<br>往更深处说，values[:] 复制操作是所谓的「浅复制」(shallow copy)<br>使用id函数查看对象地址</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; values=[1,[1,2],2]</div><div class="line">&gt;&gt;&gt; id(values)</div><div class="line">140292342275016</div><div class="line">&gt;&gt;&gt; x=values[:]</div><div class="line">&gt;&gt;&gt; id(x)</div><div class="line">140292466659592</div><div class="line">&gt;&gt;&gt; id(x[1])</div><div class="line">140292339723784</div><div class="line">&gt;&gt;&gt; id(values[1])</div><div class="line">140292339723784</div><div class="line">&gt;&gt;&gt; id(values[1])</div></pre></td></tr></table></figure>
+<p>其实python的list有点类型其他语言定义列表作为派生类型一样，由基础数据类型构建。由于是浅复制，列表里面的list对象也是指向同一对象。<br>values和x的地址空间是不一样，但是values[1]和x[1]一样，它们都指向相同的对象，相同的地址空间。</p>
+<p>当列表对象有嵌套的时候也会产生出乎意料的错误，比如</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">a = [0, [1, 2], 3]</div><div class="line">b = a[:]</div><div class="line">a[0] = 8</div><div class="line">a[1][1] = 9</div></pre></td></tr></table></figure>
+<p>正确的复制嵌套元素的方法是进行「深复制」(deep copy)，方法是</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; import copy</div><div class="line">&gt;&gt;&gt; a = [0, [1, 2], 3]</div><div class="line">&gt;&gt;&gt; id(a)</div><div class="line">140292342243848</div><div class="line">&gt;&gt;&gt; b=copy.deepcopy(a)</div><div class="line">&gt;&gt;&gt; id(b)</div><div class="line">140292342246664</div><div class="line">&gt;&gt;&gt; id(a[0])</div><div class="line">140292466053088</div><div class="line">&gt;&gt;&gt; id(b[0])</div><div class="line">140292466053088</div><div class="line">&gt;&gt;&gt; id(b[1])</div><div class="line">140292339723848</div><div class="line">&gt;&gt;&gt; id(a[1])</div><div class="line">140292342246984</div><div class="line">&gt;&gt;&gt; id(a[1])</div><div class="line">140292342246984</div><div class="line">&gt;&gt;&gt; id(a[2])</div><div class="line">140292466053184</div><div class="line">&gt;&gt;&gt; id(b[2])</div><div class="line">140292466053184</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<p>有人看到，可能会问怎么a[0]和b[0]指向的都还是同一对象，因为数值类型是不可变类型，看前面例子，可知，只要不可变类型的对象创建了，不论何时，使用到相同的对象值，都会是引用到相同的地址空间。<br>有人会问假如不同的作用域或者命名空间呢，经测试是无关的，虽然是有点怪异，但是还是可以理解吧，因为不可变类型的对象反正就是不可变的。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; x=10</div><div class="line">&gt;&gt;&gt; b=10</div><div class="line">&gt;&gt;&gt; id(x)</div><div class="line">140292466053408</div><div class="line">&gt;&gt;&gt; id(b)</div><div class="line">140292466053408</div><div class="line">def func1():</div><div class="line">... x=10</div><div class="line">...	<span class="built_in">print</span>(id(x))</div><div class="line">...</div><div class="line">&gt;&gt;&gt;func1()</div><div class="line">140292466053408</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">L = [1, 2, 3]</div><div class="line">D = &#123;<span class="string">'a'</span>:1, <span class="string">'b'</span>:2&#125;</div><div class="line">A = L[:]</div><div class="line">B = D.copy()</div><div class="line"><span class="built_in">print</span> <span class="string">"L, D"</span></div><div class="line"><span class="built_in">print</span>  L, D</div><div class="line"><span class="built_in">print</span> <span class="string">"A, B"</span></div><div class="line"><span class="built_in">print</span> A, B</div><div class="line"><span class="built_in">print</span> <span class="string">"--------------------"</span></div><div class="line">A[1] = <span class="string">'NI'</span></div><div class="line">B[<span class="string">'c'</span>] = <span class="string">'spam'</span></div><div class="line"><span class="built_in">print</span> <span class="string">"L, D"</span></div><div class="line"><span class="built_in">print</span>  L, D</div><div class="line"><span class="built_in">print</span> <span class="string">"A, B"</span></div><div class="line"><span class="built_in">print</span> A, B</div><div class="line"></div><div class="line"></div><div class="line">L, D</div><div class="line">[1, 2, 3] &#123;<span class="string">'a'</span>: 1, <span class="string">'b'</span>: 2&#125;</div><div class="line">A, B</div><div class="line">[1, 2, 3] &#123;<span class="string">'a'</span>: 1, <span class="string">'b'</span>: 2&#125;</div><div class="line">--------------------</div><div class="line">L, D</div><div class="line">[1, 2, 3] &#123;<span class="string">'a'</span>: 1, <span class="string">'b'</span>: 2&#125;</div><div class="line">A, B</div><div class="line">[1, <span class="string">'NI'</span>, 3] &#123;<span class="string">'a'</span>: 1, <span class="string">'c'</span>: <span class="string">'spam'</span>, <span class="string">'b'</span>: 2&#125;</div></pre></td></tr></table></figure>
+<h1 id="引用-VS-拷贝："><a href="#引用-VS-拷贝：" class="headerlink" title="引用 VS 拷贝："></a>引用 VS 拷贝：</h1><ol>
+<li>没有限制条件的分片表达式（L[:]）能够复制序列，但此法只能浅层复制。</li>
+<li>字典 copy 方法，D.copy() 能够复制字典，但此法只能浅层复制</li>
+<li>有些内置函数，例如 list，能够生成拷贝 list(L)</li>
+<li>copy 标准库模块能够生成完整拷贝：deepcopy 本质上是递归 copy</li>
+<li>对于不可变对象和可变对象来说，浅复制都是复制的引用，只是因为复制不变对象和复制不变对象的引用是等效的（因为对象不可变，当改变时会新建对象重新赋值）。所以看起来浅复制只复制不可变对象（整数，实数，字符串等），对于可变对象，浅复制其实是创建了一个对于该对象的引用，也就是说只是给同一个对象贴上了另一个标签而已。</li>
+</ol>
+<h1 id="增强赋值以及共享引用："><a href="#增强赋值以及共享引用：" class="headerlink" title="增强赋值以及共享引用："></a>增强赋值以及共享引用：</h1><p>x = x + y，x 出现两次，必须执行两次，性能不好，合并必须新建对象 x，然后复制两个列表合并<br>属于复制/拷贝<br>x += y，x 只出现一次，也只会计算一次，性能好，不生成新对象，只在内存块末尾增加元素。<br>当 x、y 为list时， += 会自动调用 extend 方法进行合并运算，in-place change。<br>属于共享引用</p>
+<h1 id="python-从-2-X-到-3-X，语句变函数引发的变量作用域问题"><a href="#python-从-2-X-到-3-X，语句变函数引发的变量作用域问题" class="headerlink" title="python 从 2.X 到 3.X，语句变函数引发的变量作用域问题"></a>python 从 2.X 到 3.X，语句变函数引发的变量作用域问题</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">def <span class="built_in">test</span>():</div><div class="line">    a = False</div><div class="line">    <span class="built_in">exec</span> (<span class="string">"a = True"</span>)</div><div class="line">    <span class="built_in">print</span> (<span class="string">"a = "</span>, a)</div><div class="line"><span class="built_in">test</span>()</div><div class="line"></div><div class="line">b = False</div><div class="line"><span class="built_in">exec</span> (<span class="string">"b = True"</span>)</div><div class="line"><span class="built_in">print</span> (<span class="string">"b = "</span>, b)</div></pre></td></tr></table></figure>
+<p>因为 3.X 中 exec 由语句变成函数了，而在函数中变量默认都是局部的，也就是说你所见到的两个 a，是两个不同的变量，分别处于不同的命名空间中，而不会冲突。<br>具体参考 《learning python》P331-P332<br>知道原因了，我们可以这么改改：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">def <span class="built_in">test</span>():</div><div class="line">    a = False</div><div class="line">    ldict = locals()</div><div class="line">    <span class="built_in">exec</span>(<span class="string">"a=True"</span>,globals(),ldict)</div><div class="line">    a = ldict[<span class="string">'a'</span>]</div><div class="line">    <span class="built_in">print</span>(a)</div><div class="line"></div><div class="line"><span class="built_in">test</span>()</div><div class="line"></div><div class="line">b = False</div><div class="line"><span class="built_in">exec</span>(<span class="string">"b = True"</span>, globals())</div><div class="line"><span class="built_in">print</span>(<span class="string">"b = "</span>, b)</div></pre></td></tr></table></figure>
+<p>这个问题在stackoverflow上已经有人问了，而且python官方也有人报了bug。。。<br>具体链接在下面：<br><a href="http://stackoverflow.com/questions/7668724/variables-declared-in-execed-code-dont-become-local-in-python-3-documentatio" target="_blank" rel="external"></a><br><a href="http://bugs.python.org/issue4831" target="_blank" rel="external"></a><br><a href="http://stackoverflow.com/questions/1463306/how-does-exec-work-with-locals" target="_blank" rel="external"></a></p>
+<p>这是一个典型的 python 2.X 移植到 3.X 不兼容的案例，类似的还有很多，也算是移植的坑吧~<br>具体的 2.X 与 3.X 有哪些差异可以看这里：<br>使用 2to3 将代码移植到 Python 3</p>
+<p><a href="http://woodpecker.org.cn/diveintopython3/porting-code-to-python-3-with-2to3.html" target="_blank" rel="external">python2. to python 3.</a></p>
+<h1 id="深入理解-python-变量作用域及其陷阱"><a href="#深入理解-python-变量作用域及其陷阱" class="headerlink" title="深入理解 python 变量作用域及其陷阱"></a>深入理解 python 变量作用域及其陷阱</h1><h2 id="可变对象-amp-不可变对象"><a href="#可变对象-amp-不可变对象" class="headerlink" title="可变对象 &amp; 不可变对象"></a>可变对象 &amp; 不可变对象</h2><p>在Python中，对象分为两种：可变对象和不可变对象，不可变对象包括int，float，long，str，tuple等，可变对象包括list，set，dict等。需要注意的是：这里说的不可变指的是值的不可变。对于不可变类型的变量，如果要更改变量，则会创建一个新值，把变量绑定到新值上，而旧值如果没有被引用就等待垃圾回收。另外，不可变的类型可以计算hash值，作为字典的key。可变类型数据对对象操作的时候，不需要再在其他地方申请内存，只需要在此对象后面连续申请(+/-)即可，也就是它的内存地址会保持不变，但区域会变长或者变短。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; a = <span class="string">'xianglong.me'</span></div><div class="line">&gt;&gt;&gt; id(a)</div><div class="line">140443303134352</div><div class="line">&gt;&gt;&gt; a = <span class="string">'1saying.com'</span></div><div class="line">&gt;&gt;&gt; id(a)</div><div class="line">140443303131776</div><div class="line"><span class="comment"># 重新赋值之后，变量a的内存地址已经变了</span></div><div class="line"><span class="comment"># 'xianglong.me'是str类型，不可变，所以赋值操作知识重新创建了str '1saying.com'对象，然后将变量a指向了它</span></div><div class="line"> </div><div class="line">&gt;&gt;&gt; a_list = [1, 2, 3]</div><div class="line">&gt;&gt;&gt; id(a_list)</div><div class="line">140443302951680</div><div class="line">&gt;&gt;&gt; a_list.append(4)</div><div class="line">&gt;&gt;&gt; id(a_list)</div><div class="line">140443302951680</div><div class="line"><span class="comment"># list重新赋值之后，变量a_list的内存地址并未改变</span></div><div class="line"><span class="comment"># [1, 2, 3]是可变的，append操作只是改变了其value，变量a_list指向没有变</span></div></pre></td></tr></table></figure>
+<h2 id="函数值传递"><a href="#函数值传递" class="headerlink" title="函数值传递"></a>函数值传递</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">def func_int(a):</div><div class="line">    a += 4</div><div class="line"> </div><div class="line">def func_list(a_list):</div><div class="line">    a_list[0] = 4</div><div class="line"> </div><div class="line">t = 0</div><div class="line">func_int(t)</div><div class="line"><span class="built_in">print</span> t</div><div class="line"><span class="comment"># output: 0</span></div><div class="line"> </div><div class="line">t_list = [1, 2, 3]</div><div class="line">func_list(t_list)</div><div class="line"><span class="built_in">print</span> t_list</div><div class="line"><span class="comment"># output: [4, 2, 3]</span></div></pre></td></tr></table></figure>
+<p>对于上面的输出，不少Python初学者都比较疑惑：第一个例子看起来像是传值，而第二个例子确实传引用。其实，解释这个问题也非常容易，主要是因为可变对象和不可变对象的原因：对于可变对象，对象的操作不会重建对象，而对于不可变对象，每一次操作就重建新的对象。</p>
+<p>在函数参数传递的时候，Python其实就是把参数里传入的变量对应的对象的引用依次赋值给对应的函数内部变量。参照上面的例子来说明更容易理解，func_int中的局部变量”a”其实是全部变量”t”所指向对象的另一个引用，由于整数对象是不可变的，所以当func_int对变量”a”进行修改的时候，实际上是将局部变量”a”指向到了整数对象”1”。所以很明显，func_list修改的是一个可变的对象，局部变量”a”和全局变量”t_list”指向的还是同一个对象。</p>
+<h2 id="为什么修改全局的dict变量不用global关键字"><a href="#为什么修改全局的dict变量不用global关键字" class="headerlink" title="为什么修改全局的dict变量不用global关键字"></a>为什么修改全局的dict变量不用global关键字</h2><p>为什么修改字典d的值不用global关键字先声明呢？</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">s = <span class="string">'foo'</span></div><div class="line">d = &#123;<span class="string">'a'</span>:1&#125;</div><div class="line">def f():</div><div class="line">    s = <span class="string">'bar'</span></div><div class="line">    d[<span class="string">'b'</span>] = 2</div><div class="line">f()</div><div class="line"><span class="built_in">print</span> s  <span class="comment"># foo</span></div><div class="line"><span class="built_in">print</span> d  <span class="comment"># &#123;'a': 1, 'b': 2&#125;</span></div></pre></td></tr></table></figure>
+<p>这是因为，在s = ‘bar’这句中，它是“有歧义的“，因为它既可以是表示引用全局变量s，也可以是创建一个新的局部变量，所以在python中，默认它的行为是创建局部变量，除非显式声明global，global定义的本地变量会变成其对应全局变量的一个别名，即是同一个变量。<br>在d[‘b’]=2这句中，它是“明确的”，因为如果把d当作是局部变量的话，它会报KeyError，所以它只能是引用全局的d,故不需要多此一举显式声明global。<br>上面这两句赋值语句其实是不同的行为，一个是rebinding（不可变对象）, 一个是mutation（可变对象）</p>
+<p>但是如果是下面这样：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">d = &#123;<span class="string">'a'</span>:1&#125;</div><div class="line">def f():</div><div class="line">    d = &#123;&#125;</div><div class="line">    d[<span class="string">'b'</span>] = 2</div><div class="line">f()</div><div class="line"><span class="built_in">print</span> d  <span class="comment"># &#123;'a': 1&#125;</span></div></pre></td></tr></table></figure>
+<p>在d = {}这句，它是”有歧义的“了，所以它是创建了局部变量d，而不是引用全局变量d，所以d[‘b’]=2也是操作的局部变量。<br>推而远之，这一切现象的本质就是”它是否是明确的“。<br>仔细想想，就会发现不止dict不需要global，所有”明确的“东西都不需要global。因为int类型str类型之类的不可变对象，每一次操作就重建新的对象，他们只有一种修改方法，即x = y， 恰好这种修改方法同时也是创建变量的方法，所以产生了歧义，不知道是要修改还是创建。而dict/list/对象等可变对象，操作不会重建对象，可以通过dict[‘x’]=y或list.append()之类的来修改，跟创建变量不冲突，不产生歧义，所以都不用显式global。</p>
+<h2 id="可变对象-list-的-和-append-extend-差别在哪？"><a href="#可变对象-list-的-和-append-extend-差别在哪？" class="headerlink" title="可变对象 list 的 = 和 append/extend 差别在哪？"></a>可变对象 list 的 = 和 append/extend 差别在哪？</h2><p>接上面 5.3 的理论，下面咱们再看一例常见的错误：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># coding=utf-8</span></div><div class="line"><span class="comment"># 测试utf-8编码</span></div><div class="line">import sys</div><div class="line">reload(sys)</div><div class="line">sys.setdefaultencoding(<span class="string">'utf-8'</span>)</div><div class="line"></div><div class="line">list_a = []</div><div class="line">def a():</div><div class="line">    list_a = [1]      <span class="comment">## 语句1</span></div><div class="line">a()</div><div class="line"><span class="built_in">print</span> list_a    <span class="comment"># []</span></div><div class="line"></div><div class="line"><span class="built_in">print</span> <span class="string">"======================"</span></div><div class="line"></div><div class="line">list_b = []</div><div class="line">def b():</div><div class="line">    list_b.append(1)    <span class="comment">## 语句2</span></div><div class="line">b()</div><div class="line"><span class="built_in">print</span> list_b    <span class="comment"># [1]</span></div></pre></td></tr></table></figure>
+<p>大家可以看到为什么 语句1 不能改变 list_a 的值，而 语句2 却可以？他们的差别在哪呢？<br>因为 = 创建了局部变量，而 .append() 或者 .extend() 重用了全局变量。</p>
+<h2 id="陷阱：使用可变的默认参数"><a href="#陷阱：使用可变的默认参数" class="headerlink" title="陷阱：使用可变的默认参数"></a>陷阱：使用可变的默认参数</h2><p>我多次见到过如下的代码：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">def foo(a, b, c=[]):</div><div class="line"><span class="comment"># append to c</span></div><div class="line"><span class="comment"># do some more stuff</span></div></pre></td></tr></table></figure></p>
+<p>永远不要使用可变的默认参数，可以使用如下的代码代替：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">def foo(a, b, c=None):</div><div class="line">    <span class="keyword">if</span> c is None:</div><div class="line">        c = []</div><div class="line">    <span class="comment"># append to c</span></div><div class="line">    <span class="comment"># do some more stuff</span></div></pre></td></tr></table></figure>
+<p>‍‍与其解释这个问题是什么，不如展示下使用可变默认参数的影响：‍</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">In[2]: def foo(a, b, c=[]):</div><div class="line">...        c.append(a)</div><div class="line">...        c.append(b)</div><div class="line">...        <span class="built_in">print</span>(c)</div><div class="line">...</div><div class="line">In[3]: foo(1, 1)</div><div class="line">[1, 1]</div><div class="line">In[4]: foo(1, 1)</div><div class="line">[1, 1, 1, 1]</div><div class="line">In[5]: foo(1, 1)</div><div class="line">[1, 1, 1, 1, 1, 1]</div></pre></td></tr></table></figure>
+<p>同一个变量c在函数调用的每一次都被反复引用。这可能有一些意想不到的后果。</p>
+<p>参考文献：</p>
+<ol>
+<li><a href="https://my.oschina.net/leejun2005/blog/145911" target="_blank" rel="external">深入理解 python 中的赋值、引用、拷贝、作用域</a></li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzA4NjA4MTkzMw==&amp;mid=2651987776&amp;idx=3&amp;sn=cb7c00da586a69d42ec0e4c66f500ec2&amp;scene=0#wechat_redirect" target="_blank" rel="external">常遇到的python陷进</a></li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag"># python</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/25/zabbix-simple-check/" rel="next" title="zabbix检测类型之 simple check">
+                <i class="fa fa-chevron-left"></i> zabbix检测类型之 simple check
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/06/01/py-object/" rel="prev" title="python 变量与对象">
+                python 变量与对象 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="littlezhi" />
+          <p class="site-author-name" itemprop="name">littlezhi</p>
+           
+              <p class="site-description motion-element" itemprop="description">运维狗</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#赋值和引用"><span class="nav-number">2.</span> <span class="nav-text">赋值和引用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#引用-VS-拷贝："><span class="nav-number">3.</span> <span class="nav-text">引用 VS 拷贝：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#增强赋值以及共享引用："><span class="nav-number">4.</span> <span class="nav-text">增强赋值以及共享引用：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#python-从-2-X-到-3-X，语句变函数引发的变量作用域问题"><span class="nav-number">5.</span> <span class="nav-text">python 从 2.X 到 3.X，语句变函数引发的变量作用域问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#深入理解-python-变量作用域及其陷阱"><span class="nav-number">6.</span> <span class="nav-text">深入理解 python 变量作用域及其陷阱</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#可变对象-amp-不可变对象"><span class="nav-number">6.1.</span> <span class="nav-text">可变对象 & 不可变对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数值传递"><span class="nav-number">6.2.</span> <span class="nav-text">函数值传递</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么修改全局的dict变量不用global关键字"><span class="nav-number">6.3.</span> <span class="nav-text">为什么修改全局的dict变量不用global关键字</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#可变对象-list-的-和-append-extend-差别在哪？"><span class="nav-number">6.4.</span> <span class="nav-text">可变对象 list 的 = 和 append/extend 差别在哪？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#陷阱：使用可变的默认参数"><span class="nav-number">6.5.</span> <span class="nav-text">陷阱：使用可变的默认参数</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">littlezhi</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (search_path.endsWith("json")) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("3VGoOaR6MhMfts7PlDxmUcTs-gzGzoHsz", "aB1qeOPwRbuIO0AL91wqHBfm");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
