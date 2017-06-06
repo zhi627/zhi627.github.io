@@ -4,7 +4,7 @@
     
     <entry>
       <title><![CDATA[django入门教学]]></title>
-      <url>/2017/06/06/django1/</url>
+      <url>/2017/06/07/django1/</url>
       <content type="html"><![CDATA[<h1 id="django安装"><a href="#django安装" class="headerlink" title="django安装"></a>django安装</h1><p>使用pip 或者easy_install 即可</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pip install django 或者 easy_install django</div></pre></td></tr></table></figure>
 <h1 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h1><p>项目名称不用和python或django的内部组件名称同名。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ django-admin startproject mysite</div></pre></td></tr></table></figure></p>
@@ -41,7 +41,8 @@
 <p>   From 192.168.1.2: icmp_seq=1 Redirect Network(New nexthop: 192.168.1.1)<br>From 192.168.1.2: icmp_seq=2 Redirect Network(New nexthop: 192.168.1.1)<br>From 192.168.1.10: icmp_seq=3 Redirect Network(New nexthop: 192.168.1.1)</p>
 </blockquote>
 <p>感觉是机房区域网络出现问题了</p>
-<h1 id="参考Linux系统有效防御ARP攻击"><a href="#参考Linux系统有效防御ARP攻击" class="headerlink" title="参考Linux系统有效防御ARP攻击"></a>参考<a href="http://www.jb51.net/os/RedHat/1363.html" target="_blank" rel="external">Linux系统有效防御ARP攻击</a></h1><p>将网关的ip以及mac写到/etc/ethers文件</p>
+<h1 id="参考Linux系统有效防御ARP攻击"><a href="#参考Linux系统有效防御ARP攻击" class="headerlink" title="参考Linux系统有效防御ARP攻击"></a>参考<a href="http://www.jb51.net/os/RedHat/1363.html" target="_blank" rel="external">Linux系统有效防御ARP攻击</a></h1><p>将网关的ip以及mac写到/etc/ethers文件，并且调用arf -f 和arp -a</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">arp <span class="_">-f</span></div><div class="line">arp <span class="_">-a</span></div></pre></td></tr></table></figure>
 ]]></content>
       
         <categories>
