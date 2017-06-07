@@ -24,7 +24,7 @@
     <entry>
       <title><![CDATA[arp导致的网络问题]]></title>
       <url>/2017/06/06/arp-error/</url>
-      <content type="html"><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>今天,在zabbix监控平台看到一个国内服务器居然agent连续5分钟都没有发送数据到server,于是感觉服务器是不是挂了。直接ping了下服务器的IP地址，ping是ping通了，但是发现延时很高估<br>计有半秒到1秒左右的。同时，检查了下web端口居然出现常见那种类似中毒的页面，什么赌博XX的页。感觉服务器是不是出故障了，或者被黑了。于是赶紧通知下领导，大家用ssh登陆，这时ssh登陆非常卡，感觉时不时就会断开下那样。领导重启了下服务器，好不容易，登陆上去，大家立马查看下是否有占资源、占内存、占流量的进程。在服务器逛了一圈，发现并没有特别奇怪的情况。<br>这时感觉是不是外部的问题，是不是机房的问题。</p>
+      <content type="html"><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>今天,在zabbix监控平台看到一个国内服务器居然agent连续5分钟都没有发送数据到server,于是感觉服务器是不是挂了。直接ping了下服务器的IP地址，ping是ping通了，但是发现延时很高估<br>计有半秒到1秒左右的。同时，检查到web界面居然出现一会类似中毒的页面，什么赌博XX的页，一会又正常了。第一时间感觉服务器是不是出故障了，或者被黑了。于是赶紧通知下领导，大家用ssh登陆，这时ssh登陆非常卡，感觉时不时就会断开下那样。领导重启了下服务器，好不容易，登陆上去，大家立马查看下是否有占资源、占内存、占流量的进程。在服务器逛了一圈，发现并没有特别奇怪的情况。<br>这时感觉是不是外部的问题，是不是机房的问题。</p>
 <a id="more"></a>
 <h1 id="查网关办法"><a href="#查网关办法" class="headerlink" title="查网关办法"></a>查网关办法</h1><h2 id="ifconfig-查看ifcfg-netinterface"><a href="#ifconfig-查看ifcfg-netinterface" class="headerlink" title="ifconfig+查看ifcfg-netinterface"></a>ifconfig+查看ifcfg-netinterface</h2><p>最常见的就是用ifconfig看下网络设备,然后根据网络设备名查找GATEWAY参数，这参数定义的就是网关了</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ifconfig</div></pre></td></tr></table></figure>
@@ -40,8 +40,8 @@
 <blockquote>
 <p>   From 192.168.1.2: icmp_seq=1 Redirect Network(New nexthop: 192.168.1.1)<br>From 192.168.1.2: icmp_seq=2 Redirect Network(New nexthop: 192.168.1.1)<br>From 192.168.1.10: icmp_seq=3 Redirect Network(New nexthop: 192.168.1.1)</p>
 </blockquote>
-<p>感觉是机房区域网络出现问题了</p>
-<h1 id="参考Linux系统有效防御ARP攻击"><a href="#参考Linux系统有效防御ARP攻击" class="headerlink" title="参考Linux系统有效防御ARP攻击"></a>参考<a href="http://www.jb51.net/os/RedHat/1363.html" target="_blank" rel="external">Linux系统有效防御ARP攻击</a></h1><p>将网关的ip以及mac写到/etc/ethers文件，并且调用arf -f 和arp -a</p>
+<p>感觉是机房区域网络出现问题了，当然领导立马打电话过去确认是否机房的问题。等待总是漫长，可以将机房路由和服务器双向绑定ip和mac地址暂时处理下。最后等来的结果确实是机房网络问题，有服务器被ARP攻击或者欺骗了。服务器绑定路由IP和MAC的方法在下面，供大家</p>
+<h1 id="参考Linux系统有效防御ARP攻击"><a href="#参考Linux系统有效防御ARP攻击" class="headerlink" title="参考Linux系统有效防御ARP攻击"></a>参考<a href="http://www.jb51.net/os/RedHat/1363.html" target="_blank" rel="external">Linux系统有效防御ARP攻击</a></h1><p>将网关的ip以及mac写到/etc/ethers文件,格式ip mac ，并且调用arf -f 和arp -a</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">arp <span class="_">-f</span></div><div class="line">arp <span class="_">-a</span></div></pre></td></tr></table></figure>
 ]]></content>
       
