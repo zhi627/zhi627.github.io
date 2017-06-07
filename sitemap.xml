@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2017/06/07/py-encode/</loc>
+    
+    <lastmod>2017-06-07T15:15:33.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2017/06/07/py-metatclass/</loc>
+    
+    <lastmod>2017-06-07T15:12:36.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2017/06/06/arp-error/</loc>
     
     <lastmod>2017-06-07T13:41:36.000Z</lastmod>

@@ -4,6 +4,46 @@
 
     
   <url>
+    <loc>http://yoursite.com/2017/06/07/py-encode/</loc>
+    <lastmod>2017-06-07T15:15:33.000Z</lastmod>
+    <data>
+        <display>
+        <title>py-encode</title>
+        <pubTime>2017-06-07T15:14:49.000Z</pubTime>
+        
+        <tag>python</tag>
+         
+         
+           
+             
+              <breadCrumb title="python" url="http://yoursite.com/categories/python/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/06/07/py-metatclass/</loc>
+    <lastmod>2017-06-07T15:12:36.000Z</lastmod>
+    <data>
+        <display>
+        <title>深刻理解Python中的元类(metaclass)</title>
+        <pubTime>2017-06-07T15:09:46.000Z</pubTime>
+        
+        <tag>python</tag>
+         
+         
+           
+             
+              <breadCrumb title="python" url="http://yoursite.com/categories/python/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2017/06/06/arp-error/</loc>
     <lastmod>2017-06-07T13:41:36.000Z</lastmod>
     <data>
@@ -301,7 +341,7 @@
     <data>
         <display>
         <title>django入门教学</title>
-        <pubTime>2017-06-07T12:57:30.732Z</pubTime>
+        <pubTime>2017-06-07T15:15:47.667Z</pubTime>
         
          
            
