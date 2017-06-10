@@ -4,6 +4,41 @@
 
     
   <url>
+    <loc>http://yoursite.com/2017/06/10/py-obj-val-class-val/</loc>
+    <lastmod>2017-06-10T04:22:25.000Z</lastmod>
+    <data>
+        <display>
+        <title>py-obj-val-class-val</title>
+        <pubTime>2017-06-10T02:39:49.000Z</pubTime>
+        
+        <tag>python</tag>
+         
+         
+           
+             
+              <breadCrumb title="python" url="http://yoursite.com/categories/python/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/06/10/hello-world/</loc>
+    <lastmod>2017-06-09T00:51:24.000Z</lastmod>
+    <data>
+        <display>
+        <title>Hello World</title>
+        <pubTime>2017-06-10T04:22:33.473Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2017/06/07/py-metatclass/</loc>
     <lastmod>2017-06-08T15:51:47.000Z</lastmod>
     <data>
@@ -336,12 +371,12 @@
 
     
   <url>
-    <loc>http://yoursite.com/2017/06/08/django1/</loc>
+    <loc>http://yoursite.com/2017/06/10/django1/</loc>
     <lastmod>2017-05-11T13:54:42.000Z</lastmod>
     <data>
         <display>
         <title>django入门教学</title>
-        <pubTime>2017-06-08T15:51:57.463Z</pubTime>
+        <pubTime>2017-06-10T04:22:33.472Z</pubTime>
         
          
            
