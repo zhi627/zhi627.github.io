@@ -4,7 +4,7 @@
     
     <entry>
       <title><![CDATA[Hello World]]></title>
-      <url>/2017/06/10/hello-world/</url>
+      <url>/2017/06/15/hello-world/</url>
       <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
 <p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
@@ -21,7 +21,7 @@
     
     <entry>
       <title><![CDATA[django入门教学]]></title>
-      <url>/2017/06/10/django1/</url>
+      <url>/2017/06/15/django1/</url>
       <content type="html"><![CDATA[<h1 id="django安装"><a href="#django安装" class="headerlink" title="django安装"></a>django安装</h1><p>使用pip 或者easy_install 即可</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pip install django 或者 easy_install django</div></pre></td></tr></table></figure>
 <h1 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h1><p>项目名称不用和python或django的内部组件名称同名。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ django-admin startproject mysite</div></pre></td></tr></table></figure></p>
@@ -39,16 +39,624 @@
     </entry>
     
     <entry>
-      <title><![CDATA[py-obj-val-class-val]]></title>
+      <title><![CDATA[python 修饰器]]></title>
+      <url>/2017/06/14/py-decorator/</url>
+      <content type="html"><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p><a href="https://taizilongxu.gitbooks.io/stackoverflow-about-python/content/3/README.html" target="_blank" rel="external">转自 Python中如何在一个函数中加入多个装饰器?</a><br><a href="http://www.cnblogs.com/wilber2013/p/4657155.html" target="_blank" rel="external">转自 Python装饰器</a></p>
+<p>装饰模式有很多经典的使用场景，例如插入日志、性能测试、事务处理等等，有了装饰器，就可以提取大量函数中与本身功能无关的类似代码，从而达到代码重用的目的。</p>
+<a id="more"></a>
+<h1 id="装饰器基础"><a href="#装饰器基础" class="headerlink" title="装饰器基础"></a>装饰器基础</h1><p><strong> Python的函数都是对象 </strong><br>要了解装饰器,你必须了解Python中的函数都是对象.这个意义非常重要.让我们看看一个简单例子:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">def shout(word=<span class="string">"yes"</span>):</div><div class="line">    <span class="built_in">return</span> word.capitalize()+<span class="string">"!"</span></div><div class="line"></div><div class="line"><span class="built_in">print</span> shout()</div><div class="line"><span class="comment"># 输出 : 'Yes!'</span></div><div class="line"></div><div class="line"><span class="comment"># 作为一个对象,你可以把它赋值给任何变量</span></div><div class="line"></div><div class="line">scream = shout</div><div class="line"></div><div class="line"><span class="comment"># 注意啦我们没有加括号,我们并不是调用这个函数,我们只是把函数"shout"放在了变量"scream"里.</span></div><div class="line"><span class="comment"># 也就是说我们可以通过"scream"调用"shout":</span></div><div class="line"></div><div class="line"><span class="built_in">print</span> scream()</div><div class="line"><span class="comment"># 输出 : 'Yes!'</span></div><div class="line"></div><div class="line"><span class="comment"># 你可以删除旧名"shout",而且"scream"依然指向函数</span></div><div class="line"></div><div class="line">del shout</div><div class="line">try:</div><div class="line">    <span class="built_in">print</span> shout()</div><div class="line">except NameError, e:</div><div class="line">    <span class="built_in">print</span> e</div><div class="line">    <span class="comment">#输出: "name 'shout' is not defined"</span></div><div class="line"></div><div class="line"><span class="built_in">print</span> scream()</div><div class="line"><span class="comment"># 输出: 'Yes!'</span></div></pre></td></tr></table></figure>
+<p>好了,先记住上面的,一会还会用到.</p>
+<p>Python函数另一个有趣的特性就是你可以在一个函数里定义另一个函数!</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">def talk():</div><div class="line"></div><div class="line">    <span class="comment"># 你可以在"talk"里定义另一个函数 ...</span></div><div class="line">    def whisper(word=<span class="string">"yes"</span>):</div><div class="line">        <span class="built_in">return</span> word.lower()+<span class="string">"..."</span></div><div class="line"></div><div class="line">    <span class="comment"># 让我们用用它!</span></div><div class="line"></div><div class="line">    <span class="built_in">print</span> whisper()</div><div class="line"></div><div class="line"><span class="comment"># 每次调用"talk"时都会定义一次"whisper",然后"talk"会调用"whisper"</span></div><div class="line">talk()</div><div class="line"><span class="comment"># 输出:</span></div><div class="line"><span class="comment"># "yes..."</span></div><div class="line"></div><div class="line"><span class="comment"># 但是在"talk"意外"whisper"是不存在的:</span></div><div class="line"></div><div class="line">try:</div><div class="line">    <span class="built_in">print</span> whisper()</div><div class="line">except NameError, e:</div><div class="line">    <span class="built_in">print</span> e</div><div class="line">    <span class="comment">#输出 : "name 'whisper' is not defined"*</span></div></pre></td></tr></table></figure>
+<h1 id="函数引用"><a href="#函数引用" class="headerlink" title="函数引用"></a>函数引用</h1><p>好,终于到了有趣的地方了…<br>已经知道函数就是对象.因此,对象:</p>
+<ul>
+<li>可以赋值给一个变量</li>
+<li>可以在其他函数里定义</li>
+</ul>
+<p>这就意味着函数可以返回另一个函数。来看看！ ☺</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">def getTalk(kind=<span class="string">"shout"</span>):</div><div class="line"></div><div class="line">    <span class="comment"># 在函数里定义一个函数</span></div><div class="line">    def shout(word=<span class="string">"yes"</span>):</div><div class="line">        <span class="built_in">return</span> word.capitalize()+<span class="string">"!"</span></div><div class="line"></div><div class="line">    def whisper(word=<span class="string">"yes"</span>) :</div><div class="line">        <span class="built_in">return</span> word.lower()+<span class="string">"..."</span>;</div><div class="line"></div><div class="line">    <span class="comment"># 返回一个函数</span></div><div class="line">    <span class="keyword">if</span> kind == <span class="string">"shout"</span>:</div><div class="line">        <span class="comment"># 这里不用"()",我们不是要调用函数</span></div><div class="line">        <span class="comment"># 只是返回函数对象</span></div><div class="line">        <span class="built_in">return</span> shout</div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        <span class="built_in">return</span> whisper</div><div class="line"></div><div class="line"><span class="comment"># 怎么用这个特性呢?</span></div><div class="line"></div><div class="line"><span class="comment"># 把函数赋值给变量</span></div><div class="line">talk = getTalk()</div><div class="line"></div><div class="line"><span class="comment"># 可以看到"talk"是一个函数对象</span></div><div class="line"><span class="built_in">print</span> talk</div><div class="line"><span class="comment"># 输出 : &lt;function shout at 0xb7ea817c&gt;</span></div><div class="line"></div><div class="line"><span class="comment"># 函数返回的是对象:</span></div><div class="line"><span class="built_in">print</span> talk()</div><div class="line"><span class="comment"># 输出 : Yes!</span></div><div class="line"></div><div class="line"><span class="comment"># 不嫌麻烦你也可以这么用</span></div><div class="line"><span class="built_in">print</span> getTalk(<span class="string">"whisper"</span>)()</div><div class="line"><span class="comment"># 输出 : yes...</span></div></pre></td></tr></table></figure>
+<p>既然可以return一个函数, 你也可以在把函数作为参数传递:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">def <span class="keyword">do</span>SomethingBefore(func):</div><div class="line">    <span class="built_in">print</span> <span class="string">"I do something before then I call the function you gave me"</span></div><div class="line">    <span class="built_in">print</span> func()</div><div class="line"></div><div class="line"><span class="keyword">do</span>SomethingBefore(scream)</div><div class="line"><span class="comment"># 输出:</span></div><div class="line"><span class="comment">#I do something before then I call the function you gave me</span></div><div class="line"><span class="comment">#Yes!</span></div></pre></td></tr></table></figure>
+<p>学习装饰器的基本知识都在上面了.装饰器就是”wrappers”,它可以让你在你装饰函数之前或之后执行程序,而不用修改函数本身.</p>
+<h1 id="自己动手实现装饰器"><a href="#自己动手实现装饰器" class="headerlink" title="自己动手实现装饰器"></a>自己动手实现装饰器</h1><p>怎么样自己做呢:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 装饰器就是把其他函数作为参数的函数</span></div><div class="line">def my_shiny_new_decorator(a_function_to_decorate):</div><div class="line"></div><div class="line">    <span class="comment"># 在函数里面,装饰器在运行中定义函数: 包装.</span></div><div class="line">    <span class="comment"># 这个函数将被包装在原始函数的外面,所以可以在原始函数之前和之后执行其他代码..</span></div><div class="line">    def the_wrapper_around_the_original_function():</div><div class="line"></div><div class="line">        <span class="comment"># 把要在原始函数被调用前的代码放在这里</span></div><div class="line">        <span class="built_in">print</span> <span class="string">"Before the function runs"</span></div><div class="line"></div><div class="line">        <span class="comment"># 调用原始函数(用括号)</span></div><div class="line">        a_function_to_decorate()</div><div class="line"></div><div class="line">        <span class="comment"># 把要在原始函数调用后的代码放在这里</span></div><div class="line">        <span class="built_in">print</span> <span class="string">"After the function runs"</span></div><div class="line"></div><div class="line">    <span class="comment"># 在这里"a_function_to_decorate" 函数永远不会被执行</span></div><div class="line">    <span class="comment"># 在这里返回刚才包装过的函数</span></div><div class="line">    <span class="comment"># 在包装函数里包含要在原始函数前后执行的代码.</span></div><div class="line">    <span class="built_in">return</span> the_wrapper_around_the_original_function</div><div class="line"></div><div class="line"><span class="comment"># 加入你建了个函数,不想修改了</span></div><div class="line">def a_stand_alone_function():</div><div class="line">    <span class="built_in">print</span> <span class="string">"I am a stand alone function, don't you dare modify me"</span></div><div class="line"></div><div class="line">a_stand_alone_function()</div><div class="line"><span class="comment">#输出: I am a stand alone function, don't you dare modify me</span></div><div class="line"></div><div class="line"><span class="comment"># 现在,你可以装饰它来增加它的功能</span></div><div class="line"><span class="comment"># 把它传递给装饰器,它就会返回一个被包装过的函数.</span></div><div class="line"></div><div class="line">a_stand_alone_function_decorated = my_shiny_new_decorator(a_stand_alone_function)</div><div class="line">a_stand_alone_function_decorated()</div><div class="line"><span class="comment">#输出s:</span></div><div class="line"><span class="comment">#Before the function runs</span></div><div class="line"><span class="comment">#I am a stand alone function, don't you dare modify me</span></div><div class="line"><span class="comment">#After the function runs</span></div></pre></td></tr></table></figure>
+<p>现在,你或许每次都想用a_stand_alone_function_decorated代替a_stand_alone_function,很简单,只需要用my_shiny_new_decorator返回的函数重写a_stand_alone_function:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">a_stand_alone_function = my_shiny_new_decorator(a_stand_alone_function)</div><div class="line">a_stand_alone_function()</div><div class="line"><span class="comment">#输出:</span></div><div class="line"><span class="comment">#Before the function runs</span></div><div class="line"><span class="comment">#I am a stand alone function, don't you dare modify me</span></div><div class="line"><span class="comment">#After the function runs</span></div><div class="line"></div><div class="line"><span class="comment"># 想到了吗,这就是装饰器干的事!</span></div></pre></td></tr></table></figure>
+<h1 id="让我们看看装饰器的真实面纱"><a href="#让我们看看装饰器的真实面纱" class="headerlink" title="让我们看看装饰器的真实面纱"></a>让我们看看装饰器的真实面纱</h1><p>用上一个例子,看看装饰器的语法:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">@my_shiny_new_decorator</div><div class="line">def another_stand_alone_function():</div><div class="line">    <span class="built_in">print</span> <span class="string">"Leave me alone"</span></div><div class="line"></div><div class="line">another_stand_alone_function()</div><div class="line"><span class="comment">#输出:</span></div><div class="line"><span class="comment">#Before the function runs</span></div><div class="line"><span class="comment">#Leave me alone</span></div><div class="line"><span class="comment">#After the function runs</span></div></pre></td></tr></table></figure>
+<p>就这么简单.@decorator就是下面的简写:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">another_stand_alone_function = my_shiny_new_decorator(another_stand_alone_function)</div></pre></td></tr></table></figure>
+<p>装饰器就是 <a href="https://en.wikipedia.org/wiki/Decorator_pattern" target="_blank" rel="external">decorator design pattern</a>的pythonic的变种.在Python中有许多经典的设计模式来满足开发者.</p>
+<p>当然,你也可以自己写装饰器:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">def bread(func):</div><div class="line">    def wrapper():</div><div class="line">        <span class="built_in">print</span> <span class="string">"&lt;/''''''\&gt;"</span></div><div class="line">        func()</div><div class="line">        <span class="built_in">print</span> <span class="string">"&lt;\______/&gt;"</span></div><div class="line">    <span class="built_in">return</span> wrapper</div><div class="line"></div><div class="line">def ingredients(func):</div><div class="line">    def wrapper():</div><div class="line">        <span class="built_in">print</span> <span class="string">"#tomatoes#"</span></div><div class="line">        func()</div><div class="line">        <span class="built_in">print</span> <span class="string">"~salad~"</span></div><div class="line">    <span class="built_in">return</span> wrapper</div><div class="line"></div><div class="line">def sandwich(food=<span class="string">"--ham--"</span>):</div><div class="line">    <span class="built_in">print</span> food</div><div class="line"></div><div class="line">sandwich()</div><div class="line"><span class="comment">#outputs: --ham--</span></div><div class="line">sandwich = bread(ingredients(sandwich))</div><div class="line">sandwich()</div><div class="line"><span class="comment">#outputs:</span></div><div class="line"><span class="comment">#&lt;/''''''\&gt;</span></div><div class="line"><span class="comment"># #tomatoes#</span></div><div class="line"><span class="comment"># --ham--</span></div><div class="line"><span class="comment"># ~salad~</span></div><div class="line"><span class="comment">#&lt;\______/&gt;</span></div></pre></td></tr></table></figure>
+<p>用Python装饰器语法糖:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">@bread</div><div class="line">@ingredients</div><div class="line">def sandwich(food=<span class="string">"--ham--"</span>):</div><div class="line">    <span class="built_in">print</span> food</div><div class="line"></div><div class="line">sandwich()</div><div class="line"><span class="comment">#outputs:</span></div><div class="line"><span class="comment">#&lt;/''''''\&gt;</span></div><div class="line"><span class="comment"># #tomatoes#</span></div><div class="line"><span class="comment"># --ham--</span></div><div class="line"><span class="comment"># ~salad~</span></div><div class="line"><span class="comment">#&lt;\______/&gt;</span></div></pre></td></tr></table></figure>
+<p>改变一下顺序:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">@ingredients</div><div class="line">@bread</div><div class="line">def strange_sandwich(food=<span class="string">"--ham--"</span>):</div><div class="line">    <span class="built_in">print</span> food</div><div class="line"></div><div class="line">strange_sandwich()</div><div class="line"><span class="comment">#outputs:</span></div><div class="line"><span class="comment">##tomatoes#</span></div><div class="line"><span class="comment">#&lt;/''''''\&gt;</span></div><div class="line"><span class="comment"># --ham--</span></div><div class="line"><span class="comment">#&lt;\______/&gt;</span></div><div class="line"><span class="comment"># ~salad~</span></div></pre></td></tr></table></figure>
+<p>别轻松太早,看看下面的高级用法</p>
+<h1 id="装饰器高级用法"><a href="#装饰器高级用法" class="headerlink" title="装饰器高级用法"></a>装饰器高级用法</h1><h2 id="在装饰器函数里传入参数"><a href="#在装饰器函数里传入参数" class="headerlink" title="在装饰器函数里传入参数"></a>在装饰器函数里传入参数</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 这不是什么黑魔法,你只需要让包装器传递参数:</span></div><div class="line"></div><div class="line">def a_decorator_passing_arguments(function_to_decorate):</div><div class="line">    def a_wrapper_accepting_arguments(arg1, arg2):</div><div class="line">        <span class="built_in">print</span> <span class="string">"I got args! Look:"</span>, arg1, arg2</div><div class="line">        function_to_decorate(arg1, arg2)</div><div class="line">    <span class="built_in">return</span> a_wrapper_accepting_arguments</div><div class="line"></div><div class="line"><span class="comment"># 当你调用装饰器返回的函数时,也就调用了包装器,把参数传入包装器里,</span></div><div class="line"><span class="comment"># 它将把参数传递给被装饰的函数里.</span></div><div class="line"></div><div class="line">@a_decorator_passing_arguments</div><div class="line">def print_full_name(first_name, last_name):</div><div class="line">    <span class="built_in">print</span> <span class="string">"My name is"</span>, first_name, last_name</div><div class="line"></div><div class="line">print_full_name(<span class="string">"Peter"</span>, <span class="string">"Venkman"</span>)</div><div class="line"><span class="comment"># 输出:</span></div><div class="line"><span class="comment">#I got args! Look: Peter Venkman</span></div><div class="line"><span class="comment">#My name is Peter Venkman</span></div></pre></td></tr></table></figure>
+<h1 id="装饰方法"><a href="#装饰方法" class="headerlink" title="装饰方法"></a>装饰方法</h1><p>在Python里方法和函数几乎一样.唯一的区别就是方法的第一个参数是一个当前对象的(self)</p>
+<p>也就是说你可以用同样的方式来装饰方法!只要记得把self加进去:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">def method_friendly_decorator(method_to_decorate):</div><div class="line">    def wrapper(self, lie):</div><div class="line">        lie = lie - 3 <span class="comment"># 女性福音 :-)</span></div><div class="line">        <span class="built_in">return</span> method_to_decorate(self, lie)</div><div class="line">    <span class="built_in">return</span> wrapper</div><div class="line"></div><div class="line"></div><div class="line">class Lucy(object):</div><div class="line"></div><div class="line">    def __init__(self):</div><div class="line">        self.age = 32</div><div class="line"></div><div class="line">    @method_friendly_decorator</div><div class="line">    def sayYourAge(self, lie):</div><div class="line">        <span class="built_in">print</span> <span class="string">"I am %s, what did you think?"</span> % (self.age + lie)</div><div class="line"></div><div class="line">l = Lucy()</div><div class="line">l.sayYourAge(-3)</div><div class="line"><span class="comment">#输出: I am 26, what did you think?</span></div></pre></td></tr></table></figure>
+<p>如果你想造一个更通用的可以同时满足方法和函数的装饰器,用<em>args,*</em>kwargs就可以了</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div></pre></td><td class="code"><pre><div class="line">def a_decorator_passing_arbitrary_arguments(function_to_decorate):</div><div class="line">    <span class="comment"># 包装器接受所有参数</span></div><div class="line">    def a_wrapper_accepting_arbitrary_arguments(*args, **kwargs):</div><div class="line">        <span class="built_in">print</span> <span class="string">"Do I have args?:"</span></div><div class="line">        <span class="built_in">print</span> args</div><div class="line">        <span class="built_in">print</span> kwargs</div><div class="line">        <span class="comment"># 现在把*args,**kwargs解包</span></div><div class="line">        <span class="comment"># 如果你不明白什么是解包的话,请查阅:</span></div><div class="line">        <span class="comment"># http://www.saltycrane.com/blog/2008/01/how-to-use-args-and-kwargs-in-python/</span></div><div class="line">        function_to_decorate(*args, **kwargs)</div><div class="line">    <span class="built_in">return</span> a_wrapper_accepting_arbitrary_arguments</div><div class="line"></div><div class="line">@a_decorator_passing_arbitrary_arguments</div><div class="line">def function_with_no_argument():</div><div class="line">    <span class="built_in">print</span> <span class="string">"Python is cool, no argument here."</span></div><div class="line"></div><div class="line">function_with_no_argument()</div><div class="line"><span class="comment">#输出</span></div><div class="line"><span class="comment">#Do I have args?:</span></div><div class="line"><span class="comment">#()</span></div><div class="line"><span class="comment">#&#123;&#125;</span></div><div class="line"><span class="comment">#Python is cool, no argument here.</span></div><div class="line"></div><div class="line">@a_decorator_passing_arbitrary_arguments</div><div class="line">def function_with_arguments(a, b, c):</div><div class="line">    <span class="built_in">print</span> a, b, c</div><div class="line"></div><div class="line">function_with_arguments(1,2,3)</div><div class="line"><span class="comment">#输出</span></div><div class="line"><span class="comment">#Do I have args?:</span></div><div class="line"><span class="comment">#(1, 2, 3)</span></div><div class="line"><span class="comment">#&#123;&#125;</span></div><div class="line"><span class="comment">#1 2 3</span></div><div class="line"></div><div class="line">@a_decorator_passing_arbitrary_arguments</div><div class="line">def function_with_named_arguments(a, b, c, platypus=<span class="string">"Why not ?"</span>):</div><div class="line">    <span class="built_in">print</span> <span class="string">"Do %s, %s and %s like platypus? %s"</span> %\</div><div class="line">    (a, b, c, platypus)</div><div class="line"></div><div class="line">function_with_named_arguments(<span class="string">"Bill"</span>, <span class="string">"Linus"</span>, <span class="string">"Steve"</span>, platypus=<span class="string">"Indeed!"</span>)</div><div class="line"><span class="comment">#输出</span></div><div class="line"><span class="comment">#Do I have args ? :</span></div><div class="line"><span class="comment">#('Bill', 'Linus', 'Steve')</span></div><div class="line"><span class="comment">#&#123;'platypus': 'Indeed!'&#125;</span></div><div class="line"><span class="comment">#Do Bill, Linus and Steve like platypus? Indeed!</span></div><div class="line"></div><div class="line">class Mary(object):</div><div class="line"></div><div class="line">    def __init__(self):</div><div class="line">        self.age = 31</div><div class="line"></div><div class="line">    @a_decorator_passing_arbitrary_arguments</div><div class="line">    def sayYourAge(self, lie=-3): <span class="comment"># 可以加入一个默认值</span></div><div class="line">        <span class="built_in">print</span> <span class="string">"I am %s, what did you think ?"</span> % (self.age + lie)</div><div class="line"></div><div class="line">m = Mary()</div><div class="line">m.sayYourAge()</div><div class="line"><span class="comment">#输出</span></div><div class="line"><span class="comment"># Do I have args?:</span></div><div class="line"><span class="comment">#(&lt;__main__.Mary object at 0xb7d303ac&gt;,)</span></div><div class="line"><span class="comment">#&#123;&#125;</span></div><div class="line"><span class="comment">#I am 28, what did you think?</span></div></pre></td></tr></table></figure>
+<h2 id="把参数传递给装饰器"><a href="#把参数传递给装饰器" class="headerlink" title="把参数传递给装饰器"></a>把参数传递给装饰器</h2><p>好了,如何把参数传递给装饰器自己?</p>
+<p>因为装饰器必须接收一个函数当做参数,所以有点麻烦.好吧,你不可以直接把被装饰函数的参数传递给装饰器.<br>在我们考虑这个问题时,让我们重新回顾下:</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">  装饰器就是一个<span class="string">'平常不过'</span>的函数</div><div class="line">def my_decorator(func):</div><div class="line">    <span class="built_in">print</span> <span class="string">"I am an ordinary function"</span></div><div class="line">    def wrapper():</div><div class="line">        <span class="built_in">print</span> <span class="string">"I am function returned by the decorator"</span></div><div class="line">        func()</div><div class="line">    <span class="built_in">return</span> wrapper</div><div class="line"></div><div class="line"><span class="comment"># 因此你可以不用"@"也可以调用他</span></div><div class="line"></div><div class="line">def lazy_function():</div><div class="line">    <span class="built_in">print</span> <span class="string">"zzzzzzzz"</span></div><div class="line"></div><div class="line">decorated_function = my_decorator(lazy_function)</div><div class="line"><span class="comment">#输出: I am an ordinary function</span></div><div class="line"></div><div class="line"><span class="comment"># 之所以输出 "I am an ordinary function"是因为你调用了函数,</span></div><div class="line"><span class="comment"># 并非什么魔法.</span></div><div class="line"></div><div class="line">@my_decorator</div><div class="line">def lazy_function():</div><div class="line">    <span class="built_in">print</span> <span class="string">"zzzzzzzz"</span></div><div class="line"></div><div class="line"><span class="comment">#输出: I am an ordinary function</span></div></pre></td></tr></table></figure>
+<p>看见了吗,和”my_decorator”一样只是被调用.所以当你用@my_decorator你只是告诉Python去掉用被变量my_decorator标记的函数.</p>
+<p>这非常重要!你的标记能直接指向装饰器.</p>
+<p>让我们做点邪恶的事.☺</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line">def decorator_maker():</div><div class="line"></div><div class="line">    <span class="built_in">print</span> <span class="string">"I make decorators! I am executed only once: "</span>+\</div><div class="line">          <span class="string">"when you make me create a decorator."</span></div><div class="line"></div><div class="line">    def my_decorator(func):</div><div class="line"></div><div class="line">        <span class="built_in">print</span> <span class="string">"I am a decorator! I am executed only when you decorate a function."</span></div><div class="line"></div><div class="line">        def wrapped():</div><div class="line">            <span class="built_in">print</span> (<span class="string">"I am the wrapper around the decorated function. "</span></div><div class="line">                  <span class="string">"I am called when you call the decorated function. "</span></div><div class="line">                  <span class="string">"As the wrapper, I return the RESULT of the decorated function."</span>)</div><div class="line">            <span class="built_in">return</span> func()</div><div class="line"></div><div class="line">        <span class="built_in">print</span> <span class="string">"As the decorator, I return the wrapped function."</span></div><div class="line"></div><div class="line">        <span class="built_in">return</span> wrapped</div><div class="line"></div><div class="line">    <span class="built_in">print</span> <span class="string">"As a decorator maker, I return a decorator"</span></div><div class="line">    <span class="built_in">return</span> my_decorator</div><div class="line"></div><div class="line"><span class="comment"># 让我们建一个装饰器.它只是一个新函数.</span></div><div class="line">new_decorator = decorator_maker()</div><div class="line"><span class="comment">#输出:</span></div><div class="line"><span class="comment">#I make decorators! I am executed only once: when you make me create a decorator.</span></div><div class="line"><span class="comment">#As a decorator maker, I return a decorator</span></div><div class="line"></div><div class="line"><span class="comment"># 下面来装饰一个函数</span></div><div class="line"></div><div class="line">def decorated_function():</div><div class="line">    <span class="built_in">print</span> <span class="string">"I am the decorated function."</span></div><div class="line"></div><div class="line">decorated_function = new_decorator(decorated_function)</div><div class="line"><span class="comment">#输出:</span></div><div class="line"><span class="comment">#I am a decorator! I am executed only when you decorate a function.</span></div><div class="line"><span class="comment">#As the decorator, I return the wrapped function</span></div><div class="line"></div><div class="line"><span class="comment"># Let’s call the function:</span></div><div class="line">decorated_function()</div><div class="line"><span class="comment">#输出:</span></div><div class="line"><span class="comment">#I am the wrapper around the decorated function. I am called when you call the decorated function.</span></div><div class="line"><span class="comment">#As the wrapper, I return the RESULT of the decorated function.</span></div><div class="line"><span class="comment">#I am the decorated function.</span></div></pre></td></tr></table></figure>
+<p>一点都不难把.</p>
+<p>下面让我们去掉所有可恶的中间变量:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">def decorated_function():</div><div class="line">    <span class="built_in">print</span> <span class="string">"I am the decorated function."</span></div><div class="line">decorated_function = decorator_maker()(decorated_function)</div><div class="line"><span class="comment">#输出:</span></div><div class="line"><span class="comment">#I make decorators! I am executed only once: when you make me create a decorator.</span></div><div class="line"><span class="comment">#As a decorator maker, I return a decorator</span></div><div class="line"><span class="comment">#I am a decorator! I am executed only when you decorate a function.</span></div><div class="line"><span class="comment">#As the decorator, I return the wrapped function.</span></div><div class="line"></div><div class="line"><span class="comment"># 最后:</span></div><div class="line">decorated_function()</div><div class="line"><span class="comment">#输出:</span></div><div class="line"><span class="comment">#I am the wrapper around the decorated function. I am called when you call the decorated function.</span></div><div class="line"><span class="comment">#As the wrapper, I return the RESULT of the decorated function.</span></div><div class="line"><span class="comment">#I am the decorated function.</span></div></pre></td></tr></table></figure>
+<p>让我们简化一下:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">@decorator_maker()</div><div class="line">def decorated_function():</div><div class="line">    <span class="built_in">print</span> <span class="string">"I am the decorated function."</span></div><div class="line"><span class="comment">#输出:</span></div><div class="line"><span class="comment">#I make decorators! I am executed only once: when you make me create a decorator.</span></div><div class="line"><span class="comment">#As a decorator maker, I return a decorator</span></div><div class="line"><span class="comment">#I am a decorator! I am executed only when you decorate a function.</span></div><div class="line"><span class="comment">#As the decorator, I return the wrapped function.</span></div><div class="line"></div><div class="line"><span class="comment">#最终:</span></div><div class="line">decorated_function()</div><div class="line"><span class="comment">#输出:</span></div><div class="line"><span class="comment">#I am the wrapper around the decorated function. I am called when you call the decorated function.</span></div><div class="line"><span class="comment">#As the wrapper, I return the RESULT of the decorated function.</span></div><div class="line"><span class="comment">#I am the decorated function.</span></div></pre></td></tr></table></figure>
+<p>看到了吗?我们用一个函数调用”@”语法!:-)</p>
+<p>所以让我们回到装饰器的.如果我们在函数运行过程中动态生成装饰器,我们是不是可以把参数传递给函数?</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line">def decorator_maker_with_arguments(decorator_arg1, decorator_arg2):</div><div class="line"></div><div class="line">    <span class="built_in">print</span> <span class="string">"I make decorators! And I accept arguments:"</span>, decorator_arg1, decorator_arg2</div><div class="line"></div><div class="line">    def my_decorator(func):</div><div class="line">        <span class="comment"># 这里传递参数的能力是借鉴了 closures.</span></div><div class="line">        <span class="comment"># 如果对closures感到困惑可以看看下面这个:</span></div><div class="line">        <span class="comment"># http://stackoverflow.com/questions/13857/can-you-explain-closures-as-they-relate-to-python</span></div><div class="line">        <span class="built_in">print</span> <span class="string">"I am the decorator. Somehow you passed me arguments:"</span>, decorator_arg1, decorator_arg2</div><div class="line"></div><div class="line">        <span class="comment"># 不要忘了装饰器参数和函数参数!</span></div><div class="line">        def wrapped(function_arg1, function_arg2) :</div><div class="line">            <span class="built_in">print</span> (<span class="string">"I am the wrapper around the decorated function.\n"</span></div><div class="line">                  <span class="string">"I can access all the variables\n"</span></div><div class="line">                  <span class="string">"\t- from the decorator: &#123;0&#125; &#123;1&#125;\n"</span></div><div class="line">                  <span class="string">"\t- from the function call: &#123;2&#125; &#123;3&#125;\n"</span></div><div class="line">                  <span class="string">"Then I can pass them to the decorated function"</span></div><div class="line">                  .format(decorator_arg1, decorator_arg2,</div><div class="line">                          function_arg1, function_arg2))</div><div class="line">            <span class="built_in">return</span> func(function_arg1, function_arg2)</div><div class="line"></div><div class="line">        <span class="built_in">return</span> wrapped</div><div class="line"></div><div class="line">    <span class="built_in">return</span> my_decorator</div><div class="line"></div><div class="line">@decorator_maker_with_arguments(<span class="string">"Leonard"</span>, <span class="string">"Sheldon"</span>)</div><div class="line">def decorated_function_with_arguments(function_arg1, function_arg2):</div><div class="line">    <span class="built_in">print</span> (<span class="string">"I am the decorated function and only knows about my arguments: &#123;0&#125;"</span></div><div class="line">           <span class="string">" &#123;1&#125;"</span>.format(function_arg1, function_arg2))</div><div class="line"></div><div class="line">decorated_function_with_arguments(<span class="string">"Rajesh"</span>, <span class="string">"Howard"</span>)</div><div class="line"><span class="comment">#输出:</span></div><div class="line"><span class="comment">#I make decorators! And I accept arguments: Leonard Sheldon</span></div><div class="line"><span class="comment">#I am the decorator. Somehow you passed me arguments: Leonard Sheldon</span></div><div class="line"><span class="comment">#I am the wrapper around the decorated function.</span></div><div class="line"><span class="comment">#I can access all the variables</span></div><div class="line"><span class="comment">#   - from the decorator: Leonard Sheldon</span></div><div class="line"><span class="comment">#   - from the function call: Rajesh Howard</span></div><div class="line"><span class="comment">#Then I can pass them to the decorated function</span></div><div class="line"><span class="comment">#I am the decorated function and only knows about my arguments: Rajesh Howard</span></div></pre></td></tr></table></figure>
+<p>好了,上面就是带参数的装饰器.参数可以设置成变量:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">c1 = <span class="string">"Penny"</span></div><div class="line">c2 = <span class="string">"Leslie"</span></div><div class="line"></div><div class="line">@decorator_maker_with_arguments(<span class="string">"Leonard"</span>, c1)</div><div class="line">def decorated_function_with_arguments(function_arg1, function_arg2):</div><div class="line">    <span class="built_in">print</span> (<span class="string">"I am the decorated function and only knows about my arguments:"</span></div><div class="line">           <span class="string">" &#123;0&#125; &#123;1&#125;"</span>.format(function_arg1, function_arg2))</div><div class="line"></div><div class="line">decorated_function_with_arguments(c2, <span class="string">"Howard"</span>)</div><div class="line"><span class="comment">#输出:</span></div><div class="line"><span class="comment">#I make decorators! And I accept arguments: Leonard Penny</span></div><div class="line"><span class="comment">#I am the decorator. Somehow you passed me arguments: Leonard Penny</span></div><div class="line"><span class="comment">#I am the wrapper around the decorated function.</span></div><div class="line"><span class="comment">#I can access all the variables</span></div><div class="line"><span class="comment">#   - from the decorator: Leonard Penny</span></div><div class="line"><span class="comment">#   - from the function call: Leslie Howard</span></div><div class="line"><span class="comment">#Then I can pass them to the decorated function</span></div><div class="line"><span class="comment">#I am the decorated function and only knows about my arguments: Leslie Howard</span></div></pre></td></tr></table></figure>
+<p>你可以用这个小技巧把任何函数的参数传递给装饰器.如果你愿意还可以用<em>args,*</em>kwargs.但是一定要记住了装饰器只能被调用一次.当Python载入脚本后,你不可以动态的设置参数了.当你运行import x,函数已经被装饰,所以你什么都不能动了.</p>
+<h1 id="来练习一下-装饰装饰器"><a href="#来练习一下-装饰装饰器" class="headerlink" title="来练习一下:装饰装饰器"></a>来练习一下:装饰装饰器</h1><p>好吧,作为奖励,我就给你讲讲如何怎么让所有的装饰器接收任何参数.为了接收参数,我们用另外的函数来建我们的装饰器.</p>
+<p>我们包装装饰器.</p>
+<p>还有什么我们可以看到吗?</p>
+<p>对了,装饰器!</p>
+<p>让我们来为装饰器一个装饰器:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">def decorator_with_args(decorator_to_enhance):</div><div class="line">    <span class="string">""</span><span class="string">"</span></div><div class="line">    这个函数将被用来作为装饰器.</div><div class="line">    它必须去装饰要成为装饰器的函数.</div><div class="line">    休息一下.</div><div class="line">    它将允许所有的装饰器可以接收任意数量的参数,所以以后你不必为每次都要做这个头疼了.</div><div class="line">    saving you the headache to remember how to do that every time.</div><div class="line">    "<span class="string">""</span></div><div class="line"></div><div class="line">    <span class="comment"># 我们用传递参数的同样技巧.</span></div><div class="line">    def decorator_maker(*args, **kwargs):</div><div class="line"></div><div class="line">        <span class="comment"># 我们动态的建立一个只接收一个函数的装饰器,</span></div><div class="line">        <span class="comment"># 但是他能接收来自maker的参数</span></div><div class="line">        def decorator_wrapper(func):</div><div class="line"></div><div class="line">            <span class="comment"># 最后我们返回原始的装饰器,毕竟它只是'平常'的函数</span></div><div class="line">            <span class="comment"># 唯一的陷阱:装饰器必须有这个特殊的,否则将不会奏效.</span></div><div class="line">            <span class="built_in">return</span> decorator_to_enhance(func, *args, **kwargs)</div><div class="line"></div><div class="line">        <span class="built_in">return</span> decorator_wrapper</div></pre></td></tr></table></figure>
+<p>下面是如何用它们:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 下面的函数是你建来当装饰器用的,然后把装饰器加到上面:-)</span></div><div class="line"><span class="comment"># 不要忘了这个 "decorator(func, *args, **kwargs)"</span></div><div class="line">@decorator_with_args</div><div class="line">def decorated_decorator(func, *args, **kwargs):</div><div class="line">    def wrapper(function_arg1, function_arg2):</div><div class="line">        <span class="built_in">print</span> <span class="string">"Decorated with"</span>, args, kwargs</div><div class="line">        <span class="built_in">return</span> func(function_arg1, function_arg2)</div><div class="line">    <span class="built_in">return</span> wrapper</div><div class="line"></div><div class="line"><span class="comment"># 现在你用你自己的装饰装饰器来装饰你的函数(汗~~~)</span></div><div class="line"></div><div class="line">@decorated_decorator(42, 404, 1024)</div><div class="line">def decorated_function(function_arg1, function_arg2):</div><div class="line">    <span class="built_in">print</span> <span class="string">"Hello"</span>, function_arg1, function_arg2</div><div class="line"></div><div class="line">decorated_function(<span class="string">"Universe and"</span>, <span class="string">"everything"</span>)</div><div class="line"><span class="comment">#输出:</span></div><div class="line"><span class="comment">#Decorated with (42, 404, 1024) &#123;&#125;</span></div><div class="line"><span class="comment">#Hello Universe and everything</span></div><div class="line"></div><div class="line"><span class="comment"># Whoooot!</span></div></pre></td></tr></table></figure>
+<p>估计你看到这和你刚看完爱因斯坦相对论差不多,但是现在如果明白怎么用就好多了吧.</p>
+<h1 id="最好的练习-装饰器"><a href="#最好的练习-装饰器" class="headerlink" title="最好的练习:装饰器"></a>最好的练习:装饰器</h1><ul>
+<li>装饰器是Python2.4里引进的,所以确保你的Python解析器的版本&gt;=2.4</li>
+<li>装饰器使函数调用变慢了.一定要记住.</li>
+<li>装饰器不能被取消(有些人把装饰器做成可以移除的但是没有人会用)所以一旦一个函数被装饰了.所有的代码都会被装饰.</li>
+<li>用装饰器装饰函数将会很难debug(在&gt;=2.5版本将会有所改善;看下面)<br>functools模块在2.5被引进.它包含了一个functools.wraps()函数,可以复制装饰器函数的名字,模块和文档给它的包装器.</li>
+</ul>
+<p>(事实上:functools.wraps()是一个装饰器!☺)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#为了debug,堆栈跟踪将会返回函数的 __name__</span></div><div class="line">def foo():</div><div class="line">    <span class="built_in">print</span> <span class="string">"foo"</span></div><div class="line"></div><div class="line"><span class="built_in">print</span> foo.__name__</div><div class="line"><span class="comment">#输出: foo</span></div><div class="line"></div><div class="line"><span class="comment"># 如果加上装饰器,将变得有点复杂</span></div><div class="line">def bar(func):</div><div class="line">    def wrapper():</div><div class="line">        <span class="built_in">print</span> <span class="string">"bar"</span></div><div class="line">        <span class="built_in">return</span> func()</div><div class="line">    <span class="built_in">return</span> wrapper</div><div class="line"></div><div class="line">@bar</div><div class="line">def foo():</div><div class="line">    <span class="built_in">print</span> <span class="string">"foo"</span></div><div class="line"></div><div class="line"><span class="built_in">print</span> foo.__name__</div><div class="line"><span class="comment">#输出: wrapper</span></div><div class="line"></div><div class="line"><span class="comment"># "functools" 将有所帮助</span></div><div class="line"></div><div class="line">import functools</div><div class="line"></div><div class="line">def bar(func):</div><div class="line">    <span class="comment"># 我们所说的"wrapper",正在包装 "func",</span></div><div class="line">    <span class="comment"># 好戏开始了</span></div><div class="line">    @functools.wraps(func)</div><div class="line">    def wrapper():</div><div class="line">        <span class="built_in">print</span> <span class="string">"bar"</span></div><div class="line">        <span class="built_in">return</span> func()</div><div class="line">    <span class="built_in">return</span> wrapper</div><div class="line"></div><div class="line">@bar</div><div class="line">def foo():</div><div class="line">    <span class="built_in">print</span> <span class="string">"foo"</span></div><div class="line"></div><div class="line"><span class="built_in">print</span> foo.__name__</div><div class="line"><span class="comment">#输出: foo</span></div></pre></td></tr></table></figure>
+<h1 id="怎么使用装饰器"><a href="#怎么使用装饰器" class="headerlink" title="怎么使用装饰器?"></a>怎么使用装饰器?</h1><p>现在遇到了大问题:我们用装饰器干什么?</p>
+<p>看起来很黄很暴力,但是如果有实际用途就更好了.好了这里有1000个用途.传统的用法就是用它来为外部的库的函数(你不能修改的)做扩展,或者debug(你不想修改它,因为它是暂时的).</p>
+<p>你也可以用DRY的方法去扩展一些函数,像:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div></pre></td><td class="code"><pre><div class="line">def benchmark(func):</div><div class="line">    <span class="string">""</span><span class="string">"</span></div><div class="line">    A decorator that prints the time a function takes</div><div class="line">    to execute.</div><div class="line">    "<span class="string">""</span></div><div class="line">    import time</div><div class="line">    def wrapper(*args, **kwargs):</div><div class="line">        t = time.clock()</div><div class="line">        res = func(*args, **kwargs)</div><div class="line">        <span class="built_in">print</span> func.__name__, time.clock()-t</div><div class="line">        <span class="built_in">return</span> res</div><div class="line">    <span class="built_in">return</span> wrapper</div><div class="line"></div><div class="line"></div><div class="line">def logging(func):</div><div class="line">    <span class="string">""</span><span class="string">"</span></div><div class="line">    A decorator that logs the activity of the script.</div><div class="line">    (it actually just prints it, but it could be logging!)</div><div class="line">    "<span class="string">""</span></div><div class="line">    def wrapper(*args, **kwargs):</div><div class="line">        res = func(*args, **kwargs)</div><div class="line">        <span class="built_in">print</span> func.__name__, args, kwargs</div><div class="line">        <span class="built_in">return</span> res</div><div class="line">    <span class="built_in">return</span> wrapper</div><div class="line"></div><div class="line"></div><div class="line">def counter(func):</div><div class="line">    <span class="string">""</span><span class="string">"</span></div><div class="line">    A decorator that counts and prints the number of times a function has been executed</div><div class="line">    "<span class="string">""</span></div><div class="line">    def wrapper(*args, **kwargs):</div><div class="line">        wrapper.count = wrapper.count + 1</div><div class="line">        res = func(*args, **kwargs)</div><div class="line">        <span class="built_in">print</span> <span class="string">"&#123;0&#125; has been used: &#123;1&#125;x"</span>.format(func.__name__, wrapper.count)</div><div class="line">        <span class="built_in">return</span> res</div><div class="line">    wrapper.count = 0</div><div class="line">    <span class="built_in">return</span> wrapper</div><div class="line"></div><div class="line">@counter</div><div class="line">@benchmark</div><div class="line">@logging</div><div class="line">def reverse_string(string):</div><div class="line">    <span class="built_in">return</span> str(reversed(string))</div><div class="line"></div><div class="line"><span class="built_in">print</span> reverse_string(<span class="string">"Able was I ere I saw Elba"</span>)</div><div class="line"><span class="built_in">print</span> reverse_string(<span class="string">"A man, a plan, a canoe, pasta, heros, rajahs, a coloratura, maps, snipe, percale, macaroni, a gag, a banana bag, a tan, a tag, a banana bag again (or a camel), a crepe, pins, Spam, a rut, a Rolo, cash, a jar, sore hats, a peon, a canal: Panama!"</span>)</div><div class="line"></div><div class="line"><span class="comment">#输出:</span></div><div class="line"><span class="comment">#reverse_string ('Able was I ere I saw Elba',) &#123;&#125;</span></div><div class="line"><span class="comment">#wrapper 0.0</span></div><div class="line"><span class="comment">#wrapper has been used: 1x</span></div><div class="line"><span class="comment">#ablE was I ere I saw elbA</span></div><div class="line"><span class="comment">#reverse_string ('A man, a plan, a canoe, pasta, heros, rajahs, a coloratura, maps, snipe, percale, macaroni, a gag, a banana bag, a tan, a tag, a banana bag again (or a camel), a crepe, pins, Spam, a rut, a Rolo, cash, a jar, sore hats, a peon, a canal: Panama!',) &#123;&#125;</span></div><div class="line"><span class="comment">#wrapper 0.0</span></div><div class="line"><span class="comment">#wrapper has been used: 2x</span></div><div class="line"><span class="comment">#!amanaP :lanac a ,noep a ,stah eros ,raj a ,hsac ,oloR a ,tur a ,mapS ,snip ,eperc a ,)lemac a ro( niaga gab ananab a ,gat a ,nat a ,gab ananab a ,gag a ,inoracam ,elacrep ,epins ,spam ,arutaroloc a ,shajar ,soreh ,atsap ,eonac a ,nalp a ,nam A</span></div></pre></td></tr></table></figure>
+<p>当然,装饰器的好处就是你可以用它们来做任何事而不用重写,DRY:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">@counter</div><div class="line">@benchmark</div><div class="line">@logging</div><div class="line">def get_random_futurama_quote():</div><div class="line">    from urllib import urlopen</div><div class="line">    result = urlopen(<span class="string">"http://subfusion.net/cgi-bin/quote.pl?quote=futurama"</span>).read()</div><div class="line">    try:</div><div class="line">        value = result.split(<span class="string">"&lt;br&gt;&lt;b&gt;&lt;hr&gt;&lt;br&gt;"</span>)[1].split(<span class="string">"&lt;br&gt;&lt;br&gt;&lt;hr&gt;"</span>)[0]</div><div class="line">        <span class="built_in">return</span> value.strip()</div><div class="line">    except:</div><div class="line">        <span class="built_in">return</span> <span class="string">"No, I'm ... doesn't!"</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="built_in">print</span> get_random_futurama_quote()</div><div class="line"><span class="built_in">print</span> get_random_futurama_quote()</div><div class="line"></div><div class="line"><span class="comment">#输出:</span></div><div class="line"><span class="comment">#get_random_futurama_quote () &#123;&#125;</span></div><div class="line"><span class="comment">#wrapper 0.02</span></div><div class="line"><span class="comment">#wrapper has been used: 1x</span></div><div class="line"><span class="comment">#The laws of science be a harsh mistress.</span></div><div class="line"><span class="comment">#get_random_futurama_quote () &#123;&#125;</span></div><div class="line"><span class="comment">#wrapper 0.01</span></div><div class="line"><span class="comment">#wrapper has been used: 2x</span></div><div class="line"><span class="comment">#Curse you, merciful Poseidon!</span></div></pre></td></tr></table></figure>
+<h1 id="Python-内置装饰器"><a href="#Python-内置装饰器" class="headerlink" title="Python 内置装饰器"></a>Python 内置装饰器</h1><p>在Python中有三个内置的装饰器，都是跟class相关的：staticmethod、classmethod 和property。</p>
+<ul>
+<li>staticmethod 是类静态方法，其跟成员方法的区别是没有 self 参数，并且可以在类不进行实例化的情况下调用</li>
+<li>classmethod 与成员方法的区别在于所接收的第一个参数不是 self （类实例的指针），而是cls（当前类的具体类型）</li>
+<li>property 是属性的意思，表示可以通过通过类实例直接访问的信息</li>
+</ul>
+<p>对于staticmethod和classmethod这里就不介绍了，通过一个例子看看property。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">class Foo(object):</div><div class="line">    def __init_(self,var):</div><div class="line">        super(Foo,self).__init__()</div><div class="line">        self.__var = var</div><div class="line"></div><div class="line">    @property</div><div class="line">    def var(self):</div><div class="line">        <span class="built_in">return</span> self.__var</div><div class="line"></div><div class="line">    @var.setter</div><div class="line">    def var(self,var):</div><div class="line">        self.__var=var</div><div class="line"></div><div class="line">foo =Foo(<span class="string">'var 1'</span>)</div><div class="line"><span class="built_in">print</span> foo.var</div><div class="line">foo.var=<span class="string">'var 2'</span></div><div class="line"><span class="built_in">print</span> foo.var</div><div class="line"></div><div class="line">注意，对于Python新式类（new-style class），如果将上面的 “@var.setter” 装饰器所装饰的成员函数去掉，则Foo.var 属性为只读属性，使用 “foo.var = ‘var 2′” 进行赋值时会抛出异常。但是，对于Python classic class，所声明的属性不是 <span class="built_in">read</span>-only的，所以即使去掉”@var.setter”装饰器也不会报错。</div></pre></td></tr></table></figure>
+<h1 id="框架使用"><a href="#框架使用" class="headerlink" title="框架使用"></a>框架使用</h1><ul>
+<li>Django用装饰器管理缓存和试图的权限.</li>
+<li>Twisted用来修改异步函数的调用.</li>
+</ul>
+]]></content>
+      
+        <categories>
+            
+            <category> python </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> python </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Python MRO C3]]></title>
+      <url>/2017/06/14/py-mro-c3/</url>
+      <content type="html"><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p><a href="http://www.cnblogs.com/i2u9/archive/2013/03/19/pythonmroc3.html" target="_blank" rel="external">转自 Python MRO C3</a></p>
+]]></content>
+      
+        <categories>
+            
+            <category> python </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> python </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[python 的super用法]]></title>
+      <url>/2017/06/13/py-super/</url>
+      <content type="html"><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p><a href="https://segmentfault.com/a/1190000007426467#articleHeader5" target="_blank" rel="external">转自Python: 你不知道的 super</a></p>
+<ul>
+<li>super一般用来调用父类的方法 </li>
+<li>其实，super 和父类没有实质性的关联</li>
+<li>解析顺序（Method Resolution Order, MRO）列表，它代表了类继承的顺序</li>
+</ul>
+<h1 id="super-的入门使用"><a href="#super-的入门使用" class="headerlink" title="super()的入门使用"></a>super()的入门使用</h1><p>在类的继承中，如果重定义某个方法，该方法会覆盖父类的同类的同名方法，但有时，我们希望能同时实现父类的功能，这时我们就需要调用父类的方法了，可通过<code>super</code>来实现，比如：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">class Animal(object):</div><div class="line">    def __init__(self, name):</div><div class="line">        self.name = name</div><div class="line">    def greet(self):</div><div class="line">        <span class="built_in">print</span> <span class="string">'Hello, I am %s.'</span> % self.name</div><div class="line"></div><div class="line">class Dog(Animal):</div><div class="line">    def greet(self):</div><div class="line">        super(Dog, self).greet()   <span class="comment"># Python3 可使用 super().greet()</span></div><div class="line">        <span class="built_in">print</span> <span class="string">'WangWang...'</span></div></pre></td></tr></table></figure>
+<p>在上面，Animal 是父类，Dog 是子类，我们在 Dog 类重定义了 <code>greet</code> 方法，为了能同时实现父类的功能，我们又调用了父类的方法，看下面的使用：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; dog = Dog(<span class="string">'dog'</span>)</div><div class="line">&gt;&gt;&gt; dog.greet()</div><div class="line">Hello, I am dog.</div><div class="line">WangWang..</div></pre></td></tr></table></figure>
+<p><code>super</code> 的一个最常见用法可以说是在子类中调用父类的初始化方法了，比如：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">class Base(object):</div><div class="line">    def __init__(self, a, b):</div><div class="line">        self.a = a</div><div class="line">        self.b = b</div><div class="line"></div><div class="line">class A(Base):</div><div class="line">    def __init__(self, a, b, c):</div><div class="line">        super(A, self).__init__(a, b)  <span class="comment"># Python3 可使用 super().__init__(a, b)</span></div><div class="line">        self.c = c</div></pre></td></tr></table></figure></p>
+<h1 id="深入-super"><a href="#深入-super" class="headerlink" title="深入 super()"></a>深入 super()</h1><p>看了上面的使用，你可能会觉得 <code>super</code> 的使用很简单，无非就是获取了父类，并调用父类的方法。其实，在上面的情况下，super 获得的类刚好是父类，但在其他情况就不一定了，<strong>super 其实和父类没有实质性的关联</strong>。</p>
+<p>让我们看一个稍微复杂的例子，涉及到多重继承，代码如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">class Base(object):</div><div class="line">    def __init__(self):</div><div class="line">        <span class="built_in">print</span> <span class="string">"enter Base"</span></div><div class="line">        <span class="built_in">print</span> <span class="string">"leave Base"</span></div><div class="line"></div><div class="line">class A(Base):</div><div class="line">    def __init__(self):</div><div class="line">        <span class="built_in">print</span> <span class="string">"enter A"</span></div><div class="line">        super(A, self).__init__()</div><div class="line">        <span class="built_in">print</span> <span class="string">"leave A"</span></div><div class="line"></div><div class="line">class B(Base):</div><div class="line">    def __init__(self):</div><div class="line">        <span class="built_in">print</span> <span class="string">"enter B"</span></div><div class="line">        super(B, self).__init__()</div><div class="line">        <span class="built_in">print</span> <span class="string">"leave B"</span></div><div class="line"></div><div class="line">class C(A, B):</div><div class="line">    def __init__(self):</div><div class="line">        <span class="built_in">print</span> <span class="string">"enter C"</span></div><div class="line">        super(C, self).__init__()</div><div class="line">        <span class="built_in">print</span> <span class="string">"leave C"</span></div></pre></td></tr></table></figure>
+<p>其中，Base 是父类，A, B 继承自 Base, C 继承自 A, B，它们的继承关系如下：</p>
+<p><img src="http://yuml.me/diagram/scruffy/class/[note: mor{bg:cornsilk}],
+[base]-[A], [base]-[B], [A]-[C],[B]-[C]"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; c = C()</div><div class="line">enter C</div><div class="line">enter A</div><div class="line">enter B</div><div class="line">enter Base</div><div class="line">leave Base</div><div class="line">leave B</div><div class="line">leave A</div><div class="line">leave C</div></pre></td></tr></table></figure>
+<p>如果你认为 super 代表『调用父类的方法』，那你很可能会疑惑为什么 enter A 的下一句不是 enter Base 而是 enter B。原因是，super 和父类没有实质性的关联，现在让我们搞清 super 是怎么运作的。</p>
+<h1 id="MRO-列表"><a href="#MRO-列表" class="headerlink" title="MRO 列表"></a>MRO 列表</h1><p>事实上，对于你定义的每一个类，Python 会计算出一个方法解析顺序（Method Resolution Order, MRO）列表，它代表了类继承的顺序，我们可以使用下面的方式获得某个类的 MRO 列表：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; C.mro()   <span class="comment"># or C.__mro__ or C().__class__.mro()</span></div><div class="line">[__main__.C, __main__.A, __main__.B, __main__.Base, object]</div></pre></td></tr></table></figure>
+<p>那这个 MRO 列表的顺序是怎么定的呢，它是通过一个 C3 线性化算法来实现的，这里我们就不去深究这个算法了，感兴趣的读者可以自己去了解一下，总的来说，一个类的 MRO 列表就是合并所有父类的 MRO 列表，并遵循以下三条原则：</p>
+<ul>
+<li>子类永远在父类前面</li>
+<li>如果有多个父类，会根据它们在列表中的顺序被检查</li>
+<li>如果对下一个类存在两个合法的选择，选择第一个父类</li>
+</ul>
+<h1 id="super-原理"><a href="#super-原理" class="headerlink" title="super 原理"></a>super 原理</h1><p>super 的工作原理如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">def super(cls, inst):</div><div class="line">    mro = inst.__class__.mro()</div><div class="line">    <span class="built_in">return</span> mro[mro.index(cls) + 1]</div></pre></td></tr></table></figure>
+<p>其中，cls 代表类，inst 代表实例，上面的代码做了两件事：</p>
+<ul>
+<li>获取 inst 的 MRO 列表</li>
+<li>查找 cls 在当前 MRO 列表中的 index, 并返回它的下一个类，即 mro[index + 1]</li>
+</ul>
+<p>当你使用 super(cls, inst) 时，Python 会在 inst 的 MRO 列表上搜索 cls 的下一个类。<br>现在，让我们回到前面的例子。</p>
+<p>首先看类 C 的 __init__ 方法：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">super(C, self).__init__()</div></pre></td></tr></table></figure>
+<p>这里的 self 是当前 C 的实例，self.__class__.mro() 结果是：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[__main__.C, __main__.A, __main__.B, __main__.Base, object]</div></pre></td></tr></table></figure>
+<p>可以看到，C 的下一个类是 A，于是，跳到了 A 的 __init__ ，这时会打印出 enter A，并执行下面一行代码：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">super(A, self).__init__()</div></pre></td></tr></table></figure>
+<p>注意，这里的 self 也是当前 C 的实例，MRO 列表跟上面是一样的，搜索 A 在 MRO 中的下一个类，发现是 B，于是，跳到了 B 的 __init__，这时会打印出 enter B，而不是 enter Base。</p>
+<p>整个过程还是比较清晰的，关键是要理解 super 的工作方式，而不是想当然地认为 super 调用了父类的方法。</p>
+<h1 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h1><ul>
+<li>事实上，super 和父类没有实质性的关联。</li>
+<li>super(cls, inst) 获得的是 cls 在 inst 的 MRO 列表中的下一个类。</li>
+</ul>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
+<li><a href="http://python3-cookbook.readthedocs.io/zh_CN/latest/c08/p07_calling_method_on_parent_class.html" target="_blank" rel="external">调用父类方法 — python3-cookbook 2.0.0 文档</a></li>
+<li><a href="https://laike9m.com/blog/li-jie-python-super,70/" target="_blank" rel="external">理解 Python super - laike9m’s blog</a></li>
+<li><a href="http://www.cnblogs.com/lovemo1314/archive/2011/05/03/2035005.html" target="_blank" rel="external">python super() - 漩涡鸣人 - 博客园</a></li>
+<li><a href="http://gohom.win/2016/02/23/py-super/" target="_blank" rel="external">Python:super函数 | Hom</a></li>
+<li><a href="https://rhettinger.wordpress.com/2011/05/26/super-considered-super/" target="_blank" rel="external">Python’s super() considered super! | Deep Thoughts by Raymond Hettinger</a></li>
+<li><a href="http://stackoverflow.com/questions/15896265/python-super-inheritance-and-needed-arguments/15896594#15896594" target="_blank" rel="external">Python super() inheritance and needed arguments - Stack Overflow</a></li>
+</ul>
+]]></content>
+      
+        <categories>
+            
+            <category> python </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> python </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[python 魔术方法]]></title>
+      <url>/2017/06/12/py-magic-method/</url>
+      <content type="html"><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><ol>
+<li><a href="http://pycoders-weekly-chinese.readthedocs.io/en/latest/issue6/a-guide-to-pythons-magic-methods.html" target="_blank" rel="external">转自Python 魔术方法指南</a></li>
+<li><a href="http://blog.csdn.net/koko66/article/details/42709279" target="_blank" rel="external">转自Python 魔法方法详解</a></li>
+<li><a href="https://segmentfault.com/a/1190000002985533" target="_blank" rel="external">转自python中的魔术方法__</a></li>
+</ol>
+<p>魔术方法就是给类加点<code>magic</code>，他们总是被双下划线所包围(e.g. __init__ 或者 __lt__)，他们是面向对象的 Python 的一切。所以，正确地使用这些方法是很重要的。</p>
+<h1 id="魔术方法简单描述"><a href="#魔术方法简单描述" class="headerlink" title="魔术方法简单描述"></a>魔术方法简单描述</h1><table>
+<thead>
+<tr>
+<th>魔法方法</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>基本的魔法方法</td>
+<td></td>
+</tr>
+<tr>
+<td>__new__(cls[, …])</td>
+<td>1.__new__ 是在一个对象实例化的时候所调用的第一个方法;2. 它的第一个参数是这个类，其他的参数是用来直接传递给 __init__ 方法;3. __new__ 决定是否要使用该 __init__ 方法，因为 __new__ 可以调用其他类的构造方法或者直接返回别的实例对象来作为本类的实例，如果 __new__ 没有返回实例对象，则 __init__ 不会被调用;4. __new__ 主要是用于继承一个不可变的类型比如一个 tuple 或者 string</td>
+</tr>
+<tr>
+<td>__init__(self[, …])</td>
+<td>构造器，当一个实例被创建的时候调用的初始化方法</td>
+</tr>
+<tr>
+<td>__del__(self)</td>
+<td>析构器，当一个实例被销毁的时候调用的方法</td>
+</tr>
+<tr>
+<td>__call__(self[, args…])</td>
+<td>允许一个类的实例像函数一样被调用：x(a, b) 调用 x.__call__(a, b)</td>
+</tr>
+<tr>
+<td>__len__(self)</td>
+<td>定义当被 len() 调用时的行为</td>
+</tr>
+<tr>
+<td>__repr__(self)</td>
+<td>定义当被 repr() 调用时的行为</td>
+</tr>
+<tr>
+<td>__str__(self)</td>
+<td>定义当被 str() 调用时的行为</td>
+</tr>
+<tr>
+<td>__bytes__(self)</td>
+<td>定义当被 bytes() 调用时的行为</td>
+</tr>
+<tr>
+<td>__hash__(self)</td>
+<td>定义当被 hash() 调用时的行为</td>
+</tr>
+<tr>
+<td>__bool__(self)</td>
+<td>定义当被 bool() 调用时的行为，应该返回 True 或 False</td>
+</tr>
+<tr>
+<td>__format__(self, format_spec)</td>
+<td>定义当被 format() 调用时的行为</td>
+</tr>
+<tr>
+<td></td>
+<td>有关属性</td>
+</tr>
+<tr>
+<td>__getattr__(self, name)</td>
+<td>定义当用户试图获取一个不存在的属性时的行为</td>
+</tr>
+<tr>
+<td>__getattribute__(self, name)</td>
+<td>定义当该类的属性被访问时的行为</td>
+</tr>
+<tr>
+<td>__setattr__(self, name, value)</td>
+<td>定义当一个属性被设置时的行为</td>
+</tr>
+<tr>
+<td>__delattr__(self, name)</td>
+<td>定义当一个属性被删除时的行为</td>
+</tr>
+<tr>
+<td>__dir__(self)</td>
+<td>定义当 dir() 被调用时的行为</td>
+</tr>
+<tr>
+<td>__get__(self, instance, owner)</td>
+<td>定义当描述符的值被取得时的行为</td>
+</tr>
+<tr>
+<td>__set__(self, instance, value)</td>
+<td>定义当描述符的值被改变时的行为</td>
+</tr>
+<tr>
+<td>__delete__(self, instance)</td>
+<td>定义当描述符的值被删除时的行为</td>
+</tr>
+<tr>
+<td></td>
+<td>比较操作符</td>
+</tr>
+<tr>
+<td>__lt__(self, other)</td>
+<td>定义小于号的行为：x &lt; y 调用 x.__lt__(y)</td>
+</tr>
+<tr>
+<td>__le__(self, other)</td>
+<td>定义小于等于号的行为：x &lt;= y 调用 x.__le__(y)</td>
+</tr>
+<tr>
+<td>__eq__(self, other)</td>
+<td>定义等于号的行为：x == y 调用 x.__eq__(y)</td>
+</tr>
+<tr>
+<td>__ne__(self, other)</td>
+<td>定义不等号的行为：x != y 调用 x.__ne__(y)</td>
+</tr>
+<tr>
+<td>__gt__(self, other)</td>
+<td>定义大于号的行为：x &gt; y 调用 x.__gt__(y)</td>
+</tr>
+<tr>
+<td>__ge__(self, other)</td>
+<td>定义大于等于号的行为：x &gt;= y 调用 x.__ge__(y)</td>
+</tr>
+<tr>
+<td></td>
+<td>算数运算符</td>
+</tr>
+<tr>
+<td>__add__(self, other)</td>
+<td>定义加法的行为：+</td>
+</tr>
+<tr>
+<td>__sub__(self, other)</td>
+<td>定义减法的行为：-</td>
+</tr>
+<tr>
+<td>__mul__(self, other)</td>
+<td>定义乘法的行为：*</td>
+</tr>
+<tr>
+<td>__truediv__(self, other)</td>
+<td>定义真除法的行为：/</td>
+</tr>
+<tr>
+<td>__floordiv__(self, other)</td>
+<td>定义整数除法的行为：//</td>
+</tr>
+<tr>
+<td>__mod__(self, other)</td>
+<td>定义取模算法的行为：%</td>
+</tr>
+<tr>
+<td>__divmod__(self, other)</td>
+<td>定义当被 divmod() 调用时的行为</td>
+</tr>
+<tr>
+<td>__pow__(self, other[, modulo])</td>
+<td>定义当被 power() 调用或 ** 运算时的行为</td>
+</tr>
+<tr>
+<td>__lshift__(self, other)</td>
+<td>定义按位左移位的行为：&lt;&lt;</td>
+</tr>
+<tr>
+<td>__rshift__(self, other)</td>
+<td>定义按位右移位的行为：&gt;&gt;</td>
+</tr>
+<tr>
+<td>__and__(self, other)</td>
+<td>定义按位与操作的行为：&amp;</td>
+</tr>
+<tr>
+<td>__xor__(self, other)</td>
+<td>定义按位异或操作的行为：^</td>
+</tr>
+<tr>
+<td>__or__(self, other)</td>
+<td>定义按位或操作的行为：</td>
+</tr>
+<tr>
+<td></td>
+<td>反运算</td>
+</tr>
+<tr>
+<td>__radd__(self, other)</td>
+<td>（与上方相同，当左操作数不支持相应的操作时被调用）</td>
+</tr>
+<tr>
+<td>__rsub__(self, other)</td>
+<td>（与上方相同，当左操作数不支持相应的操作时被调用）</td>
+</tr>
+<tr>
+<td>__rmul__(self, other)</td>
+<td>（与上方相同，当左操作数不支持相应的操作时被调用）</td>
+</tr>
+<tr>
+<td>__rtruediv__(self, other)</td>
+<td>（与上方相同，当左操作数不支持相应的操作时被调用）</td>
+</tr>
+<tr>
+<td>__rfloordiv__(self, other)</td>
+<td>（与上方相同，当左操作数不支持相应的操作时被调用）</td>
+</tr>
+<tr>
+<td>__rmod__(self, other)</td>
+<td>（与上方相同，当左操作数不支持相应的操作时被调用）</td>
+</tr>
+<tr>
+<td>__rdivmod__(self, other)</td>
+<td>（与上方相同，当左操作数不支持相应的操作时被调用）</td>
+</tr>
+<tr>
+<td>__rpow__(self, other)</td>
+<td>（与上方相同，当左操作数不支持相应的操作时被调用）</td>
+</tr>
+<tr>
+<td>__rlshift__(self, other)</td>
+<td>（与上方相同，当左操作数不支持相应的操作时被调用）</td>
+</tr>
+<tr>
+<td>__rrshift__(self, other)</td>
+<td>（与上方相同，当左操作数不支持相应的操作时被调用）</td>
+</tr>
+<tr>
+<td>__rxor__(self, other)</td>
+<td>（与上方相同，当左操作数不支持相应的操作时被调用）</td>
+</tr>
+<tr>
+<td>__ror__(self, other)</td>
+<td>（与上方相同，当左操作数不支持相应的操作时被调用）</td>
+</tr>
+<tr>
+<td></td>
+<td>增量赋值运算</td>
+</tr>
+<tr>
+<td>__iadd__(self, other)</td>
+<td>定义赋值加法的行为：+=</td>
+</tr>
+<tr>
+<td>__isub__(self, other)</td>
+<td>定义赋值减法的行为：-=</td>
+</tr>
+<tr>
+<td>__imul__(self, other)</td>
+<td>定义赋值乘法的行为：*=</td>
+</tr>
+<tr>
+<td>__itruediv__(self, other)</td>
+<td>定义赋值真除法的行为：/=</td>
+</tr>
+<tr>
+<td>__ifloordiv__(self, other)</td>
+<td>定义赋值整数除法的行为：//=</td>
+</tr>
+<tr>
+<td>__imod__(self, other)</td>
+<td>定义赋值取模算法的行为：%=</td>
+</tr>
+<tr>
+<td>__ipow__(self, other[, modulo])</td>
+<td>定义赋值幂运算的行为：**=</td>
+</tr>
+<tr>
+<td>__ilshift__(self, other)</td>
+<td>定义赋值按位左移位的行为：&lt;&lt;=</td>
+</tr>
+<tr>
+<td>__irshift__(self, other)</td>
+<td>定义赋值按位右移位的行为：&gt;&gt;=</td>
+</tr>
+<tr>
+<td>__iand__(self, other)</td>
+<td>定义赋值按位与操作的行为：&amp;=</td>
+</tr>
+<tr>
+<td>__ixor__(self, other)</td>
+<td>定义赋值按位异或操作的行为：^=</td>
+</tr>
+<tr>
+<td>__ior__(self, other)</td>
+<td>定义赋值按位或操作的行为：&#124;=</td>
+</tr>
+<tr>
+<td></td>
+<td>一元操作符</td>
+</tr>
+<tr>
+<td>__neg__(self)</td>
+<td>定义正号的行为：+x</td>
+</tr>
+<tr>
+<td>__pos__(self)</td>
+<td>定义负号的行为：-x</td>
+</tr>
+<tr>
+<td>__abs__(self)</td>
+<td>定义当被 abs() 调用时的行为</td>
+</tr>
+<tr>
+<td>__invert__(self)</td>
+<td>定义按位求反的行为：~x</td>
+</tr>
+<tr>
+<td></td>
+<td>类型转换</td>
+</tr>
+<tr>
+<td>__complex__(self)</td>
+<td>定义当被 complex() 调用时的行为（需要返回恰当的值）</td>
+</tr>
+<tr>
+<td>__int__(self)</td>
+<td>定义当被 int() 调用时的行为（需要返回恰当的值）</td>
+</tr>
+<tr>
+<td>__float__(self)</td>
+<td>定义当被 float() 调用时的行为（需要返回恰当的值）</td>
+</tr>
+<tr>
+<td>__round__(self[, n])</td>
+<td>定义当被 round() 调用时的行为（需要返回恰当的值）</td>
+</tr>
+<tr>
+<td>__index__(self)</td>
+<td>1. 当对象是被应用在切片表达式中时，实现整形强制转换;2. 如果你定义了一个可能在切片时用到的定制的数值型,你应该定义 __index__;3. 如果 __index__ 被定义，则 __int__ 也需要被定义，且返回相同的值</td>
+</tr>
+<tr>
+<td></td>
+<td>上下文管理（with 语句）</td>
+</tr>
+<tr>
+<td>__enter__(self)</td>
+<td>1. 定义当使用 with 语句时的初始化行为;2. __enter__ 的返回值被 with 语句的目标或者 as 后的名字绑定</td>
+</tr>
+<tr>
+<td>__exit__(self, exc_type, exc_value, traceback)</td>
+<td>1. 定义当一个代码块被执行或者终止后上下文管理器应该做什么;2. 一般被用来处理异常，清除工作或者做一些代码块执行完毕之后的日常工作</td>
+</tr>
+<tr>
+<td></td>
+<td>容器类型</td>
+</tr>
+<tr>
+<td>__len__(self)</td>
+<td>定义当被 len() 调用时的行为（返回容器中元素的个数</td>
+</tr>
+<tr>
+<td>__getitem__(self, key)</td>
+<td>定义获取容器中指定元素的行为，相当于 self[key]</td>
+</tr>
+<tr>
+<td>__setitem__(self, key, value)</td>
+<td>定义设置容器中指定元素的行为，相当于 self[key] = value</td>
+</tr>
+<tr>
+<td>__delitem__(self, key)</td>
+<td>定义删除容器中指定元素的行为，相当于 del self[key]</td>
+</tr>
+<tr>
+<td>__iter__(self)</td>
+<td>定义当迭代容器中的元素的行为</td>
+</tr>
+<tr>
+<td>__reversed__(self)</td>
+<td>定义当被 reversed() 调用时的行为</td>
+</tr>
+<tr>
+<td>__contains__(self, item)</td>
+<td>定义当使用成员测试运算符（in 或 not in）时的行为</td>
+</tr>
+</tbody>
+</table>
+<h1 id="构造和初始化"><a href="#构造和初始化" class="headerlink" title="构造和初始化"></a>构造和初始化</h1><p>每个人都知道一个最基本的魔术方法， __init__ 。通过此方法我们可以定义一个对象的初始操作。然而，当我调用 x = SomeClass() 的时候， __init__ 并不是第一个被调用的方法。实际上，还有一个叫做 __new__ 的方法，来构造这个实例。然后给在开始创建时候的初始化函数来传递参数。在对象生命周期的另一端，也有一个 __del__ 方法。我们现在来近距离的看一看这三个方法:</p>
+<p>__new__(cls, […) 是在一个对象实例化的时候所调用的第一个方法。它的第一个参数是这个类，其他的参数是用来直接传递给 __init__ 方法。 __new__ 方法相当不常用,但是它有自己的特性，特别是当继承一个不可变的类型比如一个tuple或者string。我不希望在 __new__ 上有太多细节，因为并不是很有用处，但是在 Python文档 中有详细的阐述。</p>
+<p>__init__(self, […) 此方法为类的初始化方法。当构造函数被调用的时候的任何参数都将会传给它。(比如如果我们调用 x = SomeClass(10, ‘foo’))，那么 __init__ 将会得到两个参数10和foo。 __init__ 在Python的类定义中被广泛用到。</p>
+<p>__del__(self) 如果 __new__ 和 __init__ 是对象的构造器的话，那么 __del__ 就是析构器。它不实现语句 del x (以上代码将不会翻译为 x.__del__() )。它定义的是当一个对象进行垃圾回收时候的行为。当一个对象在删除的时需要更多的清洁工作的时候此方法会很有用，比如套接字对象或者是文件对象。注意，如果解释器退出的时候对象还存存在，就不能保证 __del__ 能够被执行，所以 __del__ can’t serve as a replacement for good coding practices ()<del>~</del>~~</p>
+]]></content>
+      
+        <categories>
+            
+            <category> python </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> python </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[python 类变量、对象变量讲解]]></title>
       <url>/2017/06/10/py-obj-val-class-val/</url>
-      <content type="html"><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>类变量，对象变量，</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">class Person:</div><div class="line">    name=<span class="string">"aaa"</span></div><div class="line"> </div><div class="line">p1=Person()</div><div class="line">p2=Person()</div><div class="line">p1.name=<span class="string">"bbb"</span></div><div class="line"><span class="built_in">print</span> p1.name  <span class="comment"># bbb</span></div><div class="line"><span class="built_in">print</span> p2.name  <span class="comment"># aaa</span></div><div class="line"><span class="built_in">print</span> Person.name  <span class="comment"># aaa</span></div></pre></td></tr></table></figure>
-<p>类变量就是供类使用的变量,实例变量就是供实例使用的.</p>
-<p>这里p1.name=”bbb”是实例调用了类变量,这其实和上面第一个问题一样,就是函数传参的问题,p1.name一开始是指向的类变量name=”aaa”,但是在实例的作用域里把类变量的引用改变了,就变成了一个实例变量,self.name不再引用Person的类变量name了.</p>
-<p>其实有点类似这样流程<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">p1.name=Person.name</div><div class="line">p2.name=Person.name</div><div class="line">p1.name=<span class="string">"bbb"</span></div></pre></td></tr></table></figure></p>
-<p>如果Person.name的值更改，则p2.name的值也会更改</p>
-<p>可以看看下面的例子:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">class Person:</div><div class="line">    name=[]</div><div class="line"> </div><div class="line">p1=Person()</div><div class="line">p2=Person()</div><div class="line">p1.name.append(1)</div><div class="line"><span class="built_in">print</span> p1.name  <span class="comment"># [1]</span></div><div class="line"><span class="built_in">print</span> p2.name  <span class="comment"># [1]</span></div><div class="line"><span class="built_in">print</span> Person.name  <span class="comment"># [1]</span></div></pre></td></tr></table></figure>]]></content>
+      <content type="html"><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p><a href="http://www.jb51.net/article/54286.htm" target="_blank" rel="external">转自:python的类变量和成员变量用法实例教程</a><br>类本身拥有自己的类变量（保存在内存），当一个TestClass类的对象被构造时，会将当前类变量拷贝一份给这个对象，当前类变量的值是多少，这个对象拷贝得到的类变量的值就是多少（这里其实就是引用类变量）；而且，通过对象来修改类变量，并不会影响其他对象的类变量的值，因为大家都有各自的副本，更不会影响类本身所拥有的那个类变量的值；只有类自己才能改变类本身拥有的类变量的值</p>
+<h1 id="案例例子1"><a href="#案例例子1" class="headerlink" title="案例例子1"></a>案例例子1</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#/usr/bin/python</span></div><div class="line"><span class="comment"># -*- coding: UTF-8 -*-</span></div><div class="line">class TestClass(object):</div><div class="line">    val1=100</div><div class="line">    def __init__(self):</div><div class="line">        self.val2=200</div><div class="line">    def fcn(self,val=400):</div><div class="line">        val3=300</div><div class="line">        self.val4=val</div><div class="line">        self.val5=500</div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__==<span class="string">'__main__'</span>:</div><div class="line">    inst=TestClass</div><div class="line">    <span class="built_in">print</span> <span class="string">"TestClass.val1"</span>,TestClass.val1</div><div class="line">    inst1=TestClass()</div><div class="line">    inst2=TestClass()</div><div class="line">    <span class="built_in">print</span> <span class="string">"new TestClass inst1,inst2"</span></div><div class="line">    <span class="built_in">print</span> <span class="string">"TestClass.val1"</span>,TestClass.val1</div><div class="line">    <span class="built_in">print</span> <span class="string">"inst1.val"</span>,inst1.val1</div><div class="line">    inst1.val1=1000</div><div class="line">    <span class="built_in">print</span> <span class="string">"set inst1.val1=1000"</span></div><div class="line">    <span class="built_in">print</span> <span class="string">"inst1.val1"</span>,inst1.val1</div><div class="line">    <span class="built_in">print</span> <span class="string">"TestClass.val1"</span>,TestClass.val1</div><div class="line"></div><div class="line">    TestClass.val1=2000</div><div class="line">    <span class="built_in">print</span> <span class="string">"set TestClass.val1=2000"</span></div><div class="line">    <span class="built_in">print</span> <span class="string">"inst1.val1"</span>,inst1.val1</div><div class="line">    <span class="built_in">print</span> <span class="string">"TestClass.val1"</span>,TestClass.val1    </div><div class="line">    <span class="built_in">print</span> <span class="string">"inst2.val1"</span>,inst2.val1</div><div class="line">    inst3=TestClass()</div><div class="line">    <span class="built_in">print</span> <span class="string">"inst3.val1"</span>,inst3.val1</div></pre></td></tr></table></figure>
+<h1 id="执行结果"><a href="#执行结果" class="headerlink" title="执行结果"></a>执行结果</h1><blockquote>
+<p>TestClass.val1 100<br>new TestClass inst1,inst2<br>TestClass.val1 100<br>inst1.val 100<br>set inst1.val1=1000<br>inst1.val1 1000<br>TestClass.val1 100<br>set TestClass.val1=2000<br>inst1.val1 1000<br>TestClass.val1 2000<br>inst2.val1 2000<br>inst3.val1 2000</p>
+</blockquote>
+<h1 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h1><p>类变量定义到类的直接作用域，例如<code>val1</code>;而(对象)实例变量则定义到<code>__init__</code>下面，初始化对象时对实例中的变量进行赋值，比如<code>self.val2</code>,但是注意<code>val3</code>这种就不是类变量了，同样<code>self.val4</code>和<code>self.val5</code>也不是对象变量</p>
+]]></content>
       
         <categories>
             
@@ -317,6 +925,7 @@
 <p>但是如果你像这样做的话：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">guy  = Person(name=<span class="string">'bob'</span>, age=<span class="string">'35'</span>)</div><div class="line"><span class="built_in">print</span> guy.age</div></pre></td></tr></table></figure>
 <p>这并不会返回一个IntegerField对象，而是会返回一个int，甚至可以直接从数据库中取出数据。这是有可能的，因为models.Model定义了<strong>metaclass</strong>， 并且使用了一些魔法能够将你刚刚定义的简单的Person类转变成对数据库的一个复杂hook。Django框架将这些看起来很复杂的东西通过暴露出一个简单的使用元类的API将其化简，通过这个API重新创建代码，在背后完成真正的工作。</p>
+<h1 id="使用metaclass设计ODM"><a href="#使用metaclass设计ODM" class="headerlink" title="使用metaclass设计ODM"></a>使用metaclass设计ODM</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># -*- coding: utf-8 -*-</span></div><div class="line"><span class="comment"># @Author: Administrator</span></div><div class="line"><span class="comment"># @Date:   2017-06-08 16:18:49</span></div><div class="line"><span class="comment"># @Last Modified by:   Administrator</span></div><div class="line"><span class="comment"># @Last Modified time: 2017-06-09 11:29:31</span></div><div class="line"><span class="comment"># @Version: </span></div><div class="line"><span class="comment"># @Description: </span></div><div class="line"></div><div class="line">class Field(object):</div><div class="line"></div><div class="line">	def __init__(self,name,colunm_type):</div><div class="line">		self.name=name</div><div class="line">		self.colunm_type=colunm_type</div><div class="line"></div><div class="line">	def __str__(self):</div><div class="line">		<span class="built_in">return</span> <span class="string">'&lt;%s:%s&gt;'</span> % (self.__class__.__name__,self.name)</div><div class="line"></div><div class="line"></div><div class="line">class StringField(Field):</div><div class="line">	def __init__(self,name):</div><div class="line">		super(StringField,self).__init__(name,<span class="string">'varchar(100)'</span>)</div><div class="line"></div><div class="line">class IntegerField(Field):</div><div class="line">	def __init__(self,name):</div><div class="line">		super(IntegerField,self).__init__(name,<span class="string">'bigint'</span>)</div><div class="line"></div><div class="line">class ModelMetaclass(<span class="built_in">type</span>):</div><div class="line">	def __new__(cls,name,bases,attrs):</div><div class="line">		<span class="keyword">if</span> name==<span class="string">'Model'</span>:</div><div class="line">			<span class="built_in">return</span> type.__new__(cls,name,bases,attrs)</div><div class="line">		<span class="built_in">print</span>(<span class="string">'Found model: %s'</span> % name)</div><div class="line">		mappings =dict()</div><div class="line">		<span class="keyword">for</span> k,v <span class="keyword">in</span> attrs.items():</div><div class="line">			<span class="keyword">if</span> isinstance(v,Field):</div><div class="line">				<span class="built_in">print</span>(<span class="string">'Found mapping: %s ==&gt; %s'</span> % (k,v))</div><div class="line">				mappings[k]=v</div><div class="line">        <span class="comment">#将User等属性删除 这样就没有类定义的id,name等属性</span></div><div class="line">		<span class="keyword">for</span> k <span class="keyword">in</span> mappings.keys():</div><div class="line">			attrs.pop(k)</div><div class="line">		attrs[<span class="string">'__mappings__'</span>]=mappings</div><div class="line">		attrs[<span class="string">'__table__'</span>]=name</div><div class="line">		<span class="built_in">return</span> type.__new__(cls,name,bases,attrs)</div><div class="line"></div><div class="line">class Model(dict,metaclass=ModelMetaclass):</div><div class="line">	def __init__(self,**kw):</div><div class="line">		super(Model,self).__init__(**kw)</div><div class="line"></div><div class="line">	def __getattr__(self,key):</div><div class="line">		try:</div><div class="line">			<span class="built_in">return</span> self[key]</div><div class="line">		except KeyError:</div><div class="line">			raise AttributeError(r<span class="string">"'Model' object has no attribute '%s'"</span> % key)</div><div class="line"></div><div class="line">	def __setattr__(self,key,value):</div><div class="line">		self[key]=value</div><div class="line"></div><div class="line">	def save(self):</div><div class="line">		fields=[]</div><div class="line">		params=[]</div><div class="line">		args=[]</div><div class="line">		<span class="keyword">for</span> k,v <span class="keyword">in</span> self.__mappings__.items():</div><div class="line">			fields.append(v.name)</div><div class="line">			params.append(<span class="string">'?'</span>)</div><div class="line">			args.append(getattr(self,k,None))</div><div class="line">		sql=<span class="string">'INSERT INTO %s (%s) VALUES (%s)'</span> % (self.__table__,<span class="string">','</span>.join(fields),<span class="string">','</span>.join(params))</div><div class="line">		<span class="built_in">print</span>(<span class="string">'SQL: %s'</span> % sql)</div><div class="line">		<span class="built_in">print</span>(<span class="string">'ARGS: %s'</span> % str(args))</div><div class="line"></div><div class="line">class User(Model):</div><div class="line">    <span class="comment"># 定义类的属性到列的映射：</span></div><div class="line">    id = IntegerField(<span class="string">'id'</span>)</div><div class="line">    name = StringField(<span class="string">'username'</span>)</div><div class="line">    email = StringField(<span class="string">'email'</span>)</div><div class="line">    password = StringField(<span class="string">'password'</span>)</div><div class="line"></div><div class="line"></div><div class="line">u = User(id=12345, name=<span class="string">'Michael'</span>, email=<span class="string">'test@orm.org'</span>, password=<span class="string">'my-pwd'</span>)</div><div class="line">u.save()</div><div class="line"><span class="built_in">print</span>(u.__getattr__(<span class="string">'id'</span>))</div></pre></td></tr></table></figure>
 <h1 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h1><p>首先，你知道了类其实是能够创建出类实例的对象。好吧，事实上，类本身也是实例，当然，它们是元类的实例。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt;class Foo(object): pass</div><div class="line">&gt;&gt;&gt; id(Foo)</div><div class="line">142630324</div></pre></td></tr></table></figure>
 <p>Python中的一切都是对象，它们要么是类的实例，要么是元类的实例，除了type。type实际上是它自己的元类，在纯Python环境中这可不是你能够做到的，这是通过在实现层面耍一些小手段做到的。其次，元类是很复杂的。对于非常简单的类，你可能不希望通过使用元类来对类做修改。你可以通过其他两种技术来修改类：</p>

@@ -90,17 +90,17 @@
 
 
 
-<meta name="description" content="简介类变量，对象变量， 123456789class Person:    name=&quot;aaa&quot; p1=Person()p2=Person()p1.name=&quot;bbb&quot;print p1.name  # bbbprint p2.name  # aaaprint Person.name  # aaa 类变量就是供类使用的变量,实例变量就是供实例使用的. 这里p1.name=”bbb”是实例调用了类变量">
+<meta name="description" content="简介转自:python的类变量和成员变量用法实例教程类本身拥有自己的类变量（保存在内存），当一个TestClass类的对象被构造时，会将当前类变量拷贝一份给这个对象，当前类变量的值是多少，这个对象拷贝得到的类变量的值就是多少（这里其实就是引用类变量）；而且，通过对象来修改类变量，并不会影响其他对象的类变量的值，因为大家都有各自的副本，更不会影响类本身所拥有的那个类变量的值；只有类自己才能改变类本身">
 <meta name="keywords" content="python">
 <meta property="og:type" content="article">
-<meta property="og:title" content="py-obj-val-class-val">
+<meta property="og:title" content="python 类变量、对象变量讲解">
 <meta property="og:url" content="http://yoursite.com/2017/06/10/py-obj-val-class-val/index.html">
 <meta property="og:site_name" content="运维与开发的那些事">
-<meta property="og:description" content="简介类变量，对象变量， 123456789class Person:    name=&quot;aaa&quot; p1=Person()p2=Person()p1.name=&quot;bbb&quot;print p1.name  # bbbprint p2.name  # aaaprint Person.name  # aaa 类变量就是供类使用的变量,实例变量就是供实例使用的. 这里p1.name=”bbb”是实例调用了类变量">
-<meta property="og:updated_time" content="2017-06-10T04:22:25.000Z">
+<meta property="og:description" content="简介转自:python的类变量和成员变量用法实例教程类本身拥有自己的类变量（保存在内存），当一个TestClass类的对象被构造时，会将当前类变量拷贝一份给这个对象，当前类变量的值是多少，这个对象拷贝得到的类变量的值就是多少（这里其实就是引用类变量）；而且，通过对象来修改类变量，并不会影响其他对象的类变量的值，因为大家都有各自的副本，更不会影响类本身所拥有的那个类变量的值；只有类自己才能改变类本身">
+<meta property="og:updated_time" content="2017-06-10T10:13:44.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="py-obj-val-class-val">
-<meta name="twitter:description" content="简介类变量，对象变量， 123456789class Person:    name=&quot;aaa&quot; p1=Person()p2=Person()p1.name=&quot;bbb&quot;print p1.name  # bbbprint p2.name  # aaaprint Person.name  # aaa 类变量就是供类使用的变量,实例变量就是供实例使用的. 这里p1.name=”bbb”是实例调用了类变量">
+<meta name="twitter:title" content="python 类变量、对象变量讲解">
+<meta name="twitter:description" content="简介转自:python的类变量和成员变量用法实例教程类本身拥有自己的类变量（保存在内存），当一个TestClass类的对象被构造时，会将当前类变量拷贝一份给这个对象，当前类变量的值是多少，这个对象拷贝得到的类变量的值就是多少（这里其实就是引用类变量）；而且，通过对象来修改类变量，并不会影响其他对象的类变量的值，因为大家都有各自的副本，更不会影响类本身所拥有的那个类变量的值；只有类自己才能改变类本身">
 
 
 
@@ -134,7 +134,7 @@
 
 
 
-  <title>py-obj-val-class-val | 运维与开发的那些事</title>
+  <title>python 类变量、对象变量讲解 | 运维与开发的那些事</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -335,7 +335,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">py-obj-val-class-val</h1>
+          <h1 class="post-title" itemprop="name headline">python 类变量、对象变量讲解</h1>
         
 
         <div class="post-meta">
@@ -387,7 +387,7 @@
 
           
           
-             <span id="/2017/06/10/py-obj-val-class-val/" class="leancloud_visitors" data-flag-title="py-obj-val-class-val">
+             <span id="/2017/06/10/py-obj-val-class-val/" class="leancloud_visitors" data-flag-title="python 类变量、对象变量讲解">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -415,14 +415,13 @@
       
 
       
-        <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>类变量，对象变量，</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">class Person:</div><div class="line">    name=<span class="string">"aaa"</span></div><div class="line"> </div><div class="line">p1=Person()</div><div class="line">p2=Person()</div><div class="line">p1.name=<span class="string">"bbb"</span></div><div class="line"><span class="built_in">print</span> p1.name  <span class="comment"># bbb</span></div><div class="line"><span class="built_in">print</span> p2.name  <span class="comment"># aaa</span></div><div class="line"><span class="built_in">print</span> Person.name  <span class="comment"># aaa</span></div></pre></td></tr></table></figure>
-<p>类变量就是供类使用的变量,实例变量就是供实例使用的.</p>
-<p>这里p1.name=”bbb”是实例调用了类变量,这其实和上面第一个问题一样,就是函数传参的问题,p1.name一开始是指向的类变量name=”aaa”,但是在实例的作用域里把类变量的引用改变了,就变成了一个实例变量,self.name不再引用Person的类变量name了.</p>
-<p>其实有点类似这样流程<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">p1.name=Person.name</div><div class="line">p2.name=Person.name</div><div class="line">p1.name=<span class="string">"bbb"</span></div></pre></td></tr></table></figure></p>
-<p>如果Person.name的值更改，则p2.name的值也会更改</p>
-<p>可以看看下面的例子:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">class Person:</div><div class="line">    name=[]</div><div class="line"> </div><div class="line">p1=Person()</div><div class="line">p2=Person()</div><div class="line">p1.name.append(1)</div><div class="line"><span class="built_in">print</span> p1.name  <span class="comment"># [1]</span></div><div class="line"><span class="built_in">print</span> p2.name  <span class="comment"># [1]</span></div><div class="line"><span class="built_in">print</span> Person.name  <span class="comment"># [1]</span></div></pre></td></tr></table></figure>
+        <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p><a href="http://www.jb51.net/article/54286.htm" target="_blank" rel="external">转自:python的类变量和成员变量用法实例教程</a><br>类本身拥有自己的类变量（保存在内存），当一个TestClass类的对象被构造时，会将当前类变量拷贝一份给这个对象，当前类变量的值是多少，这个对象拷贝得到的类变量的值就是多少（这里其实就是引用类变量）；而且，通过对象来修改类变量，并不会影响其他对象的类变量的值，因为大家都有各自的副本，更不会影响类本身所拥有的那个类变量的值；只有类自己才能改变类本身拥有的类变量的值</p>
+<h1 id="案例例子1"><a href="#案例例子1" class="headerlink" title="案例例子1"></a>案例例子1</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#/usr/bin/python</span></div><div class="line"><span class="comment"># -*- coding: UTF-8 -*-</span></div><div class="line">class TestClass(object):</div><div class="line">    val1=100</div><div class="line">    def __init__(self):</div><div class="line">        self.val2=200</div><div class="line">    def fcn(self,val=400):</div><div class="line">        val3=300</div><div class="line">        self.val4=val</div><div class="line">        self.val5=500</div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__==<span class="string">'__main__'</span>:</div><div class="line">    inst=TestClass</div><div class="line">    <span class="built_in">print</span> <span class="string">"TestClass.val1"</span>,TestClass.val1</div><div class="line">    inst1=TestClass()</div><div class="line">    inst2=TestClass()</div><div class="line">    <span class="built_in">print</span> <span class="string">"new TestClass inst1,inst2"</span></div><div class="line">    <span class="built_in">print</span> <span class="string">"TestClass.val1"</span>,TestClass.val1</div><div class="line">    <span class="built_in">print</span> <span class="string">"inst1.val"</span>,inst1.val1</div><div class="line">    inst1.val1=1000</div><div class="line">    <span class="built_in">print</span> <span class="string">"set inst1.val1=1000"</span></div><div class="line">    <span class="built_in">print</span> <span class="string">"inst1.val1"</span>,inst1.val1</div><div class="line">    <span class="built_in">print</span> <span class="string">"TestClass.val1"</span>,TestClass.val1</div><div class="line"></div><div class="line">    TestClass.val1=2000</div><div class="line">    <span class="built_in">print</span> <span class="string">"set TestClass.val1=2000"</span></div><div class="line">    <span class="built_in">print</span> <span class="string">"inst1.val1"</span>,inst1.val1</div><div class="line">    <span class="built_in">print</span> <span class="string">"TestClass.val1"</span>,TestClass.val1    </div><div class="line">    <span class="built_in">print</span> <span class="string">"inst2.val1"</span>,inst2.val1</div><div class="line">    inst3=TestClass()</div><div class="line">    <span class="built_in">print</span> <span class="string">"inst3.val1"</span>,inst3.val1</div></pre></td></tr></table></figure>
+<h1 id="执行结果"><a href="#执行结果" class="headerlink" title="执行结果"></a>执行结果</h1><blockquote>
+<p>TestClass.val1 100<br>new TestClass inst1,inst2<br>TestClass.val1 100<br>inst1.val 100<br>set inst1.val1=1000<br>inst1.val1 1000<br>TestClass.val1 100<br>set TestClass.val1=2000<br>inst1.val1 1000<br>TestClass.val1 2000<br>inst2.val1 2000<br>inst3.val1 2000</p>
+</blockquote>
+<h1 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h1><p>类变量定义到类的直接作用域，例如<code>val1</code>;而(对象)实例变量则定义到<code>__init__</code>下面，初始化对象时对实例中的变量进行赋值，比如<code>self.val2</code>,但是注意<code>val3</code>这种就不是类变量了，同样<code>self.val4</code>和<code>self.val5</code>也不是对象变量</p>
+
       
     </div>
 
@@ -474,8 +473,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/06/10/django1/" rel="prev" title="django入门教学">
-                django入门教学 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/06/12/py-magic-method/" rel="prev" title="python 魔术方法">
+                python 魔术方法 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -548,7 +547,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-count">24</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -605,7 +604,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#案例例子1"><span class="nav-number">2.</span> <span class="nav-text">案例例子1</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#执行结果"><span class="nav-number">3.</span> <span class="nav-text">执行结果</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#分析"><span class="nav-number">4.</span> <span class="nav-text">分析</span></a></li></ol></div>
             
 
           </div>
