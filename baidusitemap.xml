@@ -4,6 +4,94 @@
 
     
   <url>
+    <loc>http://yoursite.com/2017/06/16/grep/</loc>
+    <lastmod>2017-06-16T15:22:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>grep</title>
+        <pubTime>2017-06-16T15:20:31.000Z</pubTime>
+        
+        <tag>shell</tag>
+         
+        <tag>regex</tag>
+         
+         
+           
+             
+              <breadCrumb title="shell" url="http://yoursite.com/categories/shell/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/05/27/regex/</loc>
+    <lastmod>2017-06-16T15:17:22.000Z</lastmod>
+    <data>
+        <display>
+        <title>正则表达式</title>
+        <pubTime>2017-05-27T15:13:15.000Z</pubTime>
+        
+        <tag>code</tag>
+         
+        <tag>regex</tag>
+         
+         
+           
+             
+              <breadCrumb title="code" url="http://yoursite.com/categories/code/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/06/16/mysql-crash1/</loc>
+    <lastmod>2017-06-16T15:02:33.000Z</lastmod>
+    <data>
+        <display>
+        <title>机器crash,MySQL无法启动修复</title>
+        <pubTime>2017-06-16T14:58:26.000Z</pubTime>
+        
+        <tag>work</tag>
+         
+        <tag>MySQl</tag>
+         
+         
+           
+             
+              <breadCrumb title="MySQL" url="http://yoursite.com/categories/MySQL/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/06/16/mysql-common-recovery/</loc>
+    <lastmod>2017-06-16T14:54:51.000Z</lastmod>
+    <data>
+        <display>
+        <title>如何修复MySQL数据库</title>
+        <pubTime>2017-06-16T14:53:44.000Z</pubTime>
+        
+        <tag>MySQL</tag>
+         
+        <tag>ops</tag>
+         
+         
+           
+             
+              <breadCrumb title="MySQL" url="http://yoursite.com/categories/MySQL/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2017/06/16/mysql-myisam-recovery/</loc>
     <lastmod>2017-06-16T14:50:46.000Z</lastmod>
     <data>
@@ -235,7 +323,7 @@
     <data>
         <display>
         <title>Hello World</title>
-        <pubTime>2017-06-16T14:51:38.168Z</pubTime>
+        <pubTime>2017-06-16T15:31:30.205Z</pubTime>
         
          
            
@@ -562,7 +650,7 @@
     <data>
         <display>
         <title>django入门教学</title>
-        <pubTime>2017-06-16T14:51:38.152Z</pubTime>
+        <pubTime>2017-06-16T15:31:30.137Z</pubTime>
         
          
            

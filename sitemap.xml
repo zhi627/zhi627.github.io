@@ -2,6 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2017/06/16/grep/</loc>
+    
+    <lastmod>2017-06-16T15:22:27.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2017/05/27/regex/</loc>
+    
+    <lastmod>2017-06-16T15:17:22.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2017/06/16/mysql-crash1/</loc>
+    
+    <lastmod>2017-06-16T15:02:33.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2017/06/16/mysql-common-recovery/</loc>
+    
+    <lastmod>2017-06-16T14:54:51.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2017/06/16/mysql-myisam-recovery/</loc>
     
     <lastmod>2017-06-16T14:50:46.000Z</lastmod>

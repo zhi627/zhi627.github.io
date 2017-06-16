@@ -39,6 +39,118 @@
     </entry>
     
     <entry>
+      <title><![CDATA[grep]]></title>
+      <url>/2017/06/16/grep/</url>
+      <content type="html"><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>grep是一种强大的文本搜索工具，它能使用特定模式匹配（包括正则表达式）搜索文本，并默认输出匹配行。Unix的grep家族包括grep、egrep和fgrep。Windows系统下类似命令FINDSTR。egrep和fgrep的命令只跟grep有很小不同。egrep和fgrep都是grep的扩展，支持更多的re元字符，fgrep就是fixed grep或fast grep，它们把所有的字母都看作单词，也就是说，正则表达式中的元字符表示回其自身的字面意义，不再特殊。linux使用GNU版本的grep。它功能更强，可以通过-G、-E、-F命令行选项来使用egrep和fgrep的功能。<br>egrep = grep -E.<br>fgrep = grep -F.</p>
+<h1 id="grep-结合正则"><a href="#grep-结合正则" class="headerlink" title="grep 结合正则"></a>grep 结合正则</h1><p>grep默认匹配到的就会输出整行文本。</p>
+<a id="more"></a>
+<h1 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h1>]]></content>
+      
+        <categories>
+            
+            <category> shell </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> shell </tag>
+            
+            <tag> regex </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[机器crash,MySQL无法启动修复]]></title>
+      <url>/2017/06/16/mysql-crash1/</url>
+      <content type="html"><![CDATA[<p>一次，周末早起。看到手机微信居然有zabbix平台的报警。一台P2P服务器好像发送不了监控数据到server。这情况应该是服务器挂了，于是进去web界面，详细查看下，并检查确认故障情况是否真实。检查完，确认服务器是真的挂了，而不是因为网络问题(因为服务器在国外，存在网络不通畅的情况)。于是，将情况汇报到上级领导。过了段时间，估计机房重启了服务器，但是发现MySQL的服务并没有正确跑起来，翻看日志文件，以及错误提示，数据库没有设置binlog，通过设置my.cnf文件中recovery 相关的配置项，重启数据库并且导出出错的表的数据，先转移旧的数据，然后设置回原来的配置项，再重启数据库，导入recovery出来的sql文件。观察一段时间的运行状态，若确保没问题删除旧数据文件或者转移到另外的备份机上。</p>
+<p><strong>处理方法: <a href="https://zhi627.github.io/2017/06/16/mysql-innodb-recovery/" target="_blank" rel="external">mysql 无法重启 利用 innodb_force_recovery 修复表</a></strong></p>
+]]></content>
+      
+        <categories>
+            
+            <category> MySQL </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> work </tag>
+            
+            <tag> MySQl </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[如何修复MySQL数据库]]></title>
+      <url>/2017/06/16/mysql-common-recovery/</url>
+      <content type="html"><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p><a href="http://www.cnblogs.com/stevendes1/p/5679586.html" target="_blank" rel="external">转自 如何修复MySQL数据库(MyISAM / InnoDB)</a></p>
+<p>本文总结了7种修复MySQL数据库的方法，当我们重启数据库无法解决问题或者有数据表损坏时，可以尝试从下面列出的方法中找出相应的解决方案。</p>
+<p>重启MySQL:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">/usr/<span class="built_in">local</span>/mysql/bin/mysqladmin -uUSERNAME -pPASSWORD shutdown </div><div class="line">/usr/<span class="built_in">local</span>/mysql/bin/mysqld_safe &amp;</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<h1 id="MyISAM表损坏"><a href="#MyISAM表损坏" class="headerlink" title="MyISAM表损坏"></a>MyISAM表损坏</h1><p>MySQL数据库可以为不同的数据表指定不同的存储引擎，其中最流行的两种存储引擎是MyISAM和InnoDB。<br>MyISAM类型的表容易损坏，这是个不争的事实。幸运的是，在大多数情况下，MyISAM表损坏是很容易修复。<br>要修复单个损坏的数据表，可以连接数据库执行 ：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">repair TABLENAME</div></pre></td></tr></table></figure>
+<p>要修复所有的表，执行如下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/usr/<span class="built_in">local</span>/mysql/bin/mysqlcheck --all-databases -uUSERNAME -pPASSWORD -r</div></pre></td></tr></table></figure>
+<p>自动检查并修复数据库xxxdatabase的所有表:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mysqlcheck --auto-repiar xxxdatabase -uroot -p</div></pre></td></tr></table></figure>
+<p>很多时候，我们不会知道MyISAM表已经损坏了，除非查看了日志文件。<br>我强烈建议您将此行添加到你的/etc/my.cnf配置文件中， 它会自动修复损坏的MyISAM表。 </p>
+<blockquote>
+<p>[mysqld]<br>myisam-recover=backup,force </p>
+</blockquote>
+<h1 id="多实例MySQL"><a href="#多实例MySQL" class="headerlink" title="多实例MySQL"></a>多实例MySQL</h1><p>这种情况很常见，当你启动MySQL时，MySQL进程马上死掉。这时若查看MySQL日志，会发现这是因为有另一个MySQL进程正在运行。<br>停止所有的MySQL实例 </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">/usr/<span class="built_in">local</span>/mysql/bin/mysqladmin -uUSERNAME -pPASSWORD shutdown </div><div class="line">killall mysql </div><div class="line">killall mysqld </div><div class="line">``` </div><div class="line"></div><div class="line">再启动MySQL后就只有一个MySQL实例运行了。</div><div class="line"></div><div class="line">3. 修改MySQL日志设置</div><div class="line"></div><div class="line">一旦我们在运行一个InnoDB的数据库，我们就不能修改/etc/my.cnf文件中的以下几行：</div><div class="line"> </div><div class="line">&gt; datadir = /usr/<span class="built_in">local</span>/mysql/data </div><div class="line">&gt; innodb_data_home_dir = /usr/<span class="built_in">local</span>/mysql/data </div><div class="line">&gt; innodb_data_file_path = ibdata1:10M:autoextend </div><div class="line">&gt; innodb_log_group_home_dir = /usr/<span class="built_in">local</span>/mysql/data </div><div class="line">&gt; innodb_log_files_in_group = 2 </div><div class="line">&gt; innodb_log_file_size = 5242880 </div><div class="line"></div><div class="line">InnoDB的日志文件的大小一但确定就不能再修改了，否则会造成数据库无法启动。</div><div class="line"></div><div class="line"><span class="comment"># MySQL host 表丢失</span></div><div class="line"></div><div class="line">有见过几次这样的情况。可能是一些异想不到的`MyISAM bug`。 </div><div class="line"> </div><div class="line">轻松将其修复如下： </div><div class="line"></div><div class="line">``` bash</div><div class="line">/usr/<span class="built_in">local</span>/bin/mysql_install_db</div></pre></td></tr></table></figure>
+<h1 id="损坏的MyISAM-auto-increment"><a href="#损坏的MyISAM-auto-increment" class="headerlink" title="损坏的MyISAM auto_increment"></a>损坏的MyISAM auto_increment</h1><p>假如一个MyISAM表中的auto_increment变得紊乱，你将不能向其表中插入新记录。通过将最后一条记录的auto_increment设为-1，可以告诉auto_increment，他现在的工作不正常。<br>找到最后一条记录的auto_increment的有效值</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SELECT max(id) from tablename</div></pre></td></tr></table></figure>
+<p>然后更新此表的自增计数器，如下： </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ALTER TABLE tablename AUTO_INCREMENT = id+1</div></pre></td></tr></table></figure>
+<h1 id="太多的数据库连接"><a href="#太多的数据库连接" class="headerlink" title="太多的数据库连接"></a>太多的数据库连接</h1><p>当我们的数据库连接数过多时，会造成无法连接到数据库的问题。这时，我们要先停止数据库。 </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/usr/<span class="built_in">local</span>/mysql/bin/mysqladmin -uUSERNAME -pPASSWORD shutdown</div></pre></td></tr></table></figure>
+<p>当数据库停止后，我们就可以根据服务器的配置情况适当的增加连接数<br>在一台专用的数据库服务器上，我们可以设置如下:</p>
+<blockquote>
+<p>max_connections = 200<br>wait_timeout = 100 </p>
+</blockquote>
+<h1 id="InnoDB表损坏"><a href="#InnoDB表损坏" class="headerlink" title="InnoDB表损坏"></a>InnoDB表损坏</h1><p>InnoDB拥有内部恢复机制，假如数据库崩溃了，InnoDB通过从最后一个时间戳开始运行日志文件，来尝试修复数据库。大多数情况下会修复成功，而且整个过程是透明的。<br>假如InnoDB自行修复失败，那么数据库将不能启动。无论你怎样一次又一次的尝试启动MySQL，它都只是发出一条错误信息。这也是我们在使用 InnoDB时，需要运行master/master的原因，只有这样才能在一个master宕掉时，还有一台冗余master做后备。<br>在继续操作前，先浏览下MySQL的日志文件，确定数据库是因为InnoDB表的损坏而崩溃。<br>有一种方法是更新InnoDB的日志文件计数器以跳过引起崩溃的查询，但是经验告诉我们这不是个好方法。这种情况下，将造成数据的不一致性而且会经常使主从复制中断。<br>一旦确定MySQL因为InnoDB表损坏无法启动时，我们就可以按照以下6步进行修复：</p>
+<ol>
+<li><p>添加如下配置到/etc/my.cnf文件中 </p>
+<blockquote>
+<p>[mysqld]<br>innodb_force_recovery=4</p>
+</blockquote>
+</li>
+<li><p>这时就可以重新启动数据库了，在innodb_force_recovery配置的作用，所有的插入与更新操作将被忽略;</p>
+</li>
+<li>导出所有的数据表;</li>
+<li>关闭数据库并删除所有数据表文件及目录，再运行 mysql_install_db来创建MySQL默认数据表; </li>
+<li>在/etc/my.cnf中删除innodb_force_recovery这一行，再启动MySQL（这时MySQL正常启动）; </li>
+<li>从第3步备份的文件中恢复所有的数据。 </li>
+</ol>
+]]></content>
+      
+        <categories>
+            
+            <category> MySQL </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> MySQL </tag>
+            
+            <tag> ops </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[mysql myisam表修复]]></title>
       <url>/2017/06/16/mysql-myisam-recovery/</url>
       <content type="html"><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p><a href="http://www.jb51.net/article/84180.htm" target="_blank" rel="external">转自 mysql中关于Myisam_recover自动修复的使用方法</a><br><a href="http://www.jb51.net/article/51636.htm" target="_blank" rel="external">转自 MySQL数据库表修复 MyISAM</a><br>MySQL的Myisam表相比innodb的表一般要好修复，相对也比较简单。通过Myisam_revocer控制了Myisam查找和修复错误的方式。</p>
@@ -1506,6 +1618,260 @@
         <tags>
             
             <tag> python </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[正则表达式]]></title>
+      <url>/2017/05/27/regex/</url>
+      <content type="html"><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p><strong><a href="https://zh.wikipedia.org/wiki/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F" target="_blank" rel="external">转自wiki正则表达式</a></strong><br>正则表达式，又称正规表示式、正规表示法、正规表达式、规则表达式、常规表示法（英语：Regular Expression，在代码中常简写为regex、regexp或RE），是计算机科学的一个概念。正则表达式使用单个字符串来描述、匹配一系列匹配某个句法规则的字符串。在很多文本编辑器里，正则表达式通常被用来检索、替换那些匹配某个模式的文本。</p>
+<h1 id="表达式全集"><a href="#表达式全集" class="headerlink" title="表达式全集"></a>表达式全集</h1><p>正则表达式有多种不同的风格。下表是在PCRE中元字符及其在正则表达式上下文中的行为的一个完整列表，适用于Perl或者Python编程语言（grep或者egrep的正则表达式文法是PCRE的子集）:</p>
+<table>
+<thead>
+<tr>
+<th>字符</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>\</td>
+<td>将下一个字符标记为一个特殊字符(File Format Escape)、或一个原义字符（Identity Escape)、或一个向后引用(backreferences)、或一个八进制转义符。例如，“n”匹配字符“n”。“\n”匹配一个换行符。序列“\”匹配“\”而“(”则匹配“(”。</td>
+</tr>
+<tr>
+<td>^</td>
+<td>匹配输入字符串的开始位置。如果设置了RegExp对象的Multiline属性，^也匹配“\n”或“\r”之后的位置。</td>
+</tr>
+<tr>
+<td>$</td>
+<td>匹配输入字符串的结束位置。如果设置了RegExp对象的Multiline属性，$也匹配“\n”或“\r”之前的位置。</td>
+</tr>
+<tr>
+<td>*</td>
+<td>匹配前面的子表达式零次或多次。例如，zo<em>能匹配“z”、“zo”以及“zoo”。</em>等价于{0,}。</td>
+</tr>
+<tr>
+<td>+</td>
+<td>匹配前面的子表达式一次或多次。例如，“zo+”能匹配“zo”以及“zoo”，但不能匹配“z”。+等价于{1,}。</td>
+</tr>
+<tr>
+<td>?</td>
+<td>匹配前面的子表达式零次或一次。例如，“do(es)?”可以匹配“do”或“does”中的“do”。?等价于{0,1}。</td>
+</tr>
+<tr>
+<td>{n}</td>
+<td>n是一个非负整数。匹配确定的n次。例如，“o{2}”不能匹配“Bob”中的“o”，但是能匹配“food”中的两个o。</td>
+</tr>
+<tr>
+<td>{n,}</td>
+<td>n是一个非负整数。至少匹配n次。例如，“o{2,}”不能匹配“Bob”中的“o”，但能匹配“foooood”中的所有o。“o{1,}”等价于“o+”。“o{0,}”则等价于“o*”。</td>
+</tr>
+<tr>
+<td>{n,m}</td>
+<td>m和n均为非负整数，其中n&lt;=m。最少匹配n次且最多匹配m次。例如，“o{1,3}”将匹配“fooooood”中的前三个o。“o{0,1}”等价于“o?”。请注意在逗号和两个数之间不能有空格。</td>
+</tr>
+<tr>
+<td>?</td>
+<td>非贪心量化（Non-greedy quantifiers）：当该字符紧跟在任何一个其他重复修饰符（*,+,?，{n}，{n,}，{n,m}）后面时，匹配模式是非贪婪的。非贪婪模式尽可能少的匹配所搜索的字符串，而默认的贪婪模式则尽可能多的匹配所搜索的字符串。例如，对于字符串“oooo”，“o+?”将匹配单个“o”，而“o+”将匹配所有“o”。</td>
+</tr>
+<tr>
+<td>.</td>
+<td>匹配除“\n”之外的任何单个字符。要匹配包括“\n”在内的任何字符，请使用像“(.&#124;\n)”的模式。</td>
+</tr>
+<tr>
+<td>(pattern)</td>
+<td>匹配pattern并获取这一匹配的子字符串。该子字符串用于向后引用。所获取的匹配可以从产生的Matches集合得到，在VBScript中使用SubMatches集合，在JScript中则使用$0…$9属性。要匹配圆括号字符，请使用“(”或“)”。</td>
+</tr>
+<tr>
+<td>(?:pattern)</td>
+<td>匹配pattern但不获取匹配的子字符串（shy groups)，也就是说这是一个非获取匹配，不存储匹配的子字符串用于向后引用。这在使用或字符“(&#124;)”来组合一个模式的各个部分是很有用。例如“industr(?:y&#124;ies)”就是一个比“industry &#124; industries”更简略的表达式。</td>
+</tr>
+<tr>
+<td>(?=pattern)</td>
+<td>正向肯定预查（look ahead positive assert），在任何匹配pattern的字符串开始处匹配查找字符串。这是一个非获取匹配，也就是说，该匹配不需要获取供以后使用。例如，“Windows(?=95&#124;98&#124;NT&#124;2000)”能匹配“Windows2000”中的“Windows”，但不能匹配“Windows3.1”中的“Windows”。预查不消耗字符，也就是说，在一个匹配发生后，在最后一次匹配之后立即开始下一次匹配的搜索，而不是从包含预查的字符之后开始。</td>
+</tr>
+<tr>
+<td>(?!pattern)</td>
+<td>正向否定预查(negative assert)，在任何不匹配pattern的字符串开始处匹配查找字符串。这是一个非获取匹配，也就是说，该匹配不需要获取供以后使用。例如“Windows(?&#124;95&#124;98&#124;NT&#124;000)”能匹配“Windows3.1”中的“Windows”，但不能匹配“Windows2000”中的“Windows”。预查不消耗字符，也就是说，在一个匹配发生后，在最后一次匹配之后立即开始下一次匹配的搜索，而不是从包含预查的字符之后开始</td>
+</tr>
+<tr>
+<td>(?&lt;=pattern)</td>
+<td>反向(look behind)肯定预查，与正向肯定预查类似，只是方向相反。例如，“(?&lt;=95&#124;98&#124;NT&#124;2000)Windows”能匹配“2000Windows”中的“Windows”，但不能匹配“3.1Windows”中的“Windows”。</td>
+</tr>
+<tr>
+<td>(?&lt;!pattern)</td>
+<td>反向否定预查，与正向否定预查类似，只是方向相反。例如“(?&lt;!95&#124;98&#124;NT&#124;2000)Windows”能匹配“3.1Windows”中的“Windows”，但不能匹配“2000Windows”中的“Windows”。</td>
+</tr>
+<tr>
+<td>x&#124;y</td>
+<td>匹配x或y。例如，“z&#124;food”能匹配“z”或“food”。“(?:z&#124;f)ood”则匹配“zood”或“food”。</td>
+</tr>
+<tr>
+<td>[xyz]</td>
+<td>字符集合（character class）。匹配所包含的任意一个字符。例如，“[abc]”可以匹配“plain”中的“a”。特殊字符仅有反斜线\保持特殊含义，用于转义字符。其它特殊字符如星号、加号、各种括号等均作为普通字符。脱字符^如果出现在首位则表示负值字符集合；如果出现在字符串中间就仅作为普通字符。连字符 - 如果出现在字符串中间表示字符范围描述；如果如果出现在首位则仅作为普通字符。</td>
+</tr>
+<tr>
+<td>[^xyz]</td>
+<td>排除型字符集合（negated character classes）。匹配未列出的任意字符。例如，“[^abc]”可以匹配“plain”中的“plin”。</td>
+</tr>
+<tr>
+<td>[a-z]</td>
+<td>字符范围。匹配指定范围内的任意字符。例如，“[a-z]”可以匹配“a”到“z”范围内的任意小写字母字符。</td>
+</tr>
+<tr>
+<td>[^a-z]</td>
+<td>排除型的字符范围。匹配任何不在指定范围内的任意字符。例如，“[^a-z]”可以匹配任何不在“a”到“z”范围内的任意字符。</td>
+</tr>
+<tr>
+<td>[:name:]</td>
+<td>增加命名字符类（named character class）[注 1]中的字符到表达式。只能用于方括号表达式。</td>
+</tr>
+<tr>
+<td>[=elt=]</td>
+<td>增加当前locale下排序（collate）等价于字符“elt”的元素。例如，[=a=]可能会增加ä、á、à、ă、ắ、ằ、ẵ、ẳ、â、ấ、ầ、ẫ、ẩ、ǎ、å、ǻ、ä、ǟ、ã、ȧ、ǡ、ą、ā、ả、ȁ、ȃ、ạ、ặ、ậ、ḁ、ⱥ、ᶏ、ɐ、ɑ 。只能用于方括号表达式。</td>
+</tr>
+<tr>
+<td>[.elt.]</td>
+<td>增加排序元素（collation element）elt到表达式中。这是因为某些排序元素由多个字符组成。例如，29个字母表的西班牙语， “CH”作为单个字母排在字母C之后，因此会产生如此排序“cinco, credo, chispa”。只能用于方括号表达式。</td>
+</tr>
+<tr>
+<td>\b</td>
+<td>匹配一个单词边界，也就是指单词和空格间的位置。例如，“er\b”可以匹配“never”中的“er”，但不能匹配“verb”中的“er”。</td>
+</tr>
+<tr>
+<td>\B</td>
+<td>匹配非单词边界。“er\B”能匹配“verb”中的“er”，但不能匹配“never”中的“er”。</td>
+</tr>
+<tr>
+<td>\cx</td>
+<td>匹配由x指明的控制字符。例如，\cM匹配一个Control-M或回车符。x的值必须为A-Z或a-z之一。否则，将c视为一个原义的“c”字符。</td>
+</tr>
+<tr>
+<td>\d</td>
+<td>匹配一个数字字符。等价于[0-9]。</td>
+</tr>
+<tr>
+<td>\D</td>
+<td>匹配一个非数字字符。等价于[^0-9]。</td>
+</tr>
+<tr>
+<td>\f</td>
+<td>匹配一个换页符。等价于\x0c和\cL。</td>
+</tr>
+<tr>
+<td>\n</td>
+<td>匹配一个换行符。等价于\x0a和\cJ。</td>
+</tr>
+<tr>
+<td>\r</td>
+<td>匹配一个回车符。等价于\x0d和\cM。</td>
+</tr>
+<tr>
+<td>\s</td>
+<td>匹配任何空白字符，包括空格、制表符、换页符等等。等价于[ \f\n\r\t\v]。</td>
+</tr>
+<tr>
+<td>\S</td>
+<td>匹配任何非空白字符。等价于[^ \f\n\r\t\v]。</td>
+</tr>
+<tr>
+<td>\t</td>
+<td>匹配一个制表符。等价于\x09和\cI。</td>
+</tr>
+<tr>
+<td>\v</td>
+<td>匹配一个垂直制表符。等价于\x0b和\cK。</td>
+</tr>
+<tr>
+<td>\w</td>
+<td>匹配包括下划线的任何单词字符。等价于“[A-Za-z0-9_]”。</td>
+</tr>
+<tr>
+<td>\W</td>
+<td>匹配任何非单词字符。等价于“[^A-Za-z0-9_]”。</td>
+</tr>
+<tr>
+<td>\ck</td>
+<td>匹配控制转义字符。k代表一个字符。等价于“Ctrl-k”。用于ECMA语法。</td>
+</tr>
+<tr>
+<td>\xnn</td>
+<td>十六进制转义字符序列。匹配两个十六进制数字nn表示的字符。例如，“\x41”匹配“A”。“\x041”则等价于“\x04&amp;1”。正则表达式中可以使用ASCII编码。</td>
+</tr>
+<tr>
+<td>\num</td>
+<td>向后引用（back-reference）一个子字符串（substring），该子字符串与正则表达式的第num个用括号围起来的捕捉群（capture group）子表达式（subexpression）匹配。其中num是从1开始的十进制正整数，其上限可能是9[注 2]、31、[注 3]99甚至无限。[注 4]例如：“(.)\1”匹配两个连续的相同字符。</td>
+</tr>
+<tr>
+<td>\n</td>
+<td>标识一个八进制转义值或一个向后引用。如果\n之前至少n个获取的子表达式，则n为向后引用。否则，如果n为八进制数字（0-7），则n为一个八进制转义值。</td>
+</tr>
+<tr>
+<td>\nm</td>
+<td>3位八进制数字，标识一个八进制转义值或一个向后引用。如果\nm之前至少有nm个获得子表达式，则nm为向后引用。如果\nm之前至少有n个获取，则n为一个后跟文字m的向后引用。如果前面的条件都不满足，若n和m均为八进制数字（0-7），则\nm将匹配八进制转义值nm。</td>
+</tr>
+<tr>
+<td>\nml</td>
+<td>如果n为八进制数字（0-3），且m和l均为八进制数字（0-7），则匹配八进制转义值nml。</td>
+</tr>
+<tr>
+<td>\un</td>
+<td>Unicode转义字符序列。其中n是一个用四个十六进制数字表示的Unicode字符。例如，\u00A9匹配版权符号（©）。</td>
+</tr>
+</tbody>
+</table>
+<h1 id="优先权"><a href="#优先权" class="headerlink" title="优先权"></a>优先权</h1><table>
+<thead>
+<tr>
+<th>优先权</th>
+<th>符号</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>最高</td>
+<td>\</td>
+</tr>
+<tr>
+<td>高</td>
+<td>( )、(?: )、(?= )、[ ]</td>
+</tr>
+<tr>
+<td>中</td>
+<td>*、+、?、{n}、{n,}、{m,n}</td>
+</tr>
+<tr>
+<td>低</td>
+<td>^、$、中介字符</td>
+</tr>
+<tr>
+<td>最低</td>
+<td>&#124;</td>
+</tr>
+</tbody>
+</table>
+<h1 id="关于贪婪与非贪婪模式"><a href="#关于贪婪与非贪婪模式" class="headerlink" title="关于贪婪与非贪婪模式"></a>关于贪婪与非贪婪模式</h1><p><strong><a href="http://www.jb51.net/article/31491.htm" target="_blank" rel="external"> 转自:贪婪与非贪婪模式详解 </a></strong><br>贪婪与非贪婪模式影响的是被量词修饰的子表达式的匹配行为，贪婪模式在整个表达式匹配成功的前提下，尽可能多的匹配，而非贪婪模式在整个表达式匹配成功的前提下，尽可能少的匹配。非贪婪模式只被部分NFA引擎所支持。使用?进行非贪婪量化。不管是贪婪还是非贪婪,都需要表达式整个匹配为前提。</p>
+<h2 id="shell-grep例子（贪婪与非贪婪）"><a href="#shell-grep例子（贪婪与非贪婪）" class="headerlink" title="shell grep例子（贪婪与非贪婪）:"></a>shell grep例子（贪婪与非贪婪）:</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">$ cat eg1</div><div class="line">aa&lt;div&gt;<span class="built_in">test</span>1&lt;/div&gt;bb&lt;div&gt;<span class="built_in">test</span>2&lt;/div&gt;cc</div><div class="line"></div><div class="line">$ cat eg1 | grep -Po <span class="string">'&lt;div&gt;.*&lt;/div&gt;'</span> </div><div class="line">&lt;div&gt;<span class="built_in">test</span>1&lt;/div&gt;bb&lt;div&gt;<span class="built_in">test</span>2&lt;/div&gt;</div><div class="line"></div><div class="line">$ cat eg1 | grep -Po <span class="string">'&lt;div&gt;.*?&lt;/div&gt;'</span></div><div class="line">&lt;div&gt;<span class="built_in">test</span>1&lt;/div&gt;</div><div class="line">&lt;div&gt;<span class="built_in">test</span>2&lt;/div&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ cat eg1 | grep <span class="string">'&lt;div&gt;.*&lt;/div&gt;bb'</span></div><div class="line">&lt;div&gt;<span class="built_in">test</span>1&lt;/div&gt;bb</div><div class="line"></div><div class="line"><span class="variable">$cat</span> eg1 | grep <span class="string">'&lt;div&gt;.*?&lt;/div&gt;bb'</span></div><div class="line">&lt;div&gt;<span class="built_in">test</span>1&lt;/div&gt;bb</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$ cat eg2</div><div class="line"><span class="string">"Regex"</span></div><div class="line"></div><div class="line">$ cat eg2 | grep -Po <span class="string">'".*"'</span></div><div class="line"><span class="string">"Regex"</span></div><div class="line"></div><div class="line">$ cat eg2 | grep -Po <span class="string">'".*?"'</span></div><div class="line"><span class="string">"Regex"</span></div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ cat eg3</div><div class="line">The word <span class="string">"Regex"</span> means regular expression.</div><div class="line">$ cat eg3 | grep -Po <span class="string">'".*"'</span></div><div class="line"><span class="string">"Regex"</span></div><div class="line">$ cat eg3 | grep -Po <span class="string">'".*?"'</span></div><div class="line"><span class="string">"Regex"</span></div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$ cat eg4</div><div class="line">The phrase <span class="string">"regular expression"</span> is called <span class="string">"Regex"</span> <span class="keyword">for</span> short.</div><div class="line">$ cat eg4 | grep -Po <span class="string">'".*?"'</span></div><div class="line"><span class="string">"regular expression"</span></div><div class="line"><span class="string">"Regex"</span></div><div class="line">$ cat eg4 | grep -Po <span class="string">'".*"'</span></div><div class="line"><span class="string">"regular expression"</span> is called <span class="string">"Regex"</span></div></pre></td></tr></table></figure>
+]]></content>
+      
+        <categories>
+            
+            <category> code </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> code </tag>
+            
+            <tag> regex </tag>
             
         </tags>
         
