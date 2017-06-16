@@ -2,6 +2,41 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2017/06/16/mysql-myisam-recovery/</loc>
+    
+    <lastmod>2017-06-16T14:50:46.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2017/06/16/mysql-innodb-recovery/</loc>
+    
+    <lastmod>2017-06-16T13:50:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2017/06/16/py-default-args/</loc>
+    
+    <lastmod>2017-06-16T13:00:29.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2017/06/16/encode-character-sets/</loc>
+    
+    <lastmod>2017-06-16T12:59:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2017/06/15/py-closure/</loc>
+    
+    <lastmod>2017-06-15T15:50:38.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2017/06/14/py-decorator/</loc>
     
     <lastmod>2017-06-15T14:27:11.000Z</lastmod>
@@ -44,7 +79,7 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2017/06/15/hello-world/</loc>
+    <loc>http://yoursite.com/2017/06/16/hello-world/</loc>
     
     <lastmod>2017-06-09T00:51:24.000Z</lastmod>
     
@@ -177,7 +212,7 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2017/06/15/django1/</loc>
+    <loc>http://yoursite.com/2017/06/16/django1/</loc>
     
     <lastmod>2017-05-11T13:54:42.000Z</lastmod>
     
