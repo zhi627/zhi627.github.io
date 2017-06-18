@@ -4,7 +4,7 @@
     
     <entry>
       <title><![CDATA[Hello World]]></title>
-      <url>/2017/06/16/hello-world/</url>
+      <url>/2017/06/19/hello-world/</url>
       <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
 <p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
@@ -21,7 +21,7 @@
     
     <entry>
       <title><![CDATA[django入门教学]]></title>
-      <url>/2017/06/16/django1/</url>
+      <url>/2017/06/19/django1/</url>
       <content type="html"><![CDATA[<h1 id="django安装"><a href="#django安装" class="headerlink" title="django安装"></a>django安装</h1><p>使用pip 或者easy_install 即可</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pip install django 或者 easy_install django</div></pre></td></tr></table></figure>
 <h1 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h1><p>项目名称不用和python或django的内部组件名称同名。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ django-admin startproject mysite</div></pre></td></tr></table></figure></p>
@@ -145,6 +145,511 @@
             <tag> MySQL </tag>
             
             <tag> ops </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[find 命令查找]]></title>
+      <url>/2017/06/16/shell-find/</url>
+      <content type="html"><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p><strong>摘自 man find</strong><br>其实man手册对于find的使用可以说非常详细<br>下面也有一篇不错的文章介绍 find 命令的使用：<br><a href="http://www.jianshu.com/p/948f1b67a910" target="_blank" rel="external">Linux查找find命令全面剖析</a></p>
+<p>Linux下find命令在目录结构中搜索文件，并执行指定的操作。Linux下find命令提供了相当多的查找条件，功能很强大。由于find具有强大的功能，所以它的选项也很多，其中大部分选项都值得我们花时间来了解一下。即使系统中含有网络文件系统( NFS)，find命令在该文件系统中同样有效，只你具有相应的权限。 在运行一个非常消耗资源的find命令时，很多人都倾向于把它放在后台执行，因为遍历一个大的文件系统可能会花费很长的时间(这里是指30G字节以上的文件系统)。</p>
+<h1 id="命令格式"><a href="#命令格式" class="headerlink" title="命令格式"></a>命令格式</h1><p>find [-H] [-L] [-P] [-D debugopts] [-Olevel] [path…] [expression]</p>
+<h1 id="表达式-EXPRESSIONS"><a href="#表达式-EXPRESSIONS" class="headerlink" title="表达式 EXPRESSIONS"></a>表达式 EXPRESSIONS</h1><p>表达式是由选项(选项总是影响所有的操作, 而不仅仅是一个指定的文件的处理, 而且总是返回真值)，测试(测试返回一个真值或一个假值)，还有动作(动作有side effects, 返回一个真值或假值) 组成。它们都以运算符分开.忽略运算符的时候，默认使用 -and 连接. 如果表达式没有包含 -prune 以外的动作，当表达式为真时会执行 -print 动作。</p>
+<h1 id="选项-OPTIONS"><a href="#选项-OPTIONS" class="headerlink" title="选项 OPTIONS"></a>选项 OPTIONS</h1><p>所有的选项都总是返回真值，它们总会被执行，除非放在表达式中执行不到的地方。因此，清楚起见，最好把它们放在表达式的开头部分。 </p>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-daystart</td>
+<td>从当日起始时开始而不是从24小时之前，计算时间(for -amin, -atime, -cmin, -ctime, -mmin, and -mtime)。</td>
+</tr>
+<tr>
+<td>-depth</td>
+<td>先处理目录的内容再处理目录本身。</td>
+</tr>
+<tr>
+<td>-follow</td>
+<td>不检索符号链接。隐含了 -noleaf。</td>
+</tr>
+<tr>
+<td>-help, –help</td>
+<td>列出 find 的命令行用法的概要，然后退出。</td>
+</tr>
+<tr>
+<td>-maxdepth levels</td>
+<td>进入命令行参数指定的目录下层目录时，最深不超过levels(一个非负整数)层。’-maxdepth 0’ 意味着只在命令行参数指定的目录中执行测试和动作。</td>
+</tr>
+<tr>
+<td>-mindepth levels</td>
+<td>不在levels(一个非负整数)层之内执行任何测试和动作。’-mindepth 1’ 意味着处理所有的文件，除了命令行参数指定的目录中的文件。</td>
+</tr>
+<tr>
+<td>-mount</td>
+<td>不进入处于其它文件系统之上的目录。可以用-xdev代替，从而和一些其他版本的 find 兼容。</td>
+</tr>
+<tr>
+<td>-noleaf</td>
+<td>不为“目录中子目录数量比硬连接数少2”这种假设做优化。这个选项在搜索那些不遵循UNIX文件系统链接约定的文件系统时用，比如CD-ROM,MS-DOS 文件系统或 AFS 卷的加载点。在普通的UNIX文件系统中,每个目录至少有两个硬连接,它的名字和它的 ‘.’ 条目。另外，它的子目录(假如有)还会各有一个 ‘..’ 链接到它。在 find 检索一个目录时，发现子目录数比它的连接数少二时，它就知道目录中的其他条目并非目录(而是目录树中的叶( ‘leaf’ )节点)。除非需要检索的是这个叶节点，否则没必要去处理它。这样可以带来很大的搜索速度提升。</td>
+</tr>
+<tr>
+<td>-version, –version</td>
+<td>打印find的版本号然后退出。</td>
+</tr>
+<tr>
+<td>-xdev</td>
+<td>不进入处于其他文件系统之上的目录。</td>
+</tr>
+</tbody>
+</table>
+<h1 id="测试-TESTS"><a href="#测试-TESTS" class="headerlink" title="测试 TESTS"></a>测试 TESTS</h1><p>数字参数可以这样给出： </p>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>+n</td>
+<td>是比 n 大，</td>
+</tr>
+<tr>
+<td>-n</td>
+<td>是比 n 小，</td>
+</tr>
+<tr>
+<td>n</td>
+<td>正好是 n 。</td>
+</tr>
+<tr>
+<td>-amin n</td>
+<td>对文件的最近一次访问是在 n 分钟之前。</td>
+</tr>
+<tr>
+<td>-anewer file</td>
+<td>对文件的最近一次访问比 file 修改时间要晚。如果命令行中 -follow 在 -anewer 之前，(也只有在这种情况下) -anewer 会受 -follow 的影响。</td>
+</tr>
+<tr>
+<td>-atime n</td>
+<td>对文件的最近一次访问是在 n*24 小时之前。</td>
+</tr>
+<tr>
+<td>-cmin n</td>
+<td>对文件状态的最近一次修改是在 n 分钟之前。</td>
+</tr>
+<tr>
+<td>-cnewer file</td>
+<td>对文件状态的最近一次修改比 file 修改时间要晚。如果命令行中 -follow 在 -cnewer 之前，(也只有在这种情况下) -cnewer 会受 -follow 的影响。</td>
+</tr>
+<tr>
+<td>-ctime n</td>
+<td>对文件状态的最近一次修改是在 n*24 小时之前。</td>
+</tr>
+<tr>
+<td>-empty</td>
+<td>文件是空的普通文件或者空目录。</td>
+</tr>
+<tr>
+<td>-false</td>
+<td>总是false。</td>
+</tr>
+<tr>
+<td>-fstype type</td>
+<td>文件处于 type 类型的文件系统之上。有效的文件系统类型在不同版本的Unix中是不同的；一些Unix中的不完全的文件系统类型列表是这样：ufs, 4.2, 4.3, nfs, tmp, mfs, S51K, S52K. 你可以用 -printf 加上 %F 指令来查看你的文件系统的类型。</td>
+</tr>
+<tr>
+<td>-gid n</td>
+<td>文件的数字形式的组ID是 n。</td>
+</tr>
+<tr>
+<td>-group gname</td>
+<td>文件属于 gname (也允许使用数字形式的组ID).</td>
+</tr>
+<tr>
+<td>-ilname pattern</td>
+<td>和 -lname 类似，但是匹配时是不区分大小写的。</td>
+</tr>
+<tr>
+<td>-iname pattern</td>
+<td>和 -name 类似，但是匹配时是不区分大小写的。例如，’fo*’ and ‘F??’ 模式与文件名 ‘Foo’, ‘FOO’, ‘foo’, ‘fOo’ 等等相匹配。</td>
+</tr>
+<tr>
+<td>-inum n</td>
+<td>文件的 i 结点数是 n。</td>
+</tr>
+<tr>
+<td>-ipath pattern</td>
+<td>和 -path 类似，但是匹配时是不区分大小写的。</td>
+</tr>
+<tr>
+<td>-iregex pattern</td>
+<td>和 -regex 类似, 但是匹配时是不区分大小写的。</td>
+</tr>
+<tr>
+<td>-links n</td>
+<td>文件有 n 个链接。</td>
+</tr>
+<tr>
+<td>-lname pattern</td>
+<td>文件是一个与pattern 匹配的符号链接。元字符不会对’/‘ 或 ‘.’ 做特殊处理。</td>
+</tr>
+<tr>
+<td>-mmin n</td>
+<td>对文件数据的最近一次修改是在 n 分钟之前。</td>
+</tr>
+<tr>
+<td>-mtime n</td>
+<td>对文件数据的最近一次修改是在 n*24 小时之前。</td>
+</tr>
+<tr>
+<td>-name pattern</td>
+<td>基本的文件名(将路径去掉了前面的目录)与shell模式pattern相匹配。元字符(‘*’, ‘?’, 还有’[]’ ) 不会匹配文件名开头的’.’ 。使用 -prune 来略过一个目录及其中的文件。查看 -path 的描述中的范例。 </td>
+</tr>
+<tr>
+<td>-newer file</td>
+<td>对文件的最近一次修改比 file 修改时间要晚。如果命令行中 -follow 在 -newer 之前，(也只有在这种情况下) -newer 会受 -follow 的影响。</td>
+</tr>
+<tr>
+<td>-nouser</td>
+<td>没有符合文件的数字形式的用户ID的用户。</td>
+</tr>
+<tr>
+<td>-nogroup</td>
+<td>没有符合文件的数字形式的组ID的组。</td>
+</tr>
+<tr>
+<td>-path pattern</td>
+<td>文件名与shell模式pattern相匹配。元字符不会对’/‘ 或 ‘.’ 做特殊处理。因此，例如：</td>
+</tr>
+<tr>
+<td>find . -path ‘./sr*sc’</td>
+<td>如果存在 ‘./src/misc’ 的话，会将它打印出来。想要忽略一个完整的目录树，应当使用-prune 而不是检查目录树中所有的文件。例如：要跳过 ‘src/emacs’ 目录和其中所有的文件和子目录，把其他找到的文件打印出来，应当这样：find . -path ‘./src/emacs’ -prune -o -print</td>
+</tr>
+<tr>
+<td>-perm mode</td>
+<td>文件的权限位恰好是 mode (八进制或符号)。 Symbolic modes use mode 0 as a point of departure.</td>
+</tr>
+<tr>
+<td>-perm -mode</td>
+<td>所有的权限位 mode 都被设置了的文件。</td>
+</tr>
+<tr>
+<td>-perm +mode</td>
+<td>任何权限位 mode 被设置了的文件。</td>
+</tr>
+<tr>
+<td>-regex pattern</td>
+<td>文件名与正则表达式 pattern 匹配。这是对整个路径的匹配，不是搜索文件。例如，要匹配名为’./fubar3’ 的文件，可以使用正则表达式 ‘.<em>bar.’ 或者 ‘.</em>b.<em>3’，但是不能用’b.</em>r3’。</td>
+</tr>
+<tr>
+<td>-size n[bckw]</td>
+<td>文件使用了 n 单位个存储单元。默认的单位是512字节的块，也可以用n后面加上 ‘b’ 来指定这个值。其他的单位是字节，如果在 n 后面加上 ‘c’ ；千字节(kB)，如果在 n 后面加上’k’ ；两字节的字，如果在 n 后面加上 ‘w’ 。大小不会计入 indirect blocks，但是会计入没有真正分配空间的疏松文件中的块。</td>
+</tr>
+<tr>
+<td>-true</td>
+<td>总是true。</td>
+</tr>
+<tr>
+<td>-type c</td>
+<td>文件是 c 类型的。类型可取值如下： b特殊块文件(缓冲的) ;c特殊字符文件(不缓冲) ;d目录; p命名管道 (FIFO); f普通文件; l符号链接 ;s套接字; D门 (Solaris 特有)</td>
+</tr>
+<tr>
+<td>-uid n</td>
+<td>文件的数字形式的用户ID是 n 。</td>
+</tr>
+<tr>
+<td>-used n</td>
+<td>文件最后一次存取是在最后一次修改它的状态的 n 天之后。</td>
+</tr>
+<tr>
+<td>-user uname</td>
+<td>文件的所有者是 uname (也可以使用数字形式的用户ID).</td>
+</tr>
+<tr>
+<td>-xtype c</td>
+<td>和 -type 相同，除非文件是一个符号链接。对于符号链接：如果没有给出 -follow ，如果文件是一个指向 c 类型文件的链接，那么返回true；如果给出了 -follow ，如果 c 是 ‘l’ 那么返回true。换句话说，对于符号链接，-xtype 检查那些 -type 不检查的文件。</td>
+</tr>
+</tbody>
+</table>
+<h1 id="动作-ACTIONS"><a href="#动作-ACTIONS" class="headerlink" title="动作 ACTIONS"></a>动作 ACTIONS</h1><table>
+<thead>
+<tr>
+<th>选项</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-exec command ;</td>
+<td>执行 command；如果命令返回状态值0，那么 exec 返回true。所有 find 其余的命令行参数将作为提供给命令的参数，直到遇到一个由 ‘;’ 组成的参数为止。命令的参数中，字符串 ‘{}’ 将以正在处理的文件名替换。所有的 ‘{}’ 都会被替换，不仅是在单独的一个参数中。有些版本的 find 不是这样做的。这些参数可能需要用 ‘\’ 来escape 或者用括号括住，防止它们被shell展开。命令是从起始目录执行的。</td>
+</tr>
+<tr>
+<td>-fls file</td>
+<td>返回true；类似 -ls 但是像 -fprint 那样写入 file。</td>
+</tr>
+<tr>
+<td>-fprint file</td>
+<td>返回true；将文件全名打印到文件 file 中。如果运行 find 时 file 不存在，那么它将被创建。如果它存在，它将被覆盖。文件名’’/dev/stdout’’ 和’’/dev/stderr’’ 会作特殊处理；它们分别指的是标准输出和标准错误输出。</td>
+</tr>
+<tr>
+<td>-fprint0 file</td>
+<td>返回true；类似 -print0 但是像 -fprint 那样写入 file。</td>
+</tr>
+<tr>
+<td>-fprintf file format</td>
+<td>返回true；类似 -printf 但是像 -fprint 那样写入 file。</td>
+</tr>
+<tr>
+<td>-ok command ;</td>
+<td>类似 -exec 但是会先向用户询问 (在标准输入); 如果回应不是以 ‘y’ 或 ‘Y’ 起始则不会运行 command 而是返回false。</td>
+</tr>
+<tr>
+<td>-print</td>
+<td>返回true；在标准输出打印文件全名，然后是一个换行符。</td>
+</tr>
+<tr>
+<td>-print0</td>
+<td>返回true；在标准输出打印文件全名，然后是一个null字符。这样可以使得处理 find 的输出的程序可以正确地理解带有换行符的文件名。</td>
+</tr>
+<tr>
+<td>-printf format</td>
+<td>返回true；在标准输出打印 format , 解释 ‘\’ escape 还有 ‘%’ 指令。字段宽度和精度可以像C函数 ‘printf’ 那样来指定。与 -print 不同的是, -printf 在字符串末端不会添加一个新行。可用的escape 和指令如下：\a:警告铃声 ;\b:回退; \c:立即停止以当前格式输出，刷新输出设备。; \f:表格结束; \n:新行; \r回车; \t:水平tab; \v: </td>
+</tr>
+</tbody>
+</table>
+<p>竖直tab; \:输出自身’\’ ; \NNN:ASCII编码是NNN(八进制)的字符; 在一个 ‘\’ 字符后面使用任何其他字符会被作为普通的字符，因此它们都会被打印出来。;%% : 输出自身’%’; %a : 文件最后一次存取的时间。格式是C函数 ‘ctime’ 返回值的格式。; %Ak : 文件最后一次存取的时间。格式以 k 指定，可以是 ‘@’ 或者是C函数 ‘strftime’ 的指令格式。下面列出了 k 可用的值；有一些并不是在所有系统上都可用，因为不同系统中 ‘strftime’ 也不同。 @从 Jan. 1, 1970, 00:00 GMT 起的秒数 时间字段： H :小时 (00..23); I : 小时 (01..12); k :<br>小时 ( 0..23) ;l : 小时 ( 1..12) ; M : 分钟 (00..59) ; p : 本地的 AM 或者 PM ; r : 12小时格式的时间 (hh:mm:ss [AP]M) ;  S : 秒 (00..61) ; T : 24小时格式的时间 (hh:mm:ss) ; X : 本地的时间表示方法 (H:M:S) ; Z : 时区(例如，EDT)，如果不能决定时区就是空 ; 日期字段： </p>
+<p>a<br>本地一星期中每天的名称的缩写(Sun..Sat)<br>A<br>本地一星期中每天的全名，可变长度 (Sunday..Saturday)<br>b<br>本地每月的名称的缩写 (Jan..Dec)<br>B<br>本地每月的全名，可变长度 (January..December)<br>c<br>本地的日期和时间表示 (Sat Nov 04 12:02:33 EST 1989)<br>d<br>一个月当中的日子 (01..31)<br>D<br>日期 (mm/dd/yy)<br>h<br>与 b 相同<br>j<br>一年当中的日子 (001..366)<br>m<br>月份 (01..12)<br>U<br>以星期日作为每周起始，一年当中的星期 (00..53)<br>w<br>一星期当中的日子 (0..6)<br>W<br>以星期一当作每周起始，一年当中的星期 (00..53)<br>x<br>本地的日期表示 (mm/dd/yy)<br>y<br>年份的最后两位 (00..99)<br>Y<br>年份 (1970…)<br>%b<br>文件大小，以512字节的块为单位 (四舍五入)。<br>%c<br>文件状态最后一次修改的时间。格式是C函数 ‘ctime’ 返回值的格式。<br>%Ck<br>文件状态最后一次修改的时间。格式以 k 指定，类似于%A。<br>%d<br>文件在目录树中的深度；0 意味着文件是一个命令行参数。<br>%f<br>去掉了前面的目录的文件名 (只剩下最后的成分)。<br>%F<br>文件所在文件系统的类型；这个值可以为 -fstype 所用。<br>%g<br>文件的组名，如果组没有名称就是数字形式的组ID。<br>%G<br>文件的数字形式的组ID。<br>%h<br>文件名的前面的目录部分 (仅除去最后的成分)。<br>%H<br>据以找到了文件的命令行参数。<br>%i<br>文件的 i 结点号(16进制)。<br>%k<br>文件大小，以1kB 的块为单位 (四舍五入)。<br>%l<br>符号链接的目标 (如果文件不是一个符号链接，那么结果是空字符串)。<br>%m<br>文件的权限位 (8进制)。<br>%n<br>文件的硬连接数。<br>%p<br>文件名。<br>%P<br>文件名，去掉了据以找到了文件的命令行参数的名称部分。<br>%s<br>文件大小，以字节为单位。<br>%t<br>文件最后一次修改的时间。格式是C函数 ‘ctime’ 返回值的格式。<br>%Tk<br>文件最后一次修改的时间。格式以 k 指定，类似于%A。<br>%u<br>文件的用户名，如果用户没有名称就是数字形式的用户ID。<br>%U<br>文件的数字形式的用户ID。<br>在一个 ‘%’ 字符后面使用任何其他字符，’%’ 将被忽略 (但是其他字符会被打印出来)。 |</p>
+<p>|-prune|如果没有给出 -depth 则返回 true; 不进入当前目录。 如果给出了 -depth 则返回false; 没有效果。|<br>|-ls |返回true；以 ‘ls -dils’ 格式在标准输出列出文件。块以1kB 字节为单位计数，除非设置了环境变量POSIXLY_CORRECT，那样的话会使用 512字节的块。 |</p>
+<h1 id="运算符-OPERATORS"><a href="#运算符-OPERATORS" class="headerlink" title="运算符 OPERATORS"></a>运算符 OPERATORS</h1><p>以优先级高低顺序排列：</p>
+<table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>( expr )</td>
+<td>强制为优先</td>
+</tr>
+<tr>
+<td>! expr</td>
+<td>如果 expr 是false则返回true</td>
+</tr>
+<tr>
+<td>-not expr</td>
+<td>与 ! expr 相同</td>
+</tr>
+<tr>
+<td>expr1 expr2</td>
+<td>与 (隐含的默认运算符)；如果 expr1 为false则不会执行 expr2</td>
+</tr>
+<tr>
+<td>expr1 -a expr2</td>
+<td>与 expr1 expr2 相同</td>
+</tr>
+<tr>
+<td>expr1 -and expr2</td>
+<td>与 expr1 expr2 相同</td>
+</tr>
+<tr>
+<td>expr1 -o expr2</td>
+<td>或；如果 expr1 为true 则不会执行 expr2</td>
+</tr>
+<tr>
+<td>expr1 -or expr2</td>
+<td>与 expr1 -o expr2 相同</td>
+</tr>
+<tr>
+<td>expr1 , expr2</td>
+<td>列表；expr1 和 expr2 都会被执行。expr1 的值被忽略，列表的值是 expr2的值</td>
+</tr>
+</tbody>
+</table>
+<h1 id="样例-EXAMPLES"><a href="#样例-EXAMPLES" class="headerlink" title="样例 EXAMPLES"></a>样例 EXAMPLES</h1><p>find /tmp -name core -type f -print | xargs /bin/rm -f</p>
+<p>在目录/ tmp中找到名为core的文件，并将其删除。 请注意，如果有任何包含换行符，单引号或双引号或空格的文件名，这将无法正常工作。</p>
+<p>find /tmp -name core -type f -print0 | xargs -0 /bin/rm -f</p>
+<p>在目录/ tmp中找到名为core的文件，并将其删除，处理文件名，以便正确处理包含单引号或双引号，空格或换行符的文件或目录名。 -name测试是在类型测试之前进行的，以避免在每个文件上调用stat（2）。</p>
+<p>find . -type f -exec file ‘{}’ \;</p>
+<p>在当前目录中或之下的每个文件上运行文件。 请注意，大括号被包含在单引号中，以保护它们不被解释为shell脚本标点符号。 分号同样受到使用反斜杠的保护，尽管在这种情况下也可以使用单引号。</p>
+<p>find / ( -perm -4000 -fprintf /root/suid.txt ‘%#m %u %p\n’ ) , ( -size +100M -fprintf /root/big.txt ‘%-10s %p\n’ )</p>
+<p>遍历文件系统只需一次，将setuid文件和目录列入/root/suid.txt，将大文件列入/root/big.txt。</p>
+<p>find $HOME -mtime 0</p>
+<p>搜索您的主目录中的文件，这些文件在过去二十四小时内被修改。 此命令的工作原理是因为每个文件最后一次修改之后的时间除以24小时，并且任何其余部分被丢弃。 这意味着要匹配-mtime 0，一个文件将不得不在过去24小时之前进行修改。</p>
+<p>find /sbin /usr/sbin -executable ! -readable -print</p>
+<p>搜索可执行但不可读的文件。</p>
+<p>find . -perm 664</p>
+<p>搜索具有其所有者和组的读取和写入权限的文件，但是哪些其他用户可以读取但不能写入。 满足这些标准但具有的文件其他权限位设置（例如，如果有人可以执行文件）将不匹配。</p>
+<p>find . -perm -664</p>
+<p>搜索具有其所有者和组以及其他用户可以读取的读取和写入权限的文件，而不考虑是否存在任何额外的权限位（例如可执行位）。 这将匹配一个具有模式0777的文件</p>
+<p>find . -perm /222</p>
+<p>搜索可由某人（其所有者或其组或任何其他人）写入的文件。</p>
+<p>find . -perm /220<br>find . -perm /u+w,g+w<br>find . -perm /u=w,g=w</p>
+<p>所有这三个命令都做同样的事情，但第一个使用文件模式的八进制表示，而另外两个使用符号形式。 这些命令都搜索可由其所有者或其组写入的文件。 所有者和组之间的文件不必可写，以便匹配; 要么会做</p>
+<p>find . -perm -220<br>find . -perm -g+w,u+w</p>
+<p>这两个命令都做同样的事情; 搜索所有者和他们的组可写的文件。</p>
+<p>find . -perm -444 -perm /222 ! -perm /111<br>find . -perm -a+r -perm /a+w ! -perm /a+x</p>
+<p>这两个命令都搜索每个人可读的文件（-perm -444或-perm -a + r），至少有一个写入位集（-perm / 222或-perm / a + w），但不可执行 对于任何人（分别为！-perm / 111和！-perm / a + x）。</p>
+<p>cd /source-dir<br>find . -name .snapshot -prune -o ( ! -name *~ -print0 )|<br>cpio -pmd0 /dest-dir</p>
+<p>此命令将/ source-dir的内容复制到/ dest-dir，但省略名为.snapshot的文件和目录（以及其中的任何内容）。它也省略了名称以〜结尾但不是其内容的文件或目录。构造-prune -o \（… -print0 \）很常见。这里的想法是，-prune之前的表达符合要修剪的内容。但是，-prune操作本身返回true，所以下面的-o确保只对那些没有被修剪的目录进行权限评估（修剪的目录的内容甚至不被访问，所以它们的内容是无关紧要的）。 -o右侧的表达式仅在括号中。它强调-print0操作仅适用于没有应用-prune的内容。因为测试之间的默认“和”条件比-o更紧密地绑定，所以这是默认值，但是括号可以帮助显示发生了什么。</p>
+<p>find repo/ -exec test -d {}/.svn -o -d {}/.git -o -d {}/CVS ; \<br>-print -prune</p>
+<p>给出以下项目目录及其关联的SCM管理目录，可以高效地搜索项目的根目录：</p>
+<p>repo/project1/CVS<br>repo/gnu/project2/.svn<br>repo/gnu/project3/.svn<br>repo/gnu/project3/src/.svn<br>repo/project4/.git</p>
+<p>在这个例子中，-prune防止不必要的下载到已经被发现的目录中（例如我们没有搜索project3 / src，因为我们已经找到project3 / .svn），但确保找到了兄弟目录（project2和project3）。</p>
+<h1 id="历史-HISTORY"><a href="#历史-HISTORY" class="headerlink" title="历史 HISTORY"></a>历史 HISTORY</h1><p>As of findutils-4.2.2, shell metacharacters (‘*’, ‘?’ or ‘[]’ for example) used in filename patterns will match a leading ‘.’, because IEEE POSIX interpretation 126 requires<br>this.</p>
+<p>The syntax -perm +MODE was deprecated in findutils-4.2.21, in favour of -perm /MODE.  As of findutils-4.3.3, -perm /000 now matches all files instead of none.</p>
+<p>Nanosecond-resolution timestamps were implemented in findutils-4.3.3.</p>
+<p>As of findutils-4.3.11, the -delete action sets find’s exit status to a nonzero value when it fails.  However, find will not exit immediately.  Previously, find’s exit  sta-<br>tus was unaffected by the failure of -delete.</p>
+<p>Feature                Added in   Also occurs in<br>-newerXY               4.3.3      BSD<br>-D                     4.3.1<br>-O                     4.3.1<br>-readable              4.3.0<br>-writable              4.3.0<br>-executable            4.3.0<br>-regextype             4.2.24<br>-exec … +            4.2.12     POSIX<br>-execdir               4.2.12     BSD<br>-okdir                 4.2.12<br>-samefile              4.2.11<br>-H                     4.2.5      POSIX<br>-L                     4.2.5      POSIX<br>-P                     4.2.5      BSD<br>-delete                4.2.3<br>-quit                  4.2.3<br>-d                     4.2.3      BSD<br>-wholename             4.2.0<br>-iwholename            4.2.0<br>-ignore_readdir_race   4.2.0<br>-fls                   4.0<br>-ilname                3.8<br>-iname                 3.8<br>-ipath                 3.8<br>-iregex                3.8</p>
+<h1 id="NON-BUGS"><a href="#NON-BUGS" class="headerlink" title="NON-BUGS"></a>NON-BUGS</h1><p>$ find . -name *.c -print<br>find: paths must precede expression<br>Usage: find [-H] [-L] [-P] [-Olevel] [-D help|tree|search|stat|rates|opt|exec] [path…] [expression]</p>
+<p>This happens because *.c has been expanded by the shell resulting in find actually receiving a command line like this:</p>
+<p>find . -name bigram.c code.c frcode.c locate.c -print</p>
+<p>That command is of course not going to work.  Instead of doing things this way, you should enclose the pattern in quotes or escape the wildcard:<br>$ find . -name ‘<em>.c’ -print<br>$ find . -name \</em>.c -print</p>
+<h1 id="BUGS"><a href="#BUGS" class="headerlink" title="BUGS"></a>BUGS</h1><p>There  are  security problems inherent in the behaviour that the POSIX standard specifies for find, which therefore cannot be fixed.  For example, the -exec action is inher-<br>ently insecure, and -execdir should be used instead.  Please see Finding Files for more information.</p>
+<p>The environment variable LC_COLLATE has no effect on the -ok action.</p>
+<p>The best way to report a bug is to use the form at <a href="http://savannah.gnu.org/bugs/?group=findutils" target="_blank" rel="external">http://savannah.gnu.org/bugs/?group=findutils</a>.  The reason for this is that you will then be able  to  track  progress  in<br>fixing the problem.   Other comments about find(1) and about the findutils package in general can be sent to the bug-findutils mailing list.  To join the list, send email to<br>bug-findutils-request@gnu.org.</p>
+<h1 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h1><h2 id="可用的escape-和指令"><a href="#可用的escape-和指令" class="headerlink" title="可用的escape 和指令"></a>可用的escape 和指令</h2><table>
+<thead>
+<tr>
+<th></th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>\a</td>
+<td>警告铃声</td>
+</tr>
+<tr>
+<td>\b</td>
+<td>回退</td>
+</tr>
+<tr>
+<td>\c</td>
+<td>立即停止以当前格式输出，刷新输出设备</td>
+</tr>
+<tr>
+<td>\f</td>
+<td>表格结束</td>
+</tr>
+<tr>
+<td>\n</td>
+<td>新行</td>
+</tr>
+<tr>
+<td>\r</td>
+<td>回车</td>
+</tr>
+<tr>
+<td>\t</td>
+<td>水平tab</td>
+</tr>
+<tr>
+<td>\v</td>
+<td>竖直tab</td>
+</tr>
+<tr>
+<td>\</td>
+<td>输出自身<code>\</code></td>
+</tr>
+<tr>
+<td>\NNN</td>
+<td>ASCII编码是NNN(八进制)的字符</td>
+</tr>
+<tr>
+<td>%%</td>
+<td>输出自身<code>%</code></td>
+</tr>
+<tr>
+<td>%a</td>
+<td>文件最后一次存取的时间。格式是C函数 <code>ctime</code> 返回值的格式。</td>
+</tr>
+<tr>
+<td>%Ak</td>
+<td>文件最后一次存取的时间。格式以 k 指定，可以是 <code>@</code> 或者是C函数 <code>strftime</code> 的指令格式。下面列出了 k 可用的值；有一些并不是在所有系统上都可用，因为不同系统中 <code>strftime</code> 也不同。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="时间相关选项"><a href="#时间相关选项" class="headerlink" title="时间相关选项"></a>时间相关选项</h2><table>
+<thead>
+<tr>
+<th></th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>@</td>
+<td>从 Jan. 1, 1970, 00:00 GMT 起的秒数</td>
+</tr>
+<tr>
+<td>H</td>
+<td>小时 (00..23)</td>
+</tr>
+<tr>
+<td>I</td>
+<td>小时 (01..12)</td>
+</tr>
+<tr>
+<td>k</td>
+<td>小时 (0..23)</td>
+</tr>
+<tr>
+<td>l</td>
+<td>小时 (0..12)</td>
+</tr>
+<tr>
+<td>M</td>
+<td>分钟 (00..59)</td>
+</tr>
+<tr>
+<td>p</td>
+<td>本地的 AM 或者 PM</td>
+</tr>
+<tr>
+<td>r</td>
+<td>12小时格式的时间 (hh:mm:ss [AP]M)</td>
+</tr>
+<tr>
+<td>S</td>
+<td>秒 (00..61)</td>
+</tr>
+<tr>
+<td>T</td>
+<td>24小时格式的时间 (hh:mm:ss)</td>
+</tr>
+<tr>
+<td>X</td>
+<td>本地的时间表示方法 (H:M:S)</td>
+</tr>
+<tr>
+<td>Z</td>
+<td>时区(例如，EDT)，如果不能决定时区就是空</td>
+</tr>
+</tbody>
+</table>
+<h2 id="日期字段"><a href="#日期字段" class="headerlink" title="日期字段"></a>日期字段</h2><p>|a|本地一星期中每天的名称的缩写(Sun..Sat)|<br>|A|本地一星期中每天的全名，可变长度 (Sunday..Saturday)|<br>|b|本地每月的名称的缩写 (Jan..Dec)|<br>|B|本地每月的全名，可变长度 (January..December)|<br>|c|本地的日期和时间表示 (Sat Nov 04 12:02:33 EST 1989)|<br>|d|一个月当中的日子 (01..31)|<br>|D|日期 (mm/dd/yy)|<br>|h|与 b 相同|<br>|j|一年当中的日子 (001..366)|<br>|m|月份 (01..12)|<br>|U|以星期日作为每周起始，一年当中的星期 (00..53)|<br>|w|一星期当中的日子 (0..6)|<br>|W|以星期一当作每周起始，一年当中的星期 (00..53)|<br>|x|本地的日期表示 (mm/dd/yy)|<br>|y|年份的最后两位 (00..99)|<br>|Y|年份 (1970…)|<br>|||</p>
+]]></content>
+      
+        <categories>
+            
+            <category> shell </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> shell </tag>
             
         </tags>
         

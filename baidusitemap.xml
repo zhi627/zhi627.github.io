@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>http://yoursite.com/2017/06/16/shell-find/</loc>
+    <lastmod>2017-06-18T11:22:04.000Z</lastmod>
+    <data>
+        <display>
+        <title>find 命令查找</title>
+        <pubTime>2017-06-16T13:57:02.000Z</pubTime>
+        
+        <tag>shell</tag>
+         
+         
+           
+             
+              <breadCrumb title="shell" url="http://yoursite.com/categories/shell/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2017/06/16/grep/</loc>
     <lastmod>2017-06-16T15:22:27.000Z</lastmod>
     <data>
@@ -318,12 +338,12 @@
 
     
   <url>
-    <loc>http://yoursite.com/2017/06/16/hello-world/</loc>
+    <loc>http://yoursite.com/2017/06/19/hello-world/</loc>
     <lastmod>2017-06-09T00:51:24.000Z</lastmod>
     <data>
         <display>
         <title>Hello World</title>
-        <pubTime>2017-06-16T15:31:30.205Z</pubTime>
+        <pubTime>2017-06-18T20:36:33.070Z</pubTime>
         
          
            
@@ -645,12 +665,12 @@
 
     
   <url>
-    <loc>http://yoursite.com/2017/06/16/django1/</loc>
+    <loc>http://yoursite.com/2017/06/19/django1/</loc>
     <lastmod>2017-05-11T13:54:42.000Z</lastmod>
     <data>
         <display>
         <title>django入门教学</title>
-        <pubTime>2017-06-16T15:31:30.137Z</pubTime>
+        <pubTime>2017-06-18T20:36:33.054Z</pubTime>
         
          
            
