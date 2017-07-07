@@ -4,7 +4,7 @@
     
     <entry>
       <title><![CDATA[Hello World]]></title>
-      <url>/2017/06/19/hello-world/</url>
+      <url>/2017/07/03/hello-world/</url>
       <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
 <p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
@@ -21,7 +21,7 @@
     
     <entry>
       <title><![CDATA[django入门教学]]></title>
-      <url>/2017/06/19/django1/</url>
+      <url>/2017/07/03/django1/</url>
       <content type="html"><![CDATA[<h1 id="django安装"><a href="#django安装" class="headerlink" title="django安装"></a>django安装</h1><p>使用pip 或者easy_install 即可</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pip install django 或者 easy_install django</div></pre></td></tr></table></figure>
 <h1 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h1><p>项目名称不用和python或django的内部组件名称同名。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ django-admin startproject mysite</div></pre></td></tr></table></figure></p>
@@ -39,12 +39,204 @@
     </entry>
     
     <entry>
-      <title><![CDATA[grep]]></title>
-      <url>/2017/06/16/grep/</url>
-      <content type="html"><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>grep是一种强大的文本搜索工具，它能使用特定模式匹配（包括正则表达式）搜索文本，并默认输出匹配行。Unix的grep家族包括grep、egrep和fgrep。Windows系统下类似命令FINDSTR。egrep和fgrep的命令只跟grep有很小不同。egrep和fgrep都是grep的扩展，支持更多的re元字符，fgrep就是fixed grep或fast grep，它们把所有的字母都看作单词，也就是说，正则表达式中的元字符表示回其自身的字面意义，不再特殊。linux使用GNU版本的grep。它功能更强，可以通过-G、-E、-F命令行选项来使用egrep和fgrep的功能。<br>egrep = grep -E.<br>fgrep = grep -F.</p>
-<h1 id="grep-结合正则"><a href="#grep-结合正则" class="headerlink" title="grep 结合正则"></a>grep 结合正则</h1><p>grep默认匹配到的就会输出整行文本。</p>
-<a id="more"></a>
-<h1 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h1>]]></content>
+      <title><![CDATA[Linux 文件系统]]></title>
+      <url>/2017/07/03/shell-file-system/</url>
+      <content type="html"><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>Linux有多种文件系统，下面简单讲解如何在命令行上创建和管理它们。</p>
+<h1 id="文件系统"><a href="#文件系统" class="headerlink" title="文件系统"></a>文件系统</h1><h2 id="ext文件系统"><a href="#ext文件系统" class="headerlink" title="ext文件系统"></a>ext文件系统</h2><p>ext文件系统又叫扩展文件系统。使用虚拟目录来操作硬件设备，在物理设备上按定长的块存储数据。<br>ext文件系统采用称作为索引节点的系统来存放虚拟目录中所存储文件的信息。索引节点系统在每个物理设备中创建一个但难度的表（称为索引节点表）来存储这些文件的信息。存储在虚拟目录中的每一个文件在索引节点表中都有一个条目。条目名称的扩展部分来自其跟踪每个文件的额外数据:</p>
+<ul>
+<li>文件名；</li>
+<li>文件大小</li>
+<li>文件的属主</li>
+<li>文件的属组</li>
+<li>文件的访问权限</li>
+<li>指向存有文件数据的每个硬盘块的指针</li>
+</ul>
+<p>Linux通过唯一的数值来引用索引节点表中的每个索引节点，这个值是创建文件时由文件系统分配的。文件系统通过索引节点号而不是文件全名及路径来标识文件。</p>
+<h2 id="ext2文件系统"><a href="#ext2文件系统" class="headerlink" title="ext2文件系统"></a>ext2文件系统</h2><p>最早的ext文件系统有不少限制，比如文件大小不得超过2GB。是ext文件系统基本功能的一个扩展，但是维护着同样的结果，最大文件大小增加到2TB,后期版本增加到32TB<br>索引节点表为文件添加了：</p>
+<ul>
+<li>创建时间值</li>
+<li>修改时间值</li>
+<li>最后访问时间值<br>ext2文件系统通过按组分配磁盘块来减轻碎片化。通过将数据块分组，文件系统不需要为了数据块查找整个无聊设备来读取文件。</li>
+</ul>
+<h2 id="日志文件系统"><a href="#日志文件系统" class="headerlink" title="日志文件系统"></a>日志文件系统</h2><p>日志文件系统增加了一层安全性。取代了之前先将数据直接写入存储设备再更新索引节点表的做法，日志文件系统会将文件的更改写入到历史文件（称为日志,journal）中，然后在数据成功写到存储设备和索引节点表之后，再删除对应的日志条目。</p>
+<p>3种不同的广泛使用的日志方法，<br>|方法|描述|<br>|-|-|<br>|数据模式|索引节点和文件都会被写入到日志；丢失数据风险低，但性能差|<br>|排序模式|只有索引节点数据会被写入日志但只有数据成功写入后才删除；性能和安全之间的良好折中|<br>|会写模式|只有索引节点数据会被写入日志，但不管文件数据合适写入，丢失数据风险高，但仍比不用日志好|</p>
+<h2 id="ext3文件系统"><a href="#ext3文件系统" class="headerlink" title="ext3文件系统"></a>ext3文件系统</h2><p>ext3采用和ext2文件系统相同的索引结点表结构，但给每个存储设备增加了一个日志文件，来将准备写入存储设备的数据线写进日志文件。<br>默认情况下，ext3文件系统用排序模式的日志功能—只将索引节点信息写入日志问问你见，直到数据块都被成功写入存储设备才删除。<br>ext3为Linux文件系统添加了基本的日志功能，但他仍然缺一些东西。例如ext3文件系统无法恢复误删的文件，它没有任何内建的数据压缩功能(虽然有个需单独安装的补丁支持这个功能)，ext3文件系统也不支持加密文件</p>
+<h2 id="ext4文件系统"><a href="#ext4文件系统" class="headerlink" title="ext4文件系统"></a>ext4文件系统</h2><p>ext4文件系统在2008年时被Linux内核官方支持处理支持数据压缩和加密，还支持一个称作为区段的特性。区段在粗出设备上按块分配空间，但在索引节点表中只保存起始块的位置。<br>ext4还整合了块预分配。如果你想在存储设备上给一个你知道变大的文件预留空间啊，通过ext4文件系统你可以为文件分配所有期望的块，不只是物理上存在的块。ext4文件系统用0填满预留的数据块，并知道不要将它们分配给其他文件。</p>
+<h2 id="Reiser文件系统"><a href="#Reiser文件系统" class="headerlink" title="Reiser文件系统"></a>Reiser文件系统</h2><p>Reiser文件系统只支持回写模式–只把索引节点表数据写道日志文件。ReiserFS文件系统是Linux上最快的日志子文件系统之一。<br>Reiser文件系统有两个有意思的特性：</p>
+<ol>
+<li>可以在线调整已有文件系统的大小</li>
+<li>尾部压缩的技术，该技术能将一个文件的数据填进另一个文件的数据块中的空白空间。</li>
+</ol>
+<h2 id="JFS文件系统"><a href="#JFS文件系统" class="headerlink" title="JFS文件系统"></a>JFS文件系统</h2><p>采用顺序日志方法，即只在日志中保存索引节点表书，直到真正的文件数据被写进存储设备时才删除它。同时，采用基于区段的文件分配，即为每个写入存储设备的分配一组块。</p>
+<h2 id="XFS文件系统"><a href="#XFS文件系统" class="headerlink" title="XFS文件系统"></a>XFS文件系统</h2><p>XPFS文件系统采用回写模式的日后，还允许在线调整文件系统的大小，但是XFS文件系统只可扩大不能缩小。</p>
+<h1 id="操作文件系统"><a href="#操作文件系统" class="headerlink" title="操作文件系统"></a>操作文件系统</h1><p>fdisk</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>a</td>
+<td>设置一个标识，说明这个分区是可启动的</td>
+</tr>
+<tr>
+<td>b</td>
+<td>编辑BSD Unix系统用的磁盘标签</td>
+</tr>
+<tr>
+<td>c</td>
+<td>设置 DOS 兼容标识</td>
+</tr>
+<tr>
+<td>d</td>
+<td>删除分区</td>
+</tr>
+<tr>
+<td>l</td>
+<td>显示可用的分区类型</td>
+</tr>
+<tr>
+<td>m</td>
+<td>显示命令选项</td>
+</tr>
+<tr>
+<td>n</td>
+<td>添加一个新分区</td>
+</tr>
+<tr>
+<td>o</td>
+<td>创建DOS分区表</td>
+</tr>
+<tr>
+<td>p</td>
+<td>显示当前分区表</td>
+</tr>
+<tr>
+<td>q</td>
+<td>退出，不保存更新</td>
+</tr>
+<tr>
+<td>s</td>
+<td>为Sun Unix 系统创建一个新磁盘标签</td>
+</tr>
+<tr>
+<td>t</td>
+<td>修改分区的系统ID</td>
+</tr>
+<tr>
+<td>u</td>
+<td>改变使用的存储单位</td>
+</tr>
+<tr>
+<td>v</td>
+<td>验证分区表</td>
+</tr>
+<tr>
+<td>w</td>
+<td>将分区表写入磁盘</td>
+</tr>
+<tr>
+<td>x</td>
+<td>高级功能</td>
+</tr>
+</tbody>
+</table>
+<p>分区可以按主分区或扩展分区创建。主分区可以被文件系统直接格式化，而扩展分区只能容纳其他主分区。</p>
+<h1 id="创建文件系统"><a href="#创建文件系统" class="headerlink" title="创建文件系统"></a>创建文件系统</h1><table>
+<thead>
+<tr>
+<th>工具</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>mkefs</td>
+<td>创建一个ext文件系统</td>
+</tr>
+<tr>
+<td>mke2fs</td>
+<td>创建一个ext2文件系统</td>
+</tr>
+<tr>
+<td>mkfs.ext3</td>
+<td>创建一个ext3文件系统</td>
+</tr>
+<tr>
+<td>mkfs.ext4</td>
+<td>创建一个ext4文件系统</td>
+</tr>
+<tr>
+<td>mkreiseffs</td>
+<td>创建一个ReiserFS文件系统</td>
+</tr>
+<tr>
+<td>jfs_mkfs</td>
+<td>创建一个JFS文件系统</td>
+</tr>
+<tr>
+<td>mkfs.xfs</td>
+<td>创建一个XFS文件系统</td>
+</tr>
+</tbody>
+</table>
+<h1 id="fsck命令"><a href="#fsck命令" class="headerlink" title="fsck命令"></a>fsck命令</h1><p>fsck命令用来检查和修复任意类型的Linu文件系统，包括本章早些时候讨论过的所有文件系统-ext、ext2\ext3、ext4、ReiserFS、JFS和XFS。<br>命令格式：<br><strong><em>fsck options filesystem</em></strong></p>
+<p>fsck的命令行选项<br>|选项|描述|<br>|-|-|<br>|-a|如果检测到错误，自动修复文件系统|<br>|-A|检查/etc/fstab文件中列出的所有文件系统|<br>|-C|给支持进度条功能的文件系统显示一个进度条(只有ext2和ext3)|<br>|-N|不进行检查，只显示哪些检查会执行|<br>|-r|出现错误时提示|<br>|-R|使用-A选项时跳过根文件系统|<br>|-s|检查多个文件系统时，依次进行检查|<br>|-t|指定要检查的文件系统类型|<br>|-T|启动时不显示信息|<br>|-V|在检查时产生详细输出|<br>|-y|检测到错误时自动修复文件系统|</p>
+<p>注意</p>
+<blockquote>
+<p>你只能在未挂载的文件系统上运行fsck命令。对大多数文件系统来说，你只需卸载文件系统来检查，检查完成了重新挂载就好了。但因为根文件系统含有所有核<br>心Linux命令和日志文件，你不能在运行的系统上卸载它。只需用LiveCD启动系统就可以了，然后在根文件系统上运行fsck命令。</p>
+</blockquote>
+<h2 id="逻辑卷管理器"><a href="#逻辑卷管理器" class="headerlink" title="逻辑卷管理器"></a>逻辑卷管理器</h2><p>逻辑卷管理的河西是它如何处理安装在系统上的硬盘分区。在逻辑卷管理的世界里，硬盘称作物理卷。每个物理卷都会映射到硬盘上创建的某一物理分区。</p>
+<h3 id="Linux-的LVM"><a href="#Linux-的LVM" class="headerlink" title="Linux 的LVM"></a>Linux 的LVM</h3><ul>
+<li>LVM1：基本的逻辑卷管理功能。</li>
+<li>LVM2: 除了标准的逻辑卷管理功能外，允许创建可读写快照、条带化、镜像</li>
+</ul>
+<h3 id="使用Linux-LVM"><a href="#使用Linux-LVM" class="headerlink" title="使用Linux LVM"></a>使用Linux LVM</h3><ol>
+<li>定义物理卷，可以通过pvcreate来创建物理卷</li>
+<li>创建卷组，可以通过vgcreate命令，vgdisplay命令查看新创建的卷组的细节</li>
+<li>创建逻辑卷，lvcreate命令。</li>
+</ol>
+<p>lvcreate的选项<br>|选项|长选项名|描述|<br>|-c|–chunksize|指定快照逻辑卷的单位大小|<br>|-C|–contiguous|设置或重置连续分配策略|<br>|-i|–stripes|指定条带数|<br>|-I|–stripeszie|指定每个条带的大小|<br>|-l|–extends|指定分配给新逻辑卷的逻辑块数，或者要用的逻辑块的百分比|<br>|-L|–size|指定分配给新逻辑卷的硬盘大小|<br>|-L|–minor|指定设备的次设备号|<br>|-m|-mirrors|创建设备的镜像数|<br>|-M|–persistent|让次设备号一直有效|<br>|-n|–name|指定新逻辑卷的名称|<br>|-p|–permission|为逻辑卷设置读/写权限|<br>|-r|–readahead|设置预读扇区数|<br>|-R|–regionsize|指定将镜像分成多大的区|<br>|-s|snapshot|创建镜像逻辑卷|<br>|-Z|–zero|设置在新逻辑卷的前1KB数据为零|</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo lvcreate <span class="_">-l</span> 100%FREE -n lvtest Vol1</div><div class="line">Logical volume <span class="string">"lvtest"</span> created</div></pre></td></tr></table></figure>
+<h2 id="创建文件系统-1"><a href="#创建文件系统-1" class="headerlink" title="创建文件系统"></a>创建文件系统</h2><p>在运行了lvcreate 命令之后，逻辑卷已存在但没有文件系统。要做文件系统，你必须要用创建的文件系统对应的命令行程序：</p>
+<h2 id="修改LVM"><a href="#修改LVM" class="headerlink" title="修改LVM"></a>修改LVM</h2><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>vgchange</td>
+<td>激活和禁用卷组</td>
+</tr>
+<tr>
+<td>vgremove</td>
+<td>删除卷组</td>
+</tr>
+<tr>
+<td>vgextent</td>
+<td>将物理卷加到卷组中</td>
+</tr>
+<tr>
+<td>vgreduce</td>
+<td>从卷组中删除物理卷</td>
+</tr>
+<tr>
+<td>vlexend</td>
+<td>增加逻辑卷的大小</td>
+</tr>
+<tr>
+<td>lvreduce</td>
+<td>减小逻辑卷的大小</td>
+</tr>
+</tbody>
+</table>
+]]></content>
       
         <categories>
             
@@ -55,9 +247,551 @@
         
         <tags>
             
+            <tag> linux </tag>
+            
             <tag> shell </tag>
             
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[linux-manage]]></title>
+      <url>/2017/07/03/linux-manage/</url>
+      <content type="html"></content>
+      
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[一次阿里云增加数据盘经历]]></title>
+      <url>/2017/07/03/work-disk/</url>
+      <content type="html"><![CDATA[<h1 id=""><a href="#" class="headerlink" title=" "></a> </h1><p>2个月前，搭建的zabbix监控平台使用的磁盘配置是阿里云的基础的磁盘配置。渐渐地发现记录到mysql的监控数据越来越多，以及达到我们监控磁盘的预警阈值。按照这趋势再过段时间就要满了，于是赶紧通知领导增加数据盘。<br>这年头几乎就没试过磁盘管理，只记得一个好像fdisk，mount的命令也是够苦逼的。以前学习的linux磁盘管理命令估计通过大肠直冲大西洋了。刚想自己动手查找下资料弄下，结果组长过来问问下情况，结果大家都对磁盘管理一面懵逼，不一会儿，他回去查下资料过来帮弄好。事后发现阿里的文档其实也有写到数据盘增加的说明，按照云服务器ECS的目录其实很好找。不多说上个链接压压惊，<a href="https://help.aliyun.com/document_detail/25426.html?spm=5176.product25365.6.591.6rZ6Tr" target="_blank" rel="external">步骤 4：格式化和挂载数据盘</a></p>
+<h1 id="下面相关说明"><a href="#下面相关说明" class="headerlink" title="下面相关说明"></a>下面相关说明</h1><p><strong><em>转自阿里相关说明</em></strong></p>
+<h2 id="格式化和挂载数据盘"><a href="#格式化和挂载数据盘" class="headerlink" title="格式化和挂载数据盘"></a>格式化和挂载数据盘</h2><ol>
+<li>使用管理终端，或远程连接工具，输入用户名 root 和密码登录到实例</li>
+<li>运行 fdisk -l 命令查看数据盘。注意：在没有分区和格式化数据盘之前，使用 df -h 命令是无法看到数据盘的。在下面的示例中，有一个 96.6 GB 的数据盘需要挂载。<br>如果执行了 fdisk -l 命令后，没有发现 /dev/xvdb，则表示您的实例没有数据盘，因此无需挂载，请忽略这一章。<br><img src="http://docs-aliyun.cn-hangzhou.oss.aliyun-inc.com/assets/attach/25426/cn_zh/1462846465113/1.jpg" alt="fdisk -l"></li>
+<li>运行 fdisk /dev/xvdb，对数据盘进行分区。根据提示，依次输入 n，p，1，两次回车，wq，分区就开始了。<br><img src="http://docs-aliyun.cn-hangzhou.oss.aliyun-inc.com/assets/attach/25426/cn_zh/1462846584705/2.jpg" alt="fdisk /dev/xvdb"></li>
+<li>运行 fdisk -l 命令，查看新的分区。新分区 xvdb1 已经创建好。如下面示例中的/dev/xvdb1。<br><img src="http://docs-aliyun.cn-hangzhou.oss.aliyun-inc.com/assets/attach/25426/cn_zh/1462846693542/3.jpg" alt="fdisk -l"></li>
+<li>运行 mkfs.ext3 /dev/xvdb1，对新分区进行格式化。格式化所需时间取决于数据盘大小。您也可自主决定选用其他文件格式，如 ext4 等。<br><img src="http://docs-aliyun.cn-hangzhou.oss.aliyun-inc.com/assets/attach/25426/cn_zh/1462846760502/4.jpg" alt="mkfs.ext3 /dev/xvdb1"></li>
+<li>运行 echo /dev/xvdb1 /mnt ext3 defaults 0 0 &gt;&gt; /etc/fstab 写入新分区信息。完成后，可以使用 cat /etc/fstab 命令查看。<br><img src="http://docs-aliyun.cn-hangzhou.oss.aliyun-inc.com/assets/attach/25426/cn_zh/1462846921932/5.jpg" alt="fstab"></li>
+<li>运行 mount /dev/xvdb1 /mnt 挂载新分区，然后执行 df -h 查看分区。如果出现数据盘信息，说明挂载成功，可以使用新分区了。</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">mount /dev/xvdb1 /mnt</div><div class="line">df -h</div><div class="line">Filesystem      Size  Used Avail Use% Mounted on</div><div class="line">/dev/xvda1       40G  1.5G   36G   4% /</div><div class="line">tmpfs           498M     0  498M   0% /dev/shm</div><div class="line">/dev/xvdb1      5.0G  139M  4.6G   3% /mnt</div></pre></td></tr></table></figure>
+<h2 id="ECS-Linux系统初始化后重新挂载数据盘"><a href="#ECS-Linux系统初始化后重新挂载数据盘" class="headerlink" title="ECS Linux系统初始化后重新挂载数据盘"></a>ECS Linux系统初始化后重新挂载数据盘</h2><ol>
+<li><p>输入 mount 命令可以看到并没有挂载数据盘，输入fdisk -l 命令，看到已经分区的数据盘 /dev/xvdb1 (设备编号以实际情况为准)。<br><img src="http://img01.taobaocdn.com/tfscom/TB1hrJKHFXXXXcRXVXXXXXXXXXX.jpg" alt="mount"></p>
+</li>
+<li><p>输入命令 mount /dev/xvdb1/ 目录，下面的例子是挂载到了 /alidata1 目录上，这个目录需要按照各自实际需要挂载的目录进行填写，这里只是举例。<br>挂载后再输入 mount 命令可以看到数据盘已经挂载，并且格式是ext4<br><img src="http://img01.taobaocdn.com/tfscom/TB1je82HFXXXXb.XXXXXXXXXXXX.jpg" alt="挂载到文件目录"></p>
+</li>
+<li><p>修改 /etc/fstab 自动挂载文件，增加数据盘挂载条目，分区类型是 ext3 还是 ext4 要注意与刚才执行 mount 命令看到类型相对应。<br><img src="http://img01.taobaocdn.com/tfscom/TB1BLpOHFXXXXcEXVXXXXXXXXXX.jpg" alt="修改 fstab"></p>
+</li>
+<li><p>最后可以使用 umount 命令卸除磁盘挂载，再重新使用 mount -a 命令查看是否可以自动挂载上。<br><img src="http://img01.taobaocdn.com/tfscom/TB1W6lNHFXXXXcZXVXXXXXXXXXX.jpg" alt="检查是否自动挂载"></p>
+</li>
+</ol>
+]]></content>
+      
+        <categories>
+            
+            <category> work </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> work </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[awk、gawk 使用]]></title>
+      <url>/2017/06/20/shell-gawk/</url>
+      <content type="html"><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>awk是一个强大的文本分析工具，相对于grep的查找，sed的编辑，awk在其对数据分析并生成报告时，显得尤为强大。简单来说awk就是把文件逐行的读入，以空格为默认分隔符将每行切片，切开的部分再进行各种分析处理。</p>
+<p>awk有3个不同版本: awk、nawk和gawk，未作特别说明，一般指gawk，gawk 是 AWK 的 GNU 版本。</p>
+<p>awk其名称得自于它的创始人 Alfred Aho 、Peter Weinberger 和 Brian Kernighan 姓氏的首个字母。实际上 AWK 的确拥有自己的语言： AWK 程序设计语言 ， 三位创建者已将它正式定义为“样式扫描和处理语言”。它允许您创建简短的程序，这些程序读取输入文件、为数据排序、处理数据、对输入执行计算以及生成报表，还有无数其他的功能。</p>
+<h1 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h1><blockquote>
+<p>gawk [ POSIX or GNU style options ] -f program-file [ – ] file …<br>gawk [ POSIX or GNU style options ] [ – ] program-text file …</p>
+<p>pgawk [ POSIX or GNU style options ] -f program-file [ – ] file …<br>pgawk [ POSIX or GNU style options ] [ – ] program-text file …</p>
+</blockquote>
+<a id="more"></a>
+<h1 id="gawk-内置变量"><a href="#gawk-内置变量" class="headerlink" title="gawk 内置变量"></a>gawk 内置变量</h1><h2 id="字段和数据行分隔符变量"><a href="#字段和数据行分隔符变量" class="headerlink" title="字段和数据行分隔符变量"></a>字段和数据行分隔符变量</h2><table>
+<thead>
+<tr>
+<th>变量</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FIELDWIDTHS</td>
+<td>由空格分隔开的定义了每个数据字段确切宽度的一系列数字</td>
+</tr>
+<tr>
+<td>FS</td>
+<td>输入字段分隔符</td>
+</tr>
+<tr>
+<td>RS</td>
+<td>输入数据行分隔符</td>
+</tr>
+<tr>
+<td>OFS</td>
+<td>输出字段分隔符</td>
+</tr>
+<tr>
+<td>ORS</td>
+<td>输出数据行分隔符</td>
+</tr>
+</tbody>
+</table>
+<p>默认分隔符是制表符,空格等空白字符<br>此外,$0变量是指整条记录。$1表示当前行的第一个域,$2表示当前行的第二个域,……以此类推。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">$ cat data1</div><div class="line">data11,data12,data13</div><div class="line">data21,data22,data23</div><div class="line">$ gawk <span class="string">'BEGIN&#123;FS=","&#125; &#123;print $1,$2,$3&#125;'</span> data1</div><div class="line">data11 data12 daat13</div><div class="line">data21 data22 data23</div><div class="line">data31 data32 data33</div><div class="line">$ gawk <span class="string">'BEGIN&#123;FS=",";OFS="-"&#125; &#123;print $1,$2,$3&#125;'</span> data1</div><div class="line">data11-data12-data13</div><div class="line">data21-data22-data23</div></pre></td></tr></table></figure>
+<h2 id="数据变量"><a href="#数据变量" class="headerlink" title="数据变量"></a>数据变量</h2><table>
+<thead>
+<tr>
+<th>变量</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ARGC</td>
+<td>当前命令行参数个数</td>
+</tr>
+<tr>
+<td>ARGIND</td>
+<td>当前文件在ARGV中的位置</td>
+</tr>
+<tr>
+<td>ARGV</td>
+<td>包含命令行参数的数组</td>
+</tr>
+<tr>
+<td>CONVFMT</td>
+<td>数字的转换格式: 默认值为%.6g</td>
+</tr>
+<tr>
+<td>ENVIRON</td>
+<td>当前shell环境变量及其值组成的关联数组</td>
+</tr>
+<tr>
+<td>ERRNO</td>
+<td>当读取或关闭输入文件发生错误时的系统错误号</td>
+</tr>
+<tr>
+<td>FILENAME</td>
+<td>用作gawk输入数据的数据文件的文件名</td>
+</tr>
+<tr>
+<td>FNR</td>
+<td>当前数据文件中的数据行数</td>
+</tr>
+<tr>
+<td>IGNORECASE</td>
+<td>设成非零值时，忽略gawk命令中出现的字符串的字符大小写</td>
+</tr>
+<tr>
+<td>NF</td>
+<td>数据文件中的字段总数</td>
+</tr>
+<tr>
+<td>NR</td>
+<td>已处理的输入数据行数目</td>
+</tr>
+<tr>
+<td>RLENGTH</td>
+<td>由match函数所匹配的子字符串的长度</td>
+</tr>
+<tr>
+<td>RSTART</td>
+<td>由match函数所匹配的子字符串的起始位置</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">gawk <span class="string">'BEGIN&#123;print ARGC,ARGV[1]&#125;'</span> data1</div><div class="line">2 data1</div><div class="line">gawk <span class="string">'BEGIN&#123;print ARGC,ARGV[0]&#125;'</span> data1</div><div class="line">2 gawk</div></pre></td></tr></table></figure>
+<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p><strong><em>跟shell变量不同，在脚本中引用gawk变量时，变量名前不加美元符。</em></strong><br><strong><em>当多文件时 FNR!=NR,FNR不同文件会被重置</em></strong></p>
+<p>例如:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">gawk <span class="string">'BEGIN&#123;FS="."&#125; &#123;print $1,"FNR=“ FNR&#125;'</span>  data1 data1</div><div class="line">data1 FNR=1</div><div class="line">data2 FNR=2</div><div class="line">data3 FNR=3</div><div class="line">data1 FNR=1</div><div class="line">data2 FNR=2</div><div class="line">data3 FNR=3</div><div class="line"></div><div class="line">gawk <span class="string">'BEGIN&#123;FS="."&#125; &#123;print $1,"NR"=NR&#125;'</span> data1 data1</div><div class="line">data1 NR=1</div><div class="line">data2 NR=2</div><div class="line">data3 NR=3</div><div class="line">data1 NR=4</div><div class="line">data2 NR=5</div><div class="line">data3 NR=6</div></pre></td></tr></table></figure>
+<h1 id="处理数组"><a href="#处理数组" class="headerlink" title="处理数组"></a>处理数组</h1><h2 id="定义数组变量"><a href="#定义数组变量" class="headerlink" title="定义数组变量"></a>定义数组变量</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var[index] =element</div></pre></td></tr></table></figure>
+<p>其中var是变量名，index是关联数组的索引值，element是数据元素值。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">gawk <span class="string">'BEGIN&#123;</span></div><div class="line">capital["x"]= "x"</div><div class="line">print capital["x"]</div><div class="line">&#125;'</div><div class="line">x</div></pre></td></tr></table></figure></p>
+<p>在引用数组变量时，数据元素的值会出现。数据元素值是数字值时也一样。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">gawk <span class="string">'BEGIN&#123;</span></div><div class="line">var[1]=34</div><div class="line">var[2]=3</div><div class="line">total =var[1] +var[2]</div><div class="line">print total</div><div class="line">&#125;'</div></pre></td></tr></table></figure></p>
+<h2 id="遍历数组变量"><a href="#遍历数组变量" class="headerlink" title="遍历数组变量"></a>遍历数组变量</h2><p>gawk 中遍历一个关联数组，你可以用for语句的一种特殊形式:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> (var <span class="keyword">in</span> array)</div><div class="line">&#123;</div><div class="line">statements</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">gawk <span class="string">'BEGIN&#123;</span></div><div class="line">var["a"]=1</div><div class="line">var["b"]=2</div><div class="line">for (test in var)</div><div class="line">&#123;</div><div class="line">print "Index: ".test."- Value :".var[test]</div><div class="line">&#125;</div><div class="line">&#125;'</div></pre></td></tr></table></figure>
+<h2 id="删除数组变量"><a href="#删除数组变量" class="headerlink" title="删除数组变量"></a>删除数组变量</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">delete array[index]</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">gawk <span class="string">'BEGIN&#123;</span></div><div class="line">var["a"]=1</div><div class="line">var["b"]=2</div><div class="line">for (test in var)</div><div class="line">&#123;</div><div class="line">print "Index:".test." - Value:".var[test]</div><div class="line">&#125;</div><div class="line">delete var["g"]</div><div class="line">print "-----"</div><div class="line">for (test in var)</div><div class="line">print "Index:". test."- Value".var[test]</div><div class="line">&#125;'</div></pre></td></tr></table></figure>
+<p><strong>一旦从关联数组中删除了索引值,你就没发再提取它了。</strong></p>
+<h2 id="正则表达式-可以使用基本正则表达式（BRE）或扩展正则表达式-ERE"><a href="#正则表达式-可以使用基本正则表达式（BRE）或扩展正则表达式-ERE" class="headerlink" title="正则表达式:可以使用基本正则表达式（BRE）或扩展正则表达式(ERE)"></a>正则表达式:可以使用基本正则表达式（BRE）或扩展正则表达式(ERE)</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">gawk <span class="string">'BEGIN&#123;FS="."&#125; /11/&#123;print $1&#125;'</span> data1</div><div class="line">gawk <span class="string">'BEGIN&#123;FS=","&#125; /.d/&#123;print$1&#125;'</span> data1</div><div class="line"></div><div class="line">data11</div><div class="line">data21</div><div class="line">data31</div><div class="line"></div><div class="line">匹配操作符:波浪线~</div><div class="line">要一起指定匹配操作符、数据字段变量以及要匹配的正则表达式:</div><div class="line"><span class="variable">$1</span> ~ /^data/</div><div class="line"></div><div class="line">gawk <span class="string">'BEGIN&#123;FS=","&#125; $2 ~ /^data2/&#123;print $0&#125;'</span> data1</div><div class="line"></div><div class="line">排除正则表达式的匹配:</div><div class="line"><span class="variable">$1</span> !~ /expression/</div><div class="line">gawk -F : <span class="string">'$1 !~ /rich/&#123;print $1,$NF&#125;'</span> /etc/passwd</div></pre></td></tr></table></figure>
+<h2 id="数学表达式"><a href="#数学表达式" class="headerlink" title="数学表达式"></a>数学表达式</h2><p>可以使用任意的普通数学比较表达式<br>x == y :值x等于y<br>x&lt;=:值x小于等于y<br>x<y:值小于y x="">=:值x大于等于y<br>x&gt;y:值x大于y</y:值小于y></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">gawk -F : <span class="string">'$4 == 0&#123;print $1&#125;'</span> /etc/passwd</div></pre></td></tr></table></figure>
+<h2 id="结构化命令"><a href="#结构化命令" class="headerlink" title="结构化命令"></a>结构化命令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span>(condition)</div><div class="line">statement1</div><div class="line"><span class="keyword">if</span> (condition) statement1</div><div class="line"><span class="keyword">if</span> (condition)  statement1;<span class="keyword">else</span> statement2以分号隔开</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">gawk <span class="string">'&#123;</span></div><div class="line">if ($1 &gt;20 )</div><div class="line">&#123;</div><div class="line">x=$1*2</div><div class="line">print x</div><div class="line">&#125;else</div><div class="line">&#123;</div><div class="line">x=$1 /2</div><div class="line">print x</div><div class="line">&#125;&#125;' data4</div></pre></td></tr></table></figure>
+<p>while 语句<br>while 语句为gawk 程序提供一个基本的循环功能。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">while</span> (condition)</div><div class="line">&#123;</div><div class="line">    statements</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">cat avg.awk</div><div class="line">&#123;</div><div class="line">total =0</div><div class="line">i=1</div><div class="line">while (i&lt;=NF)</div><div class="line">&#123;</div><div class="line">    total +=$i</div><div class="line">    i++</div><div class="line">&#125;</div><div class="line">avg =total /NF</div><div class="line">print total,avg</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="for语句"><a href="#for语句" class="headerlink" title="for语句"></a>for语句</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> (variable; condition;iteration process)</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">cat for.awk</div><div class="line">&#123;</div><div class="line">total=0</div><div class="line"><span class="keyword">for</span> (i=1;i&lt;4;i++)</div><div class="line">&#123;</div><div class="line">total += <span class="variable">$1</span></div><div class="line">&#125;</div><div class="line">avg=total/3</div><div class="line"><span class="built_in">print</span> avg</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="格式化打印"><a href="#格式化打印" class="headerlink" title="格式化打印"></a>格式化打印</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<p>#</p>
+<p>格式化打印<br>printf “format string”,var1,var2<br>格式化指定符采用如下格式:<br>%[modifier]control-letter<br>格式化指定符的控制字母<br>|控制字母 |描述|<br>|-|-|<br>|c|将一个数作为ASCII字符显示|<br>|d|显示一个整数|<br>|i|显示一个整数值跟d一样|<br>|e|用科学计数法显示一个数|<br>|f|显示一个浮点数|<br>|g|用科学计数法或者浮点数较短的显示|<br>|o|显示一个八进制值|<br>|s|显示一个文本字符串|<br>|x|显示一个十六进制值|<br>|X|显示一个十六进制值，用大写字母A~F|</p>
+<p>3种修饰符进一步控制输出<br>|修饰符|描述|<br>|-|-|<br>|width|指定输出字段最小宽度的数字值|<br>|prec |指定了浮点数中小数点后面位数的数字值|<br>|-| 减号|</p>
+<h1 id="数学函数"><a href="#数学函数" class="headerlink" title="数学函数"></a>数学函数</h1><h2 id="内建数学函数"><a href="#内建数学函数" class="headerlink" title="内建数学函数"></a>内建数学函数</h2><table>
+<thead>
+<tr>
+<th>函数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>atan2(x,y)</td>
+<td>x/y的反正切，x和y以弧度为单位</td>
+</tr>
+<tr>
+<td>cos(x)</td>
+<td>x的余弦,x以弧度为单位</td>
+</tr>
+<tr>
+<td>exp(x)</td>
+<td>x的指数函数</td>
+</tr>
+<tr>
+<td>int(x)</td>
+<td>x的整数部分，取靠近0一侧的值</td>
+</tr>
+<tr>
+<td>log(x)</td>
+<td>x的自然对数</td>
+</tr>
+<tr>
+<td>rand()</td>
+<td>比0大比1小的随机浮点数</td>
+</tr>
+<tr>
+<td>sin(x)</td>
+<td>x的正弦，x以弧度为单位</td>
+</tr>
+<tr>
+<td>sqrt(x)</td>
+<td>x的平方跟</td>
+</tr>
+<tr>
+<td>srand(x)</td>
+<td>x的随机数指定一个种子值</td>
+</tr>
+</tbody>
+</table>
+<p>除了标准数学函数外，gawk还支持一些按位操作数据的函数</p>
+<h2 id="操作数据的函数"><a href="#操作数据的函数" class="headerlink" title="操作数据的函数"></a>操作数据的函数</h2><table>
+<thead>
+<tr>
+<th>函数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>and(v1,v2)</td>
+<td>执行值v1和v2的按位与运算</td>
+</tr>
+<tr>
+<td>comp(val)</td>
+<td>执行val的补运算</td>
+</tr>
+<tr>
+<td>lshift(val,count)</td>
+<td>将值val左移count位</td>
+</tr>
+<tr>
+<td>or(v1,v2)</td>
+<td>执行值v1和v2的按位或运算</td>
+</tr>
+<tr>
+<td>rshift(val,count)</td>
+<td>将值val右移count位</td>
+</tr>
+<tr>
+<td>xor(v1,v2)</td>
+<td>执行值v1和v2的按位异或运算</td>
+</tr>
+</tbody>
+</table>
+<p>位操作函数在处理数据中的二进制值时非常有用</p>
+<h1 id="字符串函数"><a href="#字符串函数" class="headerlink" title="字符串函数"></a>字符串函数</h1><table>
+<thead>
+<tr>
+<th>函数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>asort(s[,d])</td>
+<td>将数组s按数据元素排序。索引值会被替换成表示新的排序顺序的连续数字。另外，如果指定了d,则排序后的数组会存储在数组d中</td>
+</tr>
+<tr>
+<td>asorti(s[,d])</td>
+<td>将数组s按索引值排序。生成的数组将索引值作为数据元素值，用连续的数字索引来表明排序顺序。另外，如果指定了d,则排序后的数组会存储在数组d中</td>
+</tr>
+<tr>
+<td>gensub(r,s,h,[,t])</td>
+<td>查找变量$0或目标字符串t(如果提高了的话)来匹配正则表达式r。如果h是一个以g或G开头的字符串，就用s替换匹配的文本。</td>
+</tr>
+<tr>
+<td>gsub(r,s,[,t])</td>
+<td></td>
+</tr>
+<tr>
+<td>index(s,t)</td>
+<td></td>
+</tr>
+<tr>
+<td>length([s])</td>
+<td></td>
+</tr>
+<tr>
+<td>match(s,r,[,a])</td>
+<td></td>
+</tr>
+<tr>
+<td>split(s,a[,r])</td>
+<td></td>
+</tr>
+<tr>
+<td>sprintf(format,variables)</td>
+<td></td>
+</tr>
+<tr>
+<td>sub(r,s,[,t])</td>
+<td></td>
+</tr>
+<tr>
+<td>substr(s,i,[,n])</td>
+<td>返回s中从索引值i开始的</td>
+</tr>
+</tbody>
+</table>
+<h1 id="时间函数"><a href="#时间函数" class="headerlink" title="时间函数"></a>时间函数</h1><ul>
+<li>mktime(datespec) 将一个按YYYY MM DD</li>
+<li>strftime(format [,timestamp])</li>
+<li>systime</li>
+</ul>
+<h1 id="自定义函数"><a href="#自定义函数" class="headerlink" title="自定义函数"></a>自定义函数</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">function</span> name([variables])</div><div class="line">&#123;</div><div class="line">statements</div><div class="line">&#125;</div><div class="line">gawk <span class="string">'</span></div><div class="line">function myprint()</div><div class="line">&#123;</div><div class="line">printf "%-16s - %s\n",$1,$4</div><div class="line">&#125;</div><div class="line">BEGIN&#123;FS="\n"; RS=""&#125;</div><div class="line">&#123;</div><div class="line">myprint()</div><div class="line">&#125;</div><div class="line">'</div><div class="line">```</div></pre></td></tr></table></figure>
+<p>cat funclib<br>function myprint()<br>{<br>printf “%-16s - %s\n “ ,$1,$4<br>}<br>function myrand(limit)<br>{<br>return int(limit * rand())<br>}<br>function printthird()<br>{<br>print $3<br>}<br>cat script4<br>BEGIN{FS =”\n”; RS=””}<br>{<br>myprint()<br>}<br>gawk -f funclib -f script4 data2<br>```</p>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> shell </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[grep]]></title>
+      <url>/2017/06/16/shell-grep/</url>
+      <content type="html"><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>grep是一种强大的文本搜索工具，它能使用特定模式匹配（包括正则表达式）搜索文本，并默认输出匹配行。Unix的grep家族包括grep、egrep和fgrep。Windows系统下类似命令FINDSTR。egrep和fgrep的命令只跟grep有很小不同。egrep和fgrep都是grep的扩展，支持更多的re元字符，fgrep就是fixed grep或fast grep，它们把所有的字母都看作单词，也就是说，正则表达式中的元字符表示回其自身的字面意义，不再特殊。linux使用GNU版本的grep。它功能更强，可以通过-G、-E、-F命令行选项来使用egrep和fgrep的功能。<br>egrep = grep -E.<br>fgrep = grep -F.</p>
+<p>grep, egrep, fgrep - 打印匹配给定模式的行</p>
+<h1 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h1><p>grep [options] PATTERN [FILE…]<br>grep [options] [-e PATTERN | -f FILE] [FILE…] </p>
+<h1 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h1><p>Grep 搜索以 FILE 命名的文件输入 (或者是标准输入，如果没有指定文件名，或者给出的文件名是 - 的话)，寻找含有与给定的模式 PATTERN 相匹配的内容的行。默认情况下， grep 将把含有匹配内容的行打印出来。 </p>
+<p>grep默认匹配到的就会输出整行文本。</p>
+<a id="more"></a>
+<h1 id="选项"><a href="#选项" class="headerlink" title="选项"></a>选项</h1><table>
+<thead>
+<tr>
+<th></th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-A NUM,–after-context=NUM</td>
+<td>打印出紧随匹配的行之后的下文 NUM 行。在相邻的匹配组之间将会打印内容是 – 的一行。</td>
+</tr>
+<tr>
+<td>-a,–text</td>
+<td>将一个二进制文件视为一个文本文件来处理；它与 –binary-files=text 选项等价。</td>
+</tr>
+<tr>
+<td>-B NUM,–before-context=NUM</td>
+<td>打印出匹配的行之前的上文 NUM 行。在相邻的匹配组之间将会打印内容是 – 的一行。</td>
+</tr>
+<tr>
+<td>-C NUM,–context=NUM</td>
+<td>打印出匹配的行的上下文前后各 NUM 行。在相邻的匹配组之间将会打印内容是 – 的一行。</td>
+</tr>
+<tr>
+<td>-b,–byte-offset</td>
+<td>在输出的每行前面同时打印出当前行在输入文件中的字节偏移量。</td>
+</tr>
+<tr>
+<td>–binary-files=TYPE</td>
+<td>如果一个文件的起始几个字节表明文件包含二进制数据，那么假定文件是 TYPE 类型的。默认情况下， TYPE 是 binary ，并且 grep 一般会输出一个一行的消息说一个二进制文件匹配，或者如果没有匹配的话就没有消息输出。如果类型 TYPE 是 without-match ，那么 grep 假定二进制文件不会匹配；这样做与 -I 选项等价。如果类型 TYPE 是 text ，那么 grep 将一个二进制文件视为文本文件来处理；它与 -a 选项等价。 警告： grep –binary-files=text 可能会输出二进制的无用内容。如果输出设备是一个终端，并且终端的驱动将这些输出中的一些当作命令，可能会带来恶劣的副作用。</td>
+</tr>
+<tr>
+<td>–colour[=WHEN],–color[=WHEN]</td>
+<td>在匹配的行周围以 GREP_COLOR 环境变量中指定的记号来标记。WHEN 可以是 <code>never</code>, <code>always</code>, 或是 <code>auto</code>。</td>
+</tr>
+<tr>
+<td>-c,–count</td>
+<td>禁止通常的输出；作为替代，为每一个输入文件打印一个匹配的行的总数。如果使用 -v, –invert-match 选项 (参见下面)，将是不匹配的行的总数。</td>
+</tr>
+<tr>
+<td>-D ACTION, –devices=ACTION</td>
+<td>如果输入文件是一个设备，FIFO 或是套接字 (socket) ，使用动作 ACTION 来处理它。默认情况下，动作 ACTION 是 read ，意味着设备将视为普通文件那样来读。如果动作 ACTION 是 skip ，将不处理而直接跳过设备。</td>
+</tr>
+<tr>
+<td>-d ACTION, –directories=ACTION</td>
+<td>如果输入文件是一个目录，使用动作 ACTION 来处理它。默认情况下，动作 ACTION 是 read ，意味着目录将视为普通文件那样来读。如果动作 ACTION 是 skip ，将不处理而直接跳过目录。如果动作 ACTION 是 recurse ， grep 将递归地读每一目录下的所有文件。这样做和 -r 选项等价。</td>
+</tr>
+<tr>
+<td>-E, –extended-regexp</td>
+<td>将模式 PATTERN 作为一个扩展的正则表达式来解释 (参见下面)。</td>
+</tr>
+<tr>
+<td>-e PATTERN, –regexp=PATTERN</td>
+<td>使用模式 PATTERN 作为模式；在保护以 - 为起始的模式时有用。</td>
+</tr>
+<tr>
+<td>-F, –fixed-strings</td>
+<td>将模式 PATTERN 视为一个固定的字符串的列表，用新行 (newlines) 分隔，只要匹配其中之一即可。</td>
+</tr>
+<tr>
+<td>-P, –perl-regexp</td>
+<td>将模式 PATTERN 作为一个 Perl 正则表达式来解释。</td>
+</tr>
+<tr>
+<td>-f FILE, –file=FILE</td>
+<td>从文件 FILE 中获取模式，每行一个。空文件含有0个模式，因此不匹配任何东西。</td>
+</tr>
+<tr>
+<td>-G, –basic-regexp</td>
+<td>将模式 PATTERN 作为一个基本的正则表达式 (参见下面) 来解释。这是默认值。</td>
+</tr>
+<tr>
+<td>-H, –with-filename</td>
+<td>为每个匹配打印文件名。</td>
+</tr>
+<tr>
+<td>-h, –no-filename</td>
+<td>当搜索多个文件时，禁止在输出的前面加上文件名前缀。</td>
+</tr>
+<tr>
+<td>–help</td>
+<td>输出一个简短的帮助信息</td>
+</tr>
+<tr>
+<td>-I</td>
+<td>处理一个二进制文件，但是认为它不包含匹配的内容。这和 –binary-files=without-match 选项等价</td>
+</tr>
+<tr>
+<td>-i, –ignore-case</td>
+<td>忽略模式 PATTERN 和输入文件中的大小写的分别。</td>
+</tr>
+<tr>
+<td>-L, –files-without-match</td>
+<td>禁止通常的输出；作为替代，打印出每个在通常情况下不会产生输出的输入文件的名字。对每个文件的扫描在遇到第一个匹配的时候就会停止。</td>
+</tr>
+<tr>
+<td>-l, –files-with-matches</td>
+<td>禁止通常的输出；作为替代，打印出每个在通常情况下会产生输出的输入文件的名字。对每个文件的扫描在遇到第一个匹配的时候就会停止</td>
+</tr>
+<tr>
+<td>-m NUM, –max-count=NUM</td>
+<td>在找到 NUM 个匹配的行之后，不再读这个文件。如果输入是来自一个普通文件的标准输入，并且已经输出了 NUM 个匹配的行， grep 保证标准输入被定位于退出时的最后一次匹配的行之后，不管是否指定了要输出紧随的下文的行。这样可以使一个调用程序恢复搜索。当 grep 在 NUM 个匹配的行之后停止，它会输出任何紧随的下文的行。当使用了 -c 或 –count 选项的时候， grep 不会输出比 NUM 更多的行。当指定了 -v 或 –invert-match 选项的时候， grep 会在输出 NUM 个不匹配的行之后停止。</td>
+</tr>
+<tr>
+<td>–mmap</td>
+<td>如果可能的话，使用 mmap(2) 系统调用来读取输入，而不是默认的 read(2) 系统调用。在一些情况下， –mmap 提供较好的性能。但是，如果一个输入文件在 grep 正在操作时大小发生变化，或者如果发生了一个 I/O 错误， –mmap 可能导致不可知的行为 (包括core dumps)。</td>
+</tr>
+<tr>
+<td>-n, –line-number</td>
+<td>在输出的每行前面加上它所在的文件中它的行号</td>
+</tr>
+<tr>
+<td>-o, –only-matching</td>
+<td>只显示匹配的行中与 PATTERN 相匹配的部分。</td>
+</tr>
+<tr>
+<td>–label=LABEL</td>
+<td>将实际上来自标准输入的输入视为来自输入文件 LABEL 。这对于 zgrep 这样的工具非常有用，例如： gzip -cd foo.gz &#124; grep –label=foo something</td>
+</tr>
+<tr>
+<td>–line-buffering</td>
+<td>使用行缓冲，it can be a performance penality.</td>
+</tr>
+<tr>
+<td>-q, –quiet, –silent</td>
+<td>安静。不向标准输出写任何东西。如果找到任何匹配的内容就立即以状态值 0 退出，即使检测到了错误。 参见 -s 或 –no-messages 选项。</td>
+</tr>
+<tr>
+<td>-R, -r, –recursive</td>
+<td>递归地读每一目录下的所有文件。这样做和 -d recurse 选项等价。</td>
+</tr>
+<tr>
+<td>–include=PATTERN</td>
+<td>仅仅在搜索匹配 PATTERN 的文件时在目录中递归搜索。</td>
+</tr>
+<tr>
+<td>–exclude=PATTERN</td>
+<td>在目录中递归搜索，但是跳过匹配 PATTERN 的文件。</td>
+</tr>
+<tr>
+<td>-s, –no-messages</td>
+<td>禁止输出关于文件不存在或不可读的错误信息。 对于可移植性需要注意：与 GNU grep 不同，传统的 grep 不遵守 POSIX.2 规范，因为传统的 grep 缺少一个 -q 选项，而它的 -s 选项与 GNU grep 的 -q 选项行为相似。需要可移植到传统 grep 的 shell 脚本应当避免使用 -q 和 -s 选项，而应当将输出重定向到 /dev/null</td>
+</tr>
+<tr>
+<td>-U, –binary</td>
+<td>将文件视为二进制。默认情况下，在 MS-DOS 和 MS-Windows 系统中， grep 通过从文件中读取头部的 32kB 内容来判断它的文件类型。如果 grep 判断文件是一个文本文件，它将原始文件内容中的 CR 字符去除 (使得含有 ^ 和 $ 的正则表达式可以正常工作)。指定 -U 将不进行这些工作，而使所有文件保持不变地读取并传递给匹配机制。如果文件是一个以 CR/LF 换行的文本文件，这样作将导致一些正则表达式失败。这个选项在 MS-DOS 和 MS-Windows 之外的系统中无效。</td>
+</tr>
+<tr>
+<td>-u, –unix-byte-offsets</td>
+<td>报告 Unix 风格的字节偏移量。这个开关使得 grep 报告字节偏移量时，将文件作为 Unix 风格的文本文件看待，也就是说将 CR 字符去掉。这将产生与在一台 Unix 主机上运行 grep 完全相同的结果。除非同时使用 -b 选项，否则这个选项无效。这个选项在 MS-DOS 和 MS-Windows 之外的系统中无效。</td>
+</tr>
+<tr>
+<td>-V, –version</td>
+<td>向标准错误输出打印 grep 的版本号。版本号应当包含在所有的 bug 报告中 (参见下面)</td>
+</tr>
+<tr>
+<td>-v, –invert-match</td>
+<td>改变匹配的意义，只选择不匹配的行。</td>
+</tr>
+<tr>
+<td>-w, –word-regexp</td>
+<td>只选择含有能组成完整的词的匹配的行。判断方法是匹配的子字符串必须是一行的开始，或者是在一个不可能是词的组成的字符之后。与此相似，它必须是一行的结束，或者是在一个不可能是词的组成的字符之前。词的组成字符是字母，数字，还有下划线。</td>
+</tr>
+<tr>
+<td>-x, –line-regexp</td>
+<td>只选择能匹配完整一行的匹配</td>
+</tr>
+<tr>
+<td>-y</td>
+<td>-i 的同义词，废弃不用。</td>
+</tr>
+<tr>
+<td>-Z, –null</td>
+<td>输出一个全零字节 (ASCII 码中的 NUL 字符) 而不是一般情况下输出在文件名之后的字符。例如， grep -lZ 在每个文件名之后输出一个全零字节而不是普通的新行符。这个选项使得输出清楚明白，即使文件名的表示中包含特殊字符比如新行符。这个选项可以与命令 find -print0, perl -0, sort -z, 和 xargs -0 一起使用，来处理任意的文件名，即使是那些含有新行符的文件名</td>
+</tr>
+</tbody>
+</table>
+<h1 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div></pre></td><td class="code"><pre><div class="line">$ grep 1 -A 1 data1</div><div class="line">This is line 1.</div><div class="line">This is line 2.</div><div class="line">$ cat data1</div><div class="line">This is line 1.</div><div class="line">This is line 2.</div><div class="line">This is line 3.</div><div class="line">This is line 8.</div><div class="line">This is line x</div><div class="line">$ grep 3 -B 1 data1</div><div class="line">This is line 2.</div><div class="line">This is line 3.</div><div class="line">$ grep 3 -B 1 data1</div><div class="line">This is line 2.</div><div class="line">This is line 3.</div><div class="line">$ grep -b 1 data1</div><div class="line">0:This is line 1.</div><div class="line">$ grep -b 2 data1</div><div class="line">16:This is line 2.</div><div class="line">$ grep 1 --color=auto data1</div><div class="line">This is line 1.</div><div class="line">$ grep -c line data1</div><div class="line">5</div><div class="line">$ grep -F 1 data1</div><div class="line">This is line 1.</div><div class="line">$ cat regf</div><div class="line">line 1</div><div class="line">line 2</div><div class="line">line x</div><div class="line">$ grep <span class="_">-f</span> regf data1</div><div class="line">This is line 1.</div><div class="line">This is line 2.</div><div class="line">This is line x</div><div class="line">[root@localhost shell]<span class="comment"># grep -H line  data1 data2</span></div><div class="line">data1:This is line 1.</div><div class="line">data1:This is line 2.</div><div class="line">data1:This is line 3.</div><div class="line">data1:This is line 8.</div><div class="line">data1:This is line x</div><div class="line">data2:This is the header line.</div><div class="line">data2:This is the first data line.</div><div class="line">data2:This is the last line.</div><div class="line">$ grep -h line  data1 data2</div><div class="line">This is line 1.</div><div class="line">This is line 2.</div><div class="line">This is line 3.</div><div class="line">This is line 8.</div><div class="line">This is line x</div><div class="line">This is the header line.</div><div class="line">This is the first data line.</div><div class="line">This is the last line.</div><div class="line">$ grep -i Line data1</div><div class="line">This is line 1.</div><div class="line">This is line 2.</div><div class="line">This is line 3.</div><div class="line">This is line 8.</div><div class="line">This is line x</div><div class="line">$ grep -L line  data1 data2</div><div class="line">$ grep <span class="_">-l</span> line  data1 data2</div><div class="line">data1</div><div class="line">data2</div><div class="line">$ grep -m 2 line data1</div><div class="line">This is line 1.</div><div class="line">This is line 2.</div><div class="line">$ grep -m 2 line data1 data2</div><div class="line">data1:This is line 1.</div><div class="line">data1:This is line 2.</div><div class="line">data2:This is the header line.</div><div class="line">data2:This is the first data line.</div><div class="line">$ grep -n line data1</div><div class="line">1:This is line 1.</div><div class="line">2:This is line 2.</div><div class="line">3:This is line 3.</div><div class="line">4:This is line 8.</div><div class="line">5:This is line x</div><div class="line">$ grep -o line data1</div><div class="line">line</div><div class="line">line</div><div class="line">line</div><div class="line">line</div><div class="line">line</div><div class="line">$ zcat gfile.gz </div><div class="line">ok1</div><div class="line">ok2</div><div class="line">ok3</div><div class="line">$ gzip -cd gfile.gz | grep --label=gfile ok</div><div class="line">ok1</div><div class="line">ok2</div><div class="line">ok3</div></pre></td></tr></table></figure>
+]]></content>
+      
+        <categories>
+            
+            <category> shell </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
             <tag> regex </tag>
+            
+            <tag> shell </tag>
             
         </tags>
         
@@ -156,6 +890,7 @@
       <content type="html"><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p><strong>摘自 man find</strong><br>其实man手册对于find的使用可以说非常详细<br>下面也有一篇不错的文章介绍 find 命令的使用：<br><a href="http://www.jianshu.com/p/948f1b67a910" target="_blank" rel="external">Linux查找find命令全面剖析</a></p>
 <p>Linux下find命令在目录结构中搜索文件，并执行指定的操作。Linux下find命令提供了相当多的查找条件，功能很强大。由于find具有强大的功能，所以它的选项也很多，其中大部分选项都值得我们花时间来了解一下。即使系统中含有网络文件系统( NFS)，find命令在该文件系统中同样有效，只你具有相应的权限。 在运行一个非常消耗资源的find命令时，很多人都倾向于把它放在后台执行，因为遍历一个大的文件系统可能会花费很长的时间(这里是指30G字节以上的文件系统)。</p>
 <h1 id="命令格式"><a href="#命令格式" class="headerlink" title="命令格式"></a>命令格式</h1><p>find [-H] [-L] [-P] [-D debugopts] [-Olevel] [path…] [expression]</p>
+<a id="more"></a>
 <h1 id="表达式-EXPRESSIONS"><a href="#表达式-EXPRESSIONS" class="headerlink" title="表达式 EXPRESSIONS"></a>表达式 EXPRESSIONS</h1><p>表达式是由选项(选项总是影响所有的操作, 而不仅仅是一个指定的文件的处理, 而且总是返回真值)，测试(测试返回一个真值或一个假值)，还有动作(动作有side effects, 返回一个真值或假值) 组成。它们都以运算符分开.忽略运算符的时候，默认使用 -and 连接. 如果表达式没有包含 -prune 以外的动作，当表达式为真时会执行 -print 动作。</p>
 <h1 id="选项-OPTIONS"><a href="#选项-OPTIONS" class="headerlink" title="选项 OPTIONS"></a>选项 OPTIONS</h1><p>所有的选项都总是返回真值，它们总会被执行，除非放在表达式中执行不到的地方。因此，清楚起见，最好把它们放在表达式的开头部分。 </p>
 <table>
@@ -421,13 +1156,18 @@
 </tr>
 <tr>
 <td>-printf format</td>
-<td>返回true；在标准输出打印 format , 解释 ‘\’ escape 还有 ‘%’ 指令。字段宽度和精度可以像C函数 ‘printf’ 那样来指定。与 -print 不同的是, -printf 在字符串末端不会添加一个新行。可用的escape 和指令如下：\a:警告铃声 ;\b:回退; \c:立即停止以当前格式输出，刷新输出设备。; \f:表格结束; \n:新行; \r回车; \t:水平tab; \v: </td>
+<td>返回true；在标准输出打印 format , 解释 <code>\</code> escape 还有 <code>%</code> 指令。字段宽度和精度可以像C函数 <code>printf</code> 那样来指定。与 -print 不同的是, -printf 在字符串末端不会添加一个新行。 查看附录</td>
+</tr>
+<tr>
+<td>-prune</td>
+<td>如果没有给出 -depth 则范湖true;不进入当前目录。如果给出了-depth 则返回 false ;没有效果</td>
+</tr>
+<tr>
+<td>-ls</td>
+<td>返回true;以 <code>ls -dils</code> 格式在标准输出列出文件。 块以1kB字节为单位计数</td>
 </tr>
 </tbody>
 </table>
-<p>竖直tab; \:输出自身’\’ ; \NNN:ASCII编码是NNN(八进制)的字符; 在一个 ‘\’ 字符后面使用任何其他字符会被作为普通的字符，因此它们都会被打印出来。;%% : 输出自身’%’; %a : 文件最后一次存取的时间。格式是C函数 ‘ctime’ 返回值的格式。; %Ak : 文件最后一次存取的时间。格式以 k 指定，可以是 ‘@’ 或者是C函数 ‘strftime’ 的指令格式。下面列出了 k 可用的值；有一些并不是在所有系统上都可用，因为不同系统中 ‘strftime’ 也不同。 @从 Jan. 1, 1970, 00:00 GMT 起的秒数 时间字段： H :小时 (00..23); I : 小时 (01..12); k :<br>小时 ( 0..23) ;l : 小时 ( 1..12) ; M : 分钟 (00..59) ; p : 本地的 AM 或者 PM ; r : 12小时格式的时间 (hh:mm:ss [AP]M) ;  S : 秒 (00..61) ; T : 24小时格式的时间 (hh:mm:ss) ; X : 本地的时间表示方法 (H:M:S) ; Z : 时区(例如，EDT)，如果不能决定时区就是空 ; 日期字段： </p>
-<p>a<br>本地一星期中每天的名称的缩写(Sun..Sat)<br>A<br>本地一星期中每天的全名，可变长度 (Sunday..Saturday)<br>b<br>本地每月的名称的缩写 (Jan..Dec)<br>B<br>本地每月的全名，可变长度 (January..December)<br>c<br>本地的日期和时间表示 (Sat Nov 04 12:02:33 EST 1989)<br>d<br>一个月当中的日子 (01..31)<br>D<br>日期 (mm/dd/yy)<br>h<br>与 b 相同<br>j<br>一年当中的日子 (001..366)<br>m<br>月份 (01..12)<br>U<br>以星期日作为每周起始，一年当中的星期 (00..53)<br>w<br>一星期当中的日子 (0..6)<br>W<br>以星期一当作每周起始，一年当中的星期 (00..53)<br>x<br>本地的日期表示 (mm/dd/yy)<br>y<br>年份的最后两位 (00..99)<br>Y<br>年份 (1970…)<br>%b<br>文件大小，以512字节的块为单位 (四舍五入)。<br>%c<br>文件状态最后一次修改的时间。格式是C函数 ‘ctime’ 返回值的格式。<br>%Ck<br>文件状态最后一次修改的时间。格式以 k 指定，类似于%A。<br>%d<br>文件在目录树中的深度；0 意味着文件是一个命令行参数。<br>%f<br>去掉了前面的目录的文件名 (只剩下最后的成分)。<br>%F<br>文件所在文件系统的类型；这个值可以为 -fstype 所用。<br>%g<br>文件的组名，如果组没有名称就是数字形式的组ID。<br>%G<br>文件的数字形式的组ID。<br>%h<br>文件名的前面的目录部分 (仅除去最后的成分)。<br>%H<br>据以找到了文件的命令行参数。<br>%i<br>文件的 i 结点号(16进制)。<br>%k<br>文件大小，以1kB 的块为单位 (四舍五入)。<br>%l<br>符号链接的目标 (如果文件不是一个符号链接，那么结果是空字符串)。<br>%m<br>文件的权限位 (8进制)。<br>%n<br>文件的硬连接数。<br>%p<br>文件名。<br>%P<br>文件名，去掉了据以找到了文件的命令行参数的名称部分。<br>%s<br>文件大小，以字节为单位。<br>%t<br>文件最后一次修改的时间。格式是C函数 ‘ctime’ 返回值的格式。<br>%Tk<br>文件最后一次修改的时间。格式以 k 指定，类似于%A。<br>%u<br>文件的用户名，如果用户没有名称就是数字形式的用户ID。<br>%U<br>文件的数字形式的用户ID。<br>在一个 ‘%’ 字符后面使用任何其他字符，’%’ 将被忽略 (但是其他字符会被打印出来)。 |</p>
-<p>|-prune|如果没有给出 -depth 则返回 true; 不进入当前目录。 如果给出了 -depth 则返回false; 没有效果。|<br>|-ls |返回true；以 ‘ls -dils’ 格式在标准输出列出文件。块以1kB 字节为单位计数，除非设置了环境变量POSIXLY_CORRECT，那样的话会使用 512字节的块。 |</p>
 <h1 id="运算符-OPERATORS"><a href="#运算符-OPERATORS" class="headerlink" title="运算符 OPERATORS"></a>运算符 OPERATORS</h1><p>以优先级高低顺序排列：</p>
 <table>
 <thead>
@@ -575,11 +1315,99 @@
 </tr>
 <tr>
 <td>%Ak</td>
-<td>文件最后一次存取的时间。格式以 k 指定，可以是 <code>@</code> 或者是C函数 <code>strftime</code> 的指令格式。下面列出了 k 可用的值；有一些并不是在所有系统上都可用，因为不同系统中 <code>strftime</code> 也不同。</td>
+<td>文件最后一次存取的时间。格式以 k 指定，可以是 <code>@</code> 或者是C函数 <code>strftime</code> 的指令格式。下面列出了 k 可用的值；有一些并不是在所有系统上都可用，因为不同系统中 <code>strftime</code> 也不同。值参考<strong>附录 %AK k 可用值</strong></td>
+</tr>
+<tr>
+<td>%b</td>
+<td>文件大小，以512字节的块为单位(四舍五入)</td>
+</tr>
+<tr>
+<td>%c</td>
+<td>文件状态最后一次修改的时间。格式是C函数<code>ctime</code>返回值格式</td>
+</tr>
+<tr>
+<td>%Ck</td>
+<td>文件状态最后一次修改的时间。格式以k指定，类似于%A</td>
+</tr>
+<tr>
+<td>%d</td>
+<td>文件在目录树中的深度；0意味着文件是一个命令参数</td>
+</tr>
+<tr>
+<td>%f</td>
+<td>去掉了前面的目录的文件名(只剩下最后的成分)</td>
+</tr>
+<tr>
+<td>%F</td>
+<td>文件所在文件系统的类型；这个值可以为fstyle所用</td>
+</tr>
+<tr>
+<td>%g</td>
+<td>文件的组名，如果组没有名称就是数字形式的组ID</td>
+</tr>
+<tr>
+<td>%G</td>
+<td>文件的数字形式的组ID</td>
+</tr>
+<tr>
+<td>%h</td>
+<td>文件名的前面的目录部分（仅出去最后的成分）。</td>
+</tr>
+<tr>
+<td>%H</td>
+<td>据以找到了文件的命令行参数</td>
+</tr>
+<tr>
+<td>%i</td>
+<td>文件的i结点号（16进制）</td>
+</tr>
+<tr>
+<td>%k</td>
+<td>文件大小以1KB的块为单位（四舍五入）</td>
+</tr>
+<tr>
+<td>%l</td>
+<td>符号链接的目标（如果文件不是一个符号链接，那么结果是空字符串）。</td>
+</tr>
+<tr>
+<td>%m</td>
+<td>文件的权限位（8进制）</td>
+</tr>
+<tr>
+<td>%n</td>
+<td>文件的硬链接数</td>
+</tr>
+<tr>
+<td>%p</td>
+<td>文件名</td>
+</tr>
+<tr>
+<td>%P</td>
+<td>文件名，去掉了据以找到了文件的命令行参数的名称部分</td>
+</tr>
+<tr>
+<td>%s</td>
+<td>文件大小，以字节为单位</td>
+</tr>
+<tr>
+<td>%t</td>
+<td>文件最后一次修改的时间。格式是C函数<code>ctime</code>返回值的格式</td>
+</tr>
+<tr>
+<td>%Tk</td>
+<td>文件最后一次修改的时间。格式以k指定，类似%A</td>
+</tr>
+<tr>
+<td>%u</td>
+<td>文件的用户名，如果用户没有名称就是数字形式的用户ID</td>
+</tr>
+<tr>
+<td>%U</td>
+<td>文件的数字形式的用户ID</td>
 </tr>
 </tbody>
 </table>
-<h2 id="时间相关选项"><a href="#时间相关选项" class="headerlink" title="时间相关选项"></a>时间相关选项</h2><table>
+<h2 id="Ak-k可用值"><a href="#Ak-k可用值" class="headerlink" title="%Ak k可用值"></a>%Ak k可用值</h2><h3 id="时间相关选项"><a href="#时间相关选项" class="headerlink" title="时间相关选项"></a>时间相关选项</h3><table>
 <thead>
 <tr>
 <th></th>
@@ -637,7 +1465,80 @@
 </tr>
 </tbody>
 </table>
-<h2 id="日期字段"><a href="#日期字段" class="headerlink" title="日期字段"></a>日期字段</h2><p>|a|本地一星期中每天的名称的缩写(Sun..Sat)|<br>|A|本地一星期中每天的全名，可变长度 (Sunday..Saturday)|<br>|b|本地每月的名称的缩写 (Jan..Dec)|<br>|B|本地每月的全名，可变长度 (January..December)|<br>|c|本地的日期和时间表示 (Sat Nov 04 12:02:33 EST 1989)|<br>|d|一个月当中的日子 (01..31)|<br>|D|日期 (mm/dd/yy)|<br>|h|与 b 相同|<br>|j|一年当中的日子 (001..366)|<br>|m|月份 (01..12)|<br>|U|以星期日作为每周起始，一年当中的星期 (00..53)|<br>|w|一星期当中的日子 (0..6)|<br>|W|以星期一当作每周起始，一年当中的星期 (00..53)|<br>|x|本地的日期表示 (mm/dd/yy)|<br>|y|年份的最后两位 (00..99)|<br>|Y|年份 (1970…)|<br>|||</p>
+<h3 id="日期字段"><a href="#日期字段" class="headerlink" title="日期字段"></a>日期字段</h3><table>
+<thead>
+<tr>
+<th></th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>a</td>
+<td>本地一星期中每天的名称的缩写(Sun..Sat)</td>
+</tr>
+<tr>
+<td>A</td>
+<td>本地一星期中每天的全名，可变长度 (Sunday..Saturday)</td>
+</tr>
+<tr>
+<td>b</td>
+<td>本地每月的名称的缩写 (Jan..Dec)</td>
+</tr>
+<tr>
+<td>B</td>
+<td>本地每月的全名，可变长度 (January..December)</td>
+</tr>
+<tr>
+<td>c</td>
+<td>本地的日期和时间表示 (Sat Nov 04 12:02:33 EST 1989)</td>
+</tr>
+<tr>
+<td>d</td>
+<td>一个月当中的日子 (01..31)</td>
+</tr>
+<tr>
+<td>D</td>
+<td>日期 (mm/dd/yy)</td>
+</tr>
+<tr>
+<td>h</td>
+<td>与 b 相同</td>
+</tr>
+<tr>
+<td>j</td>
+<td>一年当中的日子 (001..366)</td>
+</tr>
+<tr>
+<td>m</td>
+<td>月份 (01..12)</td>
+</tr>
+<tr>
+<td>U</td>
+<td>以星期日作为每周起始，一年当中的星期 (00..53)</td>
+</tr>
+<tr>
+<td>w</td>
+<td>一星期当中的日子 (0..6)</td>
+</tr>
+<tr>
+<td>W</td>
+<td>以星期一当作每周起始，一年当中的星期 (00..53)</td>
+</tr>
+<tr>
+<td>x</td>
+<td>本地的日期表示 (mm/dd/yy)</td>
+</tr>
+<tr>
+<td>y</td>
+<td>年份的最后两位 (00..99)</td>
+</tr>
+<tr>
+<td>Y</td>
+<td>年份 (1970…)</td>
+</tr>
+</tbody>
+</table>
 ]]></content>
       
         <categories>

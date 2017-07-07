@@ -4,8 +4,87 @@
 
     
   <url>
+    <loc>http://yoursite.com/2017/07/03/shell-file-system/</loc>
+    <lastmod>2017-07-07T08:01:22.000Z</lastmod>
+    <data>
+        <display>
+        <title>Linux 文件系统</title>
+        <pubTime>2017-07-03T06:31:21.000Z</pubTime>
+        
+        <tag>linux</tag>
+         
+        <tag>shell</tag>
+         
+         
+           
+             
+              <breadCrumb title="shell" url="http://yoursite.com/categories/shell/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/07/03/linux-manage/</loc>
+    <lastmod>2017-07-03T05:51:15.000Z</lastmod>
+    <data>
+        <display>
+        <title>linux-manage</title>
+        <pubTime>2017-07-03T05:51:15.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/07/03/work-disk/</loc>
+    <lastmod>2017-07-03T05:42:58.000Z</lastmod>
+    <data>
+        <display>
+        <title>一次阿里云增加数据盘经历</title>
+        <pubTime>2017-07-03T00:02:02.000Z</pubTime>
+        
+        <tag>work</tag>
+         
+         
+           
+             
+              <breadCrumb title="work" url="http://yoursite.com/categories/work/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/06/16/shell-grep/</loc>
+    <lastmod>2017-07-02T22:33:04.000Z</lastmod>
+    <data>
+        <display>
+        <title>grep</title>
+        <pubTime>2017-06-16T15:20:31.000Z</pubTime>
+        
+        <tag>regex</tag>
+         
+        <tag>shell</tag>
+         
+         
+           
+             
+              <breadCrumb title="shell" url="http://yoursite.com/categories/shell/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2017/06/16/shell-find/</loc>
-    <lastmod>2017-06-18T11:22:04.000Z</lastmod>
+    <lastmod>2017-06-24T19:12:04.000Z</lastmod>
     <data>
         <display>
         <title>find 命令查找</title>
@@ -24,22 +103,17 @@
 
     
   <url>
-    <loc>http://yoursite.com/2017/06/16/grep/</loc>
-    <lastmod>2017-06-16T15:22:27.000Z</lastmod>
+    <loc>http://yoursite.com/2017/06/20/shell-gawk/</loc>
+    <lastmod>2017-06-24T19:10:51.000Z</lastmod>
     <data>
         <display>
-        <title>grep</title>
-        <pubTime>2017-06-16T15:20:31.000Z</pubTime>
+        <title>awk、gawk 使用</title>
+        <pubTime>2017-06-19T17:54:39.000Z</pubTime>
         
         <tag>shell</tag>
          
-        <tag>regex</tag>
-         
          
            
-             
-              <breadCrumb title="shell" url="http://yoursite.com/categories/shell/"/>
-          
         </display>
     </data>
     </url>
@@ -338,12 +412,12 @@
 
     
   <url>
-    <loc>http://yoursite.com/2017/06/19/hello-world/</loc>
+    <loc>http://yoursite.com/2017/07/03/hello-world/</loc>
     <lastmod>2017-06-09T00:51:24.000Z</lastmod>
     <data>
         <display>
         <title>Hello World</title>
-        <pubTime>2017-06-18T20:36:33.070Z</pubTime>
+        <pubTime>2017-07-03T12:00:54.798Z</pubTime>
         
          
            
@@ -665,12 +739,12 @@
 
     
   <url>
-    <loc>http://yoursite.com/2017/06/19/django1/</loc>
+    <loc>http://yoursite.com/2017/07/03/django1/</loc>
     <lastmod>2017-05-11T13:54:42.000Z</lastmod>
     <data>
         <display>
         <title>django入门教学</title>
-        <pubTime>2017-06-18T20:36:33.054Z</pubTime>
+        <pubTime>2017-07-03T12:00:54.747Z</pubTime>
         
          
            
