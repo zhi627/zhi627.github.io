@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>http://yoursite.com/2017/05/15/zabbix-install/</loc>
+    <lastmod>2017-07-10T11:33:19.000Z</lastmod>
+    <data>
+        <display>
+        <title>zabbix 安装教程</title>
+        <pubTime>2017-05-15T13:11:03.000Z</pubTime>
+        
+        <tag>zabbix</tag>
+         
+         
+           
+             
+              <breadCrumb title="zabbix" url="http://yoursite.com/categories/zabbix/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2017/07/03/linux-manage/</loc>
     <lastmod>2017-07-10T11:26:37.000Z</lastmod>
     <data>
@@ -468,7 +488,7 @@
     <data>
         <display>
         <title>Hello World</title>
-        <pubTime>2017-07-10T11:21:40.415Z</pubTime>
+        <pubTime>2017-07-10T11:33:26.693Z</pubTime>
         
          
            
@@ -489,26 +509,6 @@
          
          
            
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2017/05/15/zabbix-install/</loc>
-    <lastmod>2017-06-08T15:33:12.000Z</lastmod>
-    <data>
-        <display>
-        <title>zabbix 安装教程</title>
-        <pubTime>2017-05-15T13:11:03.000Z</pubTime>
-        
-        <tag>zabbix</tag>
-         
-         
-           
-             
-              <breadCrumb title="zabbix" url="http://yoursite.com/categories/zabbix/"/>
-          
         </display>
     </data>
     </url>
@@ -795,7 +795,7 @@
     <data>
         <display>
         <title>django入门教学</title>
-        <pubTime>2017-07-10T11:21:40.397Z</pubTime>
+        <pubTime>2017-07-10T11:33:26.685Z</pubTime>
         
          
            
