@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2017/07/03/linux-manage/</loc>
+    
+    <lastmod>2017-07-10T11:26:37.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2017/07/10/shell-netstat-and-ss/</loc>
+    
+    <lastmod>2017-07-10T11:14:32.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2017/07/07/shell-fstab/</loc>
     
     <lastmod>2017-07-07T09:22:23.000Z</lastmod>
@@ -12,13 +26,6 @@
     <loc>http://yoursite.com/2017/07/03/shell-file-system/</loc>
     
     <lastmod>2017-07-07T08:02:59.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2017/07/03/linux-manage/</loc>
-    
-    <lastmod>2017-07-03T05:51:15.000Z</lastmod>
     
   </url>
   
@@ -149,7 +156,7 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2017/07/07/hello-world/</loc>
+    <loc>http://yoursite.com/2017/07/10/hello-world/</loc>
     
     <lastmod>2017-06-09T00:51:24.000Z</lastmod>
     
@@ -282,7 +289,7 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2017/07/07/django1/</loc>
+    <loc>http://yoursite.com/2017/07/10/django1/</loc>
     
     <lastmod>2017-05-11T13:54:42.000Z</lastmod>
     

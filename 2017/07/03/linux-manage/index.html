@@ -74,7 +74,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="linux,shell," />
 
 
 
@@ -90,16 +90,17 @@
 
 
 
-<meta name="description" content="运维狗">
+<meta name="description" content="简介介绍常用的Linux命令以及系统分析工具，例如top、strace、netstat、iostat、valgrind、sar等监控统计工具">
+<meta name="keywords" content="linux,shell">
 <meta property="og:type" content="article">
-<meta property="og:title" content="linux-manage">
+<meta property="og:title" content="linux常用实用命令">
 <meta property="og:url" content="http://yoursite.com/2017/07/03/linux-manage/index.html">
 <meta property="og:site_name" content="运维与开发的那些事">
-<meta property="og:description" content="运维狗">
-<meta property="og:updated_time" content="2017-07-03T05:51:15.000Z">
+<meta property="og:description" content="简介介绍常用的Linux命令以及系统分析工具，例如top、strace、netstat、iostat、valgrind、sar等监控统计工具">
+<meta property="og:updated_time" content="2017-07-10T11:26:37.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="linux-manage">
-<meta name="twitter:description" content="运维狗">
+<meta name="twitter:title" content="linux常用实用命令">
+<meta name="twitter:description" content="简介介绍常用的Linux命令以及系统分析工具，例如top、strace、netstat、iostat、valgrind、sar等监控统计工具">
 
 
 
@@ -133,7 +134,7 @@
 
 
 
-  <title>linux-manage | 运维与开发的那些事</title>
+  <title>linux常用实用命令 | 运维与开发的那些事</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -334,7 +335,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">linux-manage</h1>
+          <h1 class="post-title" itemprop="name headline">linux常用实用命令</h1>
         
 
         <div class="post-meta">
@@ -357,6 +358,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/shell/" itemprop="url" rel="index">
+                    <span itemprop="name">shell</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -364,7 +387,7 @@
 
           
           
-             <span id="/2017/07/03/linux-manage/" class="leancloud_visitors" data-flag-title="linux-manage">
+             <span id="/2017/07/03/linux-manage/" class="leancloud_visitors" data-flag-title="linux常用实用命令">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -392,7 +415,1271 @@
       
 
       
-        
+        <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>介绍常用的Linux命令以及系统分析工具，例如top、strace、netstat、iostat、valgrind、sar等监控统计工具</p>
+<a id="more"></a>
+<h1 id="分析工具命令"><a href="#分析工具命令" class="headerlink" title="分析工具命令"></a>分析工具命令</h1><h2 id="CPU"><a href="#CPU" class="headerlink" title="CPU"></a>CPU</h2><h3 id="top"><a href="#top" class="headerlink" title="top"></a>top</h3><p>top命令可以实时动态地查看系统的整体运行情况，是一个综合了多方信息监测系统性能和运行信息的实用工具。<br>Top常用的可选参数和其对应的含义如下：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-c</td>
+<td>显示完整的命令</td>
+</tr>
+<tr>
+<td>-d</td>
+<td>屏幕刷新间隔时间</td>
+</tr>
+<tr>
+<td>-i&lt;时间&gt;</td>
+<td>设置间隔时</td>
+</tr>
+<tr>
+<td>-u&lt;用户名&gt;</td>
+<td>指定用户名</td>
+</tr>
+<tr>
+<td>-p&lt;进程号&gt;</td>
+<td>指定进程</td>
+</tr>
+<tr>
+<td>-n&lt;次数&gt;</td>
+<td>循环显示的次数</td>
+</tr>
+</tbody>
+</table>
+<h3 id="strace"><a href="#strace" class="headerlink" title="strace"></a>strace</h3><p> strace可以跟踪到一个进程产生的系统调用，包含参数、返回值、执行消耗的时间。<br> strace的常用的选项以及选项对应的含义如下：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-c</td>
+<td>统计每一系统调用的所执行的时间,次数和出错的次数等</td>
+</tr>
+<tr>
+<td>-f</td>
+<td>跟踪由fork调用所产生的子进程</td>
+</tr>
+<tr>
+<td>-t</td>
+<td>在输出中的每一行前加上时间信息</td>
+</tr>
+<tr>
+<td>-tt</td>
+<td>在输出中的每一行前加上时间信息（微妙级）</td>
+</tr>
+<tr>
+<td>-T</td>
+<td>显示每一调用所耗的时间</td>
+</tr>
+<tr>
+<td>-e</td>
+<td>trace=set 只跟踪指定的系统调用。例如:-e trace=open,close,read,write表示只跟踪这四个系统调用。默认的为set=all</td>
+</tr>
+<tr>
+<td>-e</td>
+<td>trace=file 只跟踪有关文件操作的系统调用</td>
+</tr>
+<tr>
+<td>-e</td>
+<td>trace=process 只跟踪有关进程控制的系统调用</td>
+</tr>
+<tr>
+<td>-e</td>
+<td>trace=network 跟踪与网络有关的所有系统调用</td>
+</tr>
+<tr>
+<td>-e</td>
+<td>strace=signal 跟踪所有与系统信号有关的 系统调用</td>
+</tr>
+<tr>
+<td>-e</td>
+<td>trace=ipc 跟踪所有与进程通讯有关的系统调用</td>
+</tr>
+<tr>
+<td>-o</td>
+<td>filename 将strace的输出写入文件filename -p pid 跟踪指定的进程pid</td>
+</tr>
+</tbody>
+</table>
+<h3 id="perf"><a href="#perf" class="headerlink" title="perf"></a>perf</h3><p>perf是Linux的性能调优工具。perf工具的常用命令包括top，record，report等。<br>perf top命令用来显示程序运行的整体状况。该命令主要用来观察整个系统当前的状态，比如可以通过查看该命令的输出来查看当前系统最耗时的内核函数或某个用户进程。<br>perf record命令则用来记录指定事件在程序运行过程中的信息，而Perf report命令则用来报告基于前面record命令记录的事件信息生成的程序运行状况报告。我们通常用命令perf record -g -p pid将进程在命令运行期间的各项指令运行所占CPU的比例存在perf.data里面（-g表示记录函数之间的调用关系）。再用perf report –call-graph –stdio将刚刚的统计结果展示出来。</p>
+<h3 id="vmstat"><a href="#vmstat" class="headerlink" title="vmstat"></a>vmstat</h3><p>vmstat是一个很全面的性能分析工具，可以观察到系统的进程状态、内存使用、虚拟内存使用、磁盘的 IO、中断、上下问切换、CPU使用等。<br>可选参数:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td>procs</td>
+</tr>
+<tr>
+<td>r</td>
+<td>运行队列中进程数量，这个值也可以判断是否需要增加CPU。（长期大于1）</td>
+</tr>
+<tr>
+<td>b</td>
+<td>因为io处于阻塞状态的进程数</td>
+</tr>
+<tr>
+<td></td>
+<td>memory</td>
+</tr>
+<tr>
+<td>swap</td>
+<td>使用虚拟内存大小</td>
+</tr>
+<tr>
+<td>free</td>
+<td>空闲物理内存大小</td>
+</tr>
+<tr>
+<td>buff</td>
+<td>用作缓冲的内存大小</td>
+</tr>
+<tr>
+<td>cache</td>
+<td>用作缓存的内存大小</td>
+</tr>
+<tr>
+<td></td>
+<td>swap</td>
+</tr>
+<tr>
+<td>si</td>
+<td>每秒从交换区写到内存的大小，由磁盘调入内存</td>
+</tr>
+<tr>
+<td>so</td>
+<td>每秒写入交换区的内存大小，由内存调入磁盘</td>
+</tr>
+<tr>
+<td></td>
+<td>io</td>
+</tr>
+<tr>
+<td>bi</td>
+<td>从块设备读入的数据总量（读磁盘）（KB/s）</td>
+</tr>
+<tr>
+<td>bo</td>
+<td>写入到块设备的数据总量（写磁盘）（KB/s）</td>
+</tr>
+<tr>
+<td></td>
+<td>system</td>
+</tr>
+<tr>
+<td>in</td>
+<td>每秒产生的中断次数</td>
+</tr>
+<tr>
+<td>cs</td>
+<td>每秒产生的上下文切换次数</td>
+</tr>
+<tr>
+<td></td>
+<td>cpu</td>
+</tr>
+<tr>
+<td>us</td>
+<td>用户进程消耗的CPU时间百分比</td>
+</tr>
+<tr>
+<td>sy</td>
+<td>内核进程消耗的CPU时间百分比</td>
+</tr>
+<tr>
+<td>wa</td>
+<td>IO等待消耗的CPU时间百分比</td>
+</tr>
+<tr>
+<td>id</td>
+<td>CPU处在空闲状态时间百分比</td>
+</tr>
+</tbody>
+</table>
+<h2 id="网络"><a href="#网络" class="headerlink" title="网络"></a>网络</h2><h3 id="nestat命令"><a href="#nestat命令" class="headerlink" title="nestat命令"></a>nestat命令</h3><p>netstat命令用来打印Linux中网络系统的状态信息，可让你得知整个Linux系统的网络情况。<br>netstat的常用的选项如下：</p>
+<p>可选参数：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-a</td>
+<td>(all)显示所有选项</td>
+</tr>
+<tr>
+<td>-t</td>
+<td>(tcp)仅显示tcp相关选项</td>
+</tr>
+<tr>
+<td>-u</td>
+<td>(udp)仅显示udp相关选项</td>
+</tr>
+<tr>
+<td>-l</td>
+<td>(listen)仅列出有在Listen(监听)的服务状态</td>
+</tr>
+<tr>
+<td>-p</td>
+<td>(program)显示建立相关链接的程序名</td>
+</tr>
+<tr>
+<td>-r</td>
+<td>(route)显示路由信息，路由表</td>
+</tr>
+<tr>
+<td>-e</td>
+<td>(extend)显示扩展信息</td>
+</tr>
+<tr>
+<td>-c</td>
+<td>每隔一个固定时间，执行该netstat命令</td>
+</tr>
+</tbody>
+</table>
+<p>在这里我们简单复习一下TCP三次握手和四次挥手的过程，便于下面解释netstat中tcp的各种状态。</p>
+<p>TCP三次握手的过程如下：</p>
+<ol>
+<li>主动连接端发送一个SYN包给被动连接端；</li>
+<li>被动连接端收到SYN包后，发送一个带ACK的SYN包给主动连接端。</li>
+<li>主动连接端发送一个带ACK标志的包给被动连接端，握手动作完成。</li>
+</ol>
+<p>TCP的四次挥手过程如下：</p>
+<ol>
+<li>主动关闭端发送一个FIN包给被动关闭端。</li>
+<li>被动关闭端收到FIN包后，发送一个ACK包给主动关闭端。</li>
+<li>被动关闭端发送了ACK包后，再发送一个FIN包给主动关闭端。</li>
+<li>主动关闭端收到FIN包后，发送一个ACK包。当被动关闭端收到ACK后，四次挥手动作完成，连接断开。</li>
+</ol>
+<p>下面我们解释一下netstat中tcp连接对应的各种状态。</p>
+<ol>
+<li>LISTEN：侦听状态，等待远程机器的连接请求。<br>2.SYN_SEND：在TCP三次握手期间，主动连接端发送了SYN包后，进入SYN_SEND状态，等待对方的ACK包。</li>
+<li>SYN_RECV：在TCP三次握手期间，主动接收端收到SYN包后，进入SYN_RECV状态。</li>
+<li>ESTABLISHED：完成TCP三次握手后，主动连接端进入ESTABLISHED状态。此时，TCP连接已经建立，可以进行通信。</li>
+<li>FIN_WAIT_1：在TCP四次挥手时，主动关闭端发送FIN包后，进入FIN_WAIT_1状态。</li>
+<li>FIN_WAIT_2：在TCP四次挥手时，主动关闭端收到ACK包后，进入FIN_WAIT_2状态。</li>
+<li>TIME_WAIT：在TCP四次挥手时，主动关闭端发送了ACK包之后，进入TIME_WAIT状态，等待最多2MSL时间，让被动关闭端收到ACK包。</li>
+<li>CLOSING：在TCP四次挥手期间，主动关闭端发送了FIN包后，没有收到对应的ACK包，却收到了对方的FIN包，此时进入CLOSING状态。</li>
+<li>CLOSE_WAIT：在TCP四次挥手期间，被动关闭端收到FIN包后，进入CLOSE_WAIT状态。</li>
+<li>LAST_ACK：在TCP四次挥手时，被动关闭端发送FIN包后，进入LAST_ACK状态，等待对方的ACK包。</li>
+</ol>
+<p>netstat的常用方法：   </p>
+<ol>
+<li>netstat -p | grep 19626：得到进程号19626的进程所打开的所有端口</li>
+<li>netstat -tpl：查看当前tcp监听端口, 需要显示监听的程序名。</li>
+<li>netstat -c 2：隔两秒执行一次netstat，持续输出</li>
+</ol>
+<h3 id="ss（socket-statistics）参数和使用"><a href="#ss（socket-statistics）参数和使用" class="headerlink" title="ss（socket statistics）参数和使用"></a>ss（socket statistics）参数和使用</h3><p>常用参数和netstat类似，如-anp</p>
+<p>常用可选参数：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-a</td>
+<td>显示所有的sockets</td>
+</tr>
+<tr>
+<td>-l</td>
+<td>显示正在监听的</td>
+</tr>
+<tr>
+<td>-n</td>
+<td>显示数字IP和端口，不通过域名服务器</td>
+</tr>
+<tr>
+<td>-p</td>
+<td>显示使用socket的对应的程序</td>
+</tr>
+<tr>
+<td>-t</td>
+<td>只显示TCP sockets</td>
+</tr>
+<tr>
+<td>-u</td>
+<td>只显示UDP sockets</td>
+</tr>
+<tr>
+<td>-4 -6</td>
+<td>只显示v4或v6V版本的sockets</td>
+</tr>
+<tr>
+<td>-s</td>
+<td>打印出统计信息。这个选项不解析从各种源获得的socket。对于解析/proc/net/top大量的sockets计数时很有效</td>
+</tr>
+<tr>
+<td>-0</td>
+<td>显示PACKET sockets</td>
+</tr>
+<tr>
+<td>-w</td>
+<td>只显示RAW sockets</td>
+</tr>
+<tr>
+<td>-x</td>
+<td>只显示UNIX域sockets</td>
+</tr>
+<tr>
+<td>-r</td>
+<td>尝试进行域名解析，地址/端口</td>
+</tr>
+</tbody>
+</table>
+<h3 id="lsof"><a href="#lsof" class="headerlink" title="lsof"></a>lsof</h3><p>lsof命令用于查看进程开打的文件，打开文件的进程，进程打开的端口(TCP、UDP)。在linux环境下，任何事物都以文件的形式存在，通过文件不仅仅可以访问常规数据，还可以访问网络连接和硬件。在使用TCP的UDP的时候，系统在后台都为该应用程序分配了一个文件描述符。无论这个文件的本质如何，该文件描述符为应用程序与基础操作系统之间的交互提供了通用接口。</p>
+<p>输出的各项的含义如下：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>COMMAND</td>
+<td>进程的名称</td>
+</tr>
+<tr>
+<td>PID</td>
+<td>进程标识符</td>
+</tr>
+<tr>
+<td>USER</td>
+<td>进程所有者</td>
+</tr>
+<tr>
+<td>FD</td>
+<td>文件描述符，应用程序通过文件描述符识别该文件。如cwd、txt等</td>
+</tr>
+<tr>
+<td>TYPE</td>
+<td>文件类型，如DIR、REG等</td>
+</tr>
+<tr>
+<td>DEVICE</td>
+<td>指定磁盘的名称</td>
+</tr>
+<tr>
+<td>SIZE</td>
+<td>文件的大小</td>
+</tr>
+<tr>
+<td>NODE</td>
+<td>索引节点（文件在磁盘上的标识）</td>
+</tr>
+<tr>
+<td>NAME</td>
+<td>打开文件的确切名称</td>
+</tr>
+</tbody>
+</table>
+<p>Lsof的常用方法：</p>
+<ol>
+<li>lsof abc.txt：查看所有打开了文件abc.txt的进程。</li>
+<li>lsof -p pid：显示进程打开的所有的文件。</li>
+</ol>
+<h3 id="tcpdump"><a href="#tcpdump" class="headerlink" title="tcpdump"></a>tcpdump</h3><p>tcpdump可以将网络中传送的数据包完全截获下来提供分析。它支持针对网络层、协议、主机、网络或端口的过滤，并提供and、or、not等逻辑语句来帮助你去掉无用的信息。</p>
+<p>tcpdump的常用参数：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-nn</td>
+<td>直接以 IP 及 Port Number 显示，而非主机名与服务名称</td>
+</tr>
+<tr>
+<td>-i</td>
+<td>后面接要「监听」的网络接口，例如 eth0, lo, ppp0 等等的接口</td>
+</tr>
+<tr>
+<td>-w</td>
+<td>如果你要将监听所得的数据包数据储存下来，用这个参数就对了。后面接文件名</td>
+</tr>
+<tr>
+<td>-c</td>
+<td>监听的数据包数，如果没有这个参数， tcpdump 会持续不断的监听，直到用户输入 [ctrl]-c 为止</td>
+</tr>
+<tr>
+<td>-A</td>
+<td>数据包的内容以 ASCII 显示，通常用来捉取 WWW 的网页数据包资料</td>
+</tr>
+<tr>
+<td>-e</td>
+<td>使用资料连接层 (OSI 第二层) 的 MAC 数据包数据来显示</td>
+</tr>
+<tr>
+<td>-q</td>
+<td>仅列出较为简短的数据包信息，每一行的内容比较精简</td>
+</tr>
+<tr>
+<td>-X</td>
+<td>可以列出十六进制 (hex) 以及 ASCII 的数据包内容，对于监听数据包内容很有用</td>
+</tr>
+<tr>
+<td>-r</td>
+<td>从后面接的文件将数据包数据读出来。那个「文件」是已经存在的文件，并且这个「文件」是由 -w 所制作出来的</td>
+</tr>
+</tbody>
+</table>
+<p>tcpdump的常见用法：</p>
+<ol>
+<li>tcpdump -i eth1 host <strong><em>.</em></strong>.<strong><em>.</em></strong>：抓取所有经过 eth1，目的或源地址是<strong><em>.</em></strong>.<strong><em>.</em></strong>的网络数据。</li>
+<li>tcpdump -i eth1 dst host <strong><em>.</em></strong>.<strong><em>.</em></strong>：抓取所有经过 eth1，目的地址是<strong><em>.</em></strong>.<strong><em>.</em></strong>的网络数据。</li>
+<li>tcpdump -i eth1 src host <strong><em>.</em></strong>.<strong><em>.</em></strong>：抓取所有经过 eth1，源地址是<strong><em>.</em></strong>.<strong><em>.</em></strong>的网络数据。</li>
+<li>tcpdump -i eth1 port 36000：抓取所有经过 eth1，目的端口或源端口是36000的网络数据。</li>
+<li>tcpdump -i eth1 src port 36000：抓取所有经过 eth1，源端口是36000的网络数据。</li>
+<li>tcpdump -i eth1 dst port 36000：抓取所有经过 eth1，目的端口是36000的网络数据。</li>
+<li>tcpdump -i eth1 ‘src host <strong><em>.</em></strong>.<strong><em>.</em></strong> &amp;&amp; src port 36000’：抓取所有经过 eth1，目的地址是10.136.12.1且目的端口是36000的网络数据。</li>
+<li>在10.136.12.1机器上我们通过top知道了ActLogicSvr的进程id为16789。然后通过netstat -ap | grep 16789得到ActLogicSvr监听的端口是10014。如下图所示：<br>然后我们通过 tcpdump -i eth1 ‘port 10014’ -xxx抓取通过10014端口的所有的包。我们通过模拟接口测试的方法给ActLogicSvr发一条请求。抓到的包结果如下：</li>
+</ol>
+<h2 id="内存"><a href="#内存" class="headerlink" title="内存"></a>内存</h2><h3 id="valgrind"><a href="#valgrind" class="headerlink" title="valgrind"></a>valgrind</h3><p>valgrind 是在Linux程序中广泛使用的调试应用程序。它尤其擅长发现内存管理的问题，可以检查程序运行时的内存泄漏问题等。我们在使用valgrind时也主要用到它的内存泄漏检测功能，即memcheck功能。它检查所有对内存的读/写操作，并截取所有的malloc/new/free/delete调用。因此memcheck工具能够探测到以下问题：</p>
+<ol>
+<li>使用未初始化的内存</li>
+<li>读/写已经被释放的内存</li>
+<li>读/写内存越界</li>
+<li>读/写不恰当的内存栈空间</li>
+<li>内存泄漏</li>
+<li>使用malloc/new/new[]和free/delete/delete[]不匹配。</li>
+<li>src和dst的重叠valgrind的可选的参数以及对应的含义如下所示：<ol>
+<li>-version 显示valgrind内核的版本，每个工具都有各自的版本。</li>
+<li>q –quiet 安静地运行，只打印错误信。</li>
+<li>v –verbose 更详细的信息, 增加错误数统计。</li>
+<li>-trace-children=no|yes 跟踪子线程</li>
+<li>-track-fds=no|yes 跟踪打开的文件描述</li>
+<li>-time-stamp=no|yes 增加时间戳到LOG信息</li>
+<li>-log-fd=<number> 输出LOG到描述符文</number></li>
+<li>-log-file=<file> 将输出的信息写入到filename.PID的文件里，PID是运行程序的进行ID</file></li>
+<li>-log-file-exactly=<file> 输出LOG信息到 file</file></li>
+<li>-log-file-qualifier=<var> 取得环境变量的值来做为输出信息的文件名。</var></li>
+<li>-log-socket=ipaddr:port 输出LOG到socket ，ipaddr:port </li>
+</ol>
+</li>
+</ol>
+<p>LOG信息输出：</p>
+<ol>
+<li>-xml=yes 将信息以xml格式输出，只有memcheck可用</li>
+<li>-num-callers=<number> show <number> callers in stack traces [12]</number></number></li>
+<li>-error-limit=no|yes 如果太多错误，则停止显示新错误? [yes]</li>
+<li>-error-exitcode=<number> 如果发现错误则返回错误代码 [0=disable]</number></li>
+<li>-db-attach=no|yes 当出现错误，valgrind会自动启动调试器gdb。[no]</li>
+<li>-db-command=<command> 启动调试器的命令行选项[gdb -nw %f %p]适用于Memcheck工具的相关选项：</li>
+<li>–leak-check=no|summary|full 要求对leak给出详细信息? [summary]</li>
+<li>–leak-resolution=low|med|high how much bt merging in leak check [low]</li>
+<li>–show-reachable=no|yes show reachable blocks in leak check? [no]</li>
+</ol>
+<h2 id="磁盘"><a href="#磁盘" class="headerlink" title="磁盘"></a>磁盘</h2><h3 id="iotop"><a href="#iotop" class="headerlink" title="iotop"></a>iotop</h3><p>iotop命令是一个用来监视磁盘I/O使用状况的top类工具。iotop具有与top相似的UI，其中包括PID、用户、I/O、进程等相关信息。Linux下的IO统计工具如iostat，nmon等大多数是只能统计到per设备的读写情况，如果你想知道每个进程是如何使用IO的就比较麻烦，使用iotop命令可以很方便的查看。<br>iostat命令选项：<br>-o：只显示有io操作的进程<br>-n NUM：显示NUM次，主要用于非交互式模式。<br>-d SEC：间隔SEC秒显示一次。<br>-p PID：监控的进程pid。<br>-u USER：监控的进程用户。</p>
+<p>输出项说明：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td>avg-cpu部分说明</td>
+</tr>
+<tr>
+<td>%user</td>
+<td>在用户级别运行所使用的 CPU 的百分比</td>
+</tr>
+<tr>
+<td>%nice</td>
+<td>nice 操作所使用的 CPU 的百分比</td>
+</tr>
+<tr>
+<td>%system</td>
+<td>在核心级别（kernel）运行所使用 CPU 的百分比</td>
+</tr>
+<tr>
+<td>%iowait</td>
+<td>CPU 等待硬件 I/O 所占用 CPU 的百分比</td>
+</tr>
+<tr>
+<td>%steal</td>
+<td>当管理程序（hypervisor）为另一个虚拟进程提供服务而等待虚拟 CPU 的百分比</td>
+</tr>
+<tr>
+<td>%idle</td>
+<td>CPU 空闲时间的百分比</td>
+</tr>
+<tr>
+<td></td>
+<td>Device 部分基本输出项说明</td>
+</tr>
+<tr>
+<td>tps</td>
+<td>每秒钟物理设备的 I/O 传输总量</td>
+</tr>
+<tr>
+<td>Blk_read</td>
+<td>读入的数据总量，单位为块</td>
+</tr>
+<tr>
+<td>Blk_wrtn</td>
+<td>写入的数据总量，单位为块</td>
+</tr>
+<tr>
+<td>kB_read</td>
+<td>读入的数据总量，单位为KB</td>
+</tr>
+<tr>
+<td>kB_wrtn</td>
+<td>写入的数据总量，单位为KB</td>
+</tr>
+<tr>
+<td>MB_read</td>
+<td>读入的数据总量，单位为MB</td>
+</tr>
+<tr>
+<td>MB_wrtn</td>
+<td>写入的数据总量，单位为MB</td>
+</tr>
+<tr>
+<td>Blk_read/s</td>
+<td>每秒从驱动器读入的数据量，单位为 块/s</td>
+</tr>
+<tr>
+<td>Blk_wrtn/s</td>
+<td>每秒向驱动器写入的数据量，单位为 块/s</td>
+</tr>
+<tr>
+<td>kB_read/s</td>
+<td>每秒从驱动器读入的数据量，单位为KB/s</td>
+</tr>
+<tr>
+<td>kB_wrtn/s</td>
+<td>每秒向驱动器写入的数据量，单位为KB/s</td>
+</tr>
+<tr>
+<td>MB_read/s</td>
+<td>每秒从驱动器读入的数据量，单位为MB/s</td>
+</tr>
+<tr>
+<td>MB_wrtn/s</td>
+<td>每秒向驱动器写入的数据量，单位为MB/s</td>
+</tr>
+<tr>
+<td></td>
+<td>Device 部分扩展输出项说明</td>
+</tr>
+<tr>
+<td>wrqm/s</td>
+<td>将写入请求合并后，每秒发送到设备的写入请求数</td>
+</tr>
+<tr>
+<td>r/s</td>
+<td>每秒发送到设备的读入请求数</td>
+</tr>
+<tr>
+<td>w/s</td>
+<td>每秒发送到设备的写入请求数</td>
+</tr>
+<tr>
+<td>rsec/s</td>
+<td>每秒从设备读入的扇区数</td>
+</tr>
+<tr>
+<td>wsec/s</td>
+<td>每秒向设备写入的扇区数</td>
+</tr>
+<tr>
+<td>rkB/s</td>
+<td>每秒从设备读入的数据量，单位为 KB/s</td>
+</tr>
+<tr>
+<td>wkB/s</td>
+<td>每秒向设备写入的数据量，单位为 KB/s</td>
+</tr>
+<tr>
+<td>rMB/s</td>
+<td>每秒从设备读入的数据量，单位为 MB/s</td>
+</tr>
+<tr>
+<td>wMB/s</td>
+<td>每秒向设备写入的数据量，单位为 MB/s</td>
+</tr>
+<tr>
+<td>avgrq-sz</td>
+<td>发送到设备的请求的平均大小，单位为扇区</td>
+</tr>
+<tr>
+<td>avgqu-sz</td>
+<td>发送到设备的请求的平均队列长度</td>
+</tr>
+<tr>
+<td>await</td>
+<td>I/O请求平均执行时间。包括发送请求和执行的时间。单位为毫秒</td>
+</tr>
+<tr>
+<td>svctm</td>
+<td>发送到设备的I/O请求的平均执行时间。单位为毫秒</td>
+</tr>
+<tr>
+<td>%util</td>
+<td>在I/O请求发送到设备期间，占用CPU时间的百分比。用于显示设备的带宽利用率。当这个值接近100%时，表示设备带宽已经占满</td>
+</tr>
+</tbody>
+</table>
+<h2 id="全面工具"><a href="#全面工具" class="headerlink" title="全面工具"></a>全面工具</h2><h3 id="sar"><a href="#sar" class="headerlink" title="sar"></a>sar</h3><p>sar（System Activity Reporter）是系统活动情况报告的缩写。sar 工具将对系统当前的状态进行取样，然后通过计算数据和比例来表达系统的当前运行状态。它的特点是可以连续对系统取样，获得大量的取样数据；取样数据和分析的结果都可以存入文件，所需的负载很小。 sar 是目前 Linux 上最为全面的系统性能分析工具之一，可以从多方面对系统的活动进行报告，包括：文件的读写情况、系统调用的使用情况、磁盘I/O、CPU效率、内存使用状况、进程活动及IPC有关的活动等。为了提供不同的信息，sar 提供了丰富的选项、因此使用较为复杂。</p>
+<p><strong><em>sar 的命令格式为：</em></strong></p>
+<blockquote>
+<p>sar  [ -A ] [ -b ] [ -B ] [ -c ] [ -d ] [ -i interval ] [ -p ] [ -q ]<br>     [ -r ] [ -R ] [ -t ] [ -u ] [ -v ] [ -V ] [ -w ] [ -W ] [ -y ]<br>     [ -n { DEV | EDEV | NFS | NFSD | SOCK | ALL } ]<br>     [ -x { pid | SELF | ALL } ] [ -X { pid | SELF | ALL } ]<br>     [ -I { irq | SUM | ALL | XALL } ] [ -P { cpu | ALL } ]<br>     [ -o [ filename ] | -f [ filename ] ]<br>     [ -s [ hh:mm:ss ] ] [ -e [ hh:mm:ss ] ]<br>     [ interval [ count ] ]</p>
+</blockquote>
+<p>其中：</p>
+<ul>
+<li>interval : 为取样时间间隔</li>
+<li>count : 为输出次数，若省略此项，默认值为 1</li>
+</ul>
+<p>常用可选项说明：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-A</td>
+<td>等价于 -bBcdqrRuvwWy -I SUM -I XALL -n ALL -P ALL</td>
+</tr>
+<tr>
+<td>-b</td>
+<td>显示I/O和传送速率的统计信息</td>
+</tr>
+<tr>
+<td>-B</td>
+<td>输出内存页面的统计信息</td>
+</tr>
+<tr>
+<td>-c</td>
+<td>输出进程统计信息，每秒创建的进程数</td>
+</tr>
+<tr>
+<td>-d</td>
+<td>输出每一个块设备的活动信息</td>
+</tr>
+<tr>
+<td>-i interval</td>
+<td>指定间隔时长，单位为秒</td>
+</tr>
+<tr>
+<td>-p</td>
+<td>显示友好设备名字，以方便查看，也可以和-d 和-n 参数结合使用，比如 -dp 或-np</td>
+</tr>
+<tr>
+<td>-q</td>
+<td>输出进程队列长度和平均负载状态统计信息</td>
+</tr>
+<tr>
+<td>-r</td>
+<td>输出内存和交换空间的统计信息</td>
+</tr>
+<tr>
+<td>-R</td>
+<td>输出内存页面的统计信息</td>
+</tr>
+<tr>
+<td>-t</td>
+<td>读取 /var/log/sa/saDD 的数据时显示其中记录的原始时间，如果没有这个参数使用用户的本地时间</td>
+</tr>
+<tr>
+<td>-u</td>
+<td>输出CPU使用情况的统计信息</td>
+</tr>
+<tr>
+<td>-v</td>
+<td>输出inode、文件和其他内核表的统计信息</td>
+</tr>
+<tr>
+<td>-V</td>
+<td>输出版本号信息</td>
+</tr>
+<tr>
+<td>-w</td>
+<td>输出系统交换活动信息</td>
+</tr>
+<tr>
+<td>-W</td>
+<td>输出系统交换的统计信息</td>
+</tr>
+<tr>
+<td>-y</td>
+<td>输出TTY设备的活动信息</td>
+</tr>
+<tr>
+<td>-n {DEV&#166;EDEV&#166;NFS&#166;NFSD&#166;SOCK&#166;ALL}</td>
+<td>分析输出网络设备状态统计信息</td>
+</tr>
+<tr>
+<td>DEV</td>
+<td>报告网络设备的统计信息</td>
+</tr>
+<tr>
+<td>EDEV</td>
+<td>报告网络设备的错误统计信息</td>
+</tr>
+<tr>
+<td>NFS</td>
+<td>报告 NFS 客户端的活动统计信息</td>
+</tr>
+<tr>
+<td>NFSD</td>
+<td>报告 NFS 服务器的活动统计信息</td>
+</tr>
+<tr>
+<td>SOCK</td>
+<td>报告网络套接字（sockets）的使用统计信息</td>
+</tr>
+<tr>
+<td>ALL</td>
+<td>报告所有类型的网络活动统计信息</td>
+</tr>
+<tr>
+<td>-x {pid&#166;SELF&#166;ALL}</td>
+<td>输出指定进程的统计信息。</td>
+</tr>
+<tr>
+<td>pid</td>
+<td>用 pid 指定特定的进程</td>
+</tr>
+<tr>
+<td>SELF</td>
+<td>表示 sar 自身</td>
+</tr>
+<tr>
+<td>ALL</td>
+<td>表示所有进程</td>
+</tr>
+<tr>
+<td>-X {pid &#166;SELF&#166;ALL}</td>
+<td>输出指定进程的子进程的统计信息</td>
+</tr>
+<tr>
+<td>-I {irq&#166;SUM&#166;ALL&#166;XALL}</td>
+<td>输出指定中断的统计信息</td>
+</tr>
+<tr>
+<td>irq</td>
+<td>指定中断号</td>
+</tr>
+<tr>
+<td>SUM</td>
+<td>指定输出每秒接收到的中断总数</td>
+</tr>
+<tr>
+<td>ALL</td>
+<td>指定输出前16个中断</td>
+</tr>
+<tr>
+<td>XALL</td>
+<td>指定输出全部的中断信息</td>
+</tr>
+<tr>
+<td>-P {cpu&#166;ALL}</td>
+<td>输出指定 CPU 的统计信息</td>
+</tr>
+<tr>
+<td>-o filename</td>
+<td>将输出信息保存到文件 filename</td>
+</tr>
+<tr>
+<td>-f filename</td>
+<td>从文件 filename 读取数据信息。filename 是使用-o 选项时生成的文件</td>
+</tr>
+<tr>
+<td>-s hh:mm:ss</td>
+<td>指定输出统计数据的起始时间</td>
+</tr>
+<tr>
+<td>-e hh:mm:ss</td>
+<td>指定输出统计数据的截至时间，默认为18:00:00</td>
+</tr>
+</tbody>
+</table>
+<p>输出CPU使用情况的统计信息</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$ sar</div><div class="line">$ sar -u</div><div class="line">$ sar -u</div><div class="line">Linux 2.6.32-642.el6.x86_64 (localhost.localdomain) 	07/10/2017 	_x86_64_	(1 CPU)</div><div class="line"></div><div class="line">09:30:01 AM     CPU     %user     %nice   %system   %iowait    %steal     %idle</div><div class="line">09:40:01 AM     all      0.22      0.00      0.68      0.02      0.00     99.08</div><div class="line">Average:        all      0.22      0.00      0.68      0.02      0.00     99.08</div></pre></td></tr></table></figure>
+<p>输出项说明：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CPU</td>
+<td>all 表示统计信息为所有 CPU 的平均值</td>
+</tr>
+<tr>
+<td>%user</td>
+<td>显示在用户级别(application)运行使用 CPU 总时间的百分比</td>
+</tr>
+<tr>
+<td>%nice</td>
+<td>显示在用户级别，用于nice操作，所占用 CPU 总时间的百分比</td>
+</tr>
+<tr>
+<td>%system</td>
+<td>在核心级别(kernel)运行所使用 CPU 总时间的百分比</td>
+</tr>
+<tr>
+<td>%iowait</td>
+<td>显示用于等待I/O操作占用 CPU 总时间的百分比</td>
+</tr>
+<tr>
+<td>%steal</td>
+<td>管理程序(hypervisor)为另一个虚拟进程提供服务而等待虚拟 CPU 的百分比</td>
+</tr>
+<tr>
+<td>%idle</td>
+<td>显示 CPU 空闲时间占用 CPU 总时间的百分比</td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>若 %iowait 的值过高，表示硬盘存在I/O瓶颈</li>
+<li>若 %idle 的值高但系统响应慢时，有可能是 CPU 等待分配内存，此时应加大内存容量</li>
+<li>若 %idle 的值持续低于 10，则系统的 CPU 处理能力相对较低，表明系统中最需要解决的资源是 CPU</li>
+</ol>
+<p>显示I/O和传送速率的统计信息</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ sar -b</div><div class="line">Linux 2.6.32-642.el6.x86_64 (localhost.localdomain) 	07/10/2017 	_x86_64_	(1 CPU)</div><div class="line"></div><div class="line">09:30:01 AM       tps      rtps      wtps   bread/s   bwrtn/s</div><div class="line">09:40:01 AM      2.93      0.34      2.58      5.70     28.04</div><div class="line">Average:         2.93      0.34      2.58      5.70     28.04</div></pre></td></tr></table></figure>
+<p>输出项说明：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>tps</td>
+<td>每秒钟物理设备的 I/O 传输总量</td>
+</tr>
+<tr>
+<td>rtps</td>
+<td>每秒钟从物理设备读入的数据总量</td>
+</tr>
+<tr>
+<td>wtps</td>
+<td>每秒钟向物理设备写入的数据总量</td>
+</tr>
+<tr>
+<td>bread/s</td>
+<td>每秒钟从物理设备读入的数据量，单位为 块/s</td>
+</tr>
+<tr>
+<td>bwrtn/s</td>
+<td>每秒钟向物理设备写入的数据量，单位为 块/s</td>
+</tr>
+</tbody>
+</table>
+<p>输出内存页面的统计信息</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$ sar -B</div><div class="line">Linux 2.6.32-642.el6.x86_64 (localhost.localdomain) 	07/10/2017 	_x86_64_	(1 CPU)</div><div class="line"></div><div class="line">09:30:01 AM  pgpgin/s pgpgout/s   fault/s  majflt/s  pgfree/s pgscank/s pgscand/s pgsteal/s    %vmeff</div><div class="line">09:40:01 AM      1.42      7.01    110.16      0.00     54.61      0.00      0.00      0.00      0.00</div><div class="line">09:50:01 AM      0.01      7.28    114.09      0.00     55.55      0.00      0.00      0.00      0.00</div><div class="line">Average:         0.72      7.14    112.12      0.00     55.08      0.00      0.00      0.00      0.00</div></pre></td></tr></table></figure>
+<p>输出项说明：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pgpgin/s</td>
+<td>每秒钟从磁盘读入的系统页面的 KB 总数</td>
+</tr>
+<tr>
+<td>pgpgout/s</td>
+<td>每秒钟向磁盘写出的系统页面的 KB 总数</td>
+</tr>
+<tr>
+<td>fault/s</td>
+<td>系统每秒产生的页面失效(major + minor)数量</td>
+</tr>
+<tr>
+<td>majflt/s</td>
+<td>系统每秒产生的页面失效(major)数量</td>
+</tr>
+</tbody>
+</table>
+<p>输出每秒创建的进程数的进程统计以及系统上下文切换信息</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">$ sar -w</div><div class="line">Linux 2.6.32-642.el6.x86_64 (localhost.localdomain) 	07/10/2017 	_x86_64_	(1 CPU)</div><div class="line"></div><div class="line">09:30:01 AM    proc/s   cswch/s</div><div class="line">09:40:01 AM      0.20    183.41</div><div class="line">09:50:01 AM      0.20    169.33</div><div class="line">10:00:01 AM      0.19    157.26</div><div class="line">10:10:01 AM      0.29    167.57</div><div class="line">Average:         0.22    169.37</div></pre></td></tr></table></figure>
+<p> 输出项说明:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>proc/s</td>
+<td>每秒钟创建的进程数</td>
+</tr>
+<tr>
+<td>cswch/s</td>
+<td>每秒的系统上下文切换数量</td>
+</tr>
+</tbody>
+</table>
+<p>输出网络设备状态的统计信息</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$ sar -n DEV | grep eth0</div><div class="line">09:40:01 AM      eth0      0.72      0.45      0.11      0.06      0.00      0.00      0.00</div><div class="line">09:50:01 AM      eth0      0.62      0.38      0.22      0.10      0.00      0.00      0.00</div><div class="line">10:00:01 AM      eth0      0.25      0.18      0.02      0.01      0.00      0.00      0.00</div><div class="line">10:10:01 AM      eth0      2.42      1.97      0.24      0.37      0.00      0.00      0.00</div><div class="line">10:20:01 AM      eth0      0.30      0.20      0.06      0.03      0.00      0.00      0.00</div><div class="line">Average:         eth0      0.86      0.64      0.13      0.11      0.00      0.00      0.00</div></pre></td></tr></table></figure>
+<p>输出项说明：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IFACE</td>
+<td>网络设备名</td>
+</tr>
+<tr>
+<td>rxpck/s</td>
+<td>每秒接收的包总数</td>
+</tr>
+<tr>
+<td>txpck/s</td>
+<td>每秒传输的包总数</td>
+</tr>
+<tr>
+<td>rxbyt/s</td>
+<td>每秒接收的字节（byte）总数</td>
+</tr>
+<tr>
+<td>txbyt/s</td>
+<td>每秒传输的字节（byte）总数</td>
+</tr>
+<tr>
+<td>rxcmp/s</td>
+<td>每秒接收压缩包的总数</td>
+</tr>
+<tr>
+<td>txcmp/s</td>
+<td>每秒传输压缩包的总数</td>
+</tr>
+<tr>
+<td>rxmcst/s</td>
+<td>每秒接收的多播（multicast）包的总数</td>
+</tr>
+</tbody>
+</table>
+<p>输出网络设备状态的统计信息（查看网络设备故障）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">$ sar -n EDEV | egrep <span class="string">'eth0|IFACE'</span></div><div class="line">09:30:01 AM     IFACE   rxerr/s   txerr/s    coll/s  rxdrop/s  txdrop/s  txcarr/s  rxfram/s  rxfifo/s  txfifo/s</div><div class="line">09:40:01 AM      eth0      0.00      0.00      0.00      0.00      0.00      0.00      0.00      0.00      0.00</div><div class="line">09:50:01 AM      eth0      0.00      0.00      0.00      0.00      0.00      0.00      0.00      0.00      0.00</div><div class="line">10:00:01 AM      eth0      0.00      0.00      0.00      0.00      0.00      0.00      0.00      0.00      0.00</div><div class="line">10:10:01 AM      eth0      0.00      0.00      0.00      0.00      0.00      0.00      0.00      0.00      0.00</div><div class="line">10:20:01 AM      eth0      0.00      0.00      0.00      0.00      0.00      0.00      0.00      0.00      0.00</div><div class="line">10:30:01 AM      eth0      0.00      0.00      0.00      0.00      0.00      0.00      0.00      0.00      0.00</div><div class="line">10:40:01 AM      eth0      0.00      0.00      0.00      0.00      0.00      0.00      0.00      0.00      0.00</div><div class="line">10:50:01 AM      eth0      0.00      0.00      0.00      0.00      0.00      0.00      0.00      0.00      0.00</div><div class="line">Average:         eth0      0.00      0.00      0.00      0.00      0.00      0.00      0.00      0.00      0.00</div></pre></td></tr></table></figure>
+<p>输出项说明：</p>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IFACE</td>
+<td>网络设备名</td>
+</tr>
+<tr>
+<td>rxerr/s</td>
+<td>每秒接收的坏包总数</td>
+</tr>
+<tr>
+<td>txerr/s</td>
+<td>传输包时每秒发生错误的总数</td>
+</tr>
+<tr>
+<td>coll/s</td>
+<td>传输包时每秒发生冲突（collision）的总数</td>
+</tr>
+<tr>
+<td>rxdrop/s</td>
+<td>接收包时，由于缺乏缓存，每秒丢弃（drop）包的数量</td>
+</tr>
+<tr>
+<td>txdrop/s</td>
+<td>传输包时，由于缺乏缓存，每秒丢弃（drop）包的数量</td>
+</tr>
+<tr>
+<td>txcarr/s</td>
+<td>传输包时，每秒发生的传输错误（carrier-error）的数量</td>
+</tr>
+<tr>
+<td>rxfram/s</td>
+<td>接收包时，每秒发生帧校验错误（frame alignment error）的数量</td>
+</tr>
+<tr>
+<td>rxfifo/s</td>
+<td>接收包时，每秒发生队列（FIFO）一出错误的数量</td>
+</tr>
+<tr>
+<td>txfifo/s</td>
+<td>传输包时，每秒发生队列（FIFO）一出错误的数量</td>
+</tr>
+</tbody>
+</table>
+<p>输出进程队列长度和平均负载状态统计信息</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">$ sar -q</div><div class="line">Linux 2.6.32-642.el6.x86_64 (localhost.localdomain) 	07/10/2017 	_x86_64_	(1 CPU)</div><div class="line"></div><div class="line">09:30:01 AM   runq-sz  plist-sz   ldavg-1   ldavg-5  ldavg-15</div><div class="line">09:40:01 AM         1       201      0.11      0.09      0.05</div><div class="line">09:50:01 AM         0       201      0.20      0.20      0.12</div><div class="line">10:00:01 AM         0       202      0.69      0.38      0.27</div><div class="line">10:10:01 AM         1       203      1.17      0.65      0.41</div><div class="line">10:20:01 AM         0       203      0.30      0.42      0.40</div><div class="line">10:30:01 AM         0       203      0.48      0.39      0.38</div><div class="line">10:40:01 AM         1       202      0.49      0.40      0.40</div><div class="line">10:50:01 AM         0       202      1.04      0.58      0.46</div><div class="line">11:00:01 AM         0       202      1.90      0.85      0.60</div><div class="line">Average:            0       202      0.71      0.44      0.34</div></pre></td></tr></table></figure>
+<p>输出项说明：</p>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>runq-sz</td>
+<td>运行队列的长度（等待运行的进程数）</td>
+</tr>
+<tr>
+<td>plist-sz</td>
+<td>进程列表中进程（processes）和线程（threads）的数量</td>
+</tr>
+<tr>
+<td>ldavg-1</td>
+<td>最后1分钟的系统平均负载（System load average）</td>
+</tr>
+<tr>
+<td>ldavg-5</td>
+<td>过去5分钟的系统平均负载</td>
+</tr>
+<tr>
+<td>ldavg-15</td>
+<td>过去15分钟的系统平均负载</td>
+</tr>
+</tbody>
+</table>
+<p>输出内存和交换空间的统计信息</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">$ sar -r</div><div class="line">Linux 2.6.32-642.el6.x86_64 (localhost.localdomain) 	07/10/2017 	_x86_64_	(1 CPU)</div><div class="line"></div><div class="line">09:30:01 AM kbmemfree kbmemused  %memused kbbuffers  kbcached  kbcommit   %commit</div><div class="line">09:40:01 AM   1845292   1095228     37.25    103068    179772   1406252     27.91</div><div class="line">09:50:01 AM   1868880   1071640     36.44    103072    179836   1383224     27.46</div><div class="line">10:00:01 AM   1867500   1073020     36.49    103072    180624   1383744     27.47</div><div class="line">10:10:01 AM   1865260   1075260     36.57    103532    181836   1384328     27.48</div><div class="line">10:20:01 AM   1619608   1320912     44.92    157284    304620   1386304     27.52</div><div class="line">10:30:01 AM   1618988   1321532     44.94    157860    304660   1386304     27.52</div><div class="line">10:40:01 AM   1618624   1321896     44.95    158416    304708   1385712     27.51</div><div class="line">10:50:01 AM   1617896   1322624     44.98    158964    304756   1385812     27.51</div><div class="line">11:00:01 AM   1616160   1324360     45.04    159504    304804   1386836     27.53</div><div class="line">11:10:01 AM   1615548   1324972     45.06    160088    304852   1386836     27.53</div><div class="line">11:20:02 AM   1610588   1329932     45.23    160624    304880   1390924     27.61</div><div class="line">11:30:01 AM   1610060   1330460     45.25    161136    304908   1390924     27.61</div><div class="line">Average:      1697867   1242653     42.26    140552    263355   1388100     27.55</div></pre></td></tr></table></figure>
+<p>输出项说明：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>kbmemfree</td>
+<td>可用的空闲内存数量，单位为 KB</td>
+</tr>
+<tr>
+<td>kbmemused</td>
+<td>已使用的内存数量（不包含内核使用的内存），单位为 KB</td>
+</tr>
+<tr>
+<td>%memused</td>
+<td>已使用内存的百分数</td>
+</tr>
+<tr>
+<td>kbbuffers</td>
+<td>内核缓冲区（buffer）使用的内存数量，单位为 KB</td>
+</tr>
+<tr>
+<td>kbcached</td>
+<td>内核高速缓存（cache）数据使用的内存数量，单位为 KB</td>
+</tr>
+<tr>
+<td>kbswpfree</td>
+<td>可用的空闲交换空间数量，单位为 KB</td>
+</tr>
+<tr>
+<td>kbswpused</td>
+<td>已使用的交换空间数量，单位为 KB</td>
+</tr>
+<tr>
+<td>%swpused</td>
+<td>已使用交换空间的百分数</td>
+</tr>
+<tr>
+<td>kbswpcad</td>
+<td>交换空间的高速缓存使用的内存数量</td>
+</tr>
+</tbody>
+</table>
+<p>输出内存页统计信息</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">$ sar -R</div><div class="line">Linux 2.6.32-642.el6.x86_64 (localhost.localdomain) 	07/10/2017 	_x86_64_	(1 CPU)</div><div class="line"></div><div class="line">09:30:01 AM   frmpg/s   bufpg/s   campg/s</div><div class="line">09:40:01 AM     -5.58      0.32      0.01</div><div class="line">09:50:01 AM     10.11      0.00      0.03</div><div class="line">10:00:01 AM     -0.59      0.00      0.34</div><div class="line">10:10:01 AM     -0.95      0.19      0.51</div><div class="line">10:20:01 AM   -103.66     22.68     51.81</div><div class="line">10:30:01 AM     -0.26      0.24      0.02</div><div class="line">10:40:01 AM     -0.15      0.23      0.02</div><div class="line">10:50:01 AM     -0.31      0.23      0.02</div><div class="line">11:00:01 AM     -0.80      0.25      0.02</div><div class="line">11:10:01 AM     -0.26      0.25      0.02</div><div class="line">11:20:02 AM     -2.09      0.23      0.01</div><div class="line">11:30:01 AM     -0.22      0.22      0.01</div><div class="line">11:40:01 AM     -1.03      0.23      0.02</div><div class="line">Average:        -8.21      1.94      4.10</div></pre></td></tr></table></figure>
+<p>输出项说明：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>frmpg/s</td>
+<td>每秒系统中空闲的内存页面（memory page freed）数量</td>
+</tr>
+<tr>
+<td>bufpg/s</td>
+<td>每秒系统中用作缓冲区（buffer）的附加内存页面（additional memory page）数量</td>
+</tr>
+<tr>
+<td>campg/s</td>
+<td>每秒系统中高速缓存的附加内存页面（additional memory pages cached）数量</td>
+</tr>
+</tbody>
+</table>
+<p>输出inode、文件和其他内核表信息</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">$ sar -v</div><div class="line">Linux 2.6.32-642.el6.x86_64 (localhost.localdomain) 	07/10/2017 	_x86_64_	(1 CPU)</div><div class="line"></div><div class="line">09:30:01 AM dentunusd   file-nr  inode-nr    pty-nr</div><div class="line">09:40:01 AM     13110      1504     15970         2</div><div class="line">09:50:01 AM     13152      1504     15978         2</div><div class="line">10:00:01 AM     13197      1504     15978         2</div><div class="line">10:10:01 AM     13352      1536     16033         2</div><div class="line">10:20:01 AM     68036      1536     67469         2</div><div class="line">10:30:01 AM     68071      1536     67469         2</div><div class="line">10:40:01 AM     68108      1504     67468         2</div><div class="line">10:50:01 AM     68140      1504     67468         2</div><div class="line">11:00:01 AM     68174      1504     67466         2</div><div class="line">11:10:01 AM     68206      1504     67466         2</div><div class="line">11:20:02 AM     68238      1504     67466         2</div><div class="line">11:30:01 AM     68270      1504     67466         2</div><div class="line">11:40:01 AM     68302      1504     67466         2</div><div class="line">Average:        51258      1511     51628         2</div></pre></td></tr></table></figure>
+<p>输出项说明：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dentunusd</td>
+<td>目录高速缓存中未被使用的条目数量</td>
+</tr>
+<tr>
+<td>file-sz</td>
+<td>文件句柄（file handle）的使用数量</td>
+</tr>
+<tr>
+<td>inode-sz</td>
+<td>i节点句柄（inode handle）的使用数量</td>
+</tr>
+<tr>
+<td>super-sz</td>
+<td>由内核分配的超级块句柄（super block handle）数量</td>
+</tr>
+<tr>
+<td>%super-sz</td>
+<td>已分配的超级块句柄占总超级块句柄的百分比</td>
+</tr>
+<tr>
+<td>dquot-sz</td>
+<td>已经分配的磁盘限额条目数量</td>
+</tr>
+<tr>
+<td>%dquot-sz</td>
+<td>分配的磁盘限额条目数量占总磁盘限额条目的百分比</td>
+</tr>
+<tr>
+<td>rtsig-sz</td>
+<td>已排队的 RT 信号的数量</td>
+</tr>
+<tr>
+<td>%rtsig-sz</td>
+<td>已排队的 RT 信号占总 RT 信号的百分比</td>
+</tr>
+</tbody>
+</table>
+<p>输出系统交换活动信息</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">$ sar -W</div><div class="line">Linux 2.6.32-642.el6.x86_64 (localhost.localdomain) 	07/10/2017 	_x86_64_	(1 CPU)</div><div class="line"></div><div class="line">09:30:01 AM  pswpin/s pswpout/s</div><div class="line">09:40:01 AM      0.00      0.00</div><div class="line">09:50:01 AM      0.00      0.00</div><div class="line">10:00:01 AM      0.00      0.00</div><div class="line">10:10:01 AM      0.00      0.00</div><div class="line">10:20:01 AM      0.00      0.00</div><div class="line">10:30:01 AM      0.00      0.00</div><div class="line">10:40:01 AM      0.00      0.00</div><div class="line">10:50:01 AM      0.00      0.00</div><div class="line">11:00:01 AM      0.00      0.00</div><div class="line">11:10:01 AM      0.00      0.00</div><div class="line">11:20:02 AM      0.00      0.00</div><div class="line">11:30:01 AM      0.00      0.00</div><div class="line">11:40:01 AM      0.00      0.00</div><div class="line">11:50:01 AM      0.00      0.00</div><div class="line">12:00:01 PM      0.00      0.00</div><div class="line">12:10:01 PM      0.00      0.00</div><div class="line">12:50:01 PM      0.00      0.00</div><div class="line">Average:         0.00      0.00</div></pre></td></tr></table></figure>
+<p>输出项说明：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pswpin/s</td>
+<td>每秒系统换入的交换页面（swap page）数量</td>
+</tr>
+<tr>
+<td>pswpout/s</td>
+<td>每秒系统换出的交换页面（swap page）数量</td>
+</tr>
+</tbody>
+</table>
+<p>输出TTY设备的活动信息</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">$ sar -y</div><div class="line">Linux 2.6.32-642.el6.x86_64 (localhost.localdomain) 	07/10/2017 	_x86_64_	(1 CPU)</div><div class="line"></div><div class="line">09:30:01 AM       TTY   rcvin/s   xmtin/s framerr/s prtyerr/s     brk/s   ovrun/s</div><div class="line">09:40:01 AM         0      0.00      0.00      0.00      0.00      0.00      0.00</div><div class="line">09:50:01 AM         0      0.00      0.00      0.00      0.00      0.00      0.00</div><div class="line">10:00:01 AM         0      0.00      0.00      0.00      0.00      0.00      0.00</div><div class="line">10:10:01 AM         0      0.00      0.00      0.00      0.00      0.00      0.00</div><div class="line">10:20:01 AM         0      0.00      0.00      0.00      0.00      0.00      0.00</div><div class="line">10:30:01 AM         0      0.00      0.00      0.00      0.00      0.00      0.00</div><div class="line">10:40:01 AM         0      0.00      0.00      0.00      0.00      0.00      0.00</div><div class="line">10:50:01 AM         0      0.00      0.00      0.00      0.00      0.00      0.00</div><div class="line">11:00:01 AM         0      0.00      0.00      0.00      0.00      0.00      0.00</div><div class="line">11:10:01 AM         0      0.00      0.00      0.00      0.00      0.00      0.00</div><div class="line">11:20:02 AM         0      0.00      0.00      0.00      0.00      0.00      0.00</div><div class="line">11:30:01 AM         0      0.00      0.00      0.00      0.00      0.00      0.00</div><div class="line">11:40:01 AM         0      0.00      0.00      0.00      0.00      0.00      0.00</div><div class="line">11:50:01 AM         0      0.00      0.00      0.00      0.00      0.00      0.00</div><div class="line"></div><div class="line">11:50:01 AM       TTY   rcvin/s   xmtin/s framerr/s prtyerr/s     brk/s   ovrun/s</div><div class="line">12:00:01 PM         0      0.00      0.00      0.00      0.00      0.00      0.00</div><div class="line">12:10:01 PM         0      0.00      0.00      0.00      0.00      0.00      0.00</div><div class="line">12:50:01 PM         0      0.00      0.00      0.00      0.00      0.00      0.00</div><div class="line">Average:            0      0.00      0.00      0.00      0.00      0.00      0.00</div></pre></td></tr></table></figure>
+<p>输出项说明：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TTY</td>
+<td>TTY 串行设备号</td>
+</tr>
+<tr>
+<td>rcvin/s</td>
+<td>每秒接收的中断数量</td>
+</tr>
+<tr>
+<td>xmtin/s</td>
+<td>每秒传送的中断数量</td>
+</tr>
+<tr>
+<td>framerr/s</td>
+<td>每秒发生的帧错误数（frame error）量</td>
+</tr>
+<tr>
+<td>prtyerr/s</td>
+<td>每秒发生的奇偶校验错误（parity error）数量</td>
+</tr>
+<tr>
+<td>brk/s</td>
+<td>每秒发生的暂停（break）数量</td>
+</tr>
+<tr>
+<td>ovrun/s</td>
+<td>每秒发生的溢出错误（overrun error）数量</td>
+</tr>
+</tbody>
+</table>
+<p>显示全面的累计统计信息</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sar -A</div></pre></td></tr></table></figure>
+<p>附录</p>
+<h1 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h1><ol>
+<li><a href="http://blog.sina.com.cn/s/blog_3d5b39820101n6rk.html" target="_blank" rel="external">Linux统计/监控工具SAR详细介绍</a></li>
+<li><a href="https://mp.weixin.qq.com/s/59kfScXvaIRuYn0VjfCMQA" target="_blank" rel="external">Linux下常用系统分析工具总结</a></li>
+</ol>
+
       
     </div>
 
@@ -418,6 +1705,14 @@
     </div>
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/linux/" rel="tag"># linux</a>
+          
+            <a href="/tags/shell/" rel="tag"># shell</a>
+          
+        </div>
       
 
       
@@ -487,8 +1782,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.jpg"
@@ -503,7 +1807,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">39</span>
+                <span class="site-state-item-count">40</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -550,6 +1854,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#分析工具命令"><span class="nav-number">2.</span> <span class="nav-text">分析工具命令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#CPU"><span class="nav-number">2.1.</span> <span class="nav-text">CPU</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#top"><span class="nav-number">2.1.1.</span> <span class="nav-text">top</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#strace"><span class="nav-number">2.1.2.</span> <span class="nav-text">strace</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#perf"><span class="nav-number">2.1.3.</span> <span class="nav-text">perf</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vmstat"><span class="nav-number">2.1.4.</span> <span class="nav-text">vmstat</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络"><span class="nav-number">2.2.</span> <span class="nav-text">网络</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#nestat命令"><span class="nav-number">2.2.1.</span> <span class="nav-text">nestat命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ss（socket-statistics）参数和使用"><span class="nav-number">2.2.2.</span> <span class="nav-text">ss（socket statistics）参数和使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lsof"><span class="nav-number">2.2.3.</span> <span class="nav-text">lsof</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tcpdump"><span class="nav-number">2.2.4.</span> <span class="nav-text">tcpdump</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内存"><span class="nav-number">2.3.</span> <span class="nav-text">内存</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#valgrind"><span class="nav-number">2.3.1.</span> <span class="nav-text">valgrind</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#磁盘"><span class="nav-number">2.4.</span> <span class="nav-text">磁盘</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#iotop"><span class="nav-number">2.4.1.</span> <span class="nav-text">iotop</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#全面工具"><span class="nav-number">2.5.</span> <span class="nav-text">全面工具</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#sar"><span class="nav-number">2.5.1.</span> <span class="nav-text">sar</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考文档"><span class="nav-number">3.</span> <span class="nav-text">参考文档</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
