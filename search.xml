@@ -4,7 +4,7 @@
     
     <entry>
       <title><![CDATA[Hello World]]></title>
-      <url>/2017/07/11/hello-world/</url>
+      <url>/2017/07/14/hello-world/</url>
       <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
 <p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
@@ -21,7 +21,7 @@
     
     <entry>
       <title><![CDATA[django入门教学]]></title>
-      <url>/2017/07/11/django1/</url>
+      <url>/2017/07/14/django1/</url>
       <content type="html"><![CDATA[<h1 id="django安装"><a href="#django安装" class="headerlink" title="django安装"></a>django安装</h1><p>使用pip 或者easy_install 即可</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pip install django 或者 easy_install django</div></pre></td></tr></table></figure>
 <h1 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h1><p>项目名称不用和python或django的内部组件名称同名。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ django-admin startproject mysite</div></pre></td></tr></table></figure></p>
@@ -35,6 +35,73 @@
         wsgi.py
 </code></pre>]]></content>
       
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[mysql日志详解]]></title>
+      <url>/2017/07/14/mysql-log/</url>
+      <content type="html"><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p><a href="http://freeloda.blog.51cto.com/2033581/1253991" target="_blank" rel="external">转自： 陈明乾:MySQL 日志管理详解</a><br>运维狗一般查问题除了使用实时工具在线检测问题，最多就是查看日志，MySQL这类成熟开源数据库其实对于日志分类管理其实相当成熟。通过日志可以方便的追踪问题，监测性能等。<br>MySQL日志分类：错误日志、查询日志、慢查询日志、二进制日志、中继日志、事务日志、滚动日志</p>
+<a id="more"></a>
+<h1 id="日志详解"><a href="#日志详解" class="headerlink" title="日志详解"></a>日志详解</h1><h2 id="错误日志"><a href="#错误日志" class="headerlink" title="错误日志"></a>错误日志</h2><p>说明：在对应的数据目录中，以主机名+.err命名的文件，错误日志记录的信息类型：</p>
+<ul>
+<li>记录了服务器运行中产生的错误信息</li>
+<li>记录了服务在启动和停止是所产生的信息</li>
+<li>在从服务器上如果启动了复制进程的时候，复制进程的信息也会被记录</li>
+<li>记录event错误日志</li>
+</ul>
+<p>配置mysql的主配置文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">log_error = /mydata/data/mysql.test.com.err <span class="comment">#指定错误日志的位置，默认是在数据目录下，这个位置mysql用户必须有写权限</span></div><div class="line">log_warning = &#123;0|1&#125; <span class="comment">#默认开启，服务器运行中的警告日志也会记录在错误日志中</span></div></pre></td></tr></table></figure>
+<h2 id="查询日志"><a href="#查询日志" class="headerlink" title="查询日志"></a>查询日志</h2><p>说明：对除了慢查日志中记录的查询信息都将记录下来,这将对服务器主机产生大量的压力，所以对于繁忙的服务器应该关闭这个日志<br>与查询日志相关的变量</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">log</span> = &#123;ON|OFF&#125; <span class="comment">#是否启用查询日志，该指令在mysq5.6中已废弃</span></div><div class="line">general_log = &#123;ON|OFF&#125; <span class="comment">#启动或关闭查询日志，默认是关闭的</span></div><div class="line">general_log_file = /mydata/data/mysql.log <span class="comment">#指定查询日志的位置，默认在数据目录下</span></div><div class="line">log_output = &#123;TABLE|FILE|NONE&#125; <span class="comment">#指定存放查询日志的位置，可以放在文件中，也可以放在数据库的表中，放在表中比放在文件中更容易查看</span></div></pre></td></tr></table></figure>
+<h2 id="慢查询日志"><a href="#慢查询日志" class="headerlink" title="慢查询日志"></a>慢查询日志</h2><p>说明：默认为关闭状态，记录下来查询时间超过设定时长的查询，这些查询日志将被慢查日志记录下来<br>配置mysql的主配置文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">slow_query_log  = &#123;ON | OFF&#125; <span class="comment">#是否开启慢慢查询日志，默认是关闭的 </span></div><div class="line">slow_query_log_file = /mydata/data/mysql-slow.log <span class="comment">#慢查询日志的存放位置，默认在数据目录下</span></div><div class="line">log_query_time = 10 <span class="comment">#定义默认的时长，默认时长为10秒</span></div><div class="line">log_query_not_using_indexes = &#123;ON|OFF&#125; <span class="comment">#设定是否将没有使用索引的查询操作记录到慢查询日志 </span></div><div class="line">log_output = &#123;TABLE|FILE|NONE&#125; <span class="comment">#定义一般查询日志和慢查询日志的保存方式，可以是TABLE、FILE、NONE，也可以是TABLE及FILE的组合(用逗号隔开)，默认为FILE。如果组合中出现了NONE，那么其它设定都将失效，同时，无论是否启用日志功能，也不会记录任何相关的日志信息</span></div></pre></td></tr></table></figure>
+<h2 id="二进制日志"><a href="#二进制日志" class="headerlink" title="二进制日志"></a>二进制日志</h2><p>说明：默认开启，精确的记录了用户对数据库中的数据进行操作的命令和操作的数据对象。<br>二进制日志文件的作用：</p>
+<ul>
+<li>提供了增量备份的功能</li>
+<li>提供了数据基于时间点的恢复，这个恢复的时间点可以由用户控制</li>
+<li>为mysql的复制架构提供基础，将这主服务器的二进制日志复制到从服务器上并执行同样的操作，就可将数据进行同步</li>
+</ul>
+<p>二进制日志格式：</p>
+<ul>
+<li>基于语句 statement</li>
+<li>基于行 row</li>
+<li>混合方式 mixed</li>
+</ul>
+<p>二进制日志事件：</p>
+<ul>
+<li>position 基于位置</li>
+<li>datetime 基于时间</li>
+</ul>
+<p>二进制日志的查看和删除方式：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">mysql&gt;show master status; 查看当前正在使用的二进制日志 </div><div class="line">mysql&gt;show binlog events <span class="keyword">in</span> <span class="string">'mysql-bin.000001'</span>; 查看二进制日志记录的事件[from position] </div><div class="line">mysql&gt;flush logs; 二进制日志滚动  </div><div class="line">mysql&gt;show binary logs; 查看所有二进制日志  </div><div class="line">mysql&gt;purge binary logs to <span class="string">'mysql-bin.000003'</span>; 删除二进制日志</div></pre></td></tr></table></figure>
+<p>文件系统中查看二进制日志的命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">mysqlbinlog</div><div class="line">相关选项， </div><div class="line">--start-position <span class="comment">#开始位置  </span></div><div class="line">--stop-position <span class="comment">#结束位置  </span></div><div class="line">--start-datetime <span class="string">'yyyy-mm-dd hh:mm:ss'</span>; <span class="comment">#开始时间  </span></div><div class="line">--stop-datetime <span class="string">''</span>; <span class="comment">#结束时间</span></div></pre></td></tr></table></figure>
+<p>配置mysql的主配置文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">sql_log_bin = &#123;ON|OFF&#125; <span class="comment">#用于控制二进制日志信息是否记录进日志文件。默认为ON，表示启用记录功能。用户可以在会话级别修改此变量的值，但其必须具有SUPER权限</span></div><div class="line">binlog_cache_size = 32768 <span class="comment">#默认值32768 Binlog Cache 用于在打开了二进制日志（binlog）记录功能的环境，是 MySQL 用来提高binlog的记录效率而设计的一个用于短时间内临时缓存binlog数据的内存区域。一般来说，如果我们的数据库中没有什么大事务，写入也不是特别频繁，2MB～4MB是一个合适的选择。但是如果我们的数据库大事务较多，写入量比较大，可与适当调高binlog_cache_size。同时，我们可以通过binlog_cache_use 以及 binlog_cache_disk_use来分析设置的binlog_cache_size是否足够，是否有大量的binlog_cache由于内存大小不够而使用临时文件（binlog_cache_disk_use）来缓存了 </span></div><div class="line">binlog_stmt_cache_size = 32768 <span class="comment">#当非事务语句使用二进制日志缓存，但是超出binlog_stmt_cache_size时，使用一个临时文件来存放这些语句  </span></div><div class="line">log_bin = mysql-bin <span class="comment">#指定binlog的位置，默认在数据目录下</span></div><div class="line">binlog-format = &#123;ROW|STATEMENT|MIXED&#125; <span class="comment">#指定二进制日志的类型，默认为MIXED。如果设定了二进制日志的格式，却没有启用二进制日志，则MySQL启动时会产生警告日志信息并记录于错误日志中。 </span></div><div class="line">sync_binlog = 10 <span class="comment">#设定多久同步一次二进制日志至磁盘文件中，0表示不同步，任何正数值都表示对二进制每多少次写操作之后同步一次。当autocommit的值为1时，每条语句的执行都会引起二进制日志同步，否则，每个事务的提交会引起二进制日志同步  </span></div><div class="line">max_binlog_cache_size = &#123;4096 .. 18446744073709547520&#125; <span class="comment">#二进定日志缓存空间大小，5.5.9及以后的版本仅应用于事务缓存，其上限由max_binlog_stmt_cache_size决定。  </span></div><div class="line">max_binlog_stmt_cache_size = &#123;4096 .. 18446744073709547520&#125; <span class="comment">#二进定日志缓存空间大小，5.5.9及以后的版本仅应用于事务缓存  </span></div><div class="line">expire_log_days = &#123;0..99&#125; <span class="comment">#设定二进制日志的过期天数，超出此天数的二进制日志文件将被自动删除。默认为0，表示不启用过期自动删除功能。如果启用此功能，自动删除工作通常发生在MySQL启动时或FLUSH日志时</span></div></pre></td></tr></table></figure>
+<p><code>注：一般建议将binlog日志与数据文件分开存放，不但可以提高mysql性能，还可以增加安全性！</code></p>
+<h2 id="中继日志"><a href="#中继日志" class="headerlink" title="中继日志"></a>中继日志</h2><p>说明：主要是在mysql服务器的中从架构中的从服务器上用到的，当从服务器想要和主服务器进行数据的同步时，从服务器将主服务器的二进制日志文件拷贝到己的主机上放在中继日志中，然后调用SQL线程按照拷中继日志文件中的二进制日志文件执行以便就可达到数据的同步<br>开启的方法：（只在从服务器上开启）<br>配置mysql的主配置文件：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">relay-log = file_name <span class="comment">#指定中继日志的位置和名字，默认为host_name-relay-bin。也可以使用绝对路径，以指定非数据目录来存储中继日志  </span></div><div class="line">relay-log-index = file_name <span class="comment">#指定中继日志的名字的索引文件的位置和名字，默认为数据目录中的host_name-relay-bin.index</span></div><div class="line">relay-log-info-file = file_name <span class="comment">#设定中继服务用于记录中继信息的文件，默认为数据目录中的relay-log.info</span></div><div class="line">relay_log_purge = &#123;ON|OFF&#125; <span class="comment">#设定对不再需要的中继日志是否自动进行清理。默认值为ON</span></div><div class="line">relay_log_space_limit = 0 <span class="comment">#设定用于存储所有中继日志文件的可用空间大小。默认为0，表示不限定。最大值取决于系统平台位数</span></div><div class="line">max_relay_log_size = &#123;4096..1073741824&#125; <span class="comment">#设定从服务器上中继日志的体积上限，到达此限度时其会自动进行中继日志滚动。此参数值为0时，mysqld将使用max_binlog_size参数同时为二进制日志和中继日志设定日志文件体积上限</span></div></pre></td></tr></table></figure></p>
+<h2 id="事务日志"><a href="#事务日志" class="headerlink" title="事务日志"></a>事务日志</h2><p>说明：详细的记录了在什么时间发生了什么时候，在哪个时间对哪些数据进行了改变，能后实现事件的重放，一般只记录对数据进行改变的操作，对于读操作一般不进行记录。<br>事物日志为数据库服务器实现以下功能：   </p>
+<ol>
+<li>将随机IO转换为顺序IO，大大的提高了数据库的性能，存储的数据可能存在在磁盘的不同位置，降低了数据的读取和操作性能。转换为顺序IO的原理为，先将数据存放在日志文件中，然后由RDBSM的后台将日志中的数据存放到磁盘上，这样就保证了存储的数据是连续的。</li>
+<li>为事件重放提供基础，事务日志详细的记录了时间发生的时间以及操作的数据对象，事务进程可以根据这些信息进行时间重放。<br>默认的事务日志文件有两个，位于数据目录下以ibdata+number结尾的数字，我们可以对事务日志的位置、文件大小、增长方式进行定义，定义的方法如下：<br>这里以使用支持事务的Innodb存储引擎为例，<br>配置mysql的主配置文件：<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">innodb_data_home_dir = /mydata/data  <span class="comment">#InnoDB所有共享表空间数据文件的目录路径，默认在数据目录下</span></div><div class="line">innodb_data_file_path = ibdata1:1024M  <span class="comment">#指定InnoDB的各个数据文件及其大小，文件多于一个时彼此间用分号隔开 </span></div><div class="line">innodb_data_file_path = ibdata2:50M:autoextend  <span class="comment">#定义数据大小的增长方式</span></div><div class="line">innodb_log_group_home_dir = /mydata/data <span class="comment">#设定InnoDB重要日志文件的存储目录。在缺省使用InnoDB日志相关的所有变量时，其默认会在数据目录中创建两个大小为5MB的名为ib_logfile0和ib_logfile1的日志文件</span></div><div class="line">innodb_log_files_in_group = &#123;2 .. 100&#125; <span class="comment">#设定日志组中日志文件的个数。InnoDB以循环的方式使用这些日志文件。默认值为2</span></div><div class="line">innodb_log_file_size = &#123;108576 .. 4294967295&#125; <span class="comment">#设定日志组中每个日志文件的大小，单位是字节，默认值是5MB。较为明智的取值范围是从1MB到缓存池体积的1/n，其中n表示日志组中日志文件的个数。日志文件越大，在缓存池中需要执行的检查点刷写操作就越少，这意味着所需的I/O操作也就越少，然而这也会导致较慢的故障恢复速度</span></div><div class="line">innodb_log_buffer_size = &#123;262144 .. 4294967295&#125; <span class="comment">#设定InnoDB用于辅助完成日志文件写操作的日志缓冲区大小，单位是字节，默认为8MB。较大的事务可以借助于更大的日志缓冲区来避免在事务完成之前将日志缓冲区的数据写入日志文件，以减少I/O操作进而提升系统性能。因此，在有着较大事务的应用场景中，建议为此变量设定一个更大的值</span></div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="滚动日志"><a href="#滚动日志" class="headerlink" title="滚动日志"></a>滚动日志</h2><p>说明：只要是针对二进制日志进行滚动的，对某个类型的日志文件滚动一次就生成一个新的相对应的日志文件，通过这种方法保证日志文件的特定大小，从而保证服务器在对日志文件查询时有较高的响应能力。<br>滚动二进制日志的命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mysql&gt; FLUSH LOGS;</div></pre></td></tr></table></figure></p>
+]]></content>
+      
+        <categories>
+            
+            <category> MySQL </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> MySQL </tag>
+            
+        </tags>
         
     </entry>
     
@@ -336,14 +403,16 @@
       
         <categories>
             
-            <category> mysql </category>
+            <category> MySQL </category>
             
         </categories>
         
         
         <tags>
             
-            <tag> mysql </tag>
+            <tag> MySQL </tag>
+            
+            <tag> replication </tag>
             
         </tags>
         

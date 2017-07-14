@@ -4,19 +4,41 @@
 
     
   <url>
+    <loc>http://yoursite.com/2017/07/14/mysql-log/</loc>
+    <lastmod>2017-07-14T10:22:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>mysql日志详解</title>
+        <pubTime>2017-07-14T06:41:57.000Z</pubTime>
+        
+        <tag>MySQL</tag>
+         
+         
+           
+             
+              <breadCrumb title="MySQL" url="http://yoursite.com/categories/MySQL/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2017/07/11/mysql-replication/</loc>
-    <lastmod>2017-07-14T06:34:17.000Z</lastmod>
+    <lastmod>2017-07-14T08:35:26.000Z</lastmod>
     <data>
         <display>
         <title>mysql 复制技术</title>
         <pubTime>2017-07-10T16:32:31.000Z</pubTime>
         
-        <tag>mysql</tag>
+        <tag>MySQL</tag>
+         
+        <tag>replication</tag>
          
          
            
              
-              <breadCrumb title="mysql" url="http://yoursite.com/categories/mysql/"/>
+              <breadCrumb title="MySQL" url="http://yoursite.com/categories/MySQL/"/>
           
         </display>
     </data>
@@ -523,12 +545,12 @@
 
     
   <url>
-    <loc>http://yoursite.com/2017/07/11/hello-world/</loc>
+    <loc>http://yoursite.com/2017/07/14/hello-world/</loc>
     <lastmod>2017-06-09T00:51:24.000Z</lastmod>
     <data>
         <display>
         <title>Hello World</title>
-        <pubTime>2017-07-11T03:57:49.637Z</pubTime>
+        <pubTime>2017-07-14T08:31:33.018Z</pubTime>
         
          
            
@@ -830,12 +852,12 @@
 
     
   <url>
-    <loc>http://yoursite.com/2017/07/11/django1/</loc>
+    <loc>http://yoursite.com/2017/07/14/django1/</loc>
     <lastmod>2017-05-11T13:54:42.000Z</lastmod>
     <data>
         <display>
         <title>django入门教学</title>
-        <pubTime>2017-07-11T03:57:49.629Z</pubTime>
+        <pubTime>2017-07-14T08:31:33.008Z</pubTime>
         
          
            
