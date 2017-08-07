@@ -4,6 +4,41 @@
 
     
   <url>
+    <loc>http://yoursite.com/2017/08/03/py-ssh2-mutil1/</loc>
+    <lastmod>2017-08-07T09:52:09.000Z</lastmod>
+    <data>
+        <display>
+        <title>使用paramiko模块以及multiprocessing批量管理主机</title>
+        <pubTime>2017-08-03T13:59:28.000Z</pubTime>
+        
+        <tag>devops</tag>
+         
+         
+           
+             
+              <breadCrumb title="devops" url="http://yoursite.com/categories/devops/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/08/03/py-ssh1/</loc>
+    <lastmod>2017-08-03T13:59:14.000Z</lastmod>
+    <data>
+        <display>
+        <title>py-ssh1</title>
+        <pubTime>2017-08-03T13:59:14.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2017/07/14/mysql-log/</loc>
     <lastmod>2017-07-14T10:22:00.000Z</lastmod>
     <data>
@@ -545,12 +580,12 @@
 
     
   <url>
-    <loc>http://yoursite.com/2017/07/14/hello-world/</loc>
+    <loc>http://yoursite.com/2017/08/03/hello-world/</loc>
     <lastmod>2017-06-09T00:51:24.000Z</lastmod>
     <data>
         <display>
         <title>Hello World</title>
-        <pubTime>2017-07-14T08:31:33.018Z</pubTime>
+        <pubTime>2017-08-03T14:40:42.753Z</pubTime>
         
          
            
@@ -852,12 +887,12 @@
 
     
   <url>
-    <loc>http://yoursite.com/2017/07/14/django1/</loc>
+    <loc>http://yoursite.com/2017/08/03/django1/</loc>
     <lastmod>2017-05-11T13:54:42.000Z</lastmod>
     <data>
         <display>
         <title>django入门教学</title>
-        <pubTime>2017-07-14T08:31:33.008Z</pubTime>
+        <pubTime>2017-08-03T14:40:42.745Z</pubTime>
         
          
            
