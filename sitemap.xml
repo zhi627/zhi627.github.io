@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2017/06/20/shell-gawk/</loc>
+    
+    <lastmod>2017-08-19T04:07:48.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2017/08/03/py-ssh2-mutil1/</loc>
     
     <lastmod>2017-08-07T09:52:09.000Z</lastmod>
@@ -82,13 +89,6 @@
     <loc>http://yoursite.com/2017/06/16/shell-find/</loc>
     
     <lastmod>2017-06-24T19:12:04.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2017/06/20/shell-gawk/</loc>
-    
-    <lastmod>2017-06-24T19:10:51.000Z</lastmod>
     
   </url>
   

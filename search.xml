@@ -2393,6 +2393,12 @@
 <p>cat funclib<br>function myprint()<br>{<br>printf “%-16s - %s\n “ ,$1,$4<br>}<br>function myrand(limit)<br>{<br>return int(limit * rand())<br>}<br>function printthird()<br>{<br>print $3<br>}<br>cat script4<br>BEGIN{FS =”\n”; RS=””}<br>{<br>myprint()<br>}<br>gawk -f funclib -f script4 data2<br>```</p>
 ]]></content>
       
+        <categories>
+            
+            <category> shell </category>
+            
+        </categories>
+        
         
         <tags>
             
