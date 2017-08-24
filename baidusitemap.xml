@@ -4,6 +4,141 @@
 
     
   <url>
+    <loc>http://yoursite.com/2017/08/24/shell-arr/</loc>
+    <lastmod>2017-08-24T04:33:24.000Z</lastmod>
+    <data>
+        <display>
+        <title>shell 数组详解</title>
+        <pubTime>2017-08-24T03:55:59.000Z</pubTime>
+        
+        <tag>shell</tag>
+         
+         
+           
+             
+              <breadCrumb title="shell" url="http://yoursite.com/categories/shell/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/08/23/shell-str-cut/</loc>
+    <lastmod>2017-08-23T13:28:51.000Z</lastmod>
+    <data>
+        <display>
+        <title>shell 字符串截取</title>
+        <pubTime>2017-08-23T13:00:21.000Z</pubTime>
+        
+        <tag>shell</tag>
+         
+         
+           
+             
+              <breadCrumb title="shell" url="http://yoursite.com/categories/shell/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/08/22/ops-test/</loc>
+    <lastmod>2017-08-22T15:58:12.000Z</lastmod>
+    <data>
+        <display>
+        <title>运维笔试题</title>
+        <pubTime>2017-08-22T01:43:07.000Z</pubTime>
+        
+        <tag>work</tag>
+         
+         
+           
+             
+              <breadCrumb title="work" url="http://yoursite.com/categories/work/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/08/22/shell-firewall-cmd/</loc>
+    <lastmod>2017-08-22T09:51:06.000Z</lastmod>
+    <data>
+        <display>
+        <title>firewall-cmd详解</title>
+        <pubTime>2017-08-22T08:05:11.000Z</pubTime>
+        
+        <tag>shell</tag>
+         
+         
+           
+             
+              <breadCrumb title="shell" url="http://yoursite.com/categories/shell/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/08/22/shell-iptables/</loc>
+    <lastmod>2017-08-22T07:15:16.000Z</lastmod>
+    <data>
+        <display>
+        <title>iptables 详解</title>
+        <pubTime>2017-08-22T07:11:03.000Z</pubTime>
+        
+        <tag>shell</tag>
+         
+         
+           
+             
+              <breadCrumb title="shell" url="http://yoursite.com/categories/shell/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/08/21/py-thread/</loc>
+    <lastmod>2017-08-21T05:30:58.000Z</lastmod>
+    <data>
+        <display>
+        <title>python-thread</title>
+        <pubTime>2017-08-21T05:30:07.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/08/21/shell-sed/</loc>
+    <lastmod>2017-08-21T02:10:28.000Z</lastmod>
+    <data>
+        <display>
+        <title>shell-sed</title>
+        <pubTime>2017-08-21T01:40:56.000Z</pubTime>
+        
+        <tag>shell</tag>
+         
+         
+           
+             
+              <breadCrumb title="shell" url="http://yoursite.com/categories/shell/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2017/06/20/shell-gawk/</loc>
     <lastmod>2017-08-19T04:07:48.000Z</lastmod>
     <data>
@@ -568,12 +703,12 @@
 
     
   <url>
-    <loc>http://yoursite.com/2017/08/13/hello-world/</loc>
+    <loc>http://yoursite.com/2017/08/24/hello-world/</loc>
     <lastmod>2017-06-09T00:51:24.000Z</lastmod>
     <data>
         <display>
         <title>Hello World</title>
-        <pubTime>2017-08-13T15:39:37.641Z</pubTime>
+        <pubTime>2017-08-24T04:21:52.366Z</pubTime>
         
          
            
@@ -875,12 +1010,12 @@
 
     
   <url>
-    <loc>http://yoursite.com/2017/08/13/django1/</loc>
+    <loc>http://yoursite.com/2017/08/24/django1/</loc>
     <lastmod>2017-05-11T13:54:42.000Z</lastmod>
     <data>
         <display>
         <title>django入门教学</title>
-        <pubTime>2017-08-13T15:39:37.585Z</pubTime>
+        <pubTime>2017-08-24T04:21:52.360Z</pubTime>
         
          
            

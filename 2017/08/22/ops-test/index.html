@@ -1,0 +1,1345 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="work," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="简介总结下，自己这段时间找工作碰到或者收藏的笔试题以及面试题，希望可以帮助到找工作的人">
+<meta name="keywords" content="work">
+<meta property="og:type" content="article">
+<meta property="og:title" content="运维笔试题">
+<meta property="og:url" content="http://yoursite.com/2017/08/22/ops-test/index.html">
+<meta property="og:site_name" content="运维与开发的那些事">
+<meta property="og:description" content="简介总结下，自己这段时间找工作碰到或者收藏的笔试题以及面试题，希望可以帮助到找工作的人">
+<meta property="og:image" content="http://img.blog.csdn.net/20160731161720376">
+<meta property="og:image" content="http://img.blog.csdn.net/20160731161739907">
+<meta property="og:image" content="http://blog.chinaunix.net/attachment/201304/8/22312037_1365405910EROI.png">
+<meta property="og:image" content="http://blog.chinaunix.net/attachment/201304/9/22312037_1365503104wDR0.png">
+<meta property="og:image" content="http://blog.chinaunix.net/attachment/201304/10/22312037_13655617062cGr.png">
+<meta property="og:updated_time" content="2017-08-22T15:58:12.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="运维笔试题">
+<meta name="twitter:description" content="简介总结下，自己这段时间找工作碰到或者收藏的笔试题以及面试题，希望可以帮助到找工作的人">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20160731161720376">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/08/22/ops-test/"/>
+
+
+
+
+
+  <title>运维笔试题 | 运维与开发的那些事</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">运维与开发的那些事</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">运维狗的日常工作与生活</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            站点地图
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/22/ops-test/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="littlezhi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="运维与开发的那些事">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">运维笔试题</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-22T09:43:07+08:00">
+                2017-08-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/work/" itemprop="url" rel="index">
+                    <span itemprop="name">work</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/08/22/ops-test/" class="leancloud_visitors" data-flag-title="运维笔试题">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>总结下，自己这段时间找工作碰到或者收藏的笔试题以及面试题，希望可以帮助到找工作的人</p>
+<a id="more"></a>
+<h1 id="网络基础知识"><a href="#网络基础知识" class="headerlink" title="网络基础知识"></a>网络基础知识</h1><h2 id="OSI七层参考模型"><a href="#OSI七层参考模型" class="headerlink" title="OSI七层参考模型"></a>OSI七层参考模型</h2><blockquote>
+<p><code>应用层</code> : 提供OSI用户服务，例如事务处理程序、文件传送协议和网络管理等。<br><code>表示层</code> : 代表应用进程协商数据表示；完成数据转换、格式化和文本压缩<br><code>会话层</code> : 提供两进程之间建立、维护和结束会话连接的功能；提供交互会话的管理功能，如三种数据流方向的控制，即一路交互、两路交替和两路同时会话模式。<br><code>传输层</code> : 提供建立、维护和拆除传送连接的功能；选择网络层提供最合适的服务；在系统之间提供可靠的透明的数据传送，提供端到端的错误恢复和流量控制。<br><code>网络层</code> : 控制分组传送系统的操作、路由选择、拥护控制、网络互连等功能，它的作用是将具体的物理传送对高层透明。<br><code>数据链路层</code> : 在网络层实体间提供数据发送和接收的功能和过程；提供数据链路的流控。<br><code>物理层</code> : 提供为建立、维护和拆除物理链路所需要的机械的、电气的、功能的和规程的特性；有关的物理链路上传输非结构的位流以及故障检测指示。</p>
+</blockquote>
+<h3 id="TCP四层网络协议"><a href="#TCP四层网络协议" class="headerlink" title="TCP四层网络协议"></a>TCP四层网络协议</h3><blockquote>
+<p><code>应用层</code><br><code>传输层</code><br><code>网络层</code><br><code>数据链路层</code></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>OSI 七层网络模型</th>
+<th>TCP/IP 四层概念模型</th>
+<th>对应网络协议</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>应用层</td>
+<td>应用层</td>
+<td>HTTP、TFTP, FTP, NFS, WAIS、SMTP</td>
+</tr>
+<tr>
+<td>表示层</td>
+<td>应用层</td>
+<td>Telnet, Rlogin, SNMP, Gopher</td>
+</tr>
+<tr>
+<td>会话层</td>
+<td>应用层</td>
+<td>SMTP, DNS</td>
+</tr>
+<tr>
+<td>传输层</td>
+<td>传输层</td>
+<td>TCP, UDP</td>
+</tr>
+<tr>
+<td>网络层</td>
+<td>网络层</td>
+<td>IP, ICMP, ARP, RARP, AKP, UUCP</td>
+</tr>
+<tr>
+<td>数据链路层</td>
+<td>数据链路层</td>
+<td>FDDI, Ethernet, Arpanet, PDN, SLIP, PPP</td>
+</tr>
+<tr>
+<td>物理层</td>
+<td>数据链路层</td>
+<td>IEEE 802.1A, IEEE 802.2到IEEE 802.11</td>
+</tr>
+</tbody>
+</table>
+<h3 id="图解"><a href="#图解" class="headerlink" title="图解"></a>图解</h3><p><img src="http://img.blog.csdn.net/20160731161720376" alt="OSI七层网络模型"></p>
+<p><img src="http://img.blog.csdn.net/20160731161739907" alt="TCP/IP四层模型"></p>
+<h3 id="计算题"><a href="#计算题" class="headerlink" title="计算题"></a>计算题</h3><blockquote>
+<p>已知一个IP地址及掩码：10.145.129.20 掩码255.255.248.0，计算它的网络地址和广播地址</p>
+</blockquote>
+<p>解题过程：</p>
+<blockquote>
+<p>IP 转换成二进制 <code>00001010  10010001   10000001   00010010</code><br>掩码转换二进制 <code>11111111  11111111   11111000   00000000</code><br>IP与掩码相与得网络地址（全1为1 ，见0为0）： <code>00001010  10010001   10000000   00000000</code><br>网络地址转换成十进制为： <code>10,145,128,0</code><br>看你的掩码把后24位的前13为划成了子网，后11为划成了主机，故：<br>广播地址则要把网络地址的主机位全换成1,得：<code>00001010,10010001,10000111,1111111</code><br>广播地址转换成十进制为：<code>10,145,135,255</code><br>网络地址是：<code>10.145.128.0</code>，也即：<code>00001010.10010001.10000 000.00000000</code>（前21（8+13）位是网络位，后11位是主机位）<br>192.168.1.0/24网络 :子网掩码是24位 ，网络地址 : <code>192.168.0.1</code> 掩码：<code>255.255.255.0</code></p>
+</blockquote>
+<h2 id="TCP-三次握手以及四次挥手"><a href="#TCP-三次握手以及四次挥手" class="headerlink" title="TCP 三次握手以及四次挥手"></a>TCP 三次握手以及四次挥手</h2><p>建立TCP连接，就是建立一个TCP连接时，需要客户端和服务器总共发送3个包以确认连接的建立。</p>
+<p>在socket编程中，这过程由客户端执行connect来触发，整个流程如下图所示：</p>
+<p><img src="http://blog.chinaunix.net/attachment/201304/8/22312037_1365405910EROI.png" alt="三次握手"></p>
+<p>(1) 第一次握手：Client将标志位SYN置为1，随机产生一个值seq=J，并将该数据包发送给Server，Client进入SYN_SENT状态，等待Server确认。</p>
+<p>(2) 第二次握手：Server收到数据包后由标志位SYN=1知道Client请求建立连接，Server将标志位SYN和ACK都置为1，ack=J+1，随机产生一个值seq=K，并将该数据包发送给Client以确认连接请求，Server进入SYN_RCVD状态。</p>
+<p>(3) 第三次握手：Client收到确认后，检查ack是否为J+1，ACK是否为1，如果正确则将标志位ACK置为1，ack=K+1，并将该数据包发送给Server，Server检查ack是否为K+1，ACK是否为1，如果正确则连接建立成功，Client和Server进入ESTABLISHED状态，完成三次握手，随后Client与Server之间可以开始传输数据了。</p>
+<p>SYN攻击：<br>在三次握手过程中，Server发送SYN-ACK之后，收到Client的ACK之前的TCP连接称为半连接（half-open connect），此时Server处于SYN_RCVD状态，当收到ACK后，Server转入ESTABLISHED状态。SYN攻击就是Client在短时间内伪造大量不存在的IP地址，并向Server不断地发送SYN包，Server回复确认包，并等待Client的确认，由于源地址是不存在的，因此，Server需要不断重发直至超时，这些伪造的SYN包将产时间占用未连接队列，导致正常的SYN请求因为队列满而被丢弃，从而引起网络堵塞甚至系统瘫痪。SYN攻击时一种典型的DDOS攻击，检测SYN攻击的方式非常简单，即当Server上有大量半连接状态且源IP地址是随机的，则可以断定遭到SYN攻击了，使用如下命令可以让之现行：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#netstat -nap | grep SYN_RECV</span></div></pre></td></tr></table></figure></p>
+<h2 id="四次挥手"><a href="#四次挥手" class="headerlink" title="四次挥手"></a>四次挥手</h2><p>四次挥手（Four-Way Wavehand）即终止TCP连接，就是指断开一个TCP连接时，需要客户端和服务端总共发送4个包以确认连接的断开。在socket编程中，这一过程由客户端或服务端任一方执行close来触发，整个流程如下图所示：</p>
+<p><img src="http://blog.chinaunix.net/attachment/201304/9/22312037_1365503104wDR0.png" alt="TCP四次挥手"></p>
+<p>（1）第一次挥手：Client发送一个FIN，用来关闭Client到Server的数据传送，Client进入FIN_WAIT_1状态。<br>（2）第二次挥手：Server收到FIN后，发送一个ACK给Client，确认序号为收到序号+1（与SYN相同，一个FIN占用一个序号），Server进入CLOSE_WAIT状态。<br>（3）第三次挥手：Server发送一个FIN，用来关闭Server到Client的数据传送，Server进入LAST_ACK状态。<br>（4）第四次挥手：Client收到FIN后，Client进入TIME_WAIT状态，接着发送一个ACK给Server，确认序号为收到序号+1，Server进入CLOSED状态，完成四次挥手。</p>
+<p>上面是一方主动关闭，另一方被动关闭的情况，实际中还会出现同时发起主动关闭的情况，具体流程如下图：</p>
+<p><img src="http://blog.chinaunix.net/attachment/201304/10/22312037_13655617062cGr.png" alt="同时挥手"></p>
+<p>为什么建立连接是三次握手，而关闭连接却是四次挥手呢？</p>
+<p>这是因为服务端在LISTEN状态下，收到建立连接请求的SYN报文后，把ACK和SYN放在一个报文里发送给客户端。而关闭连接时，当收到对方的FIN报文时，仅仅表示对方不再发送数据了但是还能接收数据，己方也未必全部数据都发送给对方了，所以己方可以立即close，也可以发送一些数据给对方后，再发送FIN报文给对方来表示同意现在关闭连接，因此，己方ACK和FIN一般都会分开发送。</p>
+<h2 id="简单编程题"><a href="#简单编程题" class="headerlink" title="简单编程题"></a>简单编程题</h2><p>###　Linux如何挂载windows下的共享目录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mout.cifs //ip/server /mnt/server -o user=administrator,password=123456</div></pre></td></tr></table></figure>
+<p>Linux下的server需要自己手动建一个 后面的user与pass是windows主机的账号和密码，注意空格和逗号</p>
+<h3 id="如何查看http的并发请求数与其TCP连接状态"><a href="#如何查看http的并发请求数与其TCP连接状态" class="headerlink" title="如何查看http的并发请求数与其TCP连接状态"></a>如何查看http的并发请求数与其TCP连接状态</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">netstat -n | awk <span class="string">'/^tcp/ &#123;++b[$NF]&#125; END &#123;for (a in b)print a,b[a]&#125;'</span></div></pre></td></tr></table></figure>
+<p>或者</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">netstat -n | awk <span class="string">' /^tcp/ &#123;print $NF&#125;'</span> | sort | uniq -c</div></pre></td></tr></table></figure>
+<h3 id="如何用tcpdump嗅探80端口的访问看看谁最高"><a href="#如何用tcpdump嗅探80端口的访问看看谁最高" class="headerlink" title="如何用tcpdump嗅探80端口的访问看看谁最高"></a>如何用tcpdump嗅探80端口的访问看看谁最高</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tcpdump -i eth0 -tnn dst port 80 -c 1000 | awk -F <span class="string">"."</span> <span class="string">'&#123;print $1"."$2"."$3"."$4"." &#125;'</span> | sort | uniq -c | sort -nr | head -5</div></pre></td></tr></table></figure>
+<h3 id="如何查看-var-log目录下的文件数"><a href="#如何查看-var-log目录下的文件数" class="headerlink" title="如何查看/var/log目录下的文件数"></a>如何查看/var/log目录下的文件数</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ls /var/<span class="built_in">log</span>/ -1R | grep <span class="string">"-"</span> | wc <span class="_">-l</span></div></pre></td></tr></table></figure>
+<h3 id="如何查看Linux系统每个ip的连接数"><a href="#如何查看Linux系统每个ip的连接数" class="headerlink" title="如何查看Linux系统每个ip的连接数"></a>如何查看Linux系统每个ip的连接数</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">netstat -n | awk <span class="string">'/^tcp/ &#123;print $5&#125;'</span> | awk -F: <span class="string">'&#123;print $1&#125;'</span> | sort | uniq -c | sort -rn</div></pre></td></tr></table></figure>
+<h3 id="shell下生成32位随机密码"><a href="#shell下生成32位随机密码" class="headerlink" title="shell下生成32位随机密码"></a>shell下生成32位随机密码</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cat /dev/urandom | head -1 | md5sum | head -c 32 &gt;&gt; /pass</div></pre></td></tr></table></figure>
+<h3 id="统计出apache的access-log中访问量最多的5个ip"><a href="#统计出apache的access-log中访问量最多的5个ip" class="headerlink" title="统计出apache的access.log中访问量最多的5个ip"></a>统计出apache的access.log中访问量最多的5个ip</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cat access.log | awk <span class="string">'&#123;print $1&#125;'</span> | sort | uniq -c | sort -n -r | head -5</div></pre></td></tr></table></figure>
+<h3 id="如何查看二进制文件的内容"><a href="#如何查看二进制文件的内容" class="headerlink" title="如何查看二进制文件的内容"></a>如何查看二进制文件的内容</h3><p>我们一般通过hexdump命令 来查看二进制文件的内容。<br>hexdump -C XXX(文件名) -C是参数 不同的参数有不同的意义<br>-C 是比较规范的 十六进制和ASCII码显示<br>-c 是单字节字符显示<br>-b 单字节八进制显示<br>-o 是双字节八进制显示<br>-d 是双字节十进制显示<br>-x 是双字节十六进制显示</p>
+<h3 id="介绍下Linux系统的开机启动顺序"><a href="#介绍下Linux系统的开机启动顺序" class="headerlink" title="介绍下Linux系统的开机启动顺序"></a>介绍下Linux系统的开机启动顺序</h3><blockquote>
+<p>加载BIOS–&gt;读取MBR–&gt;Boot Loader–&gt;加载内核–&gt;用户层init一句inittab文件来设定系统运行的等级(一般3或者5，3是多用户命令行，5是界面)–&gt;init进程执行rc.syninit–&gt;启动内核模块–&gt;执行不同级别运行的脚本程序–&gt;执行/etc/rc.d/rc.local(本地运行服务)–&gt;执行/bin/login,就可以登录了。</p>
+</blockquote>
+<h3 id="符号链接与硬链接的区别"><a href="#符号链接与硬链接的区别" class="headerlink" title="符号链接与硬链接的区别"></a>符号链接与硬链接的区别</h3><blockquote>
+<p>我们可以把符号链接，也就是软连接 当做是 windows系统里的 快捷方式。<br>硬链接 就好像是 又复制了一份，举例说明：<br>ln 3.txt 4.txt 这是硬链接，相当于复制，不可以跨分区，但修改3,4会跟着变，若删除3,4不受任何影响。<br>ln -s 3.txt 4.txt 这是软连接，相当于快捷方式。修改4,3也会跟着变，若删除3,4就坏掉了。不可以用了。</p>
+</blockquote>
+<h3 id="保存当前磁盘分区的分区表"><a href="#保存当前磁盘分区的分区表" class="headerlink" title="保存当前磁盘分区的分区表"></a>保存当前磁盘分区的分区表</h3><p>dd 命令是以个强大的命令，在复制的同时进行转换<br>dd if=/dev/sda of=./mbr.txt bs=1 count=512</p>
+<h3 id="如何在文本里面进行复制、粘贴，删除行，删除全部，按行查找和按字母查找"><a href="#如何在文本里面进行复制、粘贴，删除行，删除全部，按行查找和按字母查找" class="headerlink" title="如何在文本里面进行复制、粘贴，删除行，删除全部，按行查找和按字母查找"></a>如何在文本里面进行复制、粘贴，删除行，删除全部，按行查找和按字母查找</h3><p>以下操作全部在命令行状态操作，不要在编辑状态操作。<br>在文本里 移动到想要复制的行 按yy 想复制到哪就移动到哪，然后按P 就黏贴了<br>删除行 移动到改行 按dd<br>删除全部 dG 这里注意G一定要大写<br>按行查找 :90 这样就是找到第90行<br>按字母查找 /path 这样就是 找到path这个单词所在的位置，文本里可能存在多个,多次查找会显示在不同的位置。</p>
+<h3 id="手动安装grub"><a href="#手动安装grub" class="headerlink" title="手动安装grub"></a>手动安装grub</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">grub-install /dev/sda</div></pre></td></tr></table></figure>
+<h3 id="修改内核参数"><a href="#修改内核参数" class="headerlink" title="修改内核参数"></a>修改内核参数</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">vi /etc/sysctl.conf 这里修改参数</div><div class="line">sysctl -p 刷新后可用</div></pre></td></tr></table></figure>
+<h3 id="在1-39内取随机数"><a href="#在1-39内取随机数" class="headerlink" title="在1-39内取随机数"></a>在1-39内取随机数</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> $[$[RANDOM%39] + 1]</div></pre></td></tr></table></figure>
+<p>或者</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">expr $[RANDOM%39] +1</div><div class="line">RANDOM随机数</div><div class="line">%39取余数范围0-38</div></pre></td></tr></table></figure>
+<h3 id="限制apache每秒新建连接数为1，峰值为3"><a href="#限制apache每秒新建连接数为1，峰值为3" class="headerlink" title="限制apache每秒新建连接数为1，峰值为3"></a>限制apache每秒新建连接数为1，峰值为3</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">每秒新建连接数 一般都是由防火墙来做，apache本身好像无法设置每秒新建连接数，只能设置最大连接：</div><div class="line">iptables -A INPUT <span class="_">-d</span> 172.16.100.1 -p tcp –dport 80 -m <span class="built_in">limit</span> –<span class="built_in">limit</span> 1/second -j ACCEPT</div></pre></td></tr></table></figure>
+<h3 id="FTP的主动模式和被动模式"><a href="#FTP的主动模式和被动模式" class="headerlink" title="FTP的主动模式和被动模式"></a>FTP的主动模式和被动模式</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">FTP协议有两种工作方式：PORT方式和PASV方式，中文意思为主动式和被动式。</div><div class="line"></div><div class="line">PORT（主动）方式的连接过程是：客户端向服务器的FTP端口（默认是21）发送连接请 求，服务器接受连接，建立一条命令链路。当需要传送数据时，客户端在命令链路上用PORT 命令告诉服务器：“我打开了XX端口，你过来连接我”。于是服务器从20端口向客户端的 XX端口发送连接请求，建立一条数据链路来传送数据。</div><div class="line"></div><div class="line">PASV（被动）方式的连接过程是：客户端向服务器的FTP端口（默认是21）发送连接请 求，服务器接受连接，建立一条命令链路。当需要传送数据时，服务器在命令链路上用PASV 命令告诉客户端：“我打开了XX端口，你过来连接我”。于是客户端向服务器的XX端口 发送连接请求，建立一条数据链路来传送数据。</div><div class="line">从上面可以看出，两种方式的命令链路连接方法是一样的，而数据链路的建立方法就完 全不同。</div></pre></td></tr></table></figure>
+<h3 id="显示-etc-inittab中以-开头，且后面跟了一个或者多个空白字符，而后又跟了任意非空白字符的行"><a href="#显示-etc-inittab中以-开头，且后面跟了一个或者多个空白字符，而后又跟了任意非空白字符的行" class="headerlink" title="显示/etc/inittab中以#开头，且后面跟了一个或者多个空白字符，而后又跟了任意非空白字符的行"></a>显示/etc/inittab中以#开头，且后面跟了一个或者多个空白字符，而后又跟了任意非空白字符的行</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">grep <span class="string">"^# \&#123;1,\&#125;[^ ]"</span> /etc/inittab</div></pre></td></tr></table></figure>
+<h3 id="显示-etc-inittab中包含了-一个数字-即两个冒号中间一个数字-的行"><a href="#显示-etc-inittab中包含了-一个数字-即两个冒号中间一个数字-的行" class="headerlink" title="显示/etc/inittab中包含了:一个数字:(即两个冒号中间一个数字)的行"></a>显示/etc/inittab中包含了:一个数字:(即两个冒号中间一个数字)的行</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">grep <span class="string">"\:[0-9]\&#123;1\&#125;\:"</span> /etc/inittab</div></pre></td></tr></table></figure>
+<h3 id="怎么把脚本添加到系统服务里，即用service来调用"><a href="#怎么把脚本添加到系统服务里，即用service来调用" class="headerlink" title="怎么把脚本添加到系统服务里，即用service来调用"></a>怎么把脚本添加到系统服务里，即用service来调用</h3><p>脚本中加入</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line"><span class="comment"># chkconfig: 345 85 15</span></div><div class="line"><span class="comment"># description: httpd</span></div></pre></td></tr></table></figure>
+<p>然后保存<br>chkconfig httpd –add  创建系统服务<br>现在就可以使用service 来 start or restart</p>
+<h3 id="写一个脚本，实现批量添加20个用户，用户名为user01-20，密码为user后面跟5个随机字符"><a href="#写一个脚本，实现批量添加20个用户，用户名为user01-20，密码为user后面跟5个随机字符" class="headerlink" title="写一个脚本，实现批量添加20个用户，用户名为user01-20，密码为user后面跟5个随机字符"></a>写一个脚本，实现批量添加20个用户，用户名为user01-20，密码为user后面跟5个随机字符</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line"><span class="keyword">for</span> ip <span class="keyword">in</span> `seq 1 255`</div><div class="line">  <span class="keyword">do</span></div><div class="line">    &#123;</div><div class="line">     ping -c 1 192.168.1.<span class="variable">$ip</span> &gt; /dev/null 2&gt;&amp;1</div><div class="line">     <span class="keyword">if</span> [ $? <span class="_">-eq</span> 0 ]; <span class="keyword">then</span></div><div class="line">          <span class="built_in">echo</span> 192.168.1.<span class="variable">$ip</span> UP</div><div class="line">     <span class="keyword">else</span></div><div class="line">          <span class="built_in">echo</span> 192.168.1.<span class="variable">$ip</span> DOWN</div><div class="line">     <span class="keyword">fi</span></div><div class="line">   &#125;&amp;</div><div class="line"><span class="keyword">done</span></div><div class="line"><span class="built_in">wait</span></div></pre></td></tr></table></figure>
+<h3 id="写一个脚本，判断一个指定的脚本是否是语法错误；如果有错误，则提醒用户键入Q或者q无视错误并退出其它任何键可以通过vim打开这个指定的脚本"><a href="#写一个脚本，判断一个指定的脚本是否是语法错误；如果有错误，则提醒用户键入Q或者q无视错误并退出其它任何键可以通过vim打开这个指定的脚本" class="headerlink" title="写一个脚本，判断一个指定的脚本是否是语法错误；如果有错误，则提醒用户键入Q或者q无视错误并退出其它任何键可以通过vim打开这个指定的脚本"></a>写一个脚本，判断一个指定的脚本是否是语法错误；如果有错误，则提醒用户键入Q或者q无视错误并退出其它任何键可以通过vim打开这个指定的脚本</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">[root@localhost  tmp]<span class="comment"># cat checksh.sh</span></div><div class="line"> <span class="comment">#!/bin/bash</span></div><div class="line"> <span class="built_in">read</span> -p <span class="string">"please input check script-&gt; "</span> file</div><div class="line"> <span class="keyword">if</span> [ <span class="_">-f</span> <span class="variable">$file</span> ]; <span class="keyword">then</span></div><div class="line">    sh -n <span class="variable">$file</span> &gt; /dev/null 2&gt;&amp;1</div><div class="line">    <span class="keyword">if</span> [ $? <span class="_">-ne</span> 0 ]; <span class="keyword">then</span></div><div class="line">        <span class="built_in">read</span> -p <span class="string">"You input <span class="variable">$file</span> syntax error,[Type q to exit or Type vim to  edit]"</span> answer</div><div class="line">        <span class="keyword">case</span> <span class="variable">$answer</span> <span class="keyword">in</span></div><div class="line">        q | Q)</div><div class="line">           <span class="built_in">exit</span> 0</div><div class="line">           ;;</div><div class="line">        vim )</div><div class="line">           vim <span class="variable">$file</span></div><div class="line">           ;;</div><div class="line">        *）</div><div class="line">         <span class="built_in">exit</span> 0</div><div class="line">         ;;</div><div class="line">        <span class="keyword">esac</span></div><div class="line">   <span class="keyword">fi</span></div><div class="line"> <span class="keyword">else</span></div><div class="line">    <span class="built_in">echo</span> <span class="string">"<span class="variable">$file</span> not exist"</span></div><div class="line">    <span class="built_in">exit</span> 1</div><div class="line"> <span class="keyword">fi</span></div></pre></td></tr></table></figure>
+<h3 id="写一个脚本：-26包括3个小题"><a href="#写一个脚本：-26包括3个小题" class="headerlink" title="写一个脚本：(26包括3个小题)"></a>写一个脚本：(26包括3个小题)</h3><p>1、创建一个函数，能接受两个参数：<br>1)第一个参数为URL，即可下载的文件；第二个参数为目录，即下载后保存的位置；<br>2)如果用户给的目录不存在，则提示用户是否创建；如果创建就继续执行，否则，函数返回一个51的错误值给调用脚本；<br>3)如果给的目录存在，则下载文件；下载命令执行结束后测试文件下载成功与否；如果成功，则返回0给调用脚本，否则，返回52给调用脚本；</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">[root@localhost tmp]<span class="comment"># cat downfile.sh</span></div><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line">url=<span class="variable">$1</span></div><div class="line">dir=<span class="variable">$2</span></div><div class="line"><span class="function"><span class="title">download</span></span>()</div><div class="line">  &#123;</div><div class="line">    <span class="built_in">cd</span> <span class="variable">$dir</span> &gt;&gt; /dev/null 2&gt;&amp;1</div><div class="line">    <span class="keyword">if</span> [ $? <span class="_">-ne</span> 0 ];<span class="keyword">then</span></div><div class="line">        <span class="built_in">read</span> -p <span class="string">"<span class="variable">$dir</span> No such file or directory,create?(y/n)"</span> answer</div><div class="line">        <span class="keyword">if</span> [ <span class="string">"<span class="variable">$answer</span>"</span> == <span class="string">"y"</span> ];<span class="keyword">then</span></div><div class="line">            mkdir -p <span class="variable">$dir</span></div><div class="line">            <span class="built_in">cd</span> <span class="variable">$dir</span></div><div class="line">            wget <span class="variable">$url</span> 1&gt; /dev/null 2&gt;&amp;1</div><div class="line">        <span class="keyword">else</span></div><div class="line">            <span class="built_in">return</span> <span class="string">"51"</span></div><div class="line">        <span class="keyword">fi</span></div><div class="line">    <span class="keyword">fi</span></div><div class="line">    <span class="keyword">if</span> [ $? <span class="_">-ne</span> 0 ]; <span class="keyword">then</span></div><div class="line">        <span class="built_in">return</span> <span class="string">"52"</span></div><div class="line">    <span class="keyword">fi</span></div><div class="line">&#125;</div><div class="line">download <span class="variable">$url</span> <span class="variable">$dir</span></div><div class="line"><span class="built_in">echo</span> $?</div></pre></td></tr></table></figure>
+<h3 id="写一个脚本：（27包括2个小题）"><a href="#写一个脚本：（27包括2个小题）" class="headerlink" title="写一个脚本：（27包括2个小题）"></a>写一个脚本：（27包括2个小题）</h3><p>1、创建一个函数，可以接受一个磁盘设备路径（如/dev/sdb）作为参数;在真正开始后面步骤之前提醒用户有危险，并让用户选择是否继续；而后将此磁盘设备上的所有分区清空（提示，使用命令dd if=/dev/zero of=/dev/sdb bs=512 count=1实现，注意其中的设备路径不要写错了；<br>如果此步骤失败，返回67给主程序；<br>接着在此磁盘设备上创建两个主分区，一个大小为100M，一个大小为1G；如果此步骤失败，返回68给主程序；<br>格式化此两分区，文件系统类型为ext3；如果此步骤失败，返回69给主程序；<br>如果上述过程都正常，返回0给主程序；<br>2、调用此函数；并通过接收函数执行的返回值来判断其执行情况，并将信息显示出来；</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">local</span> Darray=(`ls /dev/sd[a-z]`)</div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="variable">$&#123;Darray&#125;</span>;<span class="keyword">do</span></div><div class="line">  [[ <span class="string">"<span class="variable">$i</span>"</span> == <span class="string">"<span class="variable">$1</span>"</span> ]] &amp;&amp; Sd=<span class="variable">$i</span> &amp;&amp;<span class="built_in">break</span></div><div class="line"><span class="keyword">done</span></div><div class="line">  <span class="keyword">else</span></div><div class="line">  <span class="built_in">return</span> 66</div><div class="line">  <span class="keyword">fi</span></div><div class="line"><span class="comment">#当匹配成功，进入选择，告诉用户，是否继续，输错的话进入无限循环，当用户选择Y,则清空目标分区，且跳出while循环</span></div><div class="line"><span class="keyword">while</span> :;<span class="keyword">do</span></div><div class="line">    <span class="built_in">read</span> -p <span class="string">"Warning!!!This operation will clean <span class="variable">$Sd</span> data.Next=y,Quit=n [y|n]:"</span> Choice</div><div class="line">    <span class="keyword">case</span> <span class="variable">$Choice</span> <span class="keyword">in</span></div><div class="line">y)</div><div class="line">   dd <span class="keyword">if</span>=/dev/zero of=<span class="variable">$Sd</span> bs=512 count=1 &amp;&gt; /dev/null &amp;&amp;<span class="built_in">break</span> || <span class="built_in">return</span> 67 ;;</div><div class="line">n)</div><div class="line">   <span class="built_in">exit</span> 88 ;;</div><div class="line">*)</div><div class="line">   <span class="built_in">echo</span> <span class="string">"Invalid choice,please choice again."</span> ;;</div><div class="line"><span class="keyword">esac</span></div><div class="line"><span class="keyword">done</span></div></pre></td></tr></table></figure>
+<p>使用echo传递给fdisk进行分区，如果此命令失败，则跳转出去，错误值68，需要注意的是，有时候这个返回值很诡异，笔者之前成功与否都是返回的1，后来重启之后，就好了，如果慎重的话，可以对创建的分区，进行判断，不过就需要使用其他工具截取相关字段了，虽有些小麻烦，但无大碍</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cho<span class="_">-e</span> <span class="string">"n\np\n1\n\n+100M\nn\np\n2\n\n+1024M\nw\n"</span>|fdisk /dev/sdb&amp;&gt; /dev/null || <span class="built_in">return</span> 68</div></pre></td></tr></table></figure>
+<p>格式化之前，让内核重新读取磁盘分区表，值得注意的是，有的系统版本，使用partprobe无效，譬如笔者的环境是rhel5.8，而rhel6.0以后，这个命令就很危险了，而使用partx -a /dev/sdb则效果更好…此项需慎重，如果格式化失败，则告知把失败的分区定义成变量，且跳出函数，并带出错误值69</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">`partprobe`</div><div class="line">Part=`fdisk <span class="_">-l</span> /dev/<span class="variable">$Sd</span>|tail -2|cut <span class="_">-d</span> <span class="string">""</span> <span class="_">-f</span>1`</div><div class="line"><span class="keyword">for</span> M <span class="keyword">in</span> <span class="variable">$&#123;Part&#125;</span>;<span class="keyword">do</span></div><div class="line">   mke2fs -j <span class="variable">$M</span> &amp;&gt; /dev/null &amp;&amp; ErrorPart=<span class="variable">$M</span> &amp;&amp;<span class="built_in">return</span> 69</div><div class="line"><span class="keyword">done</span></div><div class="line">  <span class="built_in">return</span> 0</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>下面代码，调用函数，接收函数返回值，根据返回值进行判断哪里出错。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Disk_Mod <span class="variable">$1</span></div><div class="line">Res=$?</div><div class="line">[ <span class="variable">$Res</span><span class="_">-eq</span> 0 ] &amp;&amp; <span class="built_in">exit</span> 0</div><div class="line">[ <span class="variable">$Res</span><span class="_">-eq</span> 66 ] &amp;&amp; <span class="built_in">echo</span> <span class="string">"Error! Invalid input."</span></div><div class="line">[ <span class="variable">$Res</span><span class="_">-eq</span> 67 ] &amp;&amp; <span class="built_in">echo</span> <span class="string">"Error! Command -&gt; dd &lt;- Faild."</span></div><div class="line">[ <span class="variable">$Res</span><span class="_">-eq</span> 68 ] &amp;&amp; <span class="built_in">echo</span> <span class="string">"Error! Command -&gt; fdisk &lt;- Faild."</span></div><div class="line">[ <span class="variable">$Res</span><span class="_">-eq</span> 69 ] &amp;&amp; <span class="built_in">echo</span> <span class="string">"Error! Command -&gt; mke2fs &lt;- Faild."</span></div></pre></td></tr></table></figure>
+<h3 id="Linux下查看-管理当前登录用户及用户操作历史记录"><a href="#Linux下查看-管理当前登录用户及用户操作历史记录" class="headerlink" title="Linux下查看/管理当前登录用户及用户操作历史记录"></a>Linux下查看/管理当前登录用户及用户操作历史记录</h3><p>使用w命令查看登录用户正在使用的进程信息，w命令用于显示已经登录系统的用户的名称，以及他们正在做的事。该命令所使用的信息来源于/var/run/utmp文件。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">w</div><div class="line">23:04:27 up 29 days,  7:51,  3 users,  load average: 0.04, 0.06, 0.02</div><div class="line">USER     TTY      FROM              LOGIN@   IDLE   JCPU   PCPU WHAT</div><div class="line">ramesh   pts/0    10.1.80.56        22:57    8.00s  0.05s  0.01s sshd: ramesh [priv]</div><div class="line">jason    pts/1    10.20.48          23:01    2:53   0.01s  0.01s -bash</div><div class="line">john     pts/2    10.1.80.7         23:04    0.00s  0.00s  0.00s w</div></pre></td></tr></table></figure></p>
+<h3 id="查看所有登录用户的操作历史"><a href="#查看所有登录用户的操作历史" class="headerlink" title="查看所有登录用户的操作历史"></a>查看所有登录用户的操作历史</h3><p>在linux系统的环境下，不管是root用户还是其它的用户只有登陆系统后用进入操作我们都可以通过命令history来查看历史记录，可是假如一台服务器多人登陆，一天因为某人误操作了删除了重要的数据。这时候通过查看历史记录（命令：history）是没有什么意义了（因为history只针对登录用户下执行有效，即使root用户也无法得到其它用户histotry历史）。那有没有什么办法实现通过记录登陆后的IP地址和某用户名所操作的历史记录呢？答案：有的。</p>
+<p>通过在/etc/profile里面加入以下代码就可以实现：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">PS1=<span class="string">"`whoami`@`hostname`:"</span><span class="string">'[$PWD]'</span></div><div class="line"><span class="built_in">history</span></div><div class="line">USER_IP=`who -u am i 2&gt;/dev/null| awk <span class="string">'&#123;print $NF&#125;'</span>|sed <span class="_">-e</span> <span class="string">'s/[()]//g'</span>`</div><div class="line"><span class="keyword">if</span> [ <span class="string">"<span class="variable">$USER_IP</span>"</span> = <span class="string">""</span> ]</div><div class="line"><span class="keyword">then</span></div><div class="line">USER_IP=`hostname`</div><div class="line"><span class="keyword">fi</span></div><div class="line"><span class="keyword">if</span> [ ! <span class="_">-d</span> /tmp/dbasky ]</div><div class="line"><span class="keyword">then</span></div><div class="line">mkdir /tmp/dbasky</div><div class="line">chmod 777 /tmp/dbasky</div><div class="line"><span class="keyword">fi</span></div><div class="line"><span class="keyword">if</span> [ ! <span class="_">-d</span> /tmp/dbasky/<span class="variable">$&#123;LOGNAME&#125;</span> ]</div><div class="line"><span class="keyword">then</span></div><div class="line">mkdir /tmp/dbasky/<span class="variable">$&#123;LOGNAME&#125;</span></div><div class="line">chmod 300 /tmp/dbasky/<span class="variable">$&#123;LOGNAME&#125;</span></div><div class="line"><span class="keyword">fi</span></div><div class="line"><span class="built_in">export</span> HISTSIZE=4096</div><div class="line">DT=`date <span class="string">"+%Y-%m-%d_%H:%M:%S"</span>`</div><div class="line"><span class="built_in">export</span> HISTFILE=<span class="string">"/tmp/dbasky/<span class="variable">$&#123;LOGNAME&#125;</span>/<span class="variable">$&#123;USER_IP&#125;</span> dbasky.<span class="variable">$DT</span>"</span></div><div class="line">chmod 600 /tmp/dbasky/<span class="variable">$&#123;LOGNAME&#125;</span>/*dbasky* 2&gt;/dev/null</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">source</span> /etc/profile 使用脚本生效</div><div class="line"></div><div class="line">退出用户，重新登录</div><div class="line"></div><div class="line">上面脚本在系统的/tmp新建个dbasky目录，记录所有登陆过系统的用户和IP地址（文件名），每当用户登录/退出会创建相应的文件，该文件保存这段用户登录时期内操作历史，可以用这个方法来监测系统的安全性。</div><div class="line"></div><div class="line">root@zsc6:[/tmp/dbasky/root]ls </div><div class="line">10.1.80.47 dbasky.2013-10-24_12:53:08 </div><div class="line">root@zsc6:[/tmp/dbasky/root]cat 10.1.80.47 dbasky.2013-10-24_12:53:08</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">查看在12:53:08从10.1.80.47登录的root用户操作命令历史</div></pre></td></tr></table></figure>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/work/" rel="tag"># work</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/21/py-thread/" rel="next" title="python-thread">
+                <i class="fa fa-chevron-left"></i> python-thread
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/08/22/shell-iptables/" rel="prev" title="iptables 详解">
+                iptables 详解 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="littlezhi" />
+          <p class="site-author-name" itemprop="name">littlezhi</p>
+           
+              <p class="site-description motion-element" itemprop="description">运维狗</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">51</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#网络基础知识"><span class="nav-number">2.</span> <span class="nav-text">网络基础知识</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#OSI七层参考模型"><span class="nav-number">2.1.</span> <span class="nav-text">OSI七层参考模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#TCP四层网络协议"><span class="nav-number">2.1.1.</span> <span class="nav-text">TCP四层网络协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图解"><span class="nav-number">2.1.2.</span> <span class="nav-text">图解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#计算题"><span class="nav-number">2.1.3.</span> <span class="nav-text">计算题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TCP-三次握手以及四次挥手"><span class="nav-number">2.2.</span> <span class="nav-text">TCP 三次握手以及四次挥手</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四次挥手"><span class="nav-number">2.3.</span> <span class="nav-text">四次挥手</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简单编程题"><span class="nav-number">2.4.</span> <span class="nav-text">简单编程题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#如何查看http的并发请求数与其TCP连接状态"><span class="nav-number">2.4.1.</span> <span class="nav-text">如何查看http的并发请求数与其TCP连接状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何用tcpdump嗅探80端口的访问看看谁最高"><span class="nav-number">2.4.2.</span> <span class="nav-text">如何用tcpdump嗅探80端口的访问看看谁最高</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何查看-var-log目录下的文件数"><span class="nav-number">2.4.3.</span> <span class="nav-text">如何查看/var/log目录下的文件数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何查看Linux系统每个ip的连接数"><span class="nav-number">2.4.4.</span> <span class="nav-text">如何查看Linux系统每个ip的连接数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#shell下生成32位随机密码"><span class="nav-number">2.4.5.</span> <span class="nav-text">shell下生成32位随机密码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#统计出apache的access-log中访问量最多的5个ip"><span class="nav-number">2.4.6.</span> <span class="nav-text">统计出apache的access.log中访问量最多的5个ip</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何查看二进制文件的内容"><span class="nav-number">2.4.7.</span> <span class="nav-text">如何查看二进制文件的内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#介绍下Linux系统的开机启动顺序"><span class="nav-number">2.4.8.</span> <span class="nav-text">介绍下Linux系统的开机启动顺序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#符号链接与硬链接的区别"><span class="nav-number">2.4.9.</span> <span class="nav-text">符号链接与硬链接的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#保存当前磁盘分区的分区表"><span class="nav-number">2.4.10.</span> <span class="nav-text">保存当前磁盘分区的分区表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何在文本里面进行复制、粘贴，删除行，删除全部，按行查找和按字母查找"><span class="nav-number">2.4.11.</span> <span class="nav-text">如何在文本里面进行复制、粘贴，删除行，删除全部，按行查找和按字母查找</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#手动安装grub"><span class="nav-number">2.4.12.</span> <span class="nav-text">手动安装grub</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改内核参数"><span class="nav-number">2.4.13.</span> <span class="nav-text">修改内核参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在1-39内取随机数"><span class="nav-number">2.4.14.</span> <span class="nav-text">在1-39内取随机数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#限制apache每秒新建连接数为1，峰值为3"><span class="nav-number">2.4.15.</span> <span class="nav-text">限制apache每秒新建连接数为1，峰值为3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FTP的主动模式和被动模式"><span class="nav-number">2.4.16.</span> <span class="nav-text">FTP的主动模式和被动模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#显示-etc-inittab中以-开头，且后面跟了一个或者多个空白字符，而后又跟了任意非空白字符的行"><span class="nav-number">2.4.17.</span> <span class="nav-text">显示/etc/inittab中以#开头，且后面跟了一个或者多个空白字符，而后又跟了任意非空白字符的行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#显示-etc-inittab中包含了-一个数字-即两个冒号中间一个数字-的行"><span class="nav-number">2.4.18.</span> <span class="nav-text">显示/etc/inittab中包含了:一个数字:(即两个冒号中间一个数字)的行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#怎么把脚本添加到系统服务里，即用service来调用"><span class="nav-number">2.4.19.</span> <span class="nav-text">怎么把脚本添加到系统服务里，即用service来调用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#写一个脚本，实现批量添加20个用户，用户名为user01-20，密码为user后面跟5个随机字符"><span class="nav-number">2.4.20.</span> <span class="nav-text">写一个脚本，实现批量添加20个用户，用户名为user01-20，密码为user后面跟5个随机字符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#写一个脚本，判断一个指定的脚本是否是语法错误；如果有错误，则提醒用户键入Q或者q无视错误并退出其它任何键可以通过vim打开这个指定的脚本"><span class="nav-number">2.4.21.</span> <span class="nav-text">写一个脚本，判断一个指定的脚本是否是语法错误；如果有错误，则提醒用户键入Q或者q无视错误并退出其它任何键可以通过vim打开这个指定的脚本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#写一个脚本：-26包括3个小题"><span class="nav-number">2.4.22.</span> <span class="nav-text">写一个脚本：(26包括3个小题)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#写一个脚本：（27包括2个小题）"><span class="nav-number">2.4.23.</span> <span class="nav-text">写一个脚本：（27包括2个小题）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Linux下查看-管理当前登录用户及用户操作历史记录"><span class="nav-number">2.4.24.</span> <span class="nav-text">Linux下查看/管理当前登录用户及用户操作历史记录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看所有登录用户的操作历史"><span class="nav-number">2.4.25.</span> <span class="nav-text">查看所有登录用户的操作历史</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">littlezhi</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (search_path.endsWith("json")) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("3VGoOaR6MhMfts7PlDxmUcTs-gzGzoHsz", "aB1qeOPwRbuIO0AL91wqHBfm");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

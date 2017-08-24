@@ -4,7 +4,7 @@
     
     <entry>
       <title><![CDATA[Hello World]]></title>
-      <url>/2017/08/13/hello-world/</url>
+      <url>/2017/08/24/hello-world/</url>
       <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
 <p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
@@ -21,7 +21,7 @@
     
     <entry>
       <title><![CDATA[django入门教学]]></title>
-      <url>/2017/08/13/django1/</url>
+      <url>/2017/08/24/django1/</url>
       <content type="html"><![CDATA[<h1 id="django安装"><a href="#django安装" class="headerlink" title="django安装"></a>django安装</h1><p>使用pip 或者easy_install 即可</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pip install django 或者 easy_install django</div></pre></td></tr></table></figure>
 <h1 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h1><p>项目名称不用和python或django的内部组件名称同名。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ django-admin startproject mysite</div></pre></td></tr></table></figure></p>
@@ -35,6 +35,752 @@
         wsgi.py
 </code></pre>]]></content>
       
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[shell 数组详解]]></title>
+      <url>/2017/08/24/shell-arr/</url>
+      <content type="html"><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p><a href="http://blog.csdn.net/liufei_learning/article/details/8000570" target="_blank" rel="external">转自 Bash Array 数组教程</a><br>数组是包含多个相同或不同数据类型的集合，数组索引从零开始。</p>
+<a id="more"></a>
+<h1 id="样例讲解使用"><a href="#样例讲解使用" class="headerlink" title="样例讲解使用"></a>样例讲解使用</h1><h2 id="声明数组，赋值"><a href="#声明数组，赋值" class="headerlink" title="声明数组，赋值"></a>声明数组，赋值</h2><p>当有变量为如下格式的时候，Bash 会自动创建数组。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">name[index]=value</div></pre></td></tr></table></figure>
+<ul>
+<li>name为数组名称</li>
+<li>index为任意数字，或表达式的最终计算值大于等于零。可以显式声明数组通过 declare -a arrayname</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">$ cat arraymanip.sh</div><div class="line"><span class="meta">#! /bin/bash</span></div><div class="line">Unix[0]=<span class="string">'Debian'</span></div><div class="line">Unix[1]=<span class="string">'Red hat'</span></div><div class="line">Unix[2]=<span class="string">'Ubuntu'</span></div><div class="line">Unix[3]=<span class="string">'Suse'</span></div><div class="line"> </div><div class="line"><span class="built_in">echo</span> <span class="variable">$&#123;Unix[1]&#125;</span></div><div class="line"> </div><div class="line">$./arraymanip.sh</div><div class="line">Red hat</div></pre></td></tr></table></figure>
+<p>访问数组元素使用括号，如 ${name[index]}</p>
+<h2 id="声明时初始化数组"><a href="#声明时初始化数组" class="headerlink" title="声明时初始化数组"></a>声明时初始化数组</h2><p>通过指定元素列表来声明数组，就不用一个一个分别初始化数组元素的，用空格隔开在括号里。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Syntax:</div><div class="line"><span class="built_in">declare</span> <span class="_">-a</span> arrayname=(element1 element2 element3)</div></pre></td></tr></table></figure>
+<p>如果数组元素包含空格符，用引号括起来。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#! /bin/bash</span></div><div class="line"><span class="variable">$cat</span> arraymanip.sh</div><div class="line"><span class="built_in">declare</span> <span class="_">-a</span> Unix=(<span class="string">'Debian'</span> <span class="string">'Red hat'</span> <span class="string">'Red hat'</span> <span class="string">'Suse'</span> <span class="string">'Fedora'</span>);</div></pre></td></tr></table></figure>
+<p>declare -a 声明一个数组以及括号中的所有元素为数组元素。</p>
+<h2 id="输出整个-Bash-数组"><a href="#输出整个-Bash-数组" class="headerlink" title="输出整个 Bash 数组"></a>输出整个 Bash 数组</h2><p>有多种不同的方法来输出整个数组。如果索引是 @ 或者 *，则引用数组所有元素。也可以使用循环，遍历数组中每个元素再输出。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">有多种不同的方法来输出整个数组。如果索引是 @ 或者 *，则引用数组所有元素。也可以使用循环，遍历数组中每个元素再输出。</div><div class="line"></div><div class="line"><span class="built_in">echo</span> <span class="variable">$&#123;Unix[@]&#125;</span></div><div class="line"> </div><div class="line"><span class="comment"># Add the above echo statement into the arraymanip.sh</span></div><div class="line"><span class="comment">#./t.sh</span></div><div class="line">Debian Red hat Ubuntu Suse</div></pre></td></tr></table></figure>
+<p>如果引用数组元素，而不提供索引的话，就是引用数组的第一个元素，即索引为零的元素。</p>
+<h2 id="Bash-数组长度"><a href="#Bash-数组长度" class="headerlink" title="Bash 数组长度"></a>Bash 数组长度</h2><p>可以使用特殊参数 <code>$#</code> 来获得数组长度。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$&#123;#arrayname[@]&#125;</span> gives you the length of the array.</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$ cat arraymanip.sh</div><div class="line"><span class="built_in">declare</span> <span class="_">-a</span> Unix=(<span class="string">'Debian'</span> <span class="string">'Red hat'</span> <span class="string">'Suse'</span> <span class="string">'Fedora'</span>);</div><div class="line"><span class="built_in">echo</span> <span class="variable">$&#123;#Unix[@]&#125;</span> <span class="comment">#Number of elements in the array</span></div><div class="line"><span class="built_in">echo</span> <span class="variable">$&#123;#Unix&#125;</span>  <span class="comment">#Number of characters in the first element of the array.i.e Debian</span></div><div class="line">$./arraymanip.sh</div><div class="line">4</div><div class="line">6</div></pre></td></tr></table></figure>
+<h2 id="数组第-n-个元素的长度"><a href="#数组第-n-个元素的长度" class="headerlink" title="数组第 n 个元素的长度"></a>数组第 n 个元素的长度</h2><p><code>${#arrayname[n]}</code> 为数组第 <code>n</code> 个元素的长度。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$cat</span> arraymanip.sh</div><div class="line"><span class="meta">#! /bin/bash</span></div><div class="line"> </div><div class="line">Unix[0]=<span class="string">'Debian'</span></div><div class="line">Unix[1]=<span class="string">'Red hat'</span></div><div class="line">Unix[2]=<span class="string">'Ubuntu'</span></div><div class="line">Unix[3]=<span class="string">'Suse'</span></div><div class="line"> </div><div class="line"><span class="built_in">echo</span> <span class="variable">$&#123;#Unix[3]&#125;</span> <span class="comment"># length of the element located at index 3 i.e Suse</span></div><div class="line"> </div><div class="line">$./arraymanip.sh</div><div class="line">4</div></pre></td></tr></table></figure>
+<h2 id="指定偏移和长度输出数组"><a href="#指定偏移和长度输出数组" class="headerlink" title="指定偏移和长度输出数组"></a>指定偏移和长度输出数组</h2><p>下面的例子是输出 2 个数组元素，从第索引为3的元素开始。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$cat</span> arraymanip.sh</div><div class="line">Unix=(<span class="string">'Debian'</span> <span class="string">'Red hat'</span> <span class="string">'Ubuntu'</span> <span class="string">'Suse'</span> <span class="string">'Fedora'</span> <span class="string">'UTS'</span> <span class="string">'OpenLinux'</span>);</div><div class="line"><span class="built_in">echo</span> <span class="variable">$&#123;Unix[@]:3:2&#125;</span></div><div class="line"> </div><div class="line">$./arraymanip.sh</div><div class="line">Suse Fedora</div></pre></td></tr></table></figure>
+<p>上面的例子返回里索引为 3 和 4 的元素。索引永远由零开始。</p>
+<h2 id="根据偏移和长度，输出数组指定元素的一部分"><a href="#根据偏移和长度，输出数组指定元素的一部分" class="headerlink" title="根据偏移和长度，输出数组指定元素的一部分"></a>根据偏移和长度，输出数组指定元素的一部分</h2><p>输出一个数组元素的前四个字符。如例，Ubuntu 是数组索引为 3 的元素，可以指定偏移和长度来获取数组指定元素的一部分。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$cat</span> arraymanip.sh</div><div class="line"><span class="meta">#! /bin/bash</span></div><div class="line"> </div><div class="line">Unix=(<span class="string">'Debian'</span> <span class="string">'Red hat'</span> <span class="string">'Ubuntu'</span> <span class="string">'Suse'</span> <span class="string">'Fedora'</span> <span class="string">'UTS'</span> <span class="string">'OpenLinux'</span>);</div><div class="line"><span class="built_in">echo</span> <span class="variable">$&#123;Unix[2]:0:4&#125;</span></div><div class="line"> </div><div class="line">./arraymanip.sh</div><div class="line">Ubun</div></pre></td></tr></table></figure>
+<p>上面的例子取出索引为 2 的数组元素的前 4 个字符。</p>
+<h2 id="搜索和替换数组元素"><a href="#搜索和替换数组元素" class="headerlink" title="搜索和替换数组元素"></a>搜索和替换数组元素</h2><p>下面的例子，在数组元素中搜索 Ubuntu，替换为 SCO Unix</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$cat</span> arraymanip.sh</div><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line">Unix=(<span class="string">'Debian'</span> <span class="string">'Red hat'</span> <span class="string">'Ubuntu'</span> <span class="string">'Suse'</span> <span class="string">'Fedora'</span> <span class="string">'UTS'</span> <span class="string">'OpenLinux'</span>);</div><div class="line"> </div><div class="line"><span class="built_in">echo</span> <span class="variable">$&#123;Unix[@]/Ubuntu/SCO Unix&#125;</span></div><div class="line"> </div><div class="line">$./arraymanip.sh</div><div class="line">Debian Red hat SCO Unix Suse Fedora UTS OpenLinux</div></pre></td></tr></table></figure>
+<p>但是，这个例子并没有永久替换数组内容。</p>
+<h2 id="添加元素到已存在的-Bash-Array"><a href="#添加元素到已存在的-Bash-Array" class="headerlink" title="添加元素到已存在的 Bash Array"></a>添加元素到已存在的 Bash Array</h2><p>下面的例子展示了如何添加元素到已存在数组。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$cat</span> arraymanip.sh</div><div class="line">Unix=(<span class="string">'Debian'</span> <span class="string">'Red hat'</span> <span class="string">'Ubuntu'</span> <span class="string">'Suse'</span> <span class="string">'Fedora'</span> <span class="string">'UTS'</span> <span class="string">'OpenLinux'</span>);</div><div class="line">Unix=(<span class="string">"<span class="variable">$&#123;Unix[@]&#125;</span>"</span> <span class="string">"AIX"</span> <span class="string">"HP-UX"</span>)</div><div class="line"><span class="built_in">echo</span> <span class="variable">$&#123;Unix[7]&#125;</span></div><div class="line"> </div><div class="line">$./arraymanip.sh</div><div class="line">AIX</div></pre></td></tr></table></figure>
+<p>‘AIX’ and ‘HP-UX’ are added in 7th and 8th index respectively.<br>在数组 Unix 中，元素 ‘AIX’ 和 ‘HP-UX’ 添加到第 7 和 第 8 位。</p>
+<h2 id="删除数组元素"><a href="#删除数组元素" class="headerlink" title="删除数组元素"></a>删除数组元素</h2><p>unset 用于移除数组元素，unset 与给数组元素赋值为 null 是一样的效果。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$cat</span> arraymanip.sh</div><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line">Unix=(<span class="string">'Debian'</span> <span class="string">'Red hat'</span> <span class="string">'Ubuntu'</span> <span class="string">'Suse'</span> <span class="string">'Fedora'</span> <span class="string">'UTS'</span> <span class="string">'OpenLinux'</span>);</div><div class="line"> </div><div class="line"><span class="built_in">unset</span> Unix[3]</div><div class="line"><span class="built_in">echo</span> <span class="variable">$&#123;Unix[3]&#125;</span></div></pre></td></tr></table></figure>
+<p>以上例子，会输出 null 在索引为 3 的值。下面的例子显示如果完全从数组中删除。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$ cat arraymanip.sh</div><div class="line">Unix=(<span class="string">'Debian'</span> <span class="string">'Red hat'</span> <span class="string">'Ubuntu'</span> <span class="string">'Suse'</span> <span class="string">'Fedora'</span> <span class="string">'UTS'</span> <span class="string">'OpenLinux'</span>);</div><div class="line">pos=3</div><div class="line">Unix=(<span class="variable">$&#123;Unix[@]:0:$pos&#125;</span> <span class="variable">$&#123;Unix[@]:$(($pos + 1))&#125;</span>)</div><div class="line"><span class="built_in">echo</span> <span class="variable">$&#123;Unix[@]&#125;</span></div><div class="line"> </div><div class="line">$./arraymanip.sh</div><div class="line">Debian Red hat Ubuntu Fedora UTS OpenLinux</div></pre></td></tr></table></figure>
+<p>本例中，${Unix[@]:0:$pos} 将输出 3 个元素从索引为 0 开始。合并以上的输出。这是删除数组元素的一个方法。</p>
+<h2 id="使用模式-Patterns-删除数组元素"><a href="#使用模式-Patterns-删除数组元素" class="headerlink" title="使用模式 (Patterns) 删除数组元素"></a>使用模式 (Patterns) 删除数组元素</h2><p>在搜索条件，可以给出模式 (Patterns)，存储其余元素到另外一个数组。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$ cat arraymanip.sh</div><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line"><span class="built_in">declare</span> <span class="_">-a</span> Unix=(<span class="string">'Debian'</span> <span class="string">'Red hat'</span> <span class="string">'Ubuntu'</span> <span class="string">'Suse'</span> <span class="string">'Fedora'</span>);</div><div class="line"><span class="built_in">declare</span> <span class="_">-a</span> patter=( <span class="variable">$&#123;Unix[@]/Red*/&#125;</span> )</div><div class="line"><span class="built_in">echo</span> <span class="variable">$&#123;patter[@]&#125;</span></div><div class="line"> </div><div class="line">$ ./arraymanip.sh</div><div class="line">Debian Ubuntu Suse Fedora</div></pre></td></tr></table></figure>
+<p>以上例子删除数组元素形如 Red*</p>
+<h2 id="复制数组"><a href="#复制数组" class="headerlink" title="复制数组"></a>复制数组</h2><p>扩展数组元素，存储到新的数组中。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line">Unix=(<span class="string">'Debian'</span> <span class="string">'Red hat'</span> <span class="string">'Ubuntu'</span> <span class="string">'Suse'</span> <span class="string">'Fedora'</span> <span class="string">'UTS'</span> <span class="string">'OpenLinux'</span>);</div><div class="line">Linux=(<span class="string">"<span class="variable">$&#123;Unix[@]&#125;</span>"</span>)</div><div class="line"><span class="built_in">echo</span> <span class="variable">$&#123;Linux[@]&#125;</span></div><div class="line"> </div><div class="line">$ ./arraymanip.sh</div><div class="line">Debian Red hat Ubuntu Fedora UTS OpenLinux</div></pre></td></tr></table></figure>
+<h2 id="连接两个-Bash-数组"><a href="#连接两个-Bash-数组" class="headerlink" title="连接两个 Bash 数组"></a>连接两个 Bash 数组</h2><p>扩展两个数组，赋值给新数组。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$cat</span> arraymanip.sh</div><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line">Unix=(<span class="string">'Debian'</span> <span class="string">'Red hat'</span> <span class="string">'Ubuntu'</span> <span class="string">'Suse'</span> <span class="string">'Fedora'</span> <span class="string">'UTS'</span> <span class="string">'OpenLinux'</span>);</div><div class="line">Shell=(<span class="string">'bash'</span> <span class="string">'csh'</span> <span class="string">'jsh'</span> <span class="string">'rsh'</span> <span class="string">'ksh'</span> <span class="string">'rc'</span> <span class="string">'tcsh'</span>);</div><div class="line"> </div><div class="line">UnixShell=(<span class="string">"<span class="variable">$&#123;Unix[@]&#125;</span>"</span> <span class="string">"<span class="variable">$&#123;Shell[@]&#125;</span>"</span>)</div><div class="line"><span class="built_in">echo</span> <span class="variable">$&#123;UnixShell[@]&#125;</span></div><div class="line"><span class="built_in">echo</span> <span class="variable">$&#123;#UnixShell[@]&#125;</span></div><div class="line"> </div><div class="line">$ ./arraymanip.sh</div><div class="line">Debian Red hat Ubuntu Suse Fedora UTS OpenLinux bash csh jsh rsh ksh rc tcsh</div><div class="line">14</div></pre></td></tr></table></figure>
+<p>输出数组 ‘Unix’ 和 ‘Shell’ 中的所有元素，新数组一共有 14 个元素。</p>
+<h2 id="删除整个数组"><a href="#删除整个数组" class="headerlink" title="删除整个数组"></a>删除整个数组</h2><p>使用 unset 删除整个数组</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$cat</span> arraymanip.sh</div><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line">Unix=(<span class="string">'Debian'</span> <span class="string">'Red hat'</span> <span class="string">'Ubuntu'</span> <span class="string">'Suse'</span> <span class="string">'Fedora'</span> <span class="string">'UTS'</span> <span class="string">'OpenLinux'</span>);</div><div class="line">Shell=(<span class="string">'bash'</span> <span class="string">'csh'</span> <span class="string">'jsh'</span> <span class="string">'rsh'</span> <span class="string">'ksh'</span> <span class="string">'rc'</span> <span class="string">'tcsh'</span>);</div><div class="line"> </div><div class="line">UnixShell=(<span class="string">"<span class="variable">$&#123;Unix[@]&#125;</span>"</span> <span class="string">"<span class="variable">$&#123;Shell[@]&#125;</span>"</span>)</div><div class="line"><span class="built_in">unset</span> UnixShell</div><div class="line"><span class="built_in">echo</span> <span class="variable">$&#123;#UnixShell[@]&#125;</span></div><div class="line"> </div><div class="line">$ ./arraymanip.sh</div><div class="line">0</div></pre></td></tr></table></figure>
+<p>unset 数组后，数组长度为零。</p>
+<h2 id="加载文件内容到数组"><a href="#加载文件内容到数组" class="headerlink" title="加载文件内容到数组"></a>加载文件内容到数组</h2><p>可以逐行添加文件内容到数组。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#Example file</span></div><div class="line">$ cat logfile</div><div class="line">Welcome</div><div class="line">to</div><div class="line">thegeekstuff</div><div class="line">Linux</div><div class="line">Unix</div><div class="line"> </div><div class="line">$ cat loadcontent.sh</div><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line">filecontent=( `cat <span class="string">"logfile"</span> `)</div><div class="line"> </div><div class="line"><span class="keyword">for</span> t <span class="keyword">in</span> <span class="string">"<span class="variable">$&#123;filecontent[@]&#125;</span>"</span></div><div class="line"><span class="keyword">do</span></div><div class="line"><span class="built_in">echo</span> <span class="variable">$t</span></div><div class="line"><span class="keyword">done</span></div><div class="line"><span class="built_in">echo</span> <span class="string">"Read file content!"</span></div><div class="line"> </div><div class="line">$ ./loadcontent.sh</div><div class="line">Welcome</div><div class="line">to</div><div class="line">thegeekstuff</div><div class="line">Linux</div><div class="line">Unix</div><div class="line">Read file content!</div></pre></td></tr></table></figure>
+<p>以上例子中，数组中的所有元素均利用循环输出。</p>
+]]></content>
+      
+        <categories>
+            
+            <category> shell </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> shell </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[shell 字符串截取]]></title>
+      <url>/2017/08/23/shell-str-cut/</url>
+      <content type="html"><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>简单介绍shell字符串截取 的八种方法</p>
+<a id="more"></a>
+<h1 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h1><p>假设有变量 var=<a href="http://www.aaa.com/123.htm" target="_blank" rel="external">http://www.aaa.com/123.htm</a>.</p>
+<h2 id="号截取，删除左边字符，保留右边字符"><a href="#号截取，删除左边字符，保留右边字符" class="headerlink" title="# 号截取，删除左边字符，保留右边字符"></a># 号截取，删除左边字符，保留右边字符</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> <span class="variable">$&#123;var#*//&#125;</span></div></pre></td></tr></table></figure>
+<p>其中 var 是变量名，# 号是运算符，*// 表示从左边开始删除第一个 // 号及左边的所有字符<br>即删除 : <code>http://</code><br>结果是 ：<code>www.aaa.com/123.htm</code></p>
+<h2 id="号截取，删除左边字符，保留右边字符-1"><a href="#号截取，删除左边字符，保留右边字符-1" class="headerlink" title="## 号截取，删除左边字符，保留右边字符"></a>## 号截取，删除左边字符，保留右边字符</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> <span class="variable">$&#123;var##*/&#125;</span></div></pre></td></tr></table></figure>
+<p>##*/ 表示从左边开始删除最后（最右边）一个 / 号及左边的所有字符<br>即删除 : <code>http://www.aaa.com/</code><br>结果是 : <code>123.htm</code></p>
+<h2 id="号截取，删除右边字符，保留左边字符"><a href="#号截取，删除右边字符，保留左边字符" class="headerlink" title="%号截取，删除右边字符，保留左边字符"></a>%号截取，删除右边字符，保留左边字符</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> <span class="variable">$&#123;var%/*&#125;</span></div></pre></td></tr></table></figure>
+<p>%/* 表示从右边开始，删除第一个 / 号及右边的字符<br>结果是：<code>http://www.aaa.com</code></p>
+<h2 id="号截取，删除右边字符，保留左边字符-1"><a href="#号截取，删除右边字符，保留左边字符-1" class="headerlink" title="%% 号截取，删除右边字符，保留左边字符"></a>%% 号截取，删除右边字符，保留左边字符</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> <span class="variable">$&#123;var%%/*&#125;</span></div></pre></td></tr></table></figure>
+<p>%%/* 表示从右边开始，删除最后（最左边）一个 / 号及右边的字符<br>结果是：http:</p>
+<h2 id="从左边第几个字符开始，及字符的个数"><a href="#从左边第几个字符开始，及字符的个数" class="headerlink" title="从左边第几个字符开始，及字符的个数"></a>从左边第几个字符开始，及字符的个数</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> <span class="variable">$&#123;var:0:5&#125;</span></div></pre></td></tr></table></figure>
+<h2 id="从左边第几个字符开始，一直到结束。"><a href="#从左边第几个字符开始，一直到结束。" class="headerlink" title="从左边第几个字符开始，一直到结束。"></a>从左边第几个字符开始，一直到结束。</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> <span class="variable">$&#123;var:7&#125;</span></div></pre></td></tr></table></figure>
+<h2 id="从右边第几个字符开始，及字符的个数"><a href="#从右边第几个字符开始，及字符的个数" class="headerlink" title="从右边第几个字符开始，及字符的个数"></a>从右边第几个字符开始，及字符的个数</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">从右边第几个字符开始，及字符的个数</div></pre></td></tr></table></figure>
+<p>其中的 0-7 表示右边算起第七个字符开始，3 表示字符的个数。<br>结果是：123</p>
+<h2 id="从右边第几个字符开始，一直到结束"><a href="#从右边第几个字符开始，一直到结束" class="headerlink" title="从右边第几个字符开始，一直到结束"></a>从右边第几个字符开始，一直到结束</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> <span class="variable">$&#123;var:0-7&#125;</span></div></pre></td></tr></table></figure>
+<p>表示从右边第七个字符开始，一直到结束。<br>结果是：123.htm</p>
+<p>注：（左边的第一个字符是用 0 表示，右边的第一个字符用 0-1 表示）</p>
+]]></content>
+      
+        <categories>
+            
+            <category> shell </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> shell </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[firewall-cmd详解]]></title>
+      <url>/2017/08/22/shell-firewall-cmd/</url>
+      <content type="html"><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>Centos 在 Centos 7 中加入了防火墙(firewall)。防火墙守护 firewalld 服务引入了一个信任级别的概念来管理与之相关联的连接与接口。它支持 ipv4 与 ipv6，并支持网桥，采用 firewall-cmd (command) 或 firewall-config (gui) 来动态的管理 kernel netfilter 的临时或永久的接口规则，并实时生效而无需重启服务。</p>
+<a id="more"></a>
+<h2 id="安装与使用"><a href="#安装与使用" class="headerlink" title="安装与使用"></a>安装与使用</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install firewall</div></pre></td></tr></table></figure>
+<p>如果需要图形界面的话，再安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install firewall-config</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">systemctl start firewall-cmd <span class="comment">#启动</span></div><div class="line">systemctl <span class="built_in">enable</span> firewalld <span class="comment">#开机启动</span></div><div class="line">systemctl stop firewalld <span class="comment">#关闭</span></div><div class="line">systemctl <span class="built_in">disable</span> firewalld <span class="comment">#取消开机启动</span></div></pre></td></tr></table></figure>
+<h2 id="Zone介绍"><a href="#Zone介绍" class="headerlink" title="Zone介绍"></a>Zone介绍</h2><p>Firewall能将不同的网络连接归类到不同的信任级别，Zone 提供了以下几个级别 </p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>drop</td>
+<td>丢弃所有进入的包，而不给出任何响应</td>
+</tr>
+<tr>
+<td>block</td>
+<td>拒绝所有外部发起的连接，允许内部发起的连接</td>
+</tr>
+<tr>
+<td>public</td>
+<td>允许指定的进入连接</td>
+</tr>
+<tr>
+<td>external</td>
+<td>同上，对伪装的进入连接，一般用于路由转发</td>
+</tr>
+<tr>
+<td>dmz</td>
+<td>允许受限制的进入连接</td>
+</tr>
+<tr>
+<td>work</td>
+<td>允许受信任的计算机被限制的进入连接，类似 workgroup</td>
+</tr>
+<tr>
+<td>home</td>
+<td>同上，类似 homegroup</td>
+</tr>
+<tr>
+<td>internal</td>
+<td>同上，范围针对所有互联网用户</td>
+</tr>
+<tr>
+<td>trusted</td>
+<td>信任所有连接</td>
+</tr>
+</tbody>
+</table>
+<h3 id="具体的规则管理，可以使用firewall-cmd"><a href="#具体的规则管理，可以使用firewall-cmd" class="headerlink" title="具体的规则管理，可以使用firewall-cmd"></a>具体的规则管理，可以使用firewall-cmd</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">firewall-cmd --help</div></pre></td></tr></table></figure>
+<h3 id="查看运行状态"><a href="#查看运行状态" class="headerlink" title="查看运行状态"></a>查看运行状态</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">firewall-cmd --state</div></pre></td></tr></table></figure>
+<h3 id="查看已被激活的Zone信息"><a href="#查看已被激活的Zone信息" class="headerlink" title="查看已被激活的Zone信息"></a>查看已被激活的Zone信息</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">firewall-cmd --get-active-zones</div><div class="line">public</div><div class="line">interfaces: eth0 eth1</div></pre></td></tr></table></figure>
+<h3 id="查看指定接口的Zone信息"><a href="#查看指定接口的Zone信息" class="headerlink" title="查看指定接口的Zone信息"></a>查看指定接口的Zone信息</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">firewall-cmd --get-zone-of-interface=eth0</div><div class="line">public</div></pre></td></tr></table></figure>
+<h3 id="查看指定级别的接口"><a href="#查看指定级别的接口" class="headerlink" title="查看指定级别的接口"></a>查看指定级别的接口</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">firewall-cmd --zone=public --list-interfaces</div><div class="line">eth0</div></pre></td></tr></table></figure>
+<h3 id="查看指定级别的所有信息，譬如public"><a href="#查看指定级别的所有信息，譬如public" class="headerlink" title="查看指定级别的所有信息，譬如public"></a>查看指定级别的所有信息，譬如public</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">firewall-cmd --zone=public --list-all</div><div class="line">public (default, active)</div><div class="line">interfaces: eth0</div><div class="line">sources:</div><div class="line">services: dhcpv6-client http ssh</div><div class="line">ports:</div><div class="line">masquerade: no</div><div class="line">forward-ports:</div><div class="line">icmp-blocks:</div><div class="line">rich rules:</div></pre></td></tr></table></figure>
+<h3 id="查看所有级别被允许的信息"><a href="#查看所有级别被允许的信息" class="headerlink" title="查看所有级别被允许的信息"></a>查看所有级别被允许的信息</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">firewall-cmd --get-service</div></pre></td></tr></table></figure>
+<h3 id="查看重启后所有Zones级别中被允许的服务，即永久放行的服务"><a href="#查看重启后所有Zones级别中被允许的服务，即永久放行的服务" class="headerlink" title="查看重启后所有Zones级别中被允许的服务，即永久放行的服务"></a>查看重启后所有Zones级别中被允许的服务，即永久放行的服务</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">firewall-cmd --get-service --permanent</div></pre></td></tr></table></figure>
+<h3 id="管理规则"><a href="#管理规则" class="headerlink" title="管理规则"></a>管理规则</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">firewall-cmd --panic-on           <span class="comment"># 丢弃</span></div><div class="line">firewall-cmd --panic-off          <span class="comment"># 取消丢弃</span></div><div class="line">firewall-cmd --query-panic        <span class="comment"># 查看丢弃状态</span></div><div class="line">firewall-cmd --reload             <span class="comment"># 更新规则，不重启服务</span></div><div class="line">firewall-cmd --complete-reload    <span class="comment"># 更新规则，重启服务</span></div></pre></td></tr></table></figure>
+<p>添加某接口至某信任等级，譬如添加 eth0 至 public，再永久生效</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">firewall-cmd --zone=public --add-interface=eth0 --permanent</div></pre></td></tr></table></figure>
+<p>设置 public 为默认的信任级别</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">firewall-cmd --set-default-zone=public</div></pre></td></tr></table></figure>
+<h3 id="管理端口"><a href="#管理端口" class="headerlink" title="管理端口"></a>管理端口</h3><p>列出 dmz 级别的被允许的进入端口</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">firewall-cmd --zome=dmz --list-ports</div></pre></td></tr></table></figure>
+<p>允许tcp端口8080至dmz级别</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">firewall-cmd --zone=dmz --add-port=8080/tcp</div><div class="line">firewall-cmd --reload</div></pre></td></tr></table></figure>
+<p>允许某范围的 udp 端口至 public 级别，并永久生效</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">firewall-cmd --zome=public --add-port=5060-5059/udp --permanent</div></pre></td></tr></table></figure>
+<h3 id="管理服务"><a href="#管理服务" class="headerlink" title="管理服务"></a>管理服务</h3><p>添加 smtp 服务至 work zone</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">firewall-cmd --zone=work --add-service=smtp</div></pre></td></tr></table></figure>
+<p>移除work zone 中的smtp服务</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">firewall-cmd --zone=work --remove-service=smtp</div></pre></td></tr></table></figure>
+<h3 id="配置ip地址伪装"><a href="#配置ip地址伪装" class="headerlink" title="配置ip地址伪装"></a>配置ip地址伪装</h3><p>查看</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">firewall-cmd --zone=external --query-masquerade</div></pre></td></tr></table></figure>
+<p>打开伪装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">firewall-cmd --zone=external --add-masquerade</div></pre></td></tr></table></figure>
+<p>关闭伪装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">firewall-cmd --zone=external --remove-masquerade</div></pre></td></tr></table></figure>
+<h3 id="端口转发"><a href="#端口转发" class="headerlink" title="端口转发"></a>端口转发</h3><p>要打开端口转发，则需要先</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">firewall-cmd --zone=external --add-masquerade</div></pre></td></tr></table></figure>
+<p>转发22端口数据至另一个ip的2055端口上</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">firewall-cmd --zone=external --add-forward-port=port=22:proto=tcp:toport=2055:toaddr=192.168.1.100</div></pre></td></tr></table></figure>
+<p>然后转发22端口数据至3753</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">firewall-cmd --zone=external --add-forward-port=port=22:proto=tcp:toport=3753</div></pre></td></tr></table></figure>
+<p>转发 22 端口数据至另一个 ip 的相同端口上</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">firewall-cmd --zone=external --add-forward-port=port=22:proto=tcp:toaddr=192.168.1.100</div></pre></td></tr></table></figure>]]></content>
+      
+        <categories>
+            
+            <category> shell </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> shell </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[iptables 详解]]></title>
+      <url>/2017/08/22/shell-iptables/</url>
+      <content type="html"><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>iptables实现防火墙功能的原理是：在数据包经过内核的过程中有五处关键地方，分别是PREROUTING、INPUT、OUTPUT、FORWARD、POSTROUTING，称为钩子函数，iptables这款用户空间的软件可以在这5处地方写规则，对经过的数据包进行处理，规则一般的定义为“如果数据包头符合这样的条件，就这样处理数据包”。</p>
+<p>ptables中定义有表，分别表示提供的功能，有filter表（实现包过滤）、nat表（实现网络地址转换）、mangle表（实现包修改）、raw表（实现数据跟踪），这些表具有一定的优先级：raw–&gt;mangle–&gt;nat–&gt;filter</p>
+<p><img src="http://www.linuxidc.com/upload/2016_09/160901194975491.png" alt="优先级顺序检查"></p>
+<p><img src="http://www.linuxidc.com/upload/2016_09/160901194975492.png" alt="小结"></p>
+<p>数据包先经过PREOUTING，由该链确定数据包的走向：</p>
+<p>1、目的地址是本地，则发送到INPUT，让INPUT决定是否接收下来送到用户空间，流程为①—&gt;②;</p>
+<p>2、若满足PREROUTING的nat表上的转发规则，则发送给FORWARD，然后再经过POSTROUTING发送出去，流程为： ①—&gt;③—&gt;④—&gt;⑥</p>
+<p>主机发送数据包时，流程则是⑤—&gt;⑥</p>
+<p>iptables 安装配置</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">service iptables start</div></pre></td></tr></table></figure>
+<p>iptables 规则书写</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">基础: iptables [-t 表] [操作命令] [链] [规则匹配器] [-j 目标动作]</div></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>表</th>
+<th>说明</th>
+<th>支持的链</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>raw</td>
+<td>一般是为了不再让iptables对数据包进行跟踪，提高性能</td>
+<td>REROUTING、OUTPUT</td>
+</tr>
+<tr>
+<td>mangle</td>
+<td>对数据包进行修改</td>
+<td>五个链都可以</td>
+</tr>
+<tr>
+<td>nat</td>
+<td>进行地址转换</td>
+<td>PREROUTING、OUTPUT、POSTROUTING</td>
+</tr>
+<tr>
+<td>filter (默认)</td>
+<td>对包进行过滤</td>
+<td>INPUT、FORWARD、OUTPUT</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>常用操作命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-A</td>
+<td>在指定链尾部添加规则</td>
+</tr>
+<tr>
+<td>-D</td>
+<td>删除匹配的规则</td>
+</tr>
+<tr>
+<td>-R</td>
+<td>替换匹配的规则</td>
+</tr>
+<tr>
+<td>-I</td>
+<td>在指定位置插入规则例：iptables -I INPUT 1 –dport 80 -j ACCEPT（将规则插入到filter表INPUT链中的第一位上）</td>
+</tr>
+<tr>
+<td>-L/S</td>
+<td>列出指定链或所有链的规则</td>
+</tr>
+<tr>
+<td>-F</td>
+<td>删除指定链或所有链的规则</td>
+</tr>
+<tr>
+<td>-N</td>
+<td>创建用户自定义链 例：iptables -N allowed</td>
+</tr>
+<tr>
+<td>-X</td>
+<td>删除指定的用户自定义链</td>
+</tr>
+<tr>
+<td>-P</td>
+<td>为指定链设置默认规则策略，对自定义链不起作用</td>
+</tr>
+<tr>
+<td>-Z</td>
+<td>将指定链或所有链的计数器清零</td>
+</tr>
+<tr>
+<td>-E</td>
+<td>更改自定义链的名称 例：iptables -E allowed disallowed</td>
+</tr>
+<tr>
+<td>-n</td>
+<td>ip地址和端口号以数字方式显示 例：iptables -Ln</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>常见规则匹配器</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-p tcp\</td>
+<td>udp\</td>
+<td>icmp\</td>
+<td>all</td>
+<td>匹配协议，all会匹配所有协议</td>
+</tr>
+<tr>
+<td>-s addr[/mask]</td>
+<td>匹配源地址</td>
+</tr>
+<tr>
+<td>-d addr[/mask]</td>
+<td>匹配目标地址</td>
+</tr>
+<tr>
+<td>–sport port1[:port2]</td>
+<td>匹配源端口(可指定连续的端口)</td>
+</tr>
+<tr>
+<td>–dport port1[:port2]</td>
+<td>匹配目的端口(可指定连续的端口)</td>
+</tr>
+<tr>
+<td>-o interface</td>
+<td>匹配出口网卡，只使用FORWARD、POSTROUTING、OUTPUT。例如：iptables -A FORWARD -o eth0</td>
+</tr>
+<tr>
+<td>-i interface</td>
+<td>匹配入口网卡，只使用PREROUTING、INPUT、FORWARD。</td>
+</tr>
+<tr>
+<td>–icmp-type</td>
+<td>匹配icmp类型（使用iptables -p icmp -h可查看可用的ICMP类型）</td>
+</tr>
+<tr>
+<td>–tcp_flags mask comp</td>
+<td>匹配TCP标记，mask表示检查范围，comp表示匹配mask中的哪些标记。例：iptables -A FORWARD -p tcp –tcp-flags ALL SYN，ACK -j ACCEPT（表示匹配SYN和ACK标记的数据包）</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>目标动作</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ACCEPT</td>
+<td>允许数据包通过</td>
+</tr>
+<tr>
+<td>DROP</td>
+<td>丢弃数据包</td>
+</tr>
+<tr>
+<td>REJECT</td>
+<td>丢弃数据包，并且将  拒绝信息发送    给发送方</td>
+</tr>
+<tr>
+<td>SNAT</td>
+<td>源地址转换（在nat表上）例：iptables -t nat -A POSTROUTING -d 192.168.0.102 -j SNAT –to 192.168.0.1</td>
+</tr>
+<tr>
+<td>DNAT</td>
+<td>目标地址转换（在nat表上）例：iptables -t nat -A PREROUTING -d 202.202.202.2 -j DNAT –to-destination 192.168.0.102</td>
+</tr>
+<tr>
+<td>REDIRECT</td>
+<td>目标端口转换（在nat表上）例：iptables -t nat -D PREROUTING -p tcp –dport 8080 -i eth2.2 -j REDIRECT –to 80</td>
+</tr>
+<tr>
+<td>MARK</td>
+<td>将数据包打上标记 例：iptables -t mangle -A PREROUTING -s 192.168.1.3 -j MARK –set-mark 60</td>
+</tr>
+</tbody>
+</table>
+<p>注意要点：</p>
+<ol>
+<li>目标地址转换一般在PREROUTING链上操作</li>
+<li>源地址转换一般在POSTROUTING链上操作</li>
+</ol>
+<h4 id="保存和恢复iptables规则"><a href="#保存和恢复iptables规则" class="headerlink" title="保存和恢复iptables规则"></a>保存和恢复iptables规则</h4><p>使用iptables-save 可以保存到特定文件中</p>
+<ol>
+<li>iptables-save &gt; /etc/sysconfig/iptables_save</li>
+<li>iptables-restore &lt; /etc/sysconfig/iptables-save</li>
+</ol>
+<p>iptables的进阶使用</p>
+<ol>
+<li><p>limit 限制流量：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">-m limit --limit-burst 15   #设置一开始匹配的最大数据包数量</div><div class="line">-m limit --limit 1000/s #设置最大平均匹配速率</div><div class="line">-m limit --limit 5/m --limit-burst 15  #表示一开始能匹配的数据包数量为15个，每匹配到一个，   </div><div class="line">limit-burst的值减1,所以匹配到15个时，该值为0,以后每过 12s，limit-burst的值会加1,表示又能匹配1个数据包</div><div class="line"></div><div class="line">例子：</div><div class="line"></div><div class="line">iptables -A INPUT -i eth0 -m limit --limit 5/m --limit-burst 15 -j ACCEPT </div><div class="line">iptables -A INPUT -i eth0 -j DROP</div><div class="line"></div><div class="line">注意要点：</div><div class="line"></div><div class="line">1、--limit-burst的值要比--limit的大</div><div class="line"></div><div class="line">2、limit本身没有丢弃数据包的功能，因此，需要第二条规则一起才能实现限速的功能</div></pre></td></tr></table></figure>
+</li>
+<li><p>time ：在特定时间内匹配</p>
+</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>-m time</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>–monthdays day1[,day2]</td>
+<td>在每个月的特定天匹配</td>
+</tr>
+<tr>
+<td>–timestart hh:mm:ss</td>
+<td>在每天的指定时间开始匹配</td>
+</tr>
+<tr>
+<td>–timestop hh:mm:ss</td>
+<td>在每天的指定时间停止匹配</td>
+</tr>
+<tr>
+<td>–weekdays day1[,day2]</td>
+<td>在每个星期的指定工作日匹配，值可以是1-7</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">iptables -A INPUT -i eth0 -m time --weekdays 1,2,3,4 -jACCEPT</div><div class="line">iptables -A INPUT -i eth0 -j DROP</div></pre></td></tr></table></figure>
+<ol>
+<li>ttl：匹配符合规则的ttl值的数据包</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>–ttl-eq 100</td>
+<td>匹配TTL值为100的数据包</td>
+</tr>
+<tr>
+<td>–ttl-gt 100</td>
+<td>匹配TTL值大于100的数据包</td>
+</tr>
+<tr>
+<td>–ttl-lt 100</td>
+<td>匹配TTL值小于100的数据包</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">iptables -A OUTPUT -m ttl --ttl<span class="_">-eq</span> 100 -j ACCEPT</div></pre></td></tr></table></figure>
+<ol>
+<li>multiport: 匹配离散的多个端口</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>–sports port1 [,port2,port3]</td>
+<td>匹配源端口</td>
+</tr>
+<tr>
+<td>–dports port1[,port2,port2]</td>
+<td>匹配目的端口</td>
+</tr>
+<tr>
+<td>–ports port1[,port2,port3]</td>
+<td>匹配源端口或目的端口</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">iptables -A INPUT -m multiport --sports 22，80，8080 -j DROP</div></pre></td></tr></table></figure>
+<ol>
+<li>state:匹配指定的状态数据包</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>–state value</td>
+<td>value可以为NEW、RELATED（有关联的）、ESTABLISHED、INVALID（未知连接）</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">iptables -A INPUT -m state --state NEW，ESTABLISHED -j ACCEPT</div></pre></td></tr></table></figure>
+<ol>
+<li>mark :匹配带有指定mark值得数据包</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>–mark value</td>
+<td>匹配mark标记为value的数据包</td>
+</tr>
+</tbody>
+</table>
+<p>例如：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">iptables -t mangle -A INPUT -m mark --mark 1 -j DROP</div></pre></td></tr></table></figure>
+<ol>
+<li>mac:匹配特定的mac地址</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">iptables -A FORWARD -m mac --mac-source 00:0C:24:FA:19:80 -j DROP</div></pre></td></tr></table></figure>]]></content>
+      
+        <categories>
+            
+            <category> shell </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> shell </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[运维笔试题]]></title>
+      <url>/2017/08/22/ops-test/</url>
+      <content type="html"><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>总结下，自己这段时间找工作碰到或者收藏的笔试题以及面试题，希望可以帮助到找工作的人</p>
+<a id="more"></a>
+<h1 id="网络基础知识"><a href="#网络基础知识" class="headerlink" title="网络基础知识"></a>网络基础知识</h1><h2 id="OSI七层参考模型"><a href="#OSI七层参考模型" class="headerlink" title="OSI七层参考模型"></a>OSI七层参考模型</h2><blockquote>
+<p><code>应用层</code> : 提供OSI用户服务，例如事务处理程序、文件传送协议和网络管理等。<br><code>表示层</code> : 代表应用进程协商数据表示；完成数据转换、格式化和文本压缩<br><code>会话层</code> : 提供两进程之间建立、维护和结束会话连接的功能；提供交互会话的管理功能，如三种数据流方向的控制，即一路交互、两路交替和两路同时会话模式。<br><code>传输层</code> : 提供建立、维护和拆除传送连接的功能；选择网络层提供最合适的服务；在系统之间提供可靠的透明的数据传送，提供端到端的错误恢复和流量控制。<br><code>网络层</code> : 控制分组传送系统的操作、路由选择、拥护控制、网络互连等功能，它的作用是将具体的物理传送对高层透明。<br><code>数据链路层</code> : 在网络层实体间提供数据发送和接收的功能和过程；提供数据链路的流控。<br><code>物理层</code> : 提供为建立、维护和拆除物理链路所需要的机械的、电气的、功能的和规程的特性；有关的物理链路上传输非结构的位流以及故障检测指示。</p>
+</blockquote>
+<h3 id="TCP四层网络协议"><a href="#TCP四层网络协议" class="headerlink" title="TCP四层网络协议"></a>TCP四层网络协议</h3><blockquote>
+<p><code>应用层</code><br><code>传输层</code><br><code>网络层</code><br><code>数据链路层</code></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>OSI 七层网络模型</th>
+<th>TCP/IP 四层概念模型</th>
+<th>对应网络协议</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>应用层</td>
+<td>应用层</td>
+<td>HTTP、TFTP, FTP, NFS, WAIS、SMTP</td>
+</tr>
+<tr>
+<td>表示层</td>
+<td>应用层</td>
+<td>Telnet, Rlogin, SNMP, Gopher</td>
+</tr>
+<tr>
+<td>会话层</td>
+<td>应用层</td>
+<td>SMTP, DNS</td>
+</tr>
+<tr>
+<td>传输层</td>
+<td>传输层</td>
+<td>TCP, UDP</td>
+</tr>
+<tr>
+<td>网络层</td>
+<td>网络层</td>
+<td>IP, ICMP, ARP, RARP, AKP, UUCP</td>
+</tr>
+<tr>
+<td>数据链路层</td>
+<td>数据链路层</td>
+<td>FDDI, Ethernet, Arpanet, PDN, SLIP, PPP</td>
+</tr>
+<tr>
+<td>物理层</td>
+<td>数据链路层</td>
+<td>IEEE 802.1A, IEEE 802.2到IEEE 802.11</td>
+</tr>
+</tbody>
+</table>
+<h3 id="图解"><a href="#图解" class="headerlink" title="图解"></a>图解</h3><p><img src="http://img.blog.csdn.net/20160731161720376" alt="OSI七层网络模型"></p>
+<p><img src="http://img.blog.csdn.net/20160731161739907" alt="TCP/IP四层模型"></p>
+<h3 id="计算题"><a href="#计算题" class="headerlink" title="计算题"></a>计算题</h3><blockquote>
+<p>已知一个IP地址及掩码：10.145.129.20 掩码255.255.248.0，计算它的网络地址和广播地址</p>
+</blockquote>
+<p>解题过程：</p>
+<blockquote>
+<p>IP 转换成二进制 <code>00001010  10010001   10000001   00010010</code><br>掩码转换二进制 <code>11111111  11111111   11111000   00000000</code><br>IP与掩码相与得网络地址（全1为1 ，见0为0）： <code>00001010  10010001   10000000   00000000</code><br>网络地址转换成十进制为： <code>10,145,128,0</code><br>看你的掩码把后24位的前13为划成了子网，后11为划成了主机，故：<br>广播地址则要把网络地址的主机位全换成1,得：<code>00001010,10010001,10000111,1111111</code><br>广播地址转换成十进制为：<code>10,145,135,255</code><br>网络地址是：<code>10.145.128.0</code>，也即：<code>00001010.10010001.10000 000.00000000</code>（前21（8+13）位是网络位，后11位是主机位）<br>192.168.1.0/24网络 :子网掩码是24位 ，网络地址 : <code>192.168.0.1</code> 掩码：<code>255.255.255.0</code></p>
+</blockquote>
+<h2 id="TCP-三次握手以及四次挥手"><a href="#TCP-三次握手以及四次挥手" class="headerlink" title="TCP 三次握手以及四次挥手"></a>TCP 三次握手以及四次挥手</h2><p>建立TCP连接，就是建立一个TCP连接时，需要客户端和服务器总共发送3个包以确认连接的建立。</p>
+<p>在socket编程中，这过程由客户端执行connect来触发，整个流程如下图所示：</p>
+<p><img src="http://blog.chinaunix.net/attachment/201304/8/22312037_1365405910EROI.png" alt="三次握手"></p>
+<p>(1) 第一次握手：Client将标志位SYN置为1，随机产生一个值seq=J，并将该数据包发送给Server，Client进入SYN_SENT状态，等待Server确认。</p>
+<p>(2) 第二次握手：Server收到数据包后由标志位SYN=1知道Client请求建立连接，Server将标志位SYN和ACK都置为1，ack=J+1，随机产生一个值seq=K，并将该数据包发送给Client以确认连接请求，Server进入SYN_RCVD状态。</p>
+<p>(3) 第三次握手：Client收到确认后，检查ack是否为J+1，ACK是否为1，如果正确则将标志位ACK置为1，ack=K+1，并将该数据包发送给Server，Server检查ack是否为K+1，ACK是否为1，如果正确则连接建立成功，Client和Server进入ESTABLISHED状态，完成三次握手，随后Client与Server之间可以开始传输数据了。</p>
+<p>SYN攻击：<br>在三次握手过程中，Server发送SYN-ACK之后，收到Client的ACK之前的TCP连接称为半连接（half-open connect），此时Server处于SYN_RCVD状态，当收到ACK后，Server转入ESTABLISHED状态。SYN攻击就是Client在短时间内伪造大量不存在的IP地址，并向Server不断地发送SYN包，Server回复确认包，并等待Client的确认，由于源地址是不存在的，因此，Server需要不断重发直至超时，这些伪造的SYN包将产时间占用未连接队列，导致正常的SYN请求因为队列满而被丢弃，从而引起网络堵塞甚至系统瘫痪。SYN攻击时一种典型的DDOS攻击，检测SYN攻击的方式非常简单，即当Server上有大量半连接状态且源IP地址是随机的，则可以断定遭到SYN攻击了，使用如下命令可以让之现行：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#netstat -nap | grep SYN_RECV</span></div></pre></td></tr></table></figure></p>
+<h2 id="四次挥手"><a href="#四次挥手" class="headerlink" title="四次挥手"></a>四次挥手</h2><p>四次挥手（Four-Way Wavehand）即终止TCP连接，就是指断开一个TCP连接时，需要客户端和服务端总共发送4个包以确认连接的断开。在socket编程中，这一过程由客户端或服务端任一方执行close来触发，整个流程如下图所示：</p>
+<p><img src="http://blog.chinaunix.net/attachment/201304/9/22312037_1365503104wDR0.png" alt="TCP四次挥手"></p>
+<p>（1）第一次挥手：Client发送一个FIN，用来关闭Client到Server的数据传送，Client进入FIN_WAIT_1状态。<br>（2）第二次挥手：Server收到FIN后，发送一个ACK给Client，确认序号为收到序号+1（与SYN相同，一个FIN占用一个序号），Server进入CLOSE_WAIT状态。<br>（3）第三次挥手：Server发送一个FIN，用来关闭Server到Client的数据传送，Server进入LAST_ACK状态。<br>（4）第四次挥手：Client收到FIN后，Client进入TIME_WAIT状态，接着发送一个ACK给Server，确认序号为收到序号+1，Server进入CLOSED状态，完成四次挥手。</p>
+<p>上面是一方主动关闭，另一方被动关闭的情况，实际中还会出现同时发起主动关闭的情况，具体流程如下图：</p>
+<p><img src="http://blog.chinaunix.net/attachment/201304/10/22312037_13655617062cGr.png" alt="同时挥手"></p>
+<p>为什么建立连接是三次握手，而关闭连接却是四次挥手呢？</p>
+<p>这是因为服务端在LISTEN状态下，收到建立连接请求的SYN报文后，把ACK和SYN放在一个报文里发送给客户端。而关闭连接时，当收到对方的FIN报文时，仅仅表示对方不再发送数据了但是还能接收数据，己方也未必全部数据都发送给对方了，所以己方可以立即close，也可以发送一些数据给对方后，再发送FIN报文给对方来表示同意现在关闭连接，因此，己方ACK和FIN一般都会分开发送。</p>
+<h2 id="简单编程题"><a href="#简单编程题" class="headerlink" title="简单编程题"></a>简单编程题</h2><p>###　Linux如何挂载windows下的共享目录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mout.cifs //ip/server /mnt/server -o user=administrator,password=123456</div></pre></td></tr></table></figure>
+<p>Linux下的server需要自己手动建一个 后面的user与pass是windows主机的账号和密码，注意空格和逗号</p>
+<h3 id="如何查看http的并发请求数与其TCP连接状态"><a href="#如何查看http的并发请求数与其TCP连接状态" class="headerlink" title="如何查看http的并发请求数与其TCP连接状态"></a>如何查看http的并发请求数与其TCP连接状态</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">netstat -n | awk <span class="string">'/^tcp/ &#123;++b[$NF]&#125; END &#123;for (a in b)print a,b[a]&#125;'</span></div></pre></td></tr></table></figure>
+<p>或者</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">netstat -n | awk <span class="string">' /^tcp/ &#123;print $NF&#125;'</span> | sort | uniq -c</div></pre></td></tr></table></figure>
+<h3 id="如何用tcpdump嗅探80端口的访问看看谁最高"><a href="#如何用tcpdump嗅探80端口的访问看看谁最高" class="headerlink" title="如何用tcpdump嗅探80端口的访问看看谁最高"></a>如何用tcpdump嗅探80端口的访问看看谁最高</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tcpdump -i eth0 -tnn dst port 80 -c 1000 | awk -F <span class="string">"."</span> <span class="string">'&#123;print $1"."$2"."$3"."$4"." &#125;'</span> | sort | uniq -c | sort -nr | head -5</div></pre></td></tr></table></figure>
+<h3 id="如何查看-var-log目录下的文件数"><a href="#如何查看-var-log目录下的文件数" class="headerlink" title="如何查看/var/log目录下的文件数"></a>如何查看/var/log目录下的文件数</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ls /var/<span class="built_in">log</span>/ -1R | grep <span class="string">"-"</span> | wc <span class="_">-l</span></div></pre></td></tr></table></figure>
+<h3 id="如何查看Linux系统每个ip的连接数"><a href="#如何查看Linux系统每个ip的连接数" class="headerlink" title="如何查看Linux系统每个ip的连接数"></a>如何查看Linux系统每个ip的连接数</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">netstat -n | awk <span class="string">'/^tcp/ &#123;print $5&#125;'</span> | awk -F: <span class="string">'&#123;print $1&#125;'</span> | sort | uniq -c | sort -rn</div></pre></td></tr></table></figure>
+<h3 id="shell下生成32位随机密码"><a href="#shell下生成32位随机密码" class="headerlink" title="shell下生成32位随机密码"></a>shell下生成32位随机密码</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cat /dev/urandom | head -1 | md5sum | head -c 32 &gt;&gt; /pass</div></pre></td></tr></table></figure>
+<h3 id="统计出apache的access-log中访问量最多的5个ip"><a href="#统计出apache的access-log中访问量最多的5个ip" class="headerlink" title="统计出apache的access.log中访问量最多的5个ip"></a>统计出apache的access.log中访问量最多的5个ip</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cat access.log | awk <span class="string">'&#123;print $1&#125;'</span> | sort | uniq -c | sort -n -r | head -5</div></pre></td></tr></table></figure>
+<h3 id="如何查看二进制文件的内容"><a href="#如何查看二进制文件的内容" class="headerlink" title="如何查看二进制文件的内容"></a>如何查看二进制文件的内容</h3><p>我们一般通过hexdump命令 来查看二进制文件的内容。<br>hexdump -C XXX(文件名) -C是参数 不同的参数有不同的意义<br>-C 是比较规范的 十六进制和ASCII码显示<br>-c 是单字节字符显示<br>-b 单字节八进制显示<br>-o 是双字节八进制显示<br>-d 是双字节十进制显示<br>-x 是双字节十六进制显示</p>
+<h3 id="介绍下Linux系统的开机启动顺序"><a href="#介绍下Linux系统的开机启动顺序" class="headerlink" title="介绍下Linux系统的开机启动顺序"></a>介绍下Linux系统的开机启动顺序</h3><blockquote>
+<p>加载BIOS–&gt;读取MBR–&gt;Boot Loader–&gt;加载内核–&gt;用户层init一句inittab文件来设定系统运行的等级(一般3或者5，3是多用户命令行，5是界面)–&gt;init进程执行rc.syninit–&gt;启动内核模块–&gt;执行不同级别运行的脚本程序–&gt;执行/etc/rc.d/rc.local(本地运行服务)–&gt;执行/bin/login,就可以登录了。</p>
+</blockquote>
+<h3 id="符号链接与硬链接的区别"><a href="#符号链接与硬链接的区别" class="headerlink" title="符号链接与硬链接的区别"></a>符号链接与硬链接的区别</h3><blockquote>
+<p>我们可以把符号链接，也就是软连接 当做是 windows系统里的 快捷方式。<br>硬链接 就好像是 又复制了一份，举例说明：<br>ln 3.txt 4.txt 这是硬链接，相当于复制，不可以跨分区，但修改3,4会跟着变，若删除3,4不受任何影响。<br>ln -s 3.txt 4.txt 这是软连接，相当于快捷方式。修改4,3也会跟着变，若删除3,4就坏掉了。不可以用了。</p>
+</blockquote>
+<h3 id="保存当前磁盘分区的分区表"><a href="#保存当前磁盘分区的分区表" class="headerlink" title="保存当前磁盘分区的分区表"></a>保存当前磁盘分区的分区表</h3><p>dd 命令是以个强大的命令，在复制的同时进行转换<br>dd if=/dev/sda of=./mbr.txt bs=1 count=512</p>
+<h3 id="如何在文本里面进行复制、粘贴，删除行，删除全部，按行查找和按字母查找"><a href="#如何在文本里面进行复制、粘贴，删除行，删除全部，按行查找和按字母查找" class="headerlink" title="如何在文本里面进行复制、粘贴，删除行，删除全部，按行查找和按字母查找"></a>如何在文本里面进行复制、粘贴，删除行，删除全部，按行查找和按字母查找</h3><p>以下操作全部在命令行状态操作，不要在编辑状态操作。<br>在文本里 移动到想要复制的行 按yy 想复制到哪就移动到哪，然后按P 就黏贴了<br>删除行 移动到改行 按dd<br>删除全部 dG 这里注意G一定要大写<br>按行查找 :90 这样就是找到第90行<br>按字母查找 /path 这样就是 找到path这个单词所在的位置，文本里可能存在多个,多次查找会显示在不同的位置。</p>
+<h3 id="手动安装grub"><a href="#手动安装grub" class="headerlink" title="手动安装grub"></a>手动安装grub</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">grub-install /dev/sda</div></pre></td></tr></table></figure>
+<h3 id="修改内核参数"><a href="#修改内核参数" class="headerlink" title="修改内核参数"></a>修改内核参数</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">vi /etc/sysctl.conf 这里修改参数</div><div class="line">sysctl -p 刷新后可用</div></pre></td></tr></table></figure>
+<h3 id="在1-39内取随机数"><a href="#在1-39内取随机数" class="headerlink" title="在1-39内取随机数"></a>在1-39内取随机数</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> $[$[RANDOM%39] + 1]</div></pre></td></tr></table></figure>
+<p>或者</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">expr $[RANDOM%39] +1</div><div class="line">RANDOM随机数</div><div class="line">%39取余数范围0-38</div></pre></td></tr></table></figure>
+<h3 id="限制apache每秒新建连接数为1，峰值为3"><a href="#限制apache每秒新建连接数为1，峰值为3" class="headerlink" title="限制apache每秒新建连接数为1，峰值为3"></a>限制apache每秒新建连接数为1，峰值为3</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">每秒新建连接数 一般都是由防火墙来做，apache本身好像无法设置每秒新建连接数，只能设置最大连接：</div><div class="line">iptables -A INPUT <span class="_">-d</span> 172.16.100.1 -p tcp –dport 80 -m <span class="built_in">limit</span> –<span class="built_in">limit</span> 1/second -j ACCEPT</div></pre></td></tr></table></figure>
+<h3 id="FTP的主动模式和被动模式"><a href="#FTP的主动模式和被动模式" class="headerlink" title="FTP的主动模式和被动模式"></a>FTP的主动模式和被动模式</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">FTP协议有两种工作方式：PORT方式和PASV方式，中文意思为主动式和被动式。</div><div class="line"></div><div class="line">PORT（主动）方式的连接过程是：客户端向服务器的FTP端口（默认是21）发送连接请 求，服务器接受连接，建立一条命令链路。当需要传送数据时，客户端在命令链路上用PORT 命令告诉服务器：“我打开了XX端口，你过来连接我”。于是服务器从20端口向客户端的 XX端口发送连接请求，建立一条数据链路来传送数据。</div><div class="line"></div><div class="line">PASV（被动）方式的连接过程是：客户端向服务器的FTP端口（默认是21）发送连接请 求，服务器接受连接，建立一条命令链路。当需要传送数据时，服务器在命令链路上用PASV 命令告诉客户端：“我打开了XX端口，你过来连接我”。于是客户端向服务器的XX端口 发送连接请求，建立一条数据链路来传送数据。</div><div class="line">从上面可以看出，两种方式的命令链路连接方法是一样的，而数据链路的建立方法就完 全不同。</div></pre></td></tr></table></figure>
+<h3 id="显示-etc-inittab中以-开头，且后面跟了一个或者多个空白字符，而后又跟了任意非空白字符的行"><a href="#显示-etc-inittab中以-开头，且后面跟了一个或者多个空白字符，而后又跟了任意非空白字符的行" class="headerlink" title="显示/etc/inittab中以#开头，且后面跟了一个或者多个空白字符，而后又跟了任意非空白字符的行"></a>显示/etc/inittab中以#开头，且后面跟了一个或者多个空白字符，而后又跟了任意非空白字符的行</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">grep <span class="string">"^# \&#123;1,\&#125;[^ ]"</span> /etc/inittab</div></pre></td></tr></table></figure>
+<h3 id="显示-etc-inittab中包含了-一个数字-即两个冒号中间一个数字-的行"><a href="#显示-etc-inittab中包含了-一个数字-即两个冒号中间一个数字-的行" class="headerlink" title="显示/etc/inittab中包含了:一个数字:(即两个冒号中间一个数字)的行"></a>显示/etc/inittab中包含了:一个数字:(即两个冒号中间一个数字)的行</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">grep <span class="string">"\:[0-9]\&#123;1\&#125;\:"</span> /etc/inittab</div></pre></td></tr></table></figure>
+<h3 id="怎么把脚本添加到系统服务里，即用service来调用"><a href="#怎么把脚本添加到系统服务里，即用service来调用" class="headerlink" title="怎么把脚本添加到系统服务里，即用service来调用"></a>怎么把脚本添加到系统服务里，即用service来调用</h3><p>脚本中加入</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line"><span class="comment"># chkconfig: 345 85 15</span></div><div class="line"><span class="comment"># description: httpd</span></div></pre></td></tr></table></figure>
+<p>然后保存<br>chkconfig httpd –add  创建系统服务<br>现在就可以使用service 来 start or restart</p>
+<h3 id="写一个脚本，实现批量添加20个用户，用户名为user01-20，密码为user后面跟5个随机字符"><a href="#写一个脚本，实现批量添加20个用户，用户名为user01-20，密码为user后面跟5个随机字符" class="headerlink" title="写一个脚本，实现批量添加20个用户，用户名为user01-20，密码为user后面跟5个随机字符"></a>写一个脚本，实现批量添加20个用户，用户名为user01-20，密码为user后面跟5个随机字符</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line"><span class="keyword">for</span> ip <span class="keyword">in</span> `seq 1 255`</div><div class="line">  <span class="keyword">do</span></div><div class="line">    &#123;</div><div class="line">     ping -c 1 192.168.1.<span class="variable">$ip</span> &gt; /dev/null 2&gt;&amp;1</div><div class="line">     <span class="keyword">if</span> [ $? <span class="_">-eq</span> 0 ]; <span class="keyword">then</span></div><div class="line">          <span class="built_in">echo</span> 192.168.1.<span class="variable">$ip</span> UP</div><div class="line">     <span class="keyword">else</span></div><div class="line">          <span class="built_in">echo</span> 192.168.1.<span class="variable">$ip</span> DOWN</div><div class="line">     <span class="keyword">fi</span></div><div class="line">   &#125;&amp;</div><div class="line"><span class="keyword">done</span></div><div class="line"><span class="built_in">wait</span></div></pre></td></tr></table></figure>
+<h3 id="写一个脚本，判断一个指定的脚本是否是语法错误；如果有错误，则提醒用户键入Q或者q无视错误并退出其它任何键可以通过vim打开这个指定的脚本"><a href="#写一个脚本，判断一个指定的脚本是否是语法错误；如果有错误，则提醒用户键入Q或者q无视错误并退出其它任何键可以通过vim打开这个指定的脚本" class="headerlink" title="写一个脚本，判断一个指定的脚本是否是语法错误；如果有错误，则提醒用户键入Q或者q无视错误并退出其它任何键可以通过vim打开这个指定的脚本"></a>写一个脚本，判断一个指定的脚本是否是语法错误；如果有错误，则提醒用户键入Q或者q无视错误并退出其它任何键可以通过vim打开这个指定的脚本</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">[root@localhost  tmp]<span class="comment"># cat checksh.sh</span></div><div class="line"> <span class="comment">#!/bin/bash</span></div><div class="line"> <span class="built_in">read</span> -p <span class="string">"please input check script-&gt; "</span> file</div><div class="line"> <span class="keyword">if</span> [ <span class="_">-f</span> <span class="variable">$file</span> ]; <span class="keyword">then</span></div><div class="line">    sh -n <span class="variable">$file</span> &gt; /dev/null 2&gt;&amp;1</div><div class="line">    <span class="keyword">if</span> [ $? <span class="_">-ne</span> 0 ]; <span class="keyword">then</span></div><div class="line">        <span class="built_in">read</span> -p <span class="string">"You input <span class="variable">$file</span> syntax error,[Type q to exit or Type vim to  edit]"</span> answer</div><div class="line">        <span class="keyword">case</span> <span class="variable">$answer</span> <span class="keyword">in</span></div><div class="line">        q | Q)</div><div class="line">           <span class="built_in">exit</span> 0</div><div class="line">           ;;</div><div class="line">        vim )</div><div class="line">           vim <span class="variable">$file</span></div><div class="line">           ;;</div><div class="line">        *）</div><div class="line">         <span class="built_in">exit</span> 0</div><div class="line">         ;;</div><div class="line">        <span class="keyword">esac</span></div><div class="line">   <span class="keyword">fi</span></div><div class="line"> <span class="keyword">else</span></div><div class="line">    <span class="built_in">echo</span> <span class="string">"<span class="variable">$file</span> not exist"</span></div><div class="line">    <span class="built_in">exit</span> 1</div><div class="line"> <span class="keyword">fi</span></div></pre></td></tr></table></figure>
+<h3 id="写一个脚本：-26包括3个小题"><a href="#写一个脚本：-26包括3个小题" class="headerlink" title="写一个脚本：(26包括3个小题)"></a>写一个脚本：(26包括3个小题)</h3><p>1、创建一个函数，能接受两个参数：<br>1)第一个参数为URL，即可下载的文件；第二个参数为目录，即下载后保存的位置；<br>2)如果用户给的目录不存在，则提示用户是否创建；如果创建就继续执行，否则，函数返回一个51的错误值给调用脚本；<br>3)如果给的目录存在，则下载文件；下载命令执行结束后测试文件下载成功与否；如果成功，则返回0给调用脚本，否则，返回52给调用脚本；</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">[root@localhost tmp]<span class="comment"># cat downfile.sh</span></div><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line">url=<span class="variable">$1</span></div><div class="line">dir=<span class="variable">$2</span></div><div class="line"><span class="function"><span class="title">download</span></span>()</div><div class="line">  &#123;</div><div class="line">    <span class="built_in">cd</span> <span class="variable">$dir</span> &gt;&gt; /dev/null 2&gt;&amp;1</div><div class="line">    <span class="keyword">if</span> [ $? <span class="_">-ne</span> 0 ];<span class="keyword">then</span></div><div class="line">        <span class="built_in">read</span> -p <span class="string">"<span class="variable">$dir</span> No such file or directory,create?(y/n)"</span> answer</div><div class="line">        <span class="keyword">if</span> [ <span class="string">"<span class="variable">$answer</span>"</span> == <span class="string">"y"</span> ];<span class="keyword">then</span></div><div class="line">            mkdir -p <span class="variable">$dir</span></div><div class="line">            <span class="built_in">cd</span> <span class="variable">$dir</span></div><div class="line">            wget <span class="variable">$url</span> 1&gt; /dev/null 2&gt;&amp;1</div><div class="line">        <span class="keyword">else</span></div><div class="line">            <span class="built_in">return</span> <span class="string">"51"</span></div><div class="line">        <span class="keyword">fi</span></div><div class="line">    <span class="keyword">fi</span></div><div class="line">    <span class="keyword">if</span> [ $? <span class="_">-ne</span> 0 ]; <span class="keyword">then</span></div><div class="line">        <span class="built_in">return</span> <span class="string">"52"</span></div><div class="line">    <span class="keyword">fi</span></div><div class="line">&#125;</div><div class="line">download <span class="variable">$url</span> <span class="variable">$dir</span></div><div class="line"><span class="built_in">echo</span> $?</div></pre></td></tr></table></figure>
+<h3 id="写一个脚本：（27包括2个小题）"><a href="#写一个脚本：（27包括2个小题）" class="headerlink" title="写一个脚本：（27包括2个小题）"></a>写一个脚本：（27包括2个小题）</h3><p>1、创建一个函数，可以接受一个磁盘设备路径（如/dev/sdb）作为参数;在真正开始后面步骤之前提醒用户有危险，并让用户选择是否继续；而后将此磁盘设备上的所有分区清空（提示，使用命令dd if=/dev/zero of=/dev/sdb bs=512 count=1实现，注意其中的设备路径不要写错了；<br>如果此步骤失败，返回67给主程序；<br>接着在此磁盘设备上创建两个主分区，一个大小为100M，一个大小为1G；如果此步骤失败，返回68给主程序；<br>格式化此两分区，文件系统类型为ext3；如果此步骤失败，返回69给主程序；<br>如果上述过程都正常，返回0给主程序；<br>2、调用此函数；并通过接收函数执行的返回值来判断其执行情况，并将信息显示出来；</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">local</span> Darray=(`ls /dev/sd[a-z]`)</div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="variable">$&#123;Darray&#125;</span>;<span class="keyword">do</span></div><div class="line">  [[ <span class="string">"<span class="variable">$i</span>"</span> == <span class="string">"<span class="variable">$1</span>"</span> ]] &amp;&amp; Sd=<span class="variable">$i</span> &amp;&amp;<span class="built_in">break</span></div><div class="line"><span class="keyword">done</span></div><div class="line">  <span class="keyword">else</span></div><div class="line">  <span class="built_in">return</span> 66</div><div class="line">  <span class="keyword">fi</span></div><div class="line"><span class="comment">#当匹配成功，进入选择，告诉用户，是否继续，输错的话进入无限循环，当用户选择Y,则清空目标分区，且跳出while循环</span></div><div class="line"><span class="keyword">while</span> :;<span class="keyword">do</span></div><div class="line">    <span class="built_in">read</span> -p <span class="string">"Warning!!!This operation will clean <span class="variable">$Sd</span> data.Next=y,Quit=n [y|n]:"</span> Choice</div><div class="line">    <span class="keyword">case</span> <span class="variable">$Choice</span> <span class="keyword">in</span></div><div class="line">y)</div><div class="line">   dd <span class="keyword">if</span>=/dev/zero of=<span class="variable">$Sd</span> bs=512 count=1 &amp;&gt; /dev/null &amp;&amp;<span class="built_in">break</span> || <span class="built_in">return</span> 67 ;;</div><div class="line">n)</div><div class="line">   <span class="built_in">exit</span> 88 ;;</div><div class="line">*)</div><div class="line">   <span class="built_in">echo</span> <span class="string">"Invalid choice,please choice again."</span> ;;</div><div class="line"><span class="keyword">esac</span></div><div class="line"><span class="keyword">done</span></div></pre></td></tr></table></figure>
+<p>使用echo传递给fdisk进行分区，如果此命令失败，则跳转出去，错误值68，需要注意的是，有时候这个返回值很诡异，笔者之前成功与否都是返回的1，后来重启之后，就好了，如果慎重的话，可以对创建的分区，进行判断，不过就需要使用其他工具截取相关字段了，虽有些小麻烦，但无大碍</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cho<span class="_">-e</span> <span class="string">"n\np\n1\n\n+100M\nn\np\n2\n\n+1024M\nw\n"</span>|fdisk /dev/sdb&amp;&gt; /dev/null || <span class="built_in">return</span> 68</div></pre></td></tr></table></figure>
+<p>格式化之前，让内核重新读取磁盘分区表，值得注意的是，有的系统版本，使用partprobe无效，譬如笔者的环境是rhel5.8，而rhel6.0以后，这个命令就很危险了，而使用partx -a /dev/sdb则效果更好…此项需慎重，如果格式化失败，则告知把失败的分区定义成变量，且跳出函数，并带出错误值69</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">`partprobe`</div><div class="line">Part=`fdisk <span class="_">-l</span> /dev/<span class="variable">$Sd</span>|tail -2|cut <span class="_">-d</span> <span class="string">""</span> <span class="_">-f</span>1`</div><div class="line"><span class="keyword">for</span> M <span class="keyword">in</span> <span class="variable">$&#123;Part&#125;</span>;<span class="keyword">do</span></div><div class="line">   mke2fs -j <span class="variable">$M</span> &amp;&gt; /dev/null &amp;&amp; ErrorPart=<span class="variable">$M</span> &amp;&amp;<span class="built_in">return</span> 69</div><div class="line"><span class="keyword">done</span></div><div class="line">  <span class="built_in">return</span> 0</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>下面代码，调用函数，接收函数返回值，根据返回值进行判断哪里出错。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Disk_Mod <span class="variable">$1</span></div><div class="line">Res=$?</div><div class="line">[ <span class="variable">$Res</span><span class="_">-eq</span> 0 ] &amp;&amp; <span class="built_in">exit</span> 0</div><div class="line">[ <span class="variable">$Res</span><span class="_">-eq</span> 66 ] &amp;&amp; <span class="built_in">echo</span> <span class="string">"Error! Invalid input."</span></div><div class="line">[ <span class="variable">$Res</span><span class="_">-eq</span> 67 ] &amp;&amp; <span class="built_in">echo</span> <span class="string">"Error! Command -&gt; dd &lt;- Faild."</span></div><div class="line">[ <span class="variable">$Res</span><span class="_">-eq</span> 68 ] &amp;&amp; <span class="built_in">echo</span> <span class="string">"Error! Command -&gt; fdisk &lt;- Faild."</span></div><div class="line">[ <span class="variable">$Res</span><span class="_">-eq</span> 69 ] &amp;&amp; <span class="built_in">echo</span> <span class="string">"Error! Command -&gt; mke2fs &lt;- Faild."</span></div></pre></td></tr></table></figure>
+<h3 id="Linux下查看-管理当前登录用户及用户操作历史记录"><a href="#Linux下查看-管理当前登录用户及用户操作历史记录" class="headerlink" title="Linux下查看/管理当前登录用户及用户操作历史记录"></a>Linux下查看/管理当前登录用户及用户操作历史记录</h3><p>使用w命令查看登录用户正在使用的进程信息，w命令用于显示已经登录系统的用户的名称，以及他们正在做的事。该命令所使用的信息来源于/var/run/utmp文件。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">w</div><div class="line">23:04:27 up 29 days,  7:51,  3 users,  load average: 0.04, 0.06, 0.02</div><div class="line">USER     TTY      FROM              LOGIN@   IDLE   JCPU   PCPU WHAT</div><div class="line">ramesh   pts/0    10.1.80.56        22:57    8.00s  0.05s  0.01s sshd: ramesh [priv]</div><div class="line">jason    pts/1    10.20.48          23:01    2:53   0.01s  0.01s -bash</div><div class="line">john     pts/2    10.1.80.7         23:04    0.00s  0.00s  0.00s w</div></pre></td></tr></table></figure></p>
+<h3 id="查看所有登录用户的操作历史"><a href="#查看所有登录用户的操作历史" class="headerlink" title="查看所有登录用户的操作历史"></a>查看所有登录用户的操作历史</h3><p>在linux系统的环境下，不管是root用户还是其它的用户只有登陆系统后用进入操作我们都可以通过命令history来查看历史记录，可是假如一台服务器多人登陆，一天因为某人误操作了删除了重要的数据。这时候通过查看历史记录（命令：history）是没有什么意义了（因为history只针对登录用户下执行有效，即使root用户也无法得到其它用户histotry历史）。那有没有什么办法实现通过记录登陆后的IP地址和某用户名所操作的历史记录呢？答案：有的。</p>
+<p>通过在/etc/profile里面加入以下代码就可以实现：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">PS1=<span class="string">"`whoami`@`hostname`:"</span><span class="string">'[$PWD]'</span></div><div class="line"><span class="built_in">history</span></div><div class="line">USER_IP=`who -u am i 2&gt;/dev/null| awk <span class="string">'&#123;print $NF&#125;'</span>|sed <span class="_">-e</span> <span class="string">'s/[()]//g'</span>`</div><div class="line"><span class="keyword">if</span> [ <span class="string">"<span class="variable">$USER_IP</span>"</span> = <span class="string">""</span> ]</div><div class="line"><span class="keyword">then</span></div><div class="line">USER_IP=`hostname`</div><div class="line"><span class="keyword">fi</span></div><div class="line"><span class="keyword">if</span> [ ! <span class="_">-d</span> /tmp/dbasky ]</div><div class="line"><span class="keyword">then</span></div><div class="line">mkdir /tmp/dbasky</div><div class="line">chmod 777 /tmp/dbasky</div><div class="line"><span class="keyword">fi</span></div><div class="line"><span class="keyword">if</span> [ ! <span class="_">-d</span> /tmp/dbasky/<span class="variable">$&#123;LOGNAME&#125;</span> ]</div><div class="line"><span class="keyword">then</span></div><div class="line">mkdir /tmp/dbasky/<span class="variable">$&#123;LOGNAME&#125;</span></div><div class="line">chmod 300 /tmp/dbasky/<span class="variable">$&#123;LOGNAME&#125;</span></div><div class="line"><span class="keyword">fi</span></div><div class="line"><span class="built_in">export</span> HISTSIZE=4096</div><div class="line">DT=`date <span class="string">"+%Y-%m-%d_%H:%M:%S"</span>`</div><div class="line"><span class="built_in">export</span> HISTFILE=<span class="string">"/tmp/dbasky/<span class="variable">$&#123;LOGNAME&#125;</span>/<span class="variable">$&#123;USER_IP&#125;</span> dbasky.<span class="variable">$DT</span>"</span></div><div class="line">chmod 600 /tmp/dbasky/<span class="variable">$&#123;LOGNAME&#125;</span>/*dbasky* 2&gt;/dev/null</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">source</span> /etc/profile 使用脚本生效</div><div class="line"></div><div class="line">退出用户，重新登录</div><div class="line"></div><div class="line">上面脚本在系统的/tmp新建个dbasky目录，记录所有登陆过系统的用户和IP地址（文件名），每当用户登录/退出会创建相应的文件，该文件保存这段用户登录时期内操作历史，可以用这个方法来监测系统的安全性。</div><div class="line"></div><div class="line">root@zsc6:[/tmp/dbasky/root]ls </div><div class="line">10.1.80.47 dbasky.2013-10-24_12:53:08 </div><div class="line">root@zsc6:[/tmp/dbasky/root]cat 10.1.80.47 dbasky.2013-10-24_12:53:08</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">查看在12:53:08从10.1.80.47登录的root用户操作命令历史</div></pre></td></tr></table></figure>]]></content>
+      
+        <categories>
+            
+            <category> work </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> work </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[python-thread]]></title>
+      <url>/2017/08/21/py-thread/</url>
+      <content type="html"><![CDATA[<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">from threading import Thread</div><div class="line">import time</div><div class="line">import random</div><div class="line">from Queue import Queue</div><div class="line"> </div><div class="line">queue = Queue(10)</div><div class="line"> </div><div class="line">class ProducerThread(Thread):</div><div class="line">    def run(self):</div><div class="line">        nums = range(5)</div><div class="line">        global queue</div><div class="line">        <span class="keyword">while</span> True:</div><div class="line">            num = random.choice(nums)</div><div class="line">            queue.put(num)</div><div class="line">            <span class="built_in">print</span> <span class="string">"Produced"</span>, num</div><div class="line">            time.sleep(random.random())</div><div class="line"> </div><div class="line">class ConsumerThread(Thread):</div><div class="line">    def run(self):</div><div class="line">        global queue</div><div class="line">        <span class="keyword">while</span> True:</div><div class="line">            num = queue.get()</div><div class="line">            queue.task_done()</div><div class="line">            <span class="built_in">print</span> <span class="string">"Consumed"</span>, num</div><div class="line">            time.sleep(random.random())</div><div class="line"> </div><div class="line">ProducerThread().start()</div><div class="line">ConsumerThread().start()</div></pre></td></tr></table></figure>]]></content>
+      
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[shell-sed]]></title>
+      <url>/2017/08/21/shell-sed/</url>
+      <content type="html"><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p><a href="来自: http://man.linuxde.net/sed">转自 sed</a><br>sed是一种流编辑器，它是文本处理中非常中的工具，能够完美的配合正则表达式使用，功能不同凡响。处理时，把当前处理的行存储在临时缓冲区中，称为“模式空间”（pattern space），接着用sed命令处理缓冲区中的内容，处理完成后，把缓冲区的内容送往屏幕。接着处理下一行，这样不断重复，直到文件末尾。文件内容并没有 改变，除非你使用重定向存储输出。Sed主要用来自动编辑一个或多个文件；简化对文件的反复操作；编写转换程序等。</p>
+<a id="more"></a>
+<h2 id="sed的选项、命令、替换标记"><a href="#sed的选项、命令、替换标记" class="headerlink" title="sed的选项、命令、替换标记"></a>sed的选项、命令、替换标记</h2><h3 id="命令格式"><a href="#命令格式" class="headerlink" title="命令格式"></a>命令格式</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sed [options] <span class="string">'command'</span> file(s) </div><div class="line">sed [options] <span class="_">-f</span> scriptfile file(s)</div></pre></td></tr></table></figure>
+<h3 id="选项"><a href="#选项" class="headerlink" title="选项"></a>选项</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="_">-e</span>&lt;script&gt;或--expression=&lt;script&gt;：以选项中的指定的script来处理输入的文本文件；</div><div class="line"><span class="_">-f</span>&lt;script文件&gt;或--file&lt;script文件&gt;：以选项中指定的script文件来处理输入的文本文件；</div><div class="line">-h或--help：显示帮助；</div><div class="line">-n或--quiet或--silent：仅显示script处理后的结果；</div><div class="line">-V或--version：显示版本信息。</div></pre></td></tr></table></figure>
+<h3 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h3><p>文件：指定待处理的文本文件列表</p>
+<h3 id="sed-命令"><a href="#sed-命令" class="headerlink" title="sed 命令"></a>sed 命令</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">a\ 在当前行下面插入文本。 </div><div class="line">i\ 在当前行上面插入文本。 </div><div class="line">c\ 把选定的行改为新的文本。 </div><div class="line">d 删除，删除选择的行。 </div><div class="line">D 删除模板块的第一行。 </div><div class="line">s 替换指定字符 </div><div class="line">h 拷贝模板块的内容到内存中的缓冲区。 </div><div class="line">H 追加模板块的内容到内存中的缓冲区。 </div><div class="line">g 获得内存缓冲区的内容，并替代当前模板块中的文本。 </div><div class="line">G 获得内存缓冲区的内容，并追加到当前模板块文本的后面。 </div><div class="line">l 列表不能打印字符的清单。 </div><div class="line">n 读取下一个输入行，用下一个命令处理新的行而不是用第一个命令。 </div><div class="line">N 追加下一个输入行到模板块后面并在二者间嵌入一个新行，改变当前行号码。 </div><div class="line">p 打印模板块的行。 </div><div class="line">P(大写) 打印模板块的第一行。 </div><div class="line">q 退出Sed。 </div><div class="line">b lable 分支到脚本中带有标记的地方，如果分支不存在则分支到脚本的末尾。 </div><div class="line">r file 从file中读行。 </div><div class="line">t label <span class="keyword">if</span>分支，从最后一行开始，条件一旦满足或者T，t命令，将导致分支到带有标号的命令处，或者到脚本的末尾。 T label 错误分支，从最后一行开始，一旦发生错误或者T，t命令，将导致分支到带有标号的命令处，或者到脚本的末尾。 </div><div class="line">w file 写并追加模板块到file末尾。 </div><div class="line">W file 写并追加模板块的第一行到file末尾。 </div><div class="line">! 表示后面的命令对所有没有被选定的行发生作用。 = 打印当前行号码。 </div><div class="line"><span class="comment"># 把注释扩展到下一个换行符以前。</span></div></pre></td></tr></table></figure>
+]]></content>
+      
+        <categories>
+            
+            <category> shell </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> shell </tag>
+            
+        </tags>
         
     </entry>
     
