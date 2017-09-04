@@ -2,6 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2017/09/04/shell-if/</loc>
+    
+    <lastmod>2017-09-04T15:14:37.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2017/08/24/shell-cond-statement/</loc>
+    
+    <lastmod>2017-08-24T09:46:32.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2017/08/21/py-thread/</loc>
+    
+    <lastmod>2017-08-24T09:38:44.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2017/08/24/shell-arr/</loc>
     
     <lastmod>2017-08-24T04:33:24.000Z</lastmod>
@@ -33,13 +54,6 @@
     <loc>http://yoursite.com/2017/08/22/shell-iptables/</loc>
     
     <lastmod>2017-08-22T07:15:16.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2017/08/21/py-thread/</loc>
-    
-    <lastmod>2017-08-21T05:30:58.000Z</lastmod>
     
   </url>
   
@@ -240,7 +254,7 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2017/08/24/hello-world/</loc>
+    <loc>http://yoursite.com/2017/09/04/hello-world/</loc>
     
     <lastmod>2017-06-09T00:51:24.000Z</lastmod>
     
@@ -366,7 +380,7 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2017/08/24/django1/</loc>
+    <loc>http://yoursite.com/2017/09/04/django1/</loc>
     
     <lastmod>2017-05-11T13:54:42.000Z</lastmod>
     

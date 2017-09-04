@@ -4,7 +4,7 @@
     
     <entry>
       <title><![CDATA[Hello World]]></title>
-      <url>/2017/08/24/hello-world/</url>
+      <url>/2017/09/04/hello-world/</url>
       <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
 <p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
@@ -21,7 +21,7 @@
     
     <entry>
       <title><![CDATA[django入门教学]]></title>
-      <url>/2017/08/24/django1/</url>
+      <url>/2017/09/04/django1/</url>
       <content type="html"><![CDATA[<h1 id="django安装"><a href="#django安装" class="headerlink" title="django安装"></a>django安装</h1><p>使用pip 或者easy_install 即可</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pip install django 或者 easy_install django</div></pre></td></tr></table></figure>
 <h1 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h1><p>项目名称不用和python或django的内部组件名称同名。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ django-admin startproject mysite</div></pre></td></tr></table></figure></p>
@@ -35,6 +35,336 @@
         wsgi.py
 </code></pre>]]></content>
       
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[if结构详解]]></title>
+      <url>/2017/09/04/shell-if/</url>
+      <content type="html"><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>下面将详细讲解if语句,除了介绍常用的判断方式还需要注意逻辑运算符的优先级。同时，bash和dash中的if其实是有点不一样的，使用debian系还是使用redhat系的Linux的时候大家要注意下。</p>
+<a id="more"></a>
+<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><h2 id="单个if结构"><a href="#单个if结构" class="headerlink" title="单个if结构"></a>单个if结构</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">if command</div><div class="line">then</div><div class="line">    commands</div><div class="line">fi</div></pre></td></tr></table></figure>
+<p>或者 </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> <span class="built_in">command</span>;<span class="keyword">then</span></div><div class="line">    commands</div><div class="line"><span class="keyword">fi</span></div></pre></td></tr></table></figure>
+<p>或者</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">command</span> &amp;&amp; commands</div></pre></td></tr></table></figure>
+<blockquote>
+<p>bash shell 的if行定义的那个命令。如果该命令的退出状态码为0，位于then部分的命令就会被执行。</p>
+</blockquote>
+<h2 id="if-else结构"><a href="#if-else结构" class="headerlink" title="if else结构"></a>if else结构</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> <span class="built_in">command</span></div><div class="line"><span class="keyword">then</span></div><div class="line">    commands</div><div class="line"><span class="keyword">else</span></div><div class="line">    commands</div><div class="line"><span class="keyword">fi</span></div></pre></td></tr></table></figure>
+<p>或者</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[ A ] &amp;&amp; B || C</div></pre></td></tr></table></figure>
+<h2 id="if-else-elif-结构"><a href="#if-else-elif-结构" class="headerlink" title="if else elif 结构"></a>if else elif 结构</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> <span class="built_in">command</span>1</div><div class="line"><span class="keyword">then</span></div><div class="line">    commands</div><div class="line"><span class="keyword">elif</span> <span class="built_in">command</span>2</div><div class="line"><span class="keyword">then</span></div><div class="line">    more commands</div><div class="line"><span class="keyword">fi</span></div></pre></td></tr></table></figure>
+<p>更多的elif例子</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> <span class="built_in">command</span>1</div><div class="line"><span class="keyword">then</span></div><div class="line">    commands1</div><div class="line"><span class="keyword">elif</span> <span class="built_in">command</span>2</div><div class="line"><span class="keyword">then</span></div><div class="line">    commands2</div><div class="line">...</div><div class="line"><span class="keyword">elif</span> <span class="built_in">command</span>N</div><div class="line"><span class="keyword">then</span></div><div class="line">    commandsN</div><div class="line"><span class="keyword">else</span></div><div class="line"><span class="keyword">then</span></div><div class="line">   commands</div><div class="line"><span class="keyword">fi</span></div></pre></td></tr></table></figure>
+<h2 id="test-命令"><a href="#test-命令" class="headerlink" title="test 命令"></a>test 命令</h2><blockquote>
+<p>test condition</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> <span class="built_in">test</span> condition</div><div class="line"><span class="keyword">then</span></div><div class="line">    commands</div><div class="line"><span class="keyword">fi</span></div></pre></td></tr></table></figure>
+<p>bash shell 提供了另外一种在if-then语句中声明test命令的方法：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> [ condition ]</div><div class="line"><span class="keyword">then</span></div><div class="line">    commands</div><div class="line"><span class="keyword">fi</span></div></pre></td></tr></table></figure>
+<h2 id="复合条件测试"><a href="#复合条件测试" class="headerlink" title="复合条件测试"></a>复合条件测试</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">[ condition1 ] &amp;&amp; [ condition2 ]</div><div class="line">[ condition1 ] || [ condition2 ]</div><div class="line">[ condition1 -o- condition2 ]</div><div class="line">[ condition1 <span class="_">-a</span>- condition2 ]</div><div class="line">[[ condition1 &amp;&amp; condition2 ]]</div><div class="line">[[ condition1 || condition2 ]]</div><div class="line">[[ condition1 ]] &amp;&amp; [[ condition2 ]]</div><div class="line">[[ condition1 ]] || [[ condition2 ]]</div></pre></td></tr></table></figure>
+<h2 id="if中的正则表达式使用-模式匹配"><a href="#if中的正则表达式使用-模式匹配" class="headerlink" title="if中的正则表达式使用 (模式匹配)"></a>if中的正则表达式使用 (模式匹配)</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> [[ <span class="string">"ABC"</span> =~ ^[A-Z]+$ ]];<span class="keyword">then</span> <span class="built_in">echo</span> <span class="string">"1"</span>;<span class="keyword">fi</span> <span class="comment">## 输出1</span></div><div class="line"><span class="keyword">if</span> [[ <span class="string">"ABC"</span> =~ <span class="string">"^[A-Z]+$"</span> ]];<span class="keyword">then</span> <span class="built_in">echo</span> <span class="string">"1"</span>;<span class="keyword">fi</span> <span class="comment">## 没输出</span></div><div class="line"><span class="keyword">if</span> [[ <span class="string">"ABC"</span> =~ <span class="string">"ABC"</span> ]];<span class="keyword">then</span> <span class="built_in">echo</span> <span class="string">"1"</span>;<span class="keyword">fi</span> <span class="comment">## 输出1</span></div><div class="line"><span class="keyword">if</span> [[ <span class="string">"ABC"</span> =~ <span class="string">"[A-Z]+"</span> ]];<span class="keyword">then</span> <span class="built_in">echo</span> <span class="string">"1"</span>;<span class="keyword">fi</span> <span class="comment">## 没输出</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>[[  ]] 比[ ] 具备的优势</p>
+<ol>
+<li>[[是 bash 程序语言的关键字。并不是一个命令，[[ ]] 结构比[ ]结构更加通用。在[[和]]之间所有的字符都不会发生文件名扩展或者单词分割，但是会发生参数扩展和命令替换。</li>
+<li>支持字符串的模式匹配，使用=~操作符时甚至支持shell的正则表达式。字符串比较时可以把右边的作为一个模式，而不仅仅是一个字符串，比如[[ hello == hell? ]]，结果为真。[[ ]] 中匹配字符串或通配符，不需要引号</li>
+<li>使用[[ … ]]条件判断结构，而不是[… ]，能够防止脚本中的许多逻辑错误。比如，&amp;&amp;、||、&lt;和&gt; 操作符能够正常存在于[[ ]]条件判断结构中，但是如果出现在[ ]结构中的话，会报错</li>
+<li>使用双方括号 ，字符串比较时， 大于、小于符号不用转移</li>
+</ol>
+</blockquote>
+<h2 id="用于数学表达式的双尖括号"><a href="#用于数学表达式的双尖括号" class="headerlink" title="用于数学表达式的双尖括号"></a>用于数学表达式的双尖括号</h2><blockquote>
+<p>(( express ))</p>
+</blockquote>
+<p>术语expression可以是任意的数学赋值或比较表达式</p>
+<table>
+<thead>
+<tr>
+<th>符号</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>val++</td>
+<td>后增</td>
+</tr>
+<tr>
+<td>val–</td>
+<td>后减</td>
+</tr>
+<tr>
+<td>++val</td>
+<td>先增</td>
+</tr>
+<tr>
+<td>–val</td>
+<td>先减</td>
+</tr>
+<tr>
+<td>!</td>
+<td>逻辑求反</td>
+</tr>
+<tr>
+<td>~</td>
+<td>位求反</td>
+</tr>
+<tr>
+<td>**</td>
+<td>幂运算</td>
+</tr>
+<tr>
+<td>&lt;&lt;</td>
+<td>左位移</td>
+</tr>
+<tr>
+<td>&gt;&gt;</td>
+<td>右位移</td>
+</tr>
+<tr>
+<td>&amp;</td>
+<td>位布尔和</td>
+</tr>
+<tr>
+<td>&#124;</td>
+<td>位布尔或</td>
+</tr>
+<tr>
+<td>&amp;&amp;</td>
+<td>逻辑和</td>
+</tr>
+<tr>
+<td>&#124;&#124;</td>
+<td>逻辑或</td>
+</tr>
+</tbody>
+</table>
+<h2 id="对于-bash-对于文件的判断"><a href="#对于-bash-对于文件的判断" class="headerlink" title="对于 bash 对于文件的判断"></a>对于 bash 对于文件的判断</h2><table>
+<thead>
+<tr>
+<th>判断</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-a</td>
+<td>如果文件存在则返回真</td>
+</tr>
+<tr>
+<td>-b</td>
+<td>如果文件存在并且是块文件则返回真</td>
+</tr>
+<tr>
+<td>-c</td>
+<td>如果文件存在并且是字符文件则返回真</td>
+</tr>
+<tr>
+<td>-d</td>
+<td>如果文件存在并且是目录则返回真</td>
+</tr>
+<tr>
+<td>-e</td>
+<td>如果文件存在则返回真</td>
+</tr>
+<tr>
+<td>-f</td>
+<td>如果文件存在并且是普通文件则返回真</td>
+</tr>
+<tr>
+<td>-g</td>
+<td>如果文件存在并且设置了SGID则返回真</td>
+</tr>
+<tr>
+<td>-h</td>
+<td>如果文件存在并且是软链接则返回真</td>
+</tr>
+<tr>
+<td>-k</td>
+<td>如果文件存在并且设置了粘滞位则返回真</td>
+</tr>
+<tr>
+<td>-p</td>
+<td>如果文件存在并且是命令管道(FIFO)则返回真</td>
+</tr>
+<tr>
+<td>-r</td>
+<td>如果文件存在并且是可读则返回真</td>
+</tr>
+<tr>
+<td>-s</td>
+<td>如果文件存在并且大小大于0则返回真</td>
+</tr>
+<tr>
+<td>-t fd</td>
+<td>如果文件描述符 fd打开并引用终端则返回真</td>
+</tr>
+<tr>
+<td>-u</td>
+<td>如果文件存在并且设置了SUID则返回真</td>
+</tr>
+<tr>
+<td>-w</td>
+<td>如果文件存在并且可写则返回真</td>
+</tr>
+<tr>
+<td>-x</td>
+<td>如果文件存在并且可执行则返回真</td>
+</tr>
+<tr>
+<td>-O</td>
+<td>如果文件存在并且属于有效用户ID则返回真</td>
+</tr>
+<tr>
+<td>-G</td>
+<td>如果文件存在并且属于有效组ID则返回真</td>
+</tr>
+<tr>
+<td>-L</td>
+<td>如果文件存在并且是软链接则返回真</td>
+</tr>
+<tr>
+<td>-S</td>
+<td>如果文件存在并且是socket文件则返回真</td>
+</tr>
+<tr>
+<td>-N</td>
+<td>如果文件存在并且自从上次读之后被修改则返回真</td>
+</tr>
+<tr>
+<td>file1 -nt file2</td>
+<td>如果file1比file2新 或者 file1存在而file2不存在 则返回真</td>
+</tr>
+<tr>
+<td>file1 -ot file2</td>
+<td>如果file1 比 file2旧,或者file2存在而file1不存在 则返回真</td>
+</tr>
+<tr>
+<td>file1 -ef file2</td>
+<td>果 FILE1 和 FILE2 指向相同的设备和节点号则返回为真</td>
+</tr>
+</tbody>
+</table>
+<h2 id="bash-对于字符串的判断"><a href="#bash-对于字符串的判断" class="headerlink" title="bash 对于字符串的判断"></a>bash 对于字符串的判断</h2><table>
+<thead>
+<tr>
+<th>判断</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-z</td>
+<td>如果STRING的长度为零则返回真</td>
+</tr>
+<tr>
+<td>-n</td>
+<td>如果STRING的长度非零则返回为真</td>
+</tr>
+<tr>
+<td>STRING</td>
+<td>如果STRING不为空则返回真</td>
+</tr>
+<tr>
+<td>STRING1=STRING2</td>
+<td>如果STRING相同则返回真</td>
+</tr>
+<tr>
+<td>STRING1 == STRING2</td>
+<td>如果两字符串相同则返回真</td>
+</tr>
+<tr>
+<td>STRING1 != STRING2</td>
+<td>如果两字符串不相同则返回真</td>
+</tr>
+<tr>
+<td>STRING1 &lt; STRING2</td>
+<td>如果STRING1字典排序在STRING2前面则返回真</td>
+</tr>
+<tr>
+<td>STRING1 &gt; STRING2</td>
+<td>如果STRING1字典排序在STRING2后面则返回为真</td>
+</tr>
+</tbody>
+</table>
+<h2 id="bash数值判断"><a href="#bash数值判断" class="headerlink" title="bash数值判断"></a>bash数值判断</h2><table>
+<thead>
+<tr>
+<th>判断</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>INT1 -eq INT2</td>
+<td>INT1 和 INT2 两数相等返回真</td>
+</tr>
+<tr>
+<td>INT1 -ne INT2</td>
+<td>INT1 和 INT2 两数不等返回真</td>
+</tr>
+<tr>
+<td>INT1 -gt INT2</td>
+<td>INT1大于INT2则返回真</td>
+</tr>
+<tr>
+<td>INT1 -ge INT2</td>
+<td>INT1大于等于INT2则返回真</td>
+</tr>
+<tr>
+<td>INT1 -lt INT2</td>
+<td>INT1 小于 INT2 则返回真</td>
+</tr>
+<tr>
+<td>INT1 -le INT2</td>
+<td>INT1 小于等于INT2则返回真</td>
+</tr>
+</tbody>
+</table>
+<h2 id="dash-文件判断"><a href="#dash-文件判断" class="headerlink" title="dash 文件判断"></a>dash 文件判断</h2><blockquote>
+<p>对比bash 少了-a判断</p>
+</blockquote>
+<h2 id="dash-字符串比较"><a href="#dash-字符串比较" class="headerlink" title="dash 字符串比较"></a>dash 字符串比较</h2><blockquote>
+<p>对比bash 少了 == 判断</p>
+</blockquote>
+<h2 id="判断符优先级"><a href="#判断符优先级" class="headerlink" title="判断符优先级"></a>判断符优先级</h2><blockquote>
+<p>-a判断的优先级高与-o判断</p>
+</blockquote>
+]]></content>
+      
+        <categories>
+            
+            <category> shell </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> shell </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[shell 条件语句]]></title>
+      <url>/2017/08/24/shell-cond-statement/</url>
+      <content type="html"></content>
+      
+        <categories>
+            
+            <category> shell </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> shell </tag>
+            
+        </tags>
         
     </entry>
     
@@ -751,10 +1081,23 @@
     </entry>
     
     <entry>
-      <title><![CDATA[python-thread]]></title>
+      <title><![CDATA[python thread模块详解]]></title>
       <url>/2017/08/21/py-thread/</url>
-      <content type="html"><![CDATA[<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">from threading import Thread</div><div class="line">import time</div><div class="line">import random</div><div class="line">from Queue import Queue</div><div class="line"> </div><div class="line">queue = Queue(10)</div><div class="line"> </div><div class="line">class ProducerThread(Thread):</div><div class="line">    def run(self):</div><div class="line">        nums = range(5)</div><div class="line">        global queue</div><div class="line">        <span class="keyword">while</span> True:</div><div class="line">            num = random.choice(nums)</div><div class="line">            queue.put(num)</div><div class="line">            <span class="built_in">print</span> <span class="string">"Produced"</span>, num</div><div class="line">            time.sleep(random.random())</div><div class="line"> </div><div class="line">class ConsumerThread(Thread):</div><div class="line">    def run(self):</div><div class="line">        global queue</div><div class="line">        <span class="keyword">while</span> True:</div><div class="line">            num = queue.get()</div><div class="line">            queue.task_done()</div><div class="line">            <span class="built_in">print</span> <span class="string">"Consumed"</span>, num</div><div class="line">            time.sleep(random.random())</div><div class="line"> </div><div class="line">ProducerThread().start()</div><div class="line">ConsumerThread().start()</div></pre></td></tr></table></figure>]]></content>
+      <content type="html"><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><a id="more"></a>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">from threading import Thread</div><div class="line">import time</div><div class="line">import random</div><div class="line">from Queue import Queue</div><div class="line"> </div><div class="line">queue = Queue(10)</div><div class="line"> </div><div class="line">class ProducerThread(Thread):</div><div class="line">    def run(self):</div><div class="line">        nums = range(5)</div><div class="line">        global queue</div><div class="line">        <span class="keyword">while</span> True:</div><div class="line">            num = random.choice(nums)</div><div class="line">            queue.put(num)</div><div class="line">            <span class="built_in">print</span> <span class="string">"Produced"</span>, num</div><div class="line">            time.sleep(random.random())</div><div class="line"> </div><div class="line">class ConsumerThread(Thread):</div><div class="line">    def run(self):</div><div class="line">        global queue</div><div class="line">        <span class="keyword">while</span> True:</div><div class="line">            num = queue.get()</div><div class="line">            queue.task_done()</div><div class="line">            <span class="built_in">print</span> <span class="string">"Consumed"</span>, num</div><div class="line">            time.sleep(random.random())</div><div class="line"> </div><div class="line">ProducerThread().start()</div><div class="line">ConsumerThread().start()</div></pre></td></tr></table></figure>]]></content>
       
+        <categories>
+            
+            <category> python </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> python </tag>
+            
+        </tags>
         
     </entry>
     

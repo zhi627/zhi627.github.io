@@ -74,7 +74,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="python," />
 
 
 
@@ -90,16 +90,17 @@
 
 
 
-<meta name="description" content="12345678910111213141516171819202122232425262728from threading import Threadimport timeimport randomfrom Queue import Queue queue = Queue(10) class ProducerThread(Thread):    def run(self):        nums">
+<meta name="description" content="简介">
+<meta name="keywords" content="python">
 <meta property="og:type" content="article">
-<meta property="og:title" content="python-thread">
+<meta property="og:title" content="python thread模块详解">
 <meta property="og:url" content="http://yoursite.com/2017/08/21/py-thread/index.html">
 <meta property="og:site_name" content="运维与开发的那些事">
-<meta property="og:description" content="12345678910111213141516171819202122232425262728from threading import Threadimport timeimport randomfrom Queue import Queue queue = Queue(10) class ProducerThread(Thread):    def run(self):        nums">
-<meta property="og:updated_time" content="2017-08-21T05:30:58.000Z">
+<meta property="og:description" content="简介">
+<meta property="og:updated_time" content="2017-08-24T09:38:44.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="python-thread">
-<meta name="twitter:description" content="12345678910111213141516171819202122232425262728from threading import Threadimport timeimport randomfrom Queue import Queue queue = Queue(10) class ProducerThread(Thread):    def run(self):        nums">
+<meta name="twitter:title" content="python thread模块详解">
+<meta name="twitter:description" content="简介">
 
 
 
@@ -133,7 +134,7 @@
 
 
 
-  <title>python-thread | 运维与开发的那些事</title>
+  <title>python thread模块详解 | 运维与开发的那些事</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -334,7 +335,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">python-thread</h1>
+          <h1 class="post-title" itemprop="name headline">python thread模块详解</h1>
         
 
         <div class="post-meta">
@@ -357,6 +358,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -364,7 +387,7 @@
 
           
           
-             <span id="/2017/08/21/py-thread/" class="leancloud_visitors" data-flag-title="python-thread">
+             <span id="/2017/08/21/py-thread/" class="leancloud_visitors" data-flag-title="python thread模块详解">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -392,7 +415,8 @@
       
 
       
-        <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">from threading import Thread</div><div class="line">import time</div><div class="line">import random</div><div class="line">from Queue import Queue</div><div class="line"> </div><div class="line">queue = Queue(10)</div><div class="line"> </div><div class="line">class ProducerThread(Thread):</div><div class="line">    def run(self):</div><div class="line">        nums = range(5)</div><div class="line">        global queue</div><div class="line">        <span class="keyword">while</span> True:</div><div class="line">            num = random.choice(nums)</div><div class="line">            queue.put(num)</div><div class="line">            <span class="built_in">print</span> <span class="string">"Produced"</span>, num</div><div class="line">            time.sleep(random.random())</div><div class="line"> </div><div class="line">class ConsumerThread(Thread):</div><div class="line">    def run(self):</div><div class="line">        global queue</div><div class="line">        <span class="keyword">while</span> True:</div><div class="line">            num = queue.get()</div><div class="line">            queue.task_done()</div><div class="line">            <span class="built_in">print</span> <span class="string">"Consumed"</span>, num</div><div class="line">            time.sleep(random.random())</div><div class="line"> </div><div class="line">ProducerThread().start()</div><div class="line">ConsumerThread().start()</div></pre></td></tr></table></figure>
+        <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><a id="more"></a>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">from threading import Thread</div><div class="line">import time</div><div class="line">import random</div><div class="line">from Queue import Queue</div><div class="line"> </div><div class="line">queue = Queue(10)</div><div class="line"> </div><div class="line">class ProducerThread(Thread):</div><div class="line">    def run(self):</div><div class="line">        nums = range(5)</div><div class="line">        global queue</div><div class="line">        <span class="keyword">while</span> True:</div><div class="line">            num = random.choice(nums)</div><div class="line">            queue.put(num)</div><div class="line">            <span class="built_in">print</span> <span class="string">"Produced"</span>, num</div><div class="line">            time.sleep(random.random())</div><div class="line"> </div><div class="line">class ConsumerThread(Thread):</div><div class="line">    def run(self):</div><div class="line">        global queue</div><div class="line">        <span class="keyword">while</span> True:</div><div class="line">            num = queue.get()</div><div class="line">            queue.task_done()</div><div class="line">            <span class="built_in">print</span> <span class="string">"Consumed"</span>, num</div><div class="line">            time.sleep(random.random())</div><div class="line"> </div><div class="line">ProducerThread().start()</div><div class="line">ConsumerThread().start()</div></pre></td></tr></table></figure>
       
     </div>
 
@@ -418,6 +442,12 @@
     </div>
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag"># python</a>
+          
+        </div>
       
 
       
@@ -487,8 +517,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.jpg"
@@ -503,7 +542,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">51</span>
+                <span class="site-state-item-count">53</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -550,6 +589,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
