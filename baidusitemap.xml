@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>http://yoursite.com/2017/08/24/shell-arr/</loc>
+    <lastmod>2017-09-05T14:41:41.000Z</lastmod>
+    <data>
+        <display>
+        <title>shell 数组详解</title>
+        <pubTime>2017-08-24T03:55:59.000Z</pubTime>
+        
+        <tag>shell</tag>
+         
+         
+           
+             
+              <breadCrumb title="shell" url="http://yoursite.com/categories/shell/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2017/09/04/shell-getopt/</loc>
     <lastmod>2017-09-04T15:28:18.000Z</lastmod>
     <data>
@@ -52,26 +72,6 @@
            
              
               <breadCrumb title="python" url="http://yoursite.com/categories/python/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2017/08/24/shell-arr/</loc>
-    <lastmod>2017-08-24T04:33:24.000Z</lastmod>
-    <data>
-        <display>
-        <title>shell 数组详解</title>
-        <pubTime>2017-08-24T03:55:59.000Z</pubTime>
-        
-        <tag>shell</tag>
-         
-         
-           
-             
-              <breadCrumb title="shell" url="http://yoursite.com/categories/shell/"/>
           
         </display>
     </data>
@@ -748,7 +748,7 @@
     <data>
         <display>
         <title>Hello World</title>
-        <pubTime>2017-09-05T14:34:40.988Z</pubTime>
+        <pubTime>2017-09-05T14:41:48.296Z</pubTime>
         
          
            
@@ -1055,7 +1055,7 @@
     <data>
         <display>
         <title>django入门教学</title>
-        <pubTime>2017-09-05T14:34:40.976Z</pubTime>
+        <pubTime>2017-09-05T14:41:48.289Z</pubTime>
         
          
            

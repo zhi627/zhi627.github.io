@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2017/08/24/shell-arr/</loc>
+    
+    <lastmod>2017-09-05T14:41:41.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2017/09/04/shell-getopt/</loc>
     
     <lastmod>2017-09-04T15:28:18.000Z</lastmod>
@@ -19,13 +26,6 @@
     <loc>http://yoursite.com/2017/08/21/py-thread/</loc>
     
     <lastmod>2017-08-24T09:38:44.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2017/08/24/shell-arr/</loc>
-    
-    <lastmod>2017-08-24T04:33:24.000Z</lastmod>
     
   </url>
   
