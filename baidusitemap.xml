@@ -4,32 +4,27 @@
 
     
   <url>
-    <loc>http://yoursite.com/2017/09/04/shell-if/</loc>
-    <lastmod>2017-09-04T15:14:37.000Z</lastmod>
+    <loc>http://yoursite.com/2017/09/04/shell-getopt/</loc>
+    <lastmod>2017-09-04T15:28:18.000Z</lastmod>
     <data>
         <display>
-        <title>if结构详解</title>
-        <pubTime>2017-09-04T15:00:02.000Z</pubTime>
+        <title>shell-getopt</title>
+        <pubTime>2017-09-04T15:28:18.000Z</pubTime>
         
-        <tag>shell</tag>
-         
          
            
-             
-              <breadCrumb title="shell" url="http://yoursite.com/categories/shell/"/>
-          
         </display>
     </data>
     </url>
 
     
   <url>
-    <loc>http://yoursite.com/2017/08/24/shell-cond-statement/</loc>
-    <lastmod>2017-08-24T09:46:32.000Z</lastmod>
+    <loc>http://yoursite.com/2017/09/04/shell-if/</loc>
+    <lastmod>2017-09-04T15:14:37.000Z</lastmod>
     <data>
         <display>
-        <title>shell 条件语句</title>
-        <pubTime>2017-08-24T09:45:32.000Z</pubTime>
+        <title>if结构详解</title>
+        <pubTime>2017-09-04T15:00:02.000Z</pubTime>
         
         <tag>shell</tag>
          
@@ -748,12 +743,12 @@
 
     
   <url>
-    <loc>http://yoursite.com/2017/09/04/hello-world/</loc>
+    <loc>http://yoursite.com/2017/09/05/hello-world/</loc>
     <lastmod>2017-06-09T00:51:24.000Z</lastmod>
     <data>
         <display>
         <title>Hello World</title>
-        <pubTime>2017-09-04T15:04:43.892Z</pubTime>
+        <pubTime>2017-09-05T14:34:40.988Z</pubTime>
         
          
            
@@ -1055,12 +1050,12 @@
 
     
   <url>
-    <loc>http://yoursite.com/2017/09/04/django1/</loc>
+    <loc>http://yoursite.com/2017/09/05/django1/</loc>
     <lastmod>2017-05-11T13:54:42.000Z</lastmod>
     <data>
         <display>
         <title>django入门教学</title>
-        <pubTime>2017-09-04T15:04:43.864Z</pubTime>
+        <pubTime>2017-09-05T14:34:40.976Z</pubTime>
         
          
            

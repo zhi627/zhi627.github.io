@@ -4,7 +4,7 @@
     
     <entry>
       <title><![CDATA[Hello World]]></title>
-      <url>/2017/09/04/hello-world/</url>
+      <url>/2017/09/05/hello-world/</url>
       <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
 <p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
@@ -21,7 +21,7 @@
     
     <entry>
       <title><![CDATA[django入门教学]]></title>
-      <url>/2017/09/04/django1/</url>
+      <url>/2017/09/05/django1/</url>
       <content type="html"><![CDATA[<h1 id="django安装"><a href="#django安装" class="headerlink" title="django安装"></a>django安装</h1><p>使用pip 或者easy_install 即可</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pip install django 或者 easy_install django</div></pre></td></tr></table></figure>
 <h1 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h1><p>项目名称不用和python或django的内部组件名称同名。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ django-admin startproject mysite</div></pre></td></tr></table></figure></p>
@@ -34,6 +34,14 @@
         urls.py
         wsgi.py
 </code></pre>]]></content>
+      
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[shell-getopt]]></title>
+      <url>/2017/09/04/shell-getopt/</url>
+      <content type="html"></content>
       
         
     </entry>
@@ -332,26 +340,6 @@
 <p>-a判断的优先级高与-o判断</p>
 </blockquote>
 ]]></content>
-      
-        <categories>
-            
-            <category> shell </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> shell </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[shell 条件语句]]></title>
-      <url>/2017/08/24/shell-cond-statement/</url>
-      <content type="html"></content>
       
         <categories>
             
