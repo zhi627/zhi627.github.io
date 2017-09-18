@@ -74,7 +74,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="code,shell," />
 
 
 
@@ -90,16 +90,17 @@
 
 
 
-<meta name="description" content="运维狗">
+<meta name="description" content="简介关于bash shell的参数常见的一般是直接传递位置参数进行处理，当我们知道固定位置传递的参数是固定用于处理模块功能时，是十分方便的，但是是十分依赖参数位置顺序的；当然如果指令是比较复杂的，使用getopt/getopts或许是更好的选择。">
+<meta name="keywords" content="code,shell">
 <meta property="og:type" content="article">
-<meta property="og:title" content="shell-getopt">
+<meta property="og:title" content="shell 脚本参数处理">
 <meta property="og:url" content="http://yoursite.com/2017/09/04/shell-getopt/index.html">
 <meta property="og:site_name" content="运维与开发的那些事">
-<meta property="og:description" content="运维狗">
-<meta property="og:updated_time" content="2017-09-04T15:28:18.000Z">
+<meta property="og:description" content="简介关于bash shell的参数常见的一般是直接传递位置参数进行处理，当我们知道固定位置传递的参数是固定用于处理模块功能时，是十分方便的，但是是十分依赖参数位置顺序的；当然如果指令是比较复杂的，使用getopt/getopts或许是更好的选择。">
+<meta property="og:updated_time" content="2017-09-07T16:38:51.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="shell-getopt">
-<meta name="twitter:description" content="运维狗">
+<meta name="twitter:title" content="shell 脚本参数处理">
+<meta name="twitter:description" content="简介关于bash shell的参数常见的一般是直接传递位置参数进行处理，当我们知道固定位置传递的参数是固定用于处理模块功能时，是十分方便的，但是是十分依赖参数位置顺序的；当然如果指令是比较复杂的，使用getopt/getopts或许是更好的选择。">
 
 
 
@@ -133,7 +134,7 @@
 
 
 
-  <title>shell-getopt | 运维与开发的那些事</title>
+  <title>shell 脚本参数处理 | 运维与开发的那些事</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -334,7 +335,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">shell-getopt</h1>
+          <h1 class="post-title" itemprop="name headline">shell 脚本参数处理</h1>
         
 
         <div class="post-meta">
@@ -357,6 +358,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/shell/" itemprop="url" rel="index">
+                    <span itemprop="name">shell</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -364,7 +387,7 @@
 
           
           
-             <span id="/2017/09/04/shell-getopt/" class="leancloud_visitors" data-flag-title="shell-getopt">
+             <span id="/2017/09/04/shell-getopt/" class="leancloud_visitors" data-flag-title="shell 脚本参数处理">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -392,7 +415,26 @@
       
 
       
-        
+        <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>关于bash shell的参数常见的一般是直接传递位置参数进行处理，当我们知道固定位置传递的参数是固定用于处理模块功能时，是十分方便的，但是是十分依赖参数位置顺序的；当然如果指令是比较复杂的，使用getopt/getopts或许是更好的选择。</p>
+<a id="more"></a>
+<h1 id="位置参数"><a href="#位置参数" class="headerlink" title="位置参数"></a>位置参数</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">$ cat testargs.sh</div><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line"><span class="built_in">echo</span> <span class="variable">$#</span></div><div class="line"><span class="built_in">echo</span> $*</div><div class="line"><span class="built_in">echo</span> <span class="variable">$@</span></div><div class="line"><span class="built_in">echo</span> <span class="variable">$0</span></div><div class="line">basename <span class="variable">$0</span></div><div class="line"><span class="built_in">echo</span> <span class="variable">$2</span></div><div class="line"><span class="built_in">echo</span> <span class="variable">$1</span></div><div class="line"><span class="built_in">echo</span> <span class="variable">$9</span></div><div class="line"><span class="built_in">echo</span> <span class="variable">$10</span></div><div class="line"><span class="built_in">echo</span> <span class="variable">$&#123;10&#125;</span></div><div class="line"><span class="built_in">shift</span></div><div class="line"><span class="built_in">echo</span> <span class="variable">$#</span></div><div class="line"><span class="built_in">echo</span> $*</div><div class="line"></div><div class="line"></div><div class="line">$ bash /root/shell/testargs.sh 1 <span class="string">"2 3"</span> 4 5 6 7 8 9 10 11</div><div class="line">10</div><div class="line">1 2 3 4 5 6 7 8 9 10 11</div><div class="line">1 2 3 4 5 6 7 8 9 10 11</div><div class="line">/root/shell/testargs.sh</div><div class="line">testargs.sh</div><div class="line">2 3</div><div class="line">1</div><div class="line">10</div><div class="line">10</div><div class="line">11</div><div class="line">9</div><div class="line">2 3 4 5 6 7 8 9 10 11</div></pre></td></tr></table></figure>
+<p>说明：</p>
+<blockquote>
+<p>$# 是表示位置参数的数目，$<em>是以单个字符串表示全部参数，$@是以数组的形式表示全部参数<br>$0 是调用时的脚本名称，如果调用时带路径则$0是带路径的，如果不带路径则$0不是带路径的<br>如果仅仅想获取脚本自身的名称，可以使用basename获取脚本的名称<br>脚本后面的参数其实从1开始，使用shift从左到右逐一将参数弹出，$#、$</em>、$#也都将随之减少<br>如果传递参数的字符串是带空格的应用引号（单双引号都可以）包起</p>
+</blockquote>
+<h1 id="getopt的使用"><a href="#getopt的使用" class="headerlink" title="getopt的使用"></a>getopt的使用</h1><p>getopt命令是一个在处理命令行选项和参数时非常方便的工具。它能够识别命令行参数从而在脚本中解析它们时更方便。</p>
+<h2 id="命令格式"><a href="#命令格式" class="headerlink" title="命令格式"></a>命令格式</h2><p>接受一系列任意形式的命令行选项和参数，并自动将它们转换成适当的格式。它的格式如下：</p>
+<blockquote>
+<p>getopt optstring parameters</p>
+</blockquote>
+<p><code>optstring</code>是这个过程的关键所在。它定义了命令行有效的选项字母，还定义了哪些选项字母需要参数值。<br>在optstring中列出你要在脚本中用到的每个命令行选项字母。然后，在每个需要参数值得选项字母后加一个冒号。getopt命令会基于你定义的optstring解析提供的参数。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ getopt ab:<span class="built_in">cd</span> <span class="_">-a</span> -b <span class="built_in">test</span>1 -cd <span class="built_in">test</span>2 <span class="built_in">test</span>3</div><div class="line"><span class="_">-a</span> -b <span class="built_in">test</span>1 -c <span class="_">-d</span> -- <span class="built_in">test</span>2 <span class="built_in">test</span>3</div></pre></td></tr></table></figure>
+<p>如果指定了一个不在optstring中的选项，默认情况下，getopt命令会产生一条错误消息。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ getopt ab:<span class="built_in">cd</span> <span class="_">-a</span> -b <span class="built_in">test</span>1 -cd3 <span class="built_in">test</span>2 <span class="built_in">test</span>3</div><div class="line">getopt: invalid option -- <span class="string">'e'</span></div><div class="line"> <span class="_">-a</span> -b <span class="built_in">test</span>1 -c <span class="_">-d</span> -- <span class="built_in">test</span>2 <span class="built_in">test</span>3</div></pre></td></tr></table></figure>
+<p>如果想忽略这条错误消息，可以在命令后加-q选项</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ getopt ab:<span class="built_in">cd</span> <span class="_">-a</span> -b <span class="built_in">test</span>1 -cd3 <span class="built_in">test</span>2 <span class="built_in">test</span>3</div><div class="line">getopt: invalid option -- <span class="string">'e'</span></div><div class="line"> <span class="_">-a</span> -b <span class="built_in">test</span>1 -c <span class="_">-d</span> -- <span class="built_in">test</span>2 <span class="built_in">test</span>3</div></pre></td></tr></table></figure>
+<p>使用set转换$@ (位置参数)<br>set命令选项–，它会将命令行参数替换成set命令的命令行值。</p>
+<h1 id="getopts的使用"><a href="#getopts的使用" class="headerlink" title="getopts的使用"></a>getopts的使用</h1><h1 id="标准化设计"><a href="#标准化设计" class="headerlink" title="标准化设计"></a>标准化设计</h1>
       
     </div>
 
@@ -419,6 +461,14 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/code/" rel="tag"># code</a>
+          
+            <a href="/tags/shell/" rel="tag"># shell</a>
+          
+        </div>
+      
 
       
         
@@ -438,8 +488,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/09/05/django1/" rel="prev" title="django入门教学">
-                django入门教学 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/09/17/shell-val-replace/" rel="prev" title="shell变量替换">
+                shell变量替换 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -487,8 +537,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.jpg"
@@ -503,7 +562,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">53</span>
+                <span class="site-state-item-count">54</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -550,6 +609,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#位置参数"><span class="nav-number">2.</span> <span class="nav-text">位置参数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#getopt的使用"><span class="nav-number">3.</span> <span class="nav-text">getopt的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#命令格式"><span class="nav-number">3.1.</span> <span class="nav-text">命令格式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#getopts的使用"><span class="nav-number">4.</span> <span class="nav-text">getopts的使用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#标准化设计"><span class="nav-number">5.</span> <span class="nav-text">标准化设计</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

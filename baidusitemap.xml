@@ -4,12 +4,12 @@
 
     
   <url>
-    <loc>http://yoursite.com/2017/08/24/shell-arr/</loc>
-    <lastmod>2017-09-05T14:41:41.000Z</lastmod>
+    <loc>http://yoursite.com/2017/09/17/shell-val-replace/</loc>
+    <lastmod>2017-09-18T16:23:02.000Z</lastmod>
     <data>
         <display>
-        <title>shell 数组详解</title>
-        <pubTime>2017-08-24T03:55:59.000Z</pubTime>
+        <title>shell变量替换</title>
+        <pubTime>2017-09-17T14:47:05.000Z</pubTime>
         
         <tag>shell</tag>
          
@@ -25,14 +25,61 @@
     
   <url>
     <loc>http://yoursite.com/2017/09/04/shell-getopt/</loc>
-    <lastmod>2017-09-04T15:28:18.000Z</lastmod>
+    <lastmod>2017-09-07T16:38:51.000Z</lastmod>
     <data>
         <display>
-        <title>shell-getopt</title>
+        <title>shell 脚本参数处理</title>
         <pubTime>2017-09-04T15:28:18.000Z</pubTime>
         
+        <tag>code</tag>
+         
+        <tag>shell</tag>
+         
          
            
+             
+              <breadCrumb title="shell" url="http://yoursite.com/categories/shell/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/06/20/shell-gawk/</loc>
+    <lastmod>2017-09-06T15:52:42.000Z</lastmod>
+    <data>
+        <display>
+        <title>awk、gawk 使用</title>
+        <pubTime>2017-06-19T17:54:39.000Z</pubTime>
+        
+        <tag>shell</tag>
+         
+         
+           
+             
+              <breadCrumb title="shell" url="http://yoursite.com/categories/shell/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/08/24/shell-arr/</loc>
+    <lastmod>2017-09-05T14:41:41.000Z</lastmod>
+    <data>
+        <display>
+        <title>shell 数组详解</title>
+        <pubTime>2017-08-24T03:55:59.000Z</pubTime>
+        
+        <tag>shell</tag>
+         
+         
+           
+             
+              <breadCrumb title="shell" url="http://yoursite.com/categories/shell/"/>
+          
         </display>
     </data>
     </url>
@@ -165,26 +212,6 @@
         <display>
         <title>shell-sed</title>
         <pubTime>2017-08-21T01:40:56.000Z</pubTime>
-        
-        <tag>shell</tag>
-         
-         
-           
-             
-              <breadCrumb title="shell" url="http://yoursite.com/categories/shell/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2017/06/20/shell-gawk/</loc>
-    <lastmod>2017-08-19T04:07:48.000Z</lastmod>
-    <data>
-        <display>
-        <title>awk、gawk 使用</title>
-        <pubTime>2017-06-19T17:54:39.000Z</pubTime>
         
         <tag>shell</tag>
          
@@ -743,12 +770,12 @@
 
     
   <url>
-    <loc>http://yoursite.com/2017/09/05/hello-world/</loc>
+    <loc>http://yoursite.com/2017/09/19/hello-world/</loc>
     <lastmod>2017-06-09T00:51:24.000Z</lastmod>
     <data>
         <display>
         <title>Hello World</title>
-        <pubTime>2017-09-05T14:41:48.296Z</pubTime>
+        <pubTime>2017-09-18T16:15:30.405Z</pubTime>
         
          
            
@@ -1050,12 +1077,12 @@
 
     
   <url>
-    <loc>http://yoursite.com/2017/09/05/django1/</loc>
+    <loc>http://yoursite.com/2017/09/19/django1/</loc>
     <lastmod>2017-05-11T13:54:42.000Z</lastmod>
     <data>
         <display>
         <title>django入门教学</title>
-        <pubTime>2017-09-05T14:41:48.289Z</pubTime>
+        <pubTime>2017-09-18T16:15:30.397Z</pubTime>
         
          
            

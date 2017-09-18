@@ -74,7 +74,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="shell," />
 
 
 
@@ -90,16 +90,17 @@
 
 
 
-<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="description" content="简介转自shell变量替换介绍常用的shell变量替换及使用方法,主要介绍${}中 #、%、-、？、* 等使用方法">
+<meta name="keywords" content="shell">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yoursite.com/2017/09/05/hello-world/index.html">
+<meta property="og:title" content="shell变量替换">
+<meta property="og:url" content="http://yoursite.com/2017/09/17/shell-val-replace/index.html">
 <meta property="og:site_name" content="运维与开发的那些事">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
-<meta property="og:updated_time" content="2017-06-09T00:51:24.000Z">
+<meta property="og:description" content="简介转自shell变量替换介绍常用的shell变量替换及使用方法,主要介绍${}中 #、%、-、？、* 等使用方法">
+<meta property="og:updated_time" content="2017-09-18T16:23:02.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="twitter:title" content="shell变量替换">
+<meta name="twitter:description" content="简介转自shell变量替换介绍常用的shell变量替换及使用方法,主要介绍${}中 #、%、-、？、* 等使用方法">
 
 
 
@@ -127,13 +128,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/09/05/hello-world/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/09/17/shell-val-replace/"/>
 
 
 
 
 
-  <title>Hello World | 运维与开发的那些事</title>
+  <title>shell变量替换 | 运维与开发的那些事</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -317,7 +318,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/05/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/17/shell-val-replace/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="littlezhi">
@@ -334,7 +335,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Hello World</h1>
+          <h1 class="post-title" itemprop="name headline">shell变量替换</h1>
         
 
         <div class="post-meta">
@@ -346,8 +347,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-05T22:41:48+08:00">
-                2017-09-05
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-17T22:47:05+08:00">
+                2017-09-17
               </time>
             
 
@@ -357,6 +358,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/shell/" itemprop="url" rel="index">
+                    <span itemprop="name">shell</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -364,7 +387,7 @@
 
           
           
-             <span id="/2017/09/05/hello-world/" class="leancloud_visitors" data-flag-title="Hello World">
+             <span id="/2017/09/17/shell-val-replace/" class="leancloud_visitors" data-flag-title="shell变量替换">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -392,16 +415,25 @@
       
 
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
+        <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p><a href="http://blog.chinaunix.net/uid-22235894-id-1782016.html" target="_blank" rel="external">转自shell变量替换</a><br>介绍常用的shell变量替换及使用方法,主要介绍<code>${}</code>中 <code>#</code>、<code>%</code>、<code>-</code>、<code>？</code>、<code>*</code> 等使用方法<br><a id="more"></a></p>
+<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><h2 id="中使用"><a href="#中使用" class="headerlink" title="${}中使用"></a>${}中使用</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">$ file=/dir1/dir2/dir3/myfile.txt</div><div class="line">$ <span class="variable">$&#123;file#*/&#125;</span> //从变量file的字符串左边开始，删除字符直到第一个<span class="string">"/"</span></div><div class="line">dir1/dir2/dir3/my.file.txt</div><div class="line">$ <span class="variable">$&#123;file##*/&#125;</span> //从变量file的字符串左边开始，删除字符直到最后一个<span class="string">"/"</span></div><div class="line">my.file.txt</div><div class="line">$ <span class="variable">$&#123;file##*/&#125;</span> //从变量file的字符串嘴巴开始，删除字符直到第一个<span class="string">"."</span></div><div class="line">file.txt</div><div class="line">$ <span class="variable">$&#123;file##*.&#125;</span> //从变量file的字符串左边开始，删除字符直到最后一个<span class="string">"."</span></div><div class="line">txt</div></pre></td></tr></table></figure>
+<p>其实,在”#”后面,无非就是一个匹配问题，不限于两个，你可以放任意个字符，还可以用shellz中另外的通配符 “?” “[…]” “[!…]”,例如:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">echo</span> <span class="variable">$&#123;file#????&#125;</span></div><div class="line">1/dir2/dir3/my.file.txt</div><div class="line">$ <span class="built_in">echo</span> <span class="variable">$&#123;file&#125;</span></div><div class="line">/dir2/dir3/my.file.txt</div><div class="line">$ <span class="built_in">echo</span> <span class="variable">$&#123;file#/dir1/dir[0-9]&#125;</span></div><div class="line">/dir2/dir3//my.file.txt</div><div class="line">$ <span class="built_in">echo</span> <span class="variable">$&#123;file#/dir1/dir[0-9]&#125;</span></div><div class="line">/dir</div></pre></td></tr></table></figure>
+<blockquote>
+<p>“#”:相当于最小匹配，遇到一个最小的复合其后表达式的字符串(单个或多个)即种植匹配动作；<br>“##”:相当于最大匹配，它尽可能的匹配更多的字符。<br>我们可以拿”*“来说明：<br>*在shell中表示匹配任何符号包括空。当它在只有一个 # 的变量替换中，受最小匹配的影响，它不会匹配任何可打印字符，只匹配一个空，也就是什么也不匹配，你完全可以忽略它的存在；<br>当在有两个 ## 的变量替换中，受最大匹配的影响，一个 * 表示匹配整个字符串。<br>如果想匹配字符”*“时，要在”*“前加一个”\”，其后的”*“失去通配符的功能。</p>
+</blockquote>
+<p>但是还有一种例外情况（请接着看）</p>
+<p>例：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ file2=abcd.efgh.ijkl.oopp</div><div class="line">$ <span class="built_in">echo</span> <span class="variable">$&#123;file2#*.*.*.*&#125;</span></div><div class="line">oopp</div><div class="line">$ <span class="built_in">echo</span> <span class="variable">$&#123;file2##*.*.*.*&#125;</span></div></pre></td></tr></table></figure>
+<p>知道为什么吗？因为 “*“ 匹配任何符号包括空。遇到一个”#”时，最后一个”*“就匹配”空去了”。看下面的:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">echo</span> <span class="variable">$&#123;file2#*.*.*.?&#125;</span></div><div class="line">opp</div><div class="line">$ <span class="built_in">echo</span> <span class="variable">$&#123;file2#*.*.*.?*&#125;</span></div><div class="line">opp</div><div class="line">$ <span class="built_in">echo</span> <span class="variable">$&#123;file2##*.*.*.?&#125;</span></div><div class="line">opp</div><div class="line">$ <span class="built_in">echo</span> <span class="variable">$&#123;file2##*.*.*.?*&#125;</span></div><div class="line"></div><div class="line">$ file3=<span class="string">"*ab*de*cd"</span></div><div class="line">$ <span class="built_in">echo</span> <span class="variable">$&#123;file3#*ab&#125;</span></div><div class="line">*de*<span class="built_in">cd</span></div><div class="line">$ <span class="built_in">echo</span> <span class="variable">$&#123;file3#**&#125;</span></div><div class="line">*ab*de*<span class="built_in">cd</span></div><div class="line">$ <span class="built_in">echo</span> <span class="variable">$&#123;file3#\**&#125;</span></div><div class="line">ab*de*<span class="built_in">cd</span></div><div class="line">$ <span class="built_in">echo</span> <span class="variable">$&#123;file3##\**&#125;</span></div><div class="line"></div><div class="line">$ <span class="built_in">echo</span> <span class="variable">$&#123;file3#\*a&#125;</span></div><div class="line">b*de*<span class="built_in">cd</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>“*“在一个”#”中时，并不一定代表”空”，它可能代表一个字符”*“也可能代表其他的什么字符，如上例的：”$ echo ${file3#*a}”输出为”b*de*cd”，其实这还是符合最小匹配理论的。这个表达式的意思是：从变量file3的字符串左边开始删除字符，直到遇到第一个字符”a”。所以不要和”$ echo ${file3#*a}”混淆，虽然两个结果是一样，但意思是不一样的。</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$ file3=<span class="string">"*ab*de*cd*ab*de"</span></div><div class="line">$ <span class="built_in">echo</span> <span class="variable">$&#123;file3#*a&#125;</span></div><div class="line">b*de*<span class="built_in">cd</span>*ab*de                         //删除字符，直到出现第一个<span class="string">"a"</span>，<span class="string">"*"</span>为通配符</div><div class="line">$ <span class="built_in">echo</span> <span class="variable">$&#123;file3##*a&#125;</span></div><div class="line">b*de                                           //删除字符，直到出现第二个<span class="string">"a"</span>，<span class="string">"*"</span>为通配符</div><div class="line">$ <span class="built_in">echo</span> <span class="variable">$&#123;file3##*a&#125;</span></div><div class="line">b*de*<span class="built_in">cd</span>*ab*de</div></pre></td></tr></table></figure>
+<h2 id="使用"><a href="#使用" class="headerlink" title="${}使用%"></a>${}使用%</h2><p>至于”%”，和”#”不同的地方，就是从变量字串右部开始。<br>${file%/*}：从右部开始拿掉字符，直到遇到（从右部数起的）第一个”/“ ：/dir1/dir2/dir3<br>${file%%/*}：从右部开始拿掉字符，直到遇到（从右部数起的）最后一个”/“：(空值)<br>${file%.*}：从右部开始拿掉字符，直到遇到（从右部数起的）第一个”.”：/dir1/dir2/dir3/my.file<br>${file%%.*}：从右部开始拿掉字符，直到遇到（从右部数起的）最后一个”.”：/dir1/dir2/dir3/my</p>
+<h2 id="变量替换"><a href="#变量替换" class="headerlink" title="变量替换"></a>变量替换</h2><p>Bash Shell可以进行变量的条件替换,既只有某种条件发生时才进行替换,替换条件放在{}中.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$&#123;value:-word&#125;</span>:</div><div class="line">当变量未定义或者值为空时,返回值为word的内容,否则返回变量的值.当变量未定义或者值为空时,返回值为word的内容,否则返回变量的值.</div><div class="line"><span class="variable">$&#123;value:=word&#125;</span>:</div><div class="line">与前者类似,只是若变量未定义或者值为空时,在返回word的值的同时将word赋值给value</div><div class="line"><span class="variable">$&#123;value:?message&#125;</span>:</div><div class="line">若变量以赋值的话,正常替换.否则将消息message送到标准错误输出(若此替换出现在Shell程序中,那么该程序将终止运行)</div><div class="line"><span class="variable">$&#123;value:+word&#125;</span>:</div><div class="line">若变量以赋值的话,其值才用word替换,否则不进行任何替换</div><div class="line"><span class="variable">$&#123;value:offset&#125;</span> <span class="variable">$&#123;value:offset:length&#125;</span>:</div><div class="line">从变量中提取子串,这里offset和length可以是算术表达式。</div><div class="line"><span class="variable">$&#123;#value&#125;</span>：</div><div class="line">变量的字符个数</div><div class="line"><span class="variable">$&#123;value#pattern&#125;</span> <span class="variable">$&#123;value##pattern&#125;</span>：</div><div class="line">去掉value中与pattern相匹配的部分,条件是value的开头与pattern相匹配,<span class="comment">#与##的区别在于一个是最短匹配模式,一个是最长匹配模式. </span></div><div class="line"><span class="variable">$&#123;value%pattern&#125;</span> <span class="variable">$&#123;value%%pattern&#125;</span>：</div><div class="line">与上类似,只是是从value的尾部于pattern相匹配,%与%%的区别与<span class="comment">#与##一样</span></div><div class="line"><span class="variable">$&#123;value/pattern/string&#125;</span> <span class="variable">$&#123;value//pattern/string&#125;</span> </div><div class="line">进行变量内容的替换,把与pattern匹配的部分替换为string的内容,/与//的区别与上同</div></pre></td></tr></table></figure>
       
     </div>
 
@@ -428,6 +460,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/shell/" rel="tag"># shell</a>
+          
+        </div>
+      
 
       
         
@@ -437,8 +475,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/09/05/django1/" rel="next" title="django入门教学">
-                <i class="fa fa-chevron-left"></i> django入门教学
+              <a href="/2017/09/04/shell-getopt/" rel="next" title="shell 脚本参数处理">
+                <i class="fa fa-chevron-left"></i> shell 脚本参数处理
               </a>
             
           </div>
@@ -446,6 +484,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/09/19/django1/" rel="prev" title="django入门教学">
+                django入门教学 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -517,7 +559,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">53</span>
+                <span class="site-state-item-count">54</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -574,7 +616,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#说明"><span class="nav-number">2.</span> <span class="nav-text">说明</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#中使用"><span class="nav-number">2.1.</span> <span class="nav-text">${}中使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用"><span class="nav-number">2.2.</span> <span class="nav-text">${}使用%</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变量替换"><span class="nav-number">2.3.</span> <span class="nav-text">变量替换</span></a></li></ol></li></ol></div>
             
 
           </div>

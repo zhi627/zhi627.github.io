@@ -97,7 +97,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/06/20/shell-gawk/index.html">
 <meta property="og:site_name" content="运维与开发的那些事">
 <meta property="og:description" content="简介awk是一个强大的文本分析工具，相对于grep的查找，sed的编辑，awk在其对数据分析并生成报告时，显得尤为强大。简单来说awk就是把文件逐行的读入，以空格为默认分隔符将每行切片，切开的部分再进行各种分析处理。 awk有3个不同版本: awk、nawk和gawk，未作特别说明，一般指gawk，gawk 是 AWK 的 GNU 版本。 awk其名称得自于它的创始人 Alfred Aho 、Pe">
-<meta property="og:updated_time" content="2017-08-19T04:07:48.000Z">
+<meta property="og:updated_time" content="2017-09-06T15:52:42.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="awk、gawk 使用">
 <meta name="twitter:description" content="简介awk是一个强大的文本分析工具，相对于grep的查找，sed的编辑，awk在其对数据分析并生成报告时，显得尤为强大。简单来说awk就是把文件逐行的读入，以空格为默认分隔符将每行切片，切开的部分再进行各种分析处理。 awk有3个不同版本: awk、nawk和gawk，未作特别说明，一般指gawk，gawk 是 AWK 的 GNU 版本。 awk其名称得自于它的创始人 Alfred Aho 、Pe">
@@ -539,10 +539,81 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">cat avg.awk</div><div class="line">&#123;</div><div class="line">total =0</div><div class="line">i=1</div><div class="line">while (i&lt;=NF)</div><div class="line">&#123;</div><div class="line">    total +=$i</div><div class="line">    i++</div><div class="line">&#125;</div><div class="line">avg =total /NF</div><div class="line">print total,avg</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h2 id="for语句"><a href="#for语句" class="headerlink" title="for语句"></a>for语句</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> (variable; condition;iteration process)</div></pre></td></tr></table></figure>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">cat for.awk</div><div class="line">&#123;</div><div class="line">total=0</div><div class="line"><span class="keyword">for</span> (i=1;i&lt;4;i++)</div><div class="line">&#123;</div><div class="line">total += <span class="variable">$1</span></div><div class="line">&#125;</div><div class="line">avg=total/3</div><div class="line"><span class="built_in">print</span> avg</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h1 id="格式化打印"><a href="#格式化打印" class="headerlink" title="格式化打印"></a>格式化打印</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
-<p>#</p>
-<p>格式化打印<br>printf “format string”,var1,var2<br>格式化指定符采用如下格式:<br>%[modifier]control-letter<br>格式化指定符的控制字母<br>|控制字母 |描述|<br>|-|-|<br>|c|将一个数作为ASCII字符显示|<br>|d|显示一个整数|<br>|i|显示一个整数值跟d一样|<br>|e|用科学计数法显示一个数|<br>|f|显示一个浮点数|<br>|g|用科学计数法或者浮点数较短的显示|<br>|o|显示一个八进制值|<br>|s|显示一个文本字符串|<br>|x|显示一个十六进制值|<br>|X|显示一个十六进制值，用大写字母A~F|</p>
-<p>3种修饰符进一步控制输出<br>|修饰符|描述|<br>|-|-|<br>|width|指定输出字段最小宽度的数字值|<br>|prec |指定了浮点数中小数点后面位数的数字值|<br>|-| 减号|</p>
+<h1 id="格式化打印"><a href="#格式化打印" class="headerlink" title="格式化打印"></a>格式化打印</h1><blockquote>
+<p>printf “format string”,var1,var2<br>格式化指定符采用如下格式:<br>%[modifier]control-letter</p>
+</blockquote>
+<h2 id="格式化指定符的控制字母"><a href="#格式化指定符的控制字母" class="headerlink" title="格式化指定符的控制字母"></a>格式化指定符的控制字母</h2><table>
+<thead>
+<tr>
+<th>控制字母</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>c</td>
+<td>将一个数作为ASCII字符显示</td>
+</tr>
+<tr>
+<td>d</td>
+<td>显示一个整数</td>
+</tr>
+<tr>
+<td>i</td>
+<td>显示一个整数值跟d一样</td>
+</tr>
+<tr>
+<td>e</td>
+<td>用科学计数法显示一个数</td>
+</tr>
+<tr>
+<td>f</td>
+<td>显示一个浮点数</td>
+</tr>
+<tr>
+<td>g</td>
+<td>用科学计数法或者浮点数较短的显示</td>
+</tr>
+<tr>
+<td>o</td>
+<td>显示一个八进制值</td>
+</tr>
+<tr>
+<td>s</td>
+<td>显示一个文本字符串</td>
+</tr>
+<tr>
+<td>x</td>
+<td>显示一个十六进制值</td>
+</tr>
+<tr>
+<td>X</td>
+<td>显示一个十六进制值，用大写字母A~F</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3种修饰符进一步控制输出"><a href="#3种修饰符进一步控制输出" class="headerlink" title="3种修饰符进一步控制输出"></a>3种修饰符进一步控制输出</h2><table>
+<thead>
+<tr>
+<th>修饰符</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>width</td>
+<td>指定输出字段最小宽度的数字值</td>
+</tr>
+<tr>
+<td>prec</td>
+<td>指定了浮点数中小数点后面位数的数字值</td>
+</tr>
+<tr>
+<td>-</td>
+<td>减号</td>
+</tr>
+</tbody>
+</table>
 <h1 id="数学函数"><a href="#数学函数" class="headerlink" title="数学函数"></a>数学函数</h1><h2 id="内建数学函数"><a href="#内建数学函数" class="headerlink" title="内建数学函数"></a>内建数学函数</h2><table>
 <thead>
 <tr>
@@ -684,8 +755,7 @@
 <li>strftime(format [,timestamp])</li>
 <li>systime</li>
 </ul>
-<h1 id="自定义函数"><a href="#自定义函数" class="headerlink" title="自定义函数"></a>自定义函数</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">function</span> name([variables])</div><div class="line">&#123;</div><div class="line">statements</div><div class="line">&#125;</div><div class="line">gawk <span class="string">'</span></div><div class="line">function myprint()</div><div class="line">&#123;</div><div class="line">printf "%-16s - %s\n",$1,$4</div><div class="line">&#125;</div><div class="line">BEGIN&#123;FS="\n"; RS=""&#125;</div><div class="line">&#123;</div><div class="line">myprint()</div><div class="line">&#125;</div><div class="line">'</div><div class="line">```</div></pre></td></tr></table></figure>
-<p>cat funclib<br>function myprint()<br>{<br>printf “%-16s - %s\n “ ,$1,$4<br>}<br>function myrand(limit)<br>{<br>return int(limit * rand())<br>}<br>function printthird()<br>{<br>print $3<br>}<br>cat script4<br>BEGIN{FS =”\n”; RS=””}<br>{<br>myprint()<br>}<br>gawk -f funclib -f script4 data2<br>```</p>
+<h1 id="自定义函数"><a href="#自定义函数" class="headerlink" title="自定义函数"></a>自定义函数</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">function</span> name([variables])</div><div class="line">&#123;</div><div class="line">statements</div><div class="line">&#125;</div><div class="line">gawk <span class="string">'</span></div><div class="line">function myprint()</div><div class="line">&#123;</div><div class="line">printf "%-16s - %s\n",$1,$4</div><div class="line">&#125;</div><div class="line">BEGIN&#123;FS="\n"; RS=""&#125;</div><div class="line">&#123;</div><div class="line">myprint()</div><div class="line">&#125;</div><div class="line">'</div><div class="line"></div><div class="line">cat funclib</div><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">myprint</span></span>()</div><div class="line">&#123;</div><div class="line"><span class="built_in">printf</span> <span class="string">"%-16s - %s\n "</span> ,<span class="variable">$1</span>,<span class="variable">$4</span></div><div class="line">&#125;</div><div class="line"><span class="keyword">function</span> myrand(<span class="built_in">limit</span>)</div><div class="line">&#123;</div><div class="line"><span class="built_in">return</span> int(<span class="built_in">limit</span> * rand())</div><div class="line">&#125;</div><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">printthird</span></span>()</div><div class="line">&#123;</div><div class="line"><span class="built_in">print</span> <span class="variable">$3</span></div><div class="line">&#125;</div><div class="line">cat script4 </div><div class="line">BEGIN&#123;FS =<span class="string">"\n"</span>; RS=<span class="string">""</span>&#125;</div><div class="line">&#123;</div><div class="line">myprint()</div><div class="line">&#125;</div><div class="line">gawk <span class="_">-f</span> funclib <span class="_">-f</span> script4 data2</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -812,7 +882,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">53</span>
+                <span class="site-state-item-count">54</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -869,7 +939,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#语法"><span class="nav-number">2.</span> <span class="nav-text">语法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#gawk-内置变量"><span class="nav-number">3.</span> <span class="nav-text">gawk 内置变量</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#字段和数据行分隔符变量"><span class="nav-number">3.1.</span> <span class="nav-text">字段和数据行分隔符变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据变量"><span class="nav-number">3.2.</span> <span class="nav-text">数据变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注意"><span class="nav-number">3.3.</span> <span class="nav-text">注意</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#处理数组"><span class="nav-number">4.</span> <span class="nav-text">处理数组</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#定义数组变量"><span class="nav-number">4.1.</span> <span class="nav-text">定义数组变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#遍历数组变量"><span class="nav-number">4.2.</span> <span class="nav-text">遍历数组变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#删除数组变量"><span class="nav-number">4.3.</span> <span class="nav-text">删除数组变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#正则表达式-可以使用基本正则表达式（BRE）或扩展正则表达式-ERE"><span class="nav-number">4.4.</span> <span class="nav-text">正则表达式:可以使用基本正则表达式（BRE）或扩展正则表达式(ERE)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数学表达式"><span class="nav-number">4.5.</span> <span class="nav-text">数学表达式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结构化命令"><span class="nav-number">4.6.</span> <span class="nav-text">结构化命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#for语句"><span class="nav-number">4.7.</span> <span class="nav-text">for语句</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#格式化打印"><span class="nav-number">5.</span> <span class="nav-text">格式化打印</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数学函数"><span class="nav-number">6.</span> <span class="nav-text">数学函数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#内建数学函数"><span class="nav-number">6.1.</span> <span class="nav-text">内建数学函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#操作数据的函数"><span class="nav-number">6.2.</span> <span class="nav-text">操作数据的函数</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#字符串函数"><span class="nav-number">7.</span> <span class="nav-text">字符串函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#时间函数"><span class="nav-number">8.</span> <span class="nav-text">时间函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#自定义函数"><span class="nav-number">9.</span> <span class="nav-text">自定义函数</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#语法"><span class="nav-number">2.</span> <span class="nav-text">语法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#gawk-内置变量"><span class="nav-number">3.</span> <span class="nav-text">gawk 内置变量</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#字段和数据行分隔符变量"><span class="nav-number">3.1.</span> <span class="nav-text">字段和数据行分隔符变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据变量"><span class="nav-number">3.2.</span> <span class="nav-text">数据变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注意"><span class="nav-number">3.3.</span> <span class="nav-text">注意</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#处理数组"><span class="nav-number">4.</span> <span class="nav-text">处理数组</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#定义数组变量"><span class="nav-number">4.1.</span> <span class="nav-text">定义数组变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#遍历数组变量"><span class="nav-number">4.2.</span> <span class="nav-text">遍历数组变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#删除数组变量"><span class="nav-number">4.3.</span> <span class="nav-text">删除数组变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#正则表达式-可以使用基本正则表达式（BRE）或扩展正则表达式-ERE"><span class="nav-number">4.4.</span> <span class="nav-text">正则表达式:可以使用基本正则表达式（BRE）或扩展正则表达式(ERE)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数学表达式"><span class="nav-number">4.5.</span> <span class="nav-text">数学表达式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结构化命令"><span class="nav-number">4.6.</span> <span class="nav-text">结构化命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#for语句"><span class="nav-number">4.7.</span> <span class="nav-text">for语句</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#格式化打印"><span class="nav-number">5.</span> <span class="nav-text">格式化打印</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#格式化指定符的控制字母"><span class="nav-number">5.1.</span> <span class="nav-text">格式化指定符的控制字母</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3种修饰符进一步控制输出"><span class="nav-number">5.2.</span> <span class="nav-text">3种修饰符进一步控制输出</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数学函数"><span class="nav-number">6.</span> <span class="nav-text">数学函数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#内建数学函数"><span class="nav-number">6.1.</span> <span class="nav-text">内建数学函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#操作数据的函数"><span class="nav-number">6.2.</span> <span class="nav-text">操作数据的函数</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#字符串函数"><span class="nav-number">7.</span> <span class="nav-text">字符串函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#时间函数"><span class="nav-number">8.</span> <span class="nav-text">时间函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#自定义函数"><span class="nav-number">9.</span> <span class="nav-text">自定义函数</span></a></li></ol></div>
             
 
           </div>

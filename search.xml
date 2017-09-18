@@ -4,7 +4,7 @@
     
     <entry>
       <title><![CDATA[Hello World]]></title>
-      <url>/2017/09/05/hello-world/</url>
+      <url>/2017/09/19/hello-world/</url>
       <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
 <p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
@@ -21,7 +21,7 @@
     
     <entry>
       <title><![CDATA[django入门教学]]></title>
-      <url>/2017/09/05/django1/</url>
+      <url>/2017/09/19/django1/</url>
       <content type="html"><![CDATA[<h1 id="django安装"><a href="#django安装" class="headerlink" title="django安装"></a>django安装</h1><p>使用pip 或者easy_install 即可</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pip install django 或者 easy_install django</div></pre></td></tr></table></figure>
 <h1 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h1><p>项目名称不用和python或django的内部组件名称同名。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ django-admin startproject mysite</div></pre></td></tr></table></figure></p>
@@ -39,10 +39,81 @@
     </entry>
     
     <entry>
-      <title><![CDATA[shell-getopt]]></title>
-      <url>/2017/09/04/shell-getopt/</url>
-      <content type="html"></content>
+      <title><![CDATA[shell变量替换]]></title>
+      <url>/2017/09/17/shell-val-replace/</url>
+      <content type="html"><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p><a href="http://blog.chinaunix.net/uid-22235894-id-1782016.html" target="_blank" rel="external">转自shell变量替换</a><br>介绍常用的shell变量替换及使用方法,主要介绍<code>${}</code>中 <code>#</code>、<code>%</code>、<code>-</code>、<code>？</code>、<code>*</code> 等使用方法<br><a id="more"></a></p>
+<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><h2 id="中使用"><a href="#中使用" class="headerlink" title="${}中使用"></a>${}中使用</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">$ file=/dir1/dir2/dir3/myfile.txt</div><div class="line">$ <span class="variable">$&#123;file#*/&#125;</span> //从变量file的字符串左边开始，删除字符直到第一个<span class="string">"/"</span></div><div class="line">dir1/dir2/dir3/my.file.txt</div><div class="line">$ <span class="variable">$&#123;file##*/&#125;</span> //从变量file的字符串左边开始，删除字符直到最后一个<span class="string">"/"</span></div><div class="line">my.file.txt</div><div class="line">$ <span class="variable">$&#123;file##*/&#125;</span> //从变量file的字符串嘴巴开始，删除字符直到第一个<span class="string">"."</span></div><div class="line">file.txt</div><div class="line">$ <span class="variable">$&#123;file##*.&#125;</span> //从变量file的字符串左边开始，删除字符直到最后一个<span class="string">"."</span></div><div class="line">txt</div></pre></td></tr></table></figure>
+<p>其实,在”#”后面,无非就是一个匹配问题，不限于两个，你可以放任意个字符，还可以用shellz中另外的通配符 “?” “[…]” “[!…]”,例如:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">echo</span> <span class="variable">$&#123;file#????&#125;</span></div><div class="line">1/dir2/dir3/my.file.txt</div><div class="line">$ <span class="built_in">echo</span> <span class="variable">$&#123;file&#125;</span></div><div class="line">/dir2/dir3/my.file.txt</div><div class="line">$ <span class="built_in">echo</span> <span class="variable">$&#123;file#/dir1/dir[0-9]&#125;</span></div><div class="line">/dir2/dir3//my.file.txt</div><div class="line">$ <span class="built_in">echo</span> <span class="variable">$&#123;file#/dir1/dir[0-9]&#125;</span></div><div class="line">/dir</div></pre></td></tr></table></figure>
+<blockquote>
+<p>“#”:相当于最小匹配，遇到一个最小的复合其后表达式的字符串(单个或多个)即种植匹配动作；<br>“##”:相当于最大匹配，它尽可能的匹配更多的字符。<br>我们可以拿”*“来说明：<br>*在shell中表示匹配任何符号包括空。当它在只有一个 # 的变量替换中，受最小匹配的影响，它不会匹配任何可打印字符，只匹配一个空，也就是什么也不匹配，你完全可以忽略它的存在；<br>当在有两个 ## 的变量替换中，受最大匹配的影响，一个 * 表示匹配整个字符串。<br>如果想匹配字符”*“时，要在”*“前加一个”\”，其后的”*“失去通配符的功能。</p>
+</blockquote>
+<p>但是还有一种例外情况（请接着看）</p>
+<p>例：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ file2=abcd.efgh.ijkl.oopp</div><div class="line">$ <span class="built_in">echo</span> <span class="variable">$&#123;file2#*.*.*.*&#125;</span></div><div class="line">oopp</div><div class="line">$ <span class="built_in">echo</span> <span class="variable">$&#123;file2##*.*.*.*&#125;</span></div></pre></td></tr></table></figure>
+<p>知道为什么吗？因为 “*“ 匹配任何符号包括空。遇到一个”#”时，最后一个”*“就匹配”空去了”。看下面的:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">echo</span> <span class="variable">$&#123;file2#*.*.*.?&#125;</span></div><div class="line">opp</div><div class="line">$ <span class="built_in">echo</span> <span class="variable">$&#123;file2#*.*.*.?*&#125;</span></div><div class="line">opp</div><div class="line">$ <span class="built_in">echo</span> <span class="variable">$&#123;file2##*.*.*.?&#125;</span></div><div class="line">opp</div><div class="line">$ <span class="built_in">echo</span> <span class="variable">$&#123;file2##*.*.*.?*&#125;</span></div><div class="line"></div><div class="line">$ file3=<span class="string">"*ab*de*cd"</span></div><div class="line">$ <span class="built_in">echo</span> <span class="variable">$&#123;file3#*ab&#125;</span></div><div class="line">*de*<span class="built_in">cd</span></div><div class="line">$ <span class="built_in">echo</span> <span class="variable">$&#123;file3#**&#125;</span></div><div class="line">*ab*de*<span class="built_in">cd</span></div><div class="line">$ <span class="built_in">echo</span> <span class="variable">$&#123;file3#\**&#125;</span></div><div class="line">ab*de*<span class="built_in">cd</span></div><div class="line">$ <span class="built_in">echo</span> <span class="variable">$&#123;file3##\**&#125;</span></div><div class="line"></div><div class="line">$ <span class="built_in">echo</span> <span class="variable">$&#123;file3#\*a&#125;</span></div><div class="line">b*de*<span class="built_in">cd</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>“*“在一个”#”中时，并不一定代表”空”，它可能代表一个字符”*“也可能代表其他的什么字符，如上例的：”$ echo ${file3#*a}”输出为”b*de*cd”，其实这还是符合最小匹配理论的。这个表达式的意思是：从变量file3的字符串左边开始删除字符，直到遇到第一个字符”a”。所以不要和”$ echo ${file3#*a}”混淆，虽然两个结果是一样，但意思是不一样的。</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$ file3=<span class="string">"*ab*de*cd*ab*de"</span></div><div class="line">$ <span class="built_in">echo</span> <span class="variable">$&#123;file3#*a&#125;</span></div><div class="line">b*de*<span class="built_in">cd</span>*ab*de                         //删除字符，直到出现第一个<span class="string">"a"</span>，<span class="string">"*"</span>为通配符</div><div class="line">$ <span class="built_in">echo</span> <span class="variable">$&#123;file3##*a&#125;</span></div><div class="line">b*de                                           //删除字符，直到出现第二个<span class="string">"a"</span>，<span class="string">"*"</span>为通配符</div><div class="line">$ <span class="built_in">echo</span> <span class="variable">$&#123;file3##*a&#125;</span></div><div class="line">b*de*<span class="built_in">cd</span>*ab*de</div></pre></td></tr></table></figure>
+<h2 id="使用"><a href="#使用" class="headerlink" title="${}使用%"></a>${}使用%</h2><p>至于”%”，和”#”不同的地方，就是从变量字串右部开始。<br>${file%/*}：从右部开始拿掉字符，直到遇到（从右部数起的）第一个”/“ ：/dir1/dir2/dir3<br>${file%%/*}：从右部开始拿掉字符，直到遇到（从右部数起的）最后一个”/“：(空值)<br>${file%.*}：从右部开始拿掉字符，直到遇到（从右部数起的）第一个”.”：/dir1/dir2/dir3/my.file<br>${file%%.*}：从右部开始拿掉字符，直到遇到（从右部数起的）最后一个”.”：/dir1/dir2/dir3/my</p>
+<h2 id="变量替换"><a href="#变量替换" class="headerlink" title="变量替换"></a>变量替换</h2><p>Bash Shell可以进行变量的条件替换,既只有某种条件发生时才进行替换,替换条件放在{}中.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$&#123;value:-word&#125;</span>:</div><div class="line">当变量未定义或者值为空时,返回值为word的内容,否则返回变量的值.当变量未定义或者值为空时,返回值为word的内容,否则返回变量的值.</div><div class="line"><span class="variable">$&#123;value:=word&#125;</span>:</div><div class="line">与前者类似,只是若变量未定义或者值为空时,在返回word的值的同时将word赋值给value</div><div class="line"><span class="variable">$&#123;value:?message&#125;</span>:</div><div class="line">若变量以赋值的话,正常替换.否则将消息message送到标准错误输出(若此替换出现在Shell程序中,那么该程序将终止运行)</div><div class="line"><span class="variable">$&#123;value:+word&#125;</span>:</div><div class="line">若变量以赋值的话,其值才用word替换,否则不进行任何替换</div><div class="line"><span class="variable">$&#123;value:offset&#125;</span> <span class="variable">$&#123;value:offset:length&#125;</span>:</div><div class="line">从变量中提取子串,这里offset和length可以是算术表达式。</div><div class="line"><span class="variable">$&#123;#value&#125;</span>：</div><div class="line">变量的字符个数</div><div class="line"><span class="variable">$&#123;value#pattern&#125;</span> <span class="variable">$&#123;value##pattern&#125;</span>：</div><div class="line">去掉value中与pattern相匹配的部分,条件是value的开头与pattern相匹配,<span class="comment">#与##的区别在于一个是最短匹配模式,一个是最长匹配模式. </span></div><div class="line"><span class="variable">$&#123;value%pattern&#125;</span> <span class="variable">$&#123;value%%pattern&#125;</span>：</div><div class="line">与上类似,只是是从value的尾部于pattern相匹配,%与%%的区别与<span class="comment">#与##一样</span></div><div class="line"><span class="variable">$&#123;value/pattern/string&#125;</span> <span class="variable">$&#123;value//pattern/string&#125;</span> </div><div class="line">进行变量内容的替换,把与pattern匹配的部分替换为string的内容,/与//的区别与上同</div></pre></td></tr></table></figure>]]></content>
       
+        <categories>
+            
+            <category> shell </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> shell </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[shell 脚本参数处理]]></title>
+      <url>/2017/09/04/shell-getopt/</url>
+      <content type="html"><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>关于bash shell的参数常见的一般是直接传递位置参数进行处理，当我们知道固定位置传递的参数是固定用于处理模块功能时，是十分方便的，但是是十分依赖参数位置顺序的；当然如果指令是比较复杂的，使用getopt/getopts或许是更好的选择。</p>
+<a id="more"></a>
+<h1 id="位置参数"><a href="#位置参数" class="headerlink" title="位置参数"></a>位置参数</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">$ cat testargs.sh</div><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line"><span class="built_in">echo</span> <span class="variable">$#</span></div><div class="line"><span class="built_in">echo</span> $*</div><div class="line"><span class="built_in">echo</span> <span class="variable">$@</span></div><div class="line"><span class="built_in">echo</span> <span class="variable">$0</span></div><div class="line">basename <span class="variable">$0</span></div><div class="line"><span class="built_in">echo</span> <span class="variable">$2</span></div><div class="line"><span class="built_in">echo</span> <span class="variable">$1</span></div><div class="line"><span class="built_in">echo</span> <span class="variable">$9</span></div><div class="line"><span class="built_in">echo</span> <span class="variable">$10</span></div><div class="line"><span class="built_in">echo</span> <span class="variable">$&#123;10&#125;</span></div><div class="line"><span class="built_in">shift</span></div><div class="line"><span class="built_in">echo</span> <span class="variable">$#</span></div><div class="line"><span class="built_in">echo</span> $*</div><div class="line"></div><div class="line"></div><div class="line">$ bash /root/shell/testargs.sh 1 <span class="string">"2 3"</span> 4 5 6 7 8 9 10 11</div><div class="line">10</div><div class="line">1 2 3 4 5 6 7 8 9 10 11</div><div class="line">1 2 3 4 5 6 7 8 9 10 11</div><div class="line">/root/shell/testargs.sh</div><div class="line">testargs.sh</div><div class="line">2 3</div><div class="line">1</div><div class="line">10</div><div class="line">10</div><div class="line">11</div><div class="line">9</div><div class="line">2 3 4 5 6 7 8 9 10 11</div></pre></td></tr></table></figure>
+<p>说明：</p>
+<blockquote>
+<p>$# 是表示位置参数的数目，$<em>是以单个字符串表示全部参数，$@是以数组的形式表示全部参数<br>$0 是调用时的脚本名称，如果调用时带路径则$0是带路径的，如果不带路径则$0不是带路径的<br>如果仅仅想获取脚本自身的名称，可以使用basename获取脚本的名称<br>脚本后面的参数其实从1开始，使用shift从左到右逐一将参数弹出，$#、$</em>、$#也都将随之减少<br>如果传递参数的字符串是带空格的应用引号（单双引号都可以）包起</p>
+</blockquote>
+<h1 id="getopt的使用"><a href="#getopt的使用" class="headerlink" title="getopt的使用"></a>getopt的使用</h1><p>getopt命令是一个在处理命令行选项和参数时非常方便的工具。它能够识别命令行参数从而在脚本中解析它们时更方便。</p>
+<h2 id="命令格式"><a href="#命令格式" class="headerlink" title="命令格式"></a>命令格式</h2><p>接受一系列任意形式的命令行选项和参数，并自动将它们转换成适当的格式。它的格式如下：</p>
+<blockquote>
+<p>getopt optstring parameters</p>
+</blockquote>
+<p><code>optstring</code>是这个过程的关键所在。它定义了命令行有效的选项字母，还定义了哪些选项字母需要参数值。<br>在optstring中列出你要在脚本中用到的每个命令行选项字母。然后，在每个需要参数值得选项字母后加一个冒号。getopt命令会基于你定义的optstring解析提供的参数。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ getopt ab:<span class="built_in">cd</span> <span class="_">-a</span> -b <span class="built_in">test</span>1 -cd <span class="built_in">test</span>2 <span class="built_in">test</span>3</div><div class="line"><span class="_">-a</span> -b <span class="built_in">test</span>1 -c <span class="_">-d</span> -- <span class="built_in">test</span>2 <span class="built_in">test</span>3</div></pre></td></tr></table></figure>
+<p>如果指定了一个不在optstring中的选项，默认情况下，getopt命令会产生一条错误消息。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ getopt ab:<span class="built_in">cd</span> <span class="_">-a</span> -b <span class="built_in">test</span>1 -cd3 <span class="built_in">test</span>2 <span class="built_in">test</span>3</div><div class="line">getopt: invalid option -- <span class="string">'e'</span></div><div class="line"> <span class="_">-a</span> -b <span class="built_in">test</span>1 -c <span class="_">-d</span> -- <span class="built_in">test</span>2 <span class="built_in">test</span>3</div></pre></td></tr></table></figure>
+<p>如果想忽略这条错误消息，可以在命令后加-q选项</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ getopt ab:<span class="built_in">cd</span> <span class="_">-a</span> -b <span class="built_in">test</span>1 -cd3 <span class="built_in">test</span>2 <span class="built_in">test</span>3</div><div class="line">getopt: invalid option -- <span class="string">'e'</span></div><div class="line"> <span class="_">-a</span> -b <span class="built_in">test</span>1 -c <span class="_">-d</span> -- <span class="built_in">test</span>2 <span class="built_in">test</span>3</div></pre></td></tr></table></figure>
+<p>使用set转换$@ (位置参数)<br>set命令选项–，它会将命令行参数替换成set命令的命令行值。</p>
+<h1 id="getopts的使用"><a href="#getopts的使用" class="headerlink" title="getopts的使用"></a>getopts的使用</h1><h1 id="标准化设计"><a href="#标准化设计" class="headerlink" title="标准化设计"></a>标准化设计</h1>]]></content>
+      
+        <categories>
+            
+            <category> shell </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> code </tag>
+            
+            <tag> shell </tag>
+            
+        </tags>
         
     </entry>
     
@@ -3324,10 +3395,81 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">cat avg.awk</div><div class="line">&#123;</div><div class="line">total =0</div><div class="line">i=1</div><div class="line">while (i&lt;=NF)</div><div class="line">&#123;</div><div class="line">    total +=$i</div><div class="line">    i++</div><div class="line">&#125;</div><div class="line">avg =total /NF</div><div class="line">print total,avg</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h2 id="for语句"><a href="#for语句" class="headerlink" title="for语句"></a>for语句</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> (variable; condition;iteration process)</div></pre></td></tr></table></figure>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">cat for.awk</div><div class="line">&#123;</div><div class="line">total=0</div><div class="line"><span class="keyword">for</span> (i=1;i&lt;4;i++)</div><div class="line">&#123;</div><div class="line">total += <span class="variable">$1</span></div><div class="line">&#125;</div><div class="line">avg=total/3</div><div class="line"><span class="built_in">print</span> avg</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h1 id="格式化打印"><a href="#格式化打印" class="headerlink" title="格式化打印"></a>格式化打印</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
-<p>#</p>
-<p>格式化打印<br>printf “format string”,var1,var2<br>格式化指定符采用如下格式:<br>%[modifier]control-letter<br>格式化指定符的控制字母<br>|控制字母 |描述|<br>|-|-|<br>|c|将一个数作为ASCII字符显示|<br>|d|显示一个整数|<br>|i|显示一个整数值跟d一样|<br>|e|用科学计数法显示一个数|<br>|f|显示一个浮点数|<br>|g|用科学计数法或者浮点数较短的显示|<br>|o|显示一个八进制值|<br>|s|显示一个文本字符串|<br>|x|显示一个十六进制值|<br>|X|显示一个十六进制值，用大写字母A~F|</p>
-<p>3种修饰符进一步控制输出<br>|修饰符|描述|<br>|-|-|<br>|width|指定输出字段最小宽度的数字值|<br>|prec |指定了浮点数中小数点后面位数的数字值|<br>|-| 减号|</p>
+<h1 id="格式化打印"><a href="#格式化打印" class="headerlink" title="格式化打印"></a>格式化打印</h1><blockquote>
+<p>printf “format string”,var1,var2<br>格式化指定符采用如下格式:<br>%[modifier]control-letter</p>
+</blockquote>
+<h2 id="格式化指定符的控制字母"><a href="#格式化指定符的控制字母" class="headerlink" title="格式化指定符的控制字母"></a>格式化指定符的控制字母</h2><table>
+<thead>
+<tr>
+<th>控制字母</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>c</td>
+<td>将一个数作为ASCII字符显示</td>
+</tr>
+<tr>
+<td>d</td>
+<td>显示一个整数</td>
+</tr>
+<tr>
+<td>i</td>
+<td>显示一个整数值跟d一样</td>
+</tr>
+<tr>
+<td>e</td>
+<td>用科学计数法显示一个数</td>
+</tr>
+<tr>
+<td>f</td>
+<td>显示一个浮点数</td>
+</tr>
+<tr>
+<td>g</td>
+<td>用科学计数法或者浮点数较短的显示</td>
+</tr>
+<tr>
+<td>o</td>
+<td>显示一个八进制值</td>
+</tr>
+<tr>
+<td>s</td>
+<td>显示一个文本字符串</td>
+</tr>
+<tr>
+<td>x</td>
+<td>显示一个十六进制值</td>
+</tr>
+<tr>
+<td>X</td>
+<td>显示一个十六进制值，用大写字母A~F</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3种修饰符进一步控制输出"><a href="#3种修饰符进一步控制输出" class="headerlink" title="3种修饰符进一步控制输出"></a>3种修饰符进一步控制输出</h2><table>
+<thead>
+<tr>
+<th>修饰符</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>width</td>
+<td>指定输出字段最小宽度的数字值</td>
+</tr>
+<tr>
+<td>prec</td>
+<td>指定了浮点数中小数点后面位数的数字值</td>
+</tr>
+<tr>
+<td>-</td>
+<td>减号</td>
+</tr>
+</tbody>
+</table>
 <h1 id="数学函数"><a href="#数学函数" class="headerlink" title="数学函数"></a>数学函数</h1><h2 id="内建数学函数"><a href="#内建数学函数" class="headerlink" title="内建数学函数"></a>内建数学函数</h2><table>
 <thead>
 <tr>
@@ -3469,8 +3611,7 @@
 <li>strftime(format [,timestamp])</li>
 <li>systime</li>
 </ul>
-<h1 id="自定义函数"><a href="#自定义函数" class="headerlink" title="自定义函数"></a>自定义函数</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">function</span> name([variables])</div><div class="line">&#123;</div><div class="line">statements</div><div class="line">&#125;</div><div class="line">gawk <span class="string">'</span></div><div class="line">function myprint()</div><div class="line">&#123;</div><div class="line">printf "%-16s - %s\n",$1,$4</div><div class="line">&#125;</div><div class="line">BEGIN&#123;FS="\n"; RS=""&#125;</div><div class="line">&#123;</div><div class="line">myprint()</div><div class="line">&#125;</div><div class="line">'</div><div class="line">```</div></pre></td></tr></table></figure>
-<p>cat funclib<br>function myprint()<br>{<br>printf “%-16s - %s\n “ ,$1,$4<br>}<br>function myrand(limit)<br>{<br>return int(limit * rand())<br>}<br>function printthird()<br>{<br>print $3<br>}<br>cat script4<br>BEGIN{FS =”\n”; RS=””}<br>{<br>myprint()<br>}<br>gawk -f funclib -f script4 data2<br>```</p>
+<h1 id="自定义函数"><a href="#自定义函数" class="headerlink" title="自定义函数"></a>自定义函数</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">function</span> name([variables])</div><div class="line">&#123;</div><div class="line">statements</div><div class="line">&#125;</div><div class="line">gawk <span class="string">'</span></div><div class="line">function myprint()</div><div class="line">&#123;</div><div class="line">printf "%-16s - %s\n",$1,$4</div><div class="line">&#125;</div><div class="line">BEGIN&#123;FS="\n"; RS=""&#125;</div><div class="line">&#123;</div><div class="line">myprint()</div><div class="line">&#125;</div><div class="line">'</div><div class="line"></div><div class="line">cat funclib</div><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">myprint</span></span>()</div><div class="line">&#123;</div><div class="line"><span class="built_in">printf</span> <span class="string">"%-16s - %s\n "</span> ,<span class="variable">$1</span>,<span class="variable">$4</span></div><div class="line">&#125;</div><div class="line"><span class="keyword">function</span> myrand(<span class="built_in">limit</span>)</div><div class="line">&#123;</div><div class="line"><span class="built_in">return</span> int(<span class="built_in">limit</span> * rand())</div><div class="line">&#125;</div><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">printthird</span></span>()</div><div class="line">&#123;</div><div class="line"><span class="built_in">print</span> <span class="variable">$3</span></div><div class="line">&#125;</div><div class="line">cat script4 </div><div class="line">BEGIN&#123;FS =<span class="string">"\n"</span>; RS=<span class="string">""</span>&#125;</div><div class="line">&#123;</div><div class="line">myprint()</div><div class="line">&#125;</div><div class="line">gawk <span class="_">-f</span> funclib <span class="_">-f</span> script4 data2</div></pre></td></tr></table></figure>
 ]]></content>
       
         <categories>
